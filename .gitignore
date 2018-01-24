@@ -10,6 +10,7 @@ out
 
 .idea
 .gradle
+
 *.iml
 classes
 
@@ -23,3 +24,5 @@ jniLibs
 build
 local.properties
 reports
+
+!gradle-wrapper.jar

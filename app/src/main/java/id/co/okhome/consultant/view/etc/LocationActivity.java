@@ -15,11 +15,14 @@ import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -47,6 +50,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnFocusChange;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.adapter.PlaceAutocompleteAdapter;
 import id.co.okhome.consultant.lib.OkHomeParentActivity;
@@ -60,9 +64,10 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
     protected GeoDataClient mGeoDataClient;
 
     @BindView(R.id.actLocation_etLocation)      AutoCompleteTextView etLocation;
-    @BindView(R.id.actLocation_vbtnClear)       View btnClear;
     @BindView(R.id.actLocation_progressBar)     ProgressBar progressBar;
     @BindView(R.id.actLocation_flProgress)      FrameLayout flProgress;
+    @BindView(R.id.actLocation_fmMap)           FrameLayout flMap;
+    @BindView(R.id.actLocation_vbtnClear)       View btnClear;
     @BindView(R.id.actLocation_vbtnConfirm)     View vbtnConfirm;
 
     boolean isKeyboardOpen = false;
@@ -150,7 +155,6 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
         }else{
             vbtnConfirm.animate().translationY(300f).setDuration(400).start();
         }
-
     }
 
     private void adaptViewsAndData() {
@@ -186,7 +190,6 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
         });
 
         etLocation.requestFocus();
-
     }
 
     @Override
@@ -206,6 +209,12 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
             Log.e(TAG, "Can't find style. Error: ", e);
         }
 
+        // Set GPS my location button bottom right corner
+        View locationButton = ((View) findViewById(Integer.parseInt("1")).getParent()).findViewById(Integer.parseInt("2"));
+        RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams) locationButton.getLayoutParams();
+        rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
+        rlp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);rlp.setMargins(0,0,30,100);
+
         // Get current location
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -223,6 +232,7 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
                     }
                 });
     }
+
 
     @Override
     public void onLocationChanged(Location location) {
@@ -255,12 +265,19 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
         finish();
     }
 
-    @OnClick({R.id.actLocation_vbtnClear, R.id.actLocation_etLocation})
+    @OnClick(R.id.actLocation_vbtnClear)
     public void clearText(){
         etLocation.getText().clear();
     }
 
-    @OnClick(R.id.actLocation_ivMarker)
+//    @OnFocusChange(R.id.actLocation_etLocation)
+//    public void onFocusChange(boolean hasFocus) {
+//        if(hasFocus) {
+//            clearText();
+//        }
+//    }
+
+    @OnClick(R.id.actLocation_vbtnConfirm)
     public void submitLocation(){
         Double lat = googleMap.getCameraPosition().target.latitude;
         Double lon = googleMap.getCameraPosition().target.longitude;

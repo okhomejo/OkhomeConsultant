@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context="id.co.okhome.consultant.view.account.AuthActivity">
+
+
+    <FrameLayout
+        android:id="@+id/actLocation_flProgress"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@android:color/transparent"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/actLocation_progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="-8dp"
+            android:indeterminate="true"
+            style="?android:attr/progressBarStyleHorizontal"/>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:background="@color/colorOkhome"
+        android:id="@+id/actLocation_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="58.4dp">
+
+        <LinearLayout
+            android:layout_marginRight="10dp"
+            android:id="@+id/actLocation_vbtnX"
+            android:gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:alpha="0.9"
+                android:adjustViewBounds="true"
+                android:layout_width="22dp"
+                android:layout_height="wrap_content" android:src="@drawable/ic_action_back_white" />
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/FontOpenSansRegular"
+            android:textColor="#ffffff"
+            android:id="@+id/actPoint_tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="Change location"
+            android:textSize="20dp"
+            android:layout_centerVertical="true" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/actLocation_vgSubTop"
+        android:orientation="vertical"
+        android:layout_below="@+id/actLocation_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/actLocation_vFocus"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+
+        <RelativeLayout
+            android:layout_height="53dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent">
+
+            <AutoCompleteTextView
+                android:id="@+id/actLocation_etLocation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="18dp"
+                android:paddingRight="48dp"
+                android:background="@null"
+                style="@style/FontOpenSansLight"
+                android:textSize="15sp"
+                android:hint="Current location"
+                android:textColor="@color/colorBlueGray"
+                android:singleLine="true"
+                android:inputType="textEmailAddress"
+                android:popupBackground="@android:color/white"
+                android:popupElevation="0dp"
+                android:drawableLeft="@drawable/ic_search"
+                android:drawablePadding="17dp"
+                android:focusable="true"
+                android:clickable="true"/>
+
+            <ImageView
+                android:id="@+id/actLocation_btnClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/places_ic_clear"
+                android:visibility="gone"
+                android:padding="16dp"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#22000000"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/actLocation_vgSubTop">
+
+        <fragment
+            android:id="@+id/actLocation_fmMap"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <View
+            android:id="@+id/actLocation_blank"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"/>
+
+        <ImageView
+            android:id="@+id/actLocation_ivMarker"
+            android:layout_above="@+id/actLocation_blank"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_marker_blue"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

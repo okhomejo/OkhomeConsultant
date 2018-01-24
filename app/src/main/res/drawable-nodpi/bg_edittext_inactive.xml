@@ -1,0 +1,9 @@
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:gravity="bottom"
+        android:height="1px"
+        android:drawable="@drawable/line_unactive" />
+
+</layer-list>

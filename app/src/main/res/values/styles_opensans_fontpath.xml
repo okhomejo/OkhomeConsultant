@@ -1,0 +1,24 @@
+<resources>
+
+    <style name="FontOpenSansLight">
+        <item name="fontPath">fonts/OpenSans-Light.ttf</item>
+        <item name="fontScaleYKo">0.99</item>
+        <item name="fontScaleYEn">0.99</item>
+    </style>
+
+    <style name="FontOpenSansRegular">
+        <item name="fontPath">fonts/OpenSans-Regular.ttf</item>
+        <item name="fontScaleYKo">0.99</item>
+        <item name="fontScaleYEn">0.99</item>
+        <!--<item name="fontScaleYKo">1</item>-->
+        <!--<item name="fontScaleYEn">1</item>-->
+    </style>
+
+    <style name="FontOpenSansSemibold">
+        <item name="fontPath">fonts/OpenSans-SemiBold.ttf</item>
+        <item name="fontScaleYKo">0.99</item>
+        <item name="fontScaleYEn">0.99</item>
+        <!--<item name="fontScaleYKo">1</item>-->
+        <!--<item name="fontScaleYEn">1</item>-->
+    </style>
+</resources>

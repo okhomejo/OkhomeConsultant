@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context="id.co.okhome.consultant.view.account.AuthActivity">
+
+    <RelativeLayout
+        android:id="@+id/actFillUpUserInfo_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+        <ImageView
+            android:alpha="0.6"
+            android:layout_marginLeft="22dp"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:layout_width="15dp"
+            android:layout_height="wrap_content" android:src="@drawable/ic_x" />
+
+        <TextView
+            style="@style/FontOpenSansRegular"
+            android:textColor="@color/colorGray"
+            android:layout_centerInParent="true"
+            android:id="@+id/actPoint_tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="Sign in"
+            android:textSize="16.5sp"
+            android:layout_centerVertical="true" />
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#33000000"/>
+    </RelativeLayout>
+
+    <!-- bottom-->
+    <LinearLayout
+        android:paddingBottom="10dp"
+        android:paddingLeft="30dp"
+        android:layout_below="@+id/actFillUpUserInfo_vgTop"
+        android:layout_above="@+id/actFillUpUserInfo_vgBottom"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <LinearLayout
+                    android:id="@+id/actFillUpUserInfo_vbtnKartuTandaPerduduk"
+                    android:gravity="center_vertical"
+                    android:layout_width="270dp"
+                    android:layout_height="53dp">
+                    <LinearLayout
+                        android:layout_marginRight="15dp"
+                        android:layout_width="26dp"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:background="@color/colorOkhome"
+                            android:layout_width="5dp"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/actFillUpUserInfo_tvKartuTandaPerduduk"
+                        android:textColor="#4e5766"
+                        style="@style/FontOpenSansLight"
+                        android:inputType="phone"
+                        android:lines="1"
+                        android:text="Kartu Tanda Penduduk"
+                        android:textSize="16.5sp"
+                        android:gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:layout_width="270dp"
+                    android:layout_height="53dp">
+                    <LinearLayout
+                        android:layout_marginRight="15dp"
+                        android:layout_width="26dp"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:background="@color/colorLightBlueGray2"
+                            android:layout_width="5dp"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+                    <TextView
+                        android:textColor="#4e5766"
+                        android:text="Upload Your Picture"
+                        style="@style/FontOpenSansLight"
+                        android:lines="1"
+                        android:textSize="16.5sp"
+                        android:gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_width="270dp"
+                    android:layout_height="53dp">
+                    <LinearLayout
+                        android:layout_marginRight="15dp"
+                        android:layout_width="26dp"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:background="@color/colorLightBlueGray2"
+                            android:layout_width="5dp"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+                    <TextView
+                        android:textColor="#4e5766"
+                        style="@style/FontOpenSansLight"
+                        android:text="Upload Basic Informations"
+                        android:lines="1"
+                        android:textSize="16.5sp"
+                        android:gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_width="270dp"
+                    android:layout_height="53dp">
+                    <LinearLayout
+                        android:layout_marginRight="15dp"
+                        android:layout_width="26dp"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:background="@color/colorLightBlueGray2"
+                            android:layout_width="5dp"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+                    <TextView
+                        android:textColor="#4e5766"
+                        style="@style/FontOpenSansLight"
+                        android:text="Education / Job Experience"
+                        android:lines="1"
+                        android:textSize="16.5sp"
+                        android:gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:layout_width="270dp"
+                    android:layout_height="53dp">
+                    <LinearLayout
+                        android:layout_marginRight="15dp"
+                        android:layout_width="26dp"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:background="@color/colorLightBlueGray2"
+                            android:layout_width="5dp"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+                    <TextView
+                        android:textColor="#4e5766"
+                        style="@style/FontOpenSansLight"
+                        android:text="Hello"
+                        android:lines="1"
+                        android:textSize="16.5sp"
+                        android:gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--term -->
+        <LinearLayout
+            android:layout_marginTop="24dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/FontOpenSansLight"
+                android:textColor="@color/colorGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:textSize="13sp"
+                android:text="Click on the menus above to complete all of the information."/>
+
+            <TextView
+                style="@style/FontOpenSansLight"
+                android:id="@+id/actSignUp_tvbtnTerm"
+                android:textColor="@color/colorOkhome"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:textSize="13sp"
+                android:text="View terms &amp; conditions"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:padding="8dp"
+        android:id="@+id/actFillUpUserInfo_vgBottom2"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/actSignUp_vbtnSignup"
+            android:gravity="center"
+            android:background="@color/colorOkhome"
+            android:paddingTop="10dp" android:paddingBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <LinearLayout
+                android:layout_marginRight="15dp"
+                android:gravity="center"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="16dp"
+                    android:adjustViewBounds="true"
+                    android:layout_height="wrap_content" android:src="@drawable/ic_downarrow_white"/>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/FontOpenSansLight"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:text="Sign up"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:id="@+id/actFillUpUserInfo_vgBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center"
+            android:background="@drawable/circle_appcolor_shadow"
+            android:layout_width="58dp"
+            android:layout_height="58dp">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="wrap_content" android:src="@drawable/ic_check_white"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

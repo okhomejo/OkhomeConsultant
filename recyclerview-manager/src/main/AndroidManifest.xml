@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.mrjodev.jorecyclermanager">
+
+    <application
+        tools:replace="android:theme"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+    </application>
+
+</manifest>

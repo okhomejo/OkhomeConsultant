@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context="id.co.okhome.consultant.view.account.AuthActivity">
+
+
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:background="@color/colorOkhome"
+        android:id="@+id/actLocation_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="58.4dp">
+
+        <LinearLayout
+            android:layout_marginRight="10dp"
+            android:id="@+id/actLocation_vbtnX"
+            android:gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:alpha="0.9"
+                android:adjustViewBounds="true"
+                android:layout_width="22dp"
+                android:layout_height="wrap_content" android:src="@drawable/ic_action_back_white" />
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/FontOpenSansRegular"
+            android:textColor="#ffffff"
+            android:id="@+id/actPoint_tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="Change location"
+            android:textSize="19dp"
+            android:layout_centerVertical="true" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/actLocation_vgSubTop"
+        android:orientation="vertical"
+        android:layout_below="@+id/actLocation_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/actLocation_vFocus"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+
+        <RelativeLayout
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent">
+
+            <id.co.okhome.consultant.lib.customview.common_views.FixedAutoCompleteTextView
+                android:id="@+id/actLocation_etLocation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="18dp"
+                android:paddingRight="44dp"
+                android:background="@null"
+                style="@style/FontOpenSansLight"
+                android:textSize="14.5sp"
+                android:hint="Puri casablanca"
+                android:textColor="@color/colorBlueGray"
+                android:singleLine="true"
+                android:inputType="textEmailAddress"
+                android:popupBackground="@android:color/white"
+                android:popupElevation="0dp"
+                android:drawableLeft="@drawable/ic_search"
+                android:drawablePadding="18dp"
+                android:focusable="true"
+                android:clickable="true"/>
+
+
+            <LinearLayout
+                android:id="@+id/actLocation_vbtnClear"
+                android:paddingRight="15dp"
+                android:paddingLeft="15dp"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_width="13dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_x"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#44000000"/>
+
+    </LinearLayout>
+    <!-- loading -->
+    <FrameLayout
+        android:layout_below="@+id/actLocation_vgTop"
+        android:id="@+id/actLocation_flProgress"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@android:color/transparent"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/actLocation_progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="-8dp"
+            android:indeterminate="true"
+            style="?android:attr/progressBarStyleHorizontal"/>
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/actLocation_vgSubTop">
+
+        <fragment
+            android:id="@+id/actLocation_fmMap"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <View
+            android:id="@+id/actLocation_blank"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"/>
+
+
+        <ImageView
+            android:id="@+id/actLocation_ivMarker"
+            android:layout_above="@+id/actLocation_blank"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_marker_blue"
+            />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/actLocation_vbtnConfirm"
+        android:layout_marginBottom="22dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:background="@drawable/circle_appcolor_shadow"
+        android:layout_width="58dp"
+        android:layout_height="58dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="wrap_content" android:src="@drawable/ic_check_white"/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:paddingTop="14dp" android:paddingBottom="18dp"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/itemLocationInMap_tvPlace"
+                    style="@style/FontOpenSansLight"
+                    android:text="Apartment Rasuna"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorDeepGray"/>
+                <TextView
+                    android:id="@+id/itemLocationInMap_tvAddress"
+                    style="@style/FontOpenSansLight"
+                    android:text="JL. rasuna said, alkjflaskjf"
+                    android:textSize="13sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorLightBlueGray"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#22000000"/>
+
+    </LinearLayout>
+</LinearLayout>

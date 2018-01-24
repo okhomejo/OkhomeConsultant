@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="id.co.okhome.consultant.view.main.MainActivity">
+
+    <RelativeLayout
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:background="@color/colorOkhome"
+        android:id="@+id/actMain_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="58dp">
+
+        <TextView
+            style="@style/FontOpenSansRegular"
+            android:textColor="#ffffff"
+            android:id="@+id/actPoint_tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="OKHOME"
+            android:textSize="19.5dp"
+            android:layout_centerVertical="true" />
+
+        <ImageView
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_search1"
+            android:adjustViewBounds="true"
+            android:layout_width="18dp"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#33000000"/>
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+
+        android:layout_below="@+id/actMain_vgTop"
+        android:layout_above="@+id/actMain_vgBottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/actMain_vp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v4.view.ViewPager>
+
+    </RelativeLayout>
+
+
+    <!-- bottom menu -->
+    <View
+        android:layout_above="@+id/actMain_vgBottom"
+        android:layout_width="match_parent"
+        android:layout_height="1px" android:background="#33000000"/>
+    <LinearLayout
+        android:paddingBottom="3dp"
+        android:layout_alignParentBottom="true"
+        android:weightSum="5"
+        android:id="@+id/actMain_vgBottom"
+        android:layout_width="match_parent"
+        android:layout_height="62dp">
+
+        <LinearLayout
+            android:id="@+id/actMain_vgTabBtn1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="40dp"
+                android:layout_height="35dp">
+                <ImageView
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_creditcard"
+                    android:layout_width="26dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <TextView
+                style="@style/FontOpenSansRegular"
+                android:layout_marginTop="0dp"
+                android:textColor="@color/colorOkhome"
+                android:textSize="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="HOME"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/actMain_vgTabBtn2"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="40dp"
+                android:layout_height="35dp">
+                <ImageView
+                    android:alpha="0.6"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/tidyup3"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/FontOpenSansLight"
+                android:layout_marginTop="0dp"
+                android:textColor="@color/colorBlueBlack"
+                android:textSize="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="CREDITS"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/actMain_vgTabBtn3"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="40dp"
+                android:layout_height="35dp">
+                <ImageView
+                    android:alpha="0.6"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_tab_price2"
+                    android:layout_width="23dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/FontOpenSansLight"
+                android:layout_marginTop="0dp"
+                android:textColor="@color/colorBlueBlack"
+                android:textSize="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="RELATION"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/actMain_vgTabBtn4"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="40dp"
+                android:layout_height="35dp">
+                <ImageView
+                    android:alpha="0.6"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/tidyup3"
+                    android:layout_width="25dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/FontOpenSansLight"
+                android:layout_marginTop="0dp"
+                android:textColor="@color/colorBlueBlack"
+                android:textSize="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="MESSAGE"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/actMain_vgTabBtn5"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="40dp"
+                android:layout_height="35dp">
+                <ImageView
+                    android:alpha="0.6"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_tab_more"
+                    android:layout_width="23dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/FontOpenSansLight"
+                android:layout_marginTop="0dp"
+                android:textColor="@color/colorBlueBlack"
+                android:textSize="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="MORE"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

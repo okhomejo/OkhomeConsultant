@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="fontPath" format="string"/>
+    <attr name="fontScaleXEn" format="string"/>
+    <attr name="fontScaleYEn" format="string"/>
+    <attr name="fontScaleXKo" format="string"/>
+    <attr name="fontScaleYKo" format="string"/>
+
+</resources>

@@ -1,0 +1,24 @@
+
+/captures
+.externalNativeBuild
+
+
+bin
+gen
+out
+
+
+.idea
+*.iml
+classes
+
+obj
+
+.DS_Store
+
+# Gradle
+
+jniLibs
+build
+local.properties
+reports

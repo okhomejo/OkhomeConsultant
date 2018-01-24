@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context="id.co.okhome.consultant.view.account.AuthActivity">
+
+    <LinearLayout
+        android:id="@+id/actUpdateUserDocu_vgTop"
+        android:paddingTop="18dp" android:paddingBottom="12dp"
+        android:paddingLeft="30dp" android:paddingRight="30dp"
+        android:background="@color/colorOkhome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:paddingBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_marginLeft="-4dp"
+                    style="@style/FontOpenSansSemibold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Update"
+                    android:textColor="#ffffff"
+                    android:textSize="56dp" />
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-2dp"
+                        android:text="Kartu Tanda Penduduk"
+                        android:textColor="#ffffff"
+                        android:textSize="16dp" />
+
+                    <View
+                        android:layout_marginLeft="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp" android:background="#ffffff"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_below="@+id/actUpdateUserDocu_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp" android:background="#16000000"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#22000000"/>
+        <LinearLayout
+            android:paddingTop="28dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:text="NAME"
+                        android:textSize="13sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorLightBlueGray"/>
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_marginTop="-4dp"
+                    android:layout_width="84dp"
+                    android:layout_height="49dp">
+
+                    <LinearLayout
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:text="Jo songmin"
+                            android:textSize="16sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorBlueGray"
+                            android:layout_centerVertical="true" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp" android:background="@color/colorOkhome"/>
+
+                    <ImageView
+                        android:alpha="0.6"
+                        android:adjustViewBounds="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="18dp"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:text="PHONE"
+                    android:textSize="13sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorLightBlueGray"/>
+
+                <RelativeLayout
+                    android:layout_marginTop="-4dp"
+                    android:layout_width="130dp"
+                    android:layout_height="49dp">
+
+                    <LinearLayout
+                        android:layout_centerVertical="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:text="+6210 9314 9449"
+                            android:id="@+id/actUserInfo_tvEmail"
+                            android:textSize="16sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorBlueGray"
+                            android:layout_centerVertical="true" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px" android:background="#66000000"/>
+
+                    <ImageView
+                        android:alpha="0.6"
+                        android:adjustViewBounds="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="18dp"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:text="ADDRESS"
+                    android:textSize="13sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorLightBlueGray"/>
+
+                <RelativeLayout
+                    android:id="@+id/actUpdateUserDocument_vgbtnAddress"
+                    android:layout_marginTop="-4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp">
+
+                    <LinearLayout
+                        android:layout_centerVertical="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/actUpdateUserDocument_tvAddress"
+                            style="@style/FontOpenSansLight"
+                            android:text="JL.Sudirman, Tebet, Jakarta"
+                            android:textSize="16sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorBlueGray"
+                            android:layout_centerVertical="true" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px" android:background="#66000000"/>
+                    <ImageView
+                        android:alpha="0.6"
+                        android:src="@drawable/ic_tab_more"
+                        android:adjustViewBounds="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="18dp"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <TextView
+                    android:layout_marginTop="5dp"
+                    style="@style/FontOpenSansLight"
+                    android:text="Make sure your address correctly"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlueGray"
+                    android:layout_centerVertical="true" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:id="@+id/fragmentMyCleaningCalendar_btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center"
+            android:background="@drawable/circle_green_shadow"
+            android:layout_width="62dp"
+            android:layout_height="62dp">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="wrap_content" android:src="@drawable/ic_check_white"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

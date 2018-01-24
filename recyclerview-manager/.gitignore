@@ -1,9 +1,16 @@
+
+/captures
+.externalNativeBuild
+
+
 bin
 gen
 out
-lib
+
 
 .idea
+.gradle
+
 *.iml
 classes
 
@@ -12,8 +19,10 @@ obj
 .DS_Store
 
 # Gradle
-.gradle
+
 jniLibs
 build
 local.properties
 reports
+
+!gradle-wrapper.jar

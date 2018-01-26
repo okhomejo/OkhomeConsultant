@@ -8,7 +8,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.OkHomeParentActivity;
-import id.co.okhome.consultant.view.userinfo.trainee.UpdateUserDocumentActivity;
 
 public class AuthActivity extends OkHomeParentActivity {
 
@@ -18,10 +17,18 @@ public class AuthActivity extends OkHomeParentActivity {
         setContentView(R.layout.activity_auth);
 
         ButterKnife.bind(this);
-        startActivity(new Intent(this, UpdateUserDocumentActivity.class));
 
 
-        //android:windowLightStatusBar
+        //<uses-permission android:name="android/.permission.READ_CONTACTS" />
+//<uses-permission android:name="android.permission.READ_PROFILE" />
+//        PermissionUtil.requestPermission(this, new String[]{
+//                Manifest.permission.READ_PHONE_STATE});
+//
+//        TelephonyManager telMgr =
+//                (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+//
+//        String deviceID = telMgr.getDeviceId();
+//        String simSerialNumber = telMgr.getSimSerialNumber();
 
     }
 

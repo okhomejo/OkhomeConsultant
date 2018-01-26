@@ -28,10 +28,16 @@ public class MainActivity extends OkHomeParentActivity {
 
         ButterKnife.bind(this);
 
+        OkhomeUtil.chkException();
         OkhomeUtil.setSystemBarColor(this, Color.parseColor("#000000"));
 //                ContextCompat.getColor(this, R.color.colorOkhome));
 
         init();
+
+//        TelephonyManager tMgr = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+//        String mPhoneNumber = tMgr.getLine1Number();
+
+
     }
 
     private void init(){

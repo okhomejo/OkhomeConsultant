@@ -39,99 +39,27 @@
     </RelativeLayout>
 
 
-    <RelativeLayout
-        android:layout_below="@+id/actSignup_vgTop"
-        android:layout_above="@+id/actSignup_vgBottom"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <View android:layout_width="1px" android:layout_height="10dp" android:background="#55000000"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"/>
 
-        <LinearLayout
-            android:visibility="invisible"
-            android:orientation="vertical"
-            android:gravity="center"
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:alpha="0.8"
-                android:adjustViewBounds="true"
-                android:layout_width="36dp"
-                android:layout_height="wrap_content" android:src="@drawable/logo_symbol"/>
-            <TextView
-                android:layout_marginTop="2dp"
-                style="@style/FontOpenSansLight"
-                android:textColor="@color/colorBlueGray"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:textSize="28sp"
-                android:text="Setting a new bar"/>
-
-            <TextView
-                android:layout_marginTop="5dp"
-                style="@style/FontOpenSansLight"
-                android:textColor="@color/colorLightBlueGray"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:textSize="15sp"
-                android:text="Forget lazy housemaids\nusing floorcloth to also do the dishes"/>
-        </LinearLayout>
-    </RelativeLayout>
-
-
-
-
-    <!--shadow -->
-    <LinearLayout
-        android:gravity="center"
-        android:layout_above="@+id/actSignup_vgBottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <View
-            android:layout_width="5dp"
-            android:layout_height="5dp" android:background="@drawable/circle_appcolor"/>
-
-        <View
-            android:layout_marginLeft="4dp"
-            android:layout_width="5dp"
-            android:layout_height="5dp" android:background="@drawable/circle_gray"/>
-
-        <View
-            android:layout_marginLeft="4dp"
-            android:layout_width="5dp"
-            android:layout_height="5dp" android:background="@drawable/circle_gray"/>
-        <View
-            android:layout_marginLeft="4dp"
-            android:layout_width="5dp"
-            android:layout_height="5dp" android:background="@drawable/circle_gray"/>
-        <View
-            android:layout_marginLeft="4dp"
-            android:layout_width="5dp"
-            android:layout_height="5dp" android:background="@drawable/circle_gray"/>
-    </LinearLayout>
     <!-- bottom-->
     <LinearLayout
-        android:id="@+id/actSignup_vgBottom"
-        android:paddingBottom="34dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/actSignup_vgTop"
+        android:layout_centerInParent="true"
         android:gravity="center|center_horizontal"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="match_parent">
+        <View android:layout_width="1px" android:layout_height="10dp" android:background="#55000000"
+            android:layout_centerHorizontal="true"/>
 
         <LinearLayout
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:orientation="vertical"
             android:layout_width="230dp"
             android:layout_height="wrap_content">
             <EditText
+                android:id="@+id/actSignup_etEmail"
                 style="@style/FontOpenSansLight"
-                android:inputType="phone"
+                android:inputType="textEmailAddress"
                 android:background="@drawable/bg_common_edittext"
                 android:lines="1"
                 android:textSize="16sp"
@@ -146,8 +74,9 @@
             android:layout_width="230dp"
             android:layout_height="wrap_content">
             <EditText
+                android:id="@+id/actSignup_etPassword"
                 style="@style/FontOpenSansLight"
-                android:inputType="phone"
+                android:inputType="textPassword"
                 android:background="@drawable/bg_common_edittext"
                 android:lines="1"
                 android:textSize="16sp"
@@ -157,8 +86,43 @@
                 android:layout_height="48dp" />
 
         </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/actSignup_etPasswordOneMore"
+                style="@style/FontOpenSansLight"
+                android:inputType="textPassword"
+                android:background="@drawable/bg_common_edittext"
+                android:lines="1"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:hint="Password one more"
+                android:layout_width="match_parent"
+                android:layout_height="48dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/actSignup_tvPhone"
+                style="@style/FontOpenSansLight"
+                android:inputType="phone"
+                android:background="@drawable/bg_common_edittext"
+                android:lines="1"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:hint="Phone number"
+                android:layout_width="match_parent"
+                android:layout_height="48dp" />
+
+        </LinearLayout>
         <!--term -->
         <LinearLayout
+            android:id="@+id/actSignup_vbtnTermsAndConditions"
             android:layout_marginTop="16dp"
             android:orientation="vertical"
             android:gravity="center"
@@ -174,16 +138,18 @@
                 android:text="By signing up, you agree with our terms of use"/>
             <TextView
                 style="@style/FontOpenSansLight"
-                android:id="@+id/actSignUp_tvbtnTerm"
                 android:textColor="@color/colorOkhome"
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:textSize="13sp"
                 android:text="View terms &amp; conditions"/>
+            <View android:layout_width="1px" android:layout_height="10dp" android:background="#55000000"
+                android:layout_marginTop="25dp"
+                android:layout_centerHorizontal="true"/>
 
         </LinearLayout>
         <LinearLayout
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="24dp"
             android:id="@+id/actSignUp_vbtnSignup"
             android:gravity="center"
             android:background="@color/colorOkhome"
@@ -249,13 +215,12 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/actSignup_vbtnGoogle"
             android:gravity="center"
             android:layout_marginTop="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
-                android:id="@+id/actSignin_vbtnGoogle"
-                android:layout_marginLeft="20dp"
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -275,7 +240,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
 
 
 

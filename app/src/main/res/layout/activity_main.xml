@@ -8,7 +8,7 @@
     tools:context="id.co.okhome.consultant.view.main.MainActivity">
 
     <RelativeLayout
-        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:paddingLeft="20dp" android:paddingRight="10dp"
         android:background="@color/colorOkhome"
         android:id="@+id/actMain_vgTop"
         android:layout_width="match_parent"
@@ -24,12 +24,12 @@
             android:layout_centerVertical="true" />
 
         <ImageView
-            android:visibility="gone"
+            android:rotation="90"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/ic_search1"
+            android:src="@drawable/ic_more_white"
             android:adjustViewBounds="true"
-            android:layout_width="18dp"
+            android:layout_width="19dp"
             android:layout_height="wrap_content" />
 
         <View
@@ -69,7 +69,7 @@
         android:weightSum="5"
         android:id="@+id/actMain_vgBottom"
         android:layout_width="match_parent"
-        android:layout_height="62dp">
+        android:layout_height="63dp">
 
         <LinearLayout
             android:id="@+id/actMain_vgTabBtn1"
@@ -92,7 +92,7 @@
             </LinearLayout>
             <TextView
                 style="@style/FontOpenSansRegular"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="-1dp"
                 android:textColor="@color/colorOkhome"
                 android:textSize="9dp"
                 android:layout_width="wrap_content"
@@ -123,7 +123,7 @@
 
             <TextView
                 style="@style/FontOpenSansLight"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="-1dp"
                 android:textColor="@color/colorBlueBlack"
                 android:textSize="9dp"
                 android:layout_width="wrap_content"
@@ -154,7 +154,7 @@
 
             <TextView
                 style="@style/FontOpenSansLight"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="-1dp"
                 android:textColor="@color/colorBlueBlack"
                 android:textSize="9dp"
                 android:layout_width="wrap_content"
@@ -185,7 +185,7 @@
 
             <TextView
                 style="@style/FontOpenSansLight"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="-1dp"
                 android:textColor="@color/colorBlueBlack"
                 android:textSize="9dp"
                 android:layout_width="wrap_content"
@@ -216,7 +216,7 @@
 
             <TextView
                 style="@style/FontOpenSansLight"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="-1dp"
                 android:textColor="@color/colorBlueBlack"
                 android:textSize="9dp"
                 android:layout_width="wrap_content"

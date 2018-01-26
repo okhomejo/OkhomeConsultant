@@ -73,7 +73,7 @@
                 android:background="@null"
                 style="@style/FontOpenSansLight"
                 android:textSize="14.5sp"
-                android:hint="Puri casablanca"
+                android:hint="Your location"
                 android:textColor="@color/colorBlueGray"
                 android:singleLine="true"
                 android:inputType="textEmailAddress"
@@ -161,6 +161,7 @@
 
 
     <LinearLayout
+        android:id="@+id/actLocation_llActions"
         android:orientation="vertical"
         android:layout_marginBottom="16dp"
         android:layout_marginRight="14dp"
@@ -192,6 +193,7 @@
                 android:layout_width="20dp"
                 android:layout_height="wrap_content" android:src="@drawable/ic_check_white"/>
         </LinearLayout>
+
     </LinearLayout>
 
 

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">OkHomeConsultant</string>
+    <string name="location_permission">Location Permission Needed</string>
+    <string name="location_permission_dialog">This app needs the Location permission, please accept to use location functionality</string>
 </resources>

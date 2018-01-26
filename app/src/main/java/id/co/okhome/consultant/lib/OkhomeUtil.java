@@ -48,6 +48,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import id.co.okhome.consultant.config.OkhomeConstant;
 import id.co.okhome.consultant.exception.OkhomeException;
 
 
@@ -56,6 +57,30 @@ import id.co.okhome.consultant.exception.OkhomeException;
  */
 
 public class OkhomeUtil {
+
+    public static final void Log(Object msg){
+        Log.d(OkhomeConstant.LOGTAG, msg.toString());
+    }
+
+    public final static void isValidPassword(String password) throws OkhomeException{
+        if(password.length() < OkhomeConstant.PASSWORD_MIN_LENGTH){
+            throw new OkhomeException(-100,
+                    "Password must be more then #{passwordMinLength}".replace("#{passwordMinLength}", OkhomeConstant.PASSWORD_MIN_LENGTH+""));
+        }
+
+        if(password.length() > OkhomeConstant.PASSWORD_MAX_LENGTH){
+            throw new OkhomeException(-100,
+                    "Password must be less then #{passwordMaxLength}".replace("#{passwordMaxLength}", OkhomeConstant.PASSWORD_MAX_LENGTH+""));
+        }
+    }
+
+    /**check exception*/
+    public final static void chkException(boolean expression, String err) throws OkhomeException{
+        if(expression){
+            throw new OkhomeException(-100, err);
+        }
+
+    }
 
     final public static void setSystemBarColor(Activity activity, int color){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

@@ -16,7 +16,6 @@ public class SigninActivity extends OkHomeParentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
-
         ButterKnife.bind(this);
     }
 

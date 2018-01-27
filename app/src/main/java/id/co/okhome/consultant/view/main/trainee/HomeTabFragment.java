@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.view.mainpage_tab.trainee;
+package id.co.okhome.consultant.view.main.trainee;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

@@ -12,7 +12,7 @@ import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.OkhomeUtil;
 import id.co.okhome.consultant.lib.fragment_pager.FragmentTabAdapter;
-import id.co.okhome.consultant.view.mainpage_tab.trainee.HomeTabFragment;
+import id.co.okhome.consultant.view.main.trainee.HomeTabFragment;
 
 public class MainActivity extends OkHomeParentActivity {
 
@@ -28,9 +28,10 @@ public class MainActivity extends OkHomeParentActivity {
 
         ButterKnife.bind(this);
 
-        OkhomeUtil.chkException();
-        OkhomeUtil.setSystemBarColor(this, Color.parseColor("#000000"));
-//                ContextCompat.getColor(this, R.color.colorOkhome));
+        OkhomeUtil.setSystemBarColor(this,
+                Color.parseColor("#000000"));
+//                Color.parseColor("#000000"));
+//                ContextCompat.getColor(this, R.color.colorOkhomeDeep));
 
         init();
 

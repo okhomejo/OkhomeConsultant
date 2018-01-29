@@ -10,7 +10,6 @@ import android.content.res.Resources;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
@@ -20,7 +19,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -54,7 +52,6 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.RuntimeRemoteException;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
@@ -352,12 +349,16 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
             @Override
             public void onCameraMoveStarted(int i) {
                 toggleConfirmBtnVisibility(false);
+                flProgress.setVisibility(View.VISIBLE);
+                btnClear.setVisibility(View.GONE);
             }
         });
 
         googleMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
             @Override
             public void onCameraIdle() {
+
+                flProgress.setVisibility(View.VISIBLE);
                 toggleConfirmBtnVisibility(true);
 
                 // Update address when camera returns to idle status
@@ -371,6 +372,8 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
                     etLocation.setAdapter(mAdapter);
                     etLocation.clearFocus();
                 }
+                flProgress.setVisibility(View.GONE);
+                btnClear.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -379,15 +382,21 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {
             List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
-
-            String address = addresses.get(0).getAddressLine(0).split(",")[0];
-
-            return address;
-
+            if (addresses != null) {
+                String address = addresses.get(0).getAddressLine(0);
+                if (address.contains(",")) {
+                    address = address.split(",")[0];
+                    return address;
+                } else {
+                    return address;
+                }
+            } else {
+                return "Error, please check the location.";
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "error";
+        return "Error, please check your connection.";
     }
 
     private void checkLocationPermission() {

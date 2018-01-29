@@ -28,7 +28,7 @@ public class MainActivity extends OkHomeParentActivity {
 
         ButterKnife.bind(this);
 
-        OkhomeUtil.chkException();
+//        OkhomeUtil.chkException();
         OkhomeUtil.setSystemBarColor(this, Color.parseColor("#000000"));
 //                ContextCompat.getColor(this, R.color.colorOkhome));
 

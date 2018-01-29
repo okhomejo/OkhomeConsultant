@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
 
     private String address;
     private Bundle previousBundle = null;
+    private boolean isActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +39,16 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
 
     @OnClick(R.id.actUpdateUserDocument_vgbtnAddress)
     public void onAddressClick(View v){
-        if (previousBundle != null) {
-            Intent editAddressActivity = new Intent(this, LocationActivity.class);
-            editAddressActivity.putExtras(previousBundle);
-            startActivityForResult(editAddressActivity, 1);
-        } else {
-            startActivityForResult(new Intent(this, LocationActivity.class), 1);
+        if (!isActive) {
+            if (previousBundle != null) {
+                Intent editAddressActivity = new Intent(this, LocationActivity.class);
+                editAddressActivity.putExtras(previousBundle);
+                startActivityForResult(editAddressActivity, 1);
+            } else {
+                startActivityForResult(new Intent(this, LocationActivity.class), 1);
+            }
         }
+        isActive = true;
     }
 
     @Override
@@ -60,6 +65,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
                 }
                 tvAddress.setText(address);
             }
+            isActive = false;
         }
     }
 }

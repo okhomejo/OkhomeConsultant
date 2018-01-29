@@ -1,10 +1,14 @@
 package id.co.okhome.consultant.view.main.trainee;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,6 +22,9 @@ import id.co.okhome.consultant.view.main.trainee.fragment.TrainingTabFragment;
 
 public class TraineeMainActivity extends OkHomeParentActivity {
 
+    @BindView(R.id.actMain_vgTop)
+    ViewGroup vgTop;
+
     @BindView(R.id.actMain_vp)
     ViewPager vpMain;
 
@@ -30,11 +37,31 @@ public class TraineeMainActivity extends OkHomeParentActivity {
 
         ButterKnife.bind(this);
 
-        OkhomeUtil.setSystemBarColor(this, Color.parseColor("#000000"));
+//        OkhomeUtil.setSystemBarColor(this, Color.parseColor("#000000"));
 //                ContextCompat.getColor(this, R.color.colorOkhome));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            View decor = getWindow().getDecorView();
+            decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            OkhomeUtil.setSystemBarColor(this, Color.parseColor("#ffffff"));
+
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)vgTop.getLayoutParams();
+            layoutParams.topMargin = layoutParams.topMargin - OkhomeUtil.getPixelByDp(this, 3);
+            vgTop.setLayoutParams(layoutParams);
+
+
+        }
+
 
         init();
 
+        vpMain.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+            }
+        });
 //        TelephonyManager tMgr = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
 //        String mPhoneNumber = tMgr.getLine1Number();
 

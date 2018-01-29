@@ -20,7 +20,6 @@ import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.model.TrainingModel;
 import id.co.okhome.consultant.view.viewholder.BlankHolder;
 import id.co.okhome.consultant.view.viewholder.TrainingForTraineeVHolder;
-import id.co.okhome.consultant.view.viewholder.TrainingHeaderForTraineeVHolder;
 
 /**
  * Created by jo on 2018-01-23.
@@ -68,11 +67,11 @@ public class TrainingTabFragment extends Fragment implements TabFragmentStatusLi
                 new JoRecyclerAdapter.Params()
                         .setRecyclerView(rcv)
                         .setItemViewHolderCls(TrainingForTraineeVHolder.class)
-                        .setHeaderViewHolderCls(TrainingHeaderForTraineeVHolder.class)
+//                        .setHeaderViewHolderCls(TrainingHeaderForTraineeVHolder.class)
                         .setFooterViewHolderCls(BlankHolder.class)
         );
 
-        adapter.addHeaderItem(new String());
+//        adapter.addHeaderItem(new String());
         adapter.addFooterItem("");
     }
 

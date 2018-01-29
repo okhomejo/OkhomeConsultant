@@ -8,9 +8,10 @@
     tools:context="id.co.okhome.consultant.view.main.trainee.TraineeMainActivity">
 
     <RelativeLayout
+        android:layout_marginLeft="20dp" android:layout_marginRight="20dp"
         android:id="@+id/actMain_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="76dp">
 
         <!--<ImageView-->
             <!--android:alpha="0.6"-->
@@ -20,29 +21,20 @@
             <!--android:layout_width="14dp"-->
             <!--android:layout_height="wrap_content" android:src="@drawable/ic_x" />-->
 
-        <ImageView
-            android:layout_marginRight="14dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="20dp"
-            android:layout_centerVertical="true"
-            android:adjustViewBounds="true"
-            android:layout_width="15dp"
-            android:layout_height="wrap_content" android:src="@drawable/ic_more" />
 
         <TextView
-            android:layout_marginLeft="22dp"
-            style="@style/FontOpenSansRegular"
+            style="@style/FontOpenSansLight"
             android:textColor="#000000"
-            android:id="@+id/actPoint_tvTitle"
+            android:id="@+id/actMain_tvTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:text="OKHOME"
-            android:textSize="18sp"
+            android:layout_height="wrap_content" android:text="Welcome."
+            android:textSize="30dp"
             android:layout_centerVertical="true" />
 
         <View
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="1px" android:background="#40000000"/>
+            android:layout_height="1dp" android:background="#10000000"/>
     </RelativeLayout>
 
     <!--<RelativeLayout-->
@@ -111,16 +103,19 @@
 
 
         <View
-            android:alpha="0.15"
+            android:visibility="gone"
+            android:alpha="0.22"
             android:layout_width="match_parent"
-            android:layout_height="6dp" android:background="@drawable/bg_circle_shadow_flip2"/>
+            android:layout_height="5dp" android:background="@drawable/bg_circle_shadow_flip2"/>
         <View
             android:layout_width="match_parent"
-            android:layout_height="1px" android:background="#11000000"/>
+            android:layout_height="1px" android:background="#36000000"/>
     </LinearLayout>
 
     <LinearLayout
-        android:paddingBottom="3dp"
+        android:paddingLeft="-3dp" android:paddingRight="-3dp"
+        android:background="#03efefef"
+        android:paddingBottom="2dp"
         android:layout_alignParentBottom="true"
         android:weightSum="5"
         android:id="@+id/actMain_vgBottom"
@@ -140,16 +135,17 @@
                 android:layout_width="40dp"
                 android:layout_height="35dp">
                 <ImageView
+                    android:alpha="0.7"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/ic_tab_price2"
-                    android:layout_width="25dp"
+                    android:src="@drawable/tidyup3"
+                    android:layout_width="29dp"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
             <TextView
-                style="@style/FontOpenSansRegular"
-                android:layout_marginTop="-1dp"
-                android:textColor="#000000"
+                style="@style/FontOpenSansLight"
+                android:layout_marginTop="0dp"
+                android:textColor="@color/colorBlueBlack"
                 android:textSize="9dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:text="HOME"/>
@@ -172,7 +168,7 @@
                     android:alpha="0.2"
                     android:adjustViewBounds="true"
                     android:src="@drawable/tidyup3"
-                    android:layout_width="26dp"
+                    android:layout_width="29dp"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -180,7 +176,7 @@
             <TextView
                 android:alpha="0.5"
                 style="@style/FontOpenSansLight"
-                android:layout_marginTop="-1dp"
+                android:layout_marginTop="0dp"
                 android:textColor="@color/colorBlueBlack"
                 android:textSize="9dp"
                 android:layout_width="wrap_content"
@@ -203,7 +199,7 @@
                     android:alpha="0.2"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_tab_price2"
-                    android:layout_width="25dp"
+                    android:layout_width="27dp"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -212,11 +208,11 @@
             <TextView
                 android:alpha="0.5"
                 style="@style/FontOpenSansLight"
-                android:layout_marginTop="-1dp"
+                android:layout_marginTop="0dp"
                 android:textColor="@color/colorBlueBlack"
                 android:textSize="9dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="MESSAGE"/>
+                android:layout_height="wrap_content" android:text="CHAT"/>
 
         </LinearLayout>
 
@@ -236,7 +232,7 @@
                     android:alpha="0.2"
                     android:adjustViewBounds="true"
                     android:src="@drawable/tidyup3"
-                    android:layout_width="26dp"
+                    android:layout_width="29dp"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -244,7 +240,7 @@
             <TextView
                 android:alpha="0.5"
                 style="@style/FontOpenSansLight"
-                android:layout_marginTop="-1dp"
+                android:layout_marginTop="0dp"
                 android:textColor="@color/colorBlueBlack"
                 android:textSize="9dp"
                 android:layout_width="wrap_content"
@@ -268,7 +264,7 @@
                     android:alpha="0.2"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_tab_more"
-                    android:layout_width="23dp"
+                    android:layout_width="25dp"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -276,7 +272,7 @@
             <TextView
                 android:alpha="0.5"
                 style="@style/FontOpenSansLight"
-                android:layout_marginTop="-1dp"
+                android:layout_marginTop="0dp"
                 android:textColor="@color/colorBlueBlack"
                 android:textSize="9dp"
                 android:layout_width="wrap_content"

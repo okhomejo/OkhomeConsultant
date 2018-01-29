@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:paddingTop="23dp"
     android:paddingLeft="20dp" android:paddingRight="20dp"
     android:layout_height="wrap_content">
 
@@ -13,20 +14,18 @@
         <LinearLayout
             android:paddingTop="1dp" android:paddingBottom="1dp"
             android:layout_marginLeft="1.5dp"
-            android:background="@drawable/bg_item_training"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+
             android:gravity="center_vertical">
 
             <LinearLayout
-                android:layout_marginLeft="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/FontOpenSansRegular"
+                    style="@style/FontOpenSansLight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -36,7 +35,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:layout_marginBottom="3dp"
+                    android:layout_marginBottom="6dp"
                     style="@style/FontOpenSansLight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -96,19 +95,26 @@
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="5dp"
-            android:layout_height="5dp"
-            android:layout_marginTop="10dp"
-            android:background="#aa000000">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2px"
-                android:background="#ffffff" />
 
-        </LinearLayout>
+        <View
+            android:layout_marginTop="23dp"
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#33000000"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:background="#6399d2"
+        android:layout_alignParentRight="true"
+        android:layout_width="34dp"
+        android:layout_height="34dp">
+
+        <ImageView
+            android:src="@drawable/ic_right_simplearrow_left_white"
+            android:adjustViewBounds="true"
+            android:layout_width="14dp"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

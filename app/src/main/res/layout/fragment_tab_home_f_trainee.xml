@@ -11,13 +11,12 @@
         <LinearLayout
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:paddingTop="20dp"
+            android:paddingTop="22dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <RelativeLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -30,22 +29,21 @@
                     <!-- sample datas -->
 
                     <FrameLayout
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
                         android:layout_marginRight="20dp">
 
                         <de.hdodenhof.circleimageview.CircleImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
                             android:layout_margin="2dp"
-                            android:src="@drawable/img_model4" />
-
-                        <ImageView
+                            android:layout_gravity="center"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:src="@drawable/img_model4"/>
+                        <ImageView
+                            android:visibility="gone"
                             android:layout_gravity="center"
-                            android:src="@drawable/circle_stroke" />
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" android:src="@drawable/circle_stroke_white" />
                     </FrameLayout>
 
 
@@ -87,7 +85,7 @@
                                     android:layout_centerVertical="true">
 
                                     <TextView
-                                        style="@style/FontOpenSansRegular"
+                                        style="@style/FontOpenSansLight"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_centerVertical="true"
@@ -120,6 +118,22 @@
 
 
                 <LinearLayout
+                    android:gravity="center"
+                    android:layout_alignParentRight="true"
+                    android:background="#5bbfec"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp">
+
+                    <ImageView
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_more_white"
+                        android:layout_width="12dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_alignParentRight="true"
@@ -142,263 +156,314 @@
 
             <!-- graph -->
             <LinearLayout
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical">
 
-
                 <LinearLayout
+                    android:background="@drawable/bg_item_training"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
+                    android:layout_height="wrap_content">
                     <LinearLayout
+                        android:layout_marginTop="5dp" android:layout_marginBottom="8dp"
+                        android:paddingLeft="26dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <RelativeLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-                            <LinearLayout
+                            <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/FontOpenSansLight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:text="Basic Training"
+                                        android:textColor="@color/colorBlueBlack"
+                                        android:textSize="15sp" />
+
+                                </LinearLayout>
 
                                 <TextView
                                     style="@style/FontOpenSansLight"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
                                     android:layout_centerVertical="true"
-                                    android:text="Basic Training 1"
-                                    android:textColor="@color/colorBlueBlack"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
-                            <TextView
-                                style="@style/FontOpenSansLight"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:text="2/4"
-                                android:textColor="@color/colorLightBlueGray"
-                                android:textSize="14sp" />
+                                    android:text="2/4"
+                                    android:textColor="@color/colorLightBlueGray"
+                                    android:textSize="14sp" />
 
 
-                        </RelativeLayout>
+                            </RelativeLayout>
 
-                        <!-- graph -->
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="8.5dp"
-                            android:layout_marginTop="5dp">
-
-                            <LinearLayout
+                            <!-- graph -->
+                            <FrameLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:weightSum="100">
+                                android:layout_height="8dp"
+                                android:layout_marginTop="6dp">
 
-                                <View
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@drawable/graphbg_traning_off" />
+                                    android:weightSum="4">
 
-                            </LinearLayout>
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="#16acf2" />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:weightSum="100">
+                                    <View
+                                        android:layout_marginLeft="2dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="#16acf2" />
 
-                                <View
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="66"
-                                    android:background="#16acf2" />
-                            </LinearLayout>
-                        </FrameLayout>
+                                    <View
+                                        android:layout_marginLeft="2dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/graphbg_traning_off" />
 
-                    </LinearLayout>
-                    <!-- graph -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
-                        android:orientation="vertical">
+                                    <View
+                                        android:layout_marginLeft="2dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/graphbg_traning_off" />
+                                </LinearLayout>
+                            </FrameLayout>
 
-                        <RelativeLayout
+                        </LinearLayout>
+                        <!-- graph -->
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
+                            android:orientation="vertical">
 
-                            <LinearLayout
+                            <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/FontOpenSansLight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:text="Advenced Training"
+                                        android:textColor="@color/colorBlueBlack"
+                                        android:textSize="15sp" />
+
+                                </LinearLayout>
 
                                 <TextView
                                     style="@style/FontOpenSansLight"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
                                     android:layout_centerVertical="true"
-                                    android:text="Basic Training 2"
-                                    android:textColor="@color/colorBlueBlack"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
-                            <TextView
-                                style="@style/FontOpenSansLight"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:text="2/4"
-                                android:textColor="@color/colorLightBlueGray"
-                                android:textSize="14sp" />
+                                    android:text="2/4"
+                                    android:textColor="@color/colorLightBlueGray"
+                                    android:textSize="14sp" />
 
 
-                        </RelativeLayout>
+                            </RelativeLayout>
 
-                        <!-- graph -->
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="8.5dp"
-                            android:layout_marginTop="5dp">
-
-                            <LinearLayout
+                            <!-- graph -->
+                            <FrameLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:weightSum="100">
+                                android:layout_height="8dp"
+                                android:layout_marginTop="6dp">
 
-                                <View
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@drawable/graphbg_traning_off" />
+                                    android:weightSum="100">
 
-                            </LinearLayout>
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/graphbg_traning_off" />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:weightSum="100">
+                                </LinearLayout>
 
-                                <View
-                                    android:layout_width="0dp"
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_weight="33"
-                                    android:background="#16acf2" />
-                            </LinearLayout>
-                        </FrameLayout>
+                                    android:weightSum="100">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:weightSum="4">
+
+                                        <View
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="#16acf2" />
+
+                                        <View
+                                            android:layout_marginLeft="2dp"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="#16acf2" />
+
+                                        <View
+                                            android:layout_marginLeft="2dp"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="#16acf2" />
+
+                                        <View
+                                            android:layout_marginLeft="2dp"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/graphbg_traning_off" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </FrameLayout>
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
+                            android:text="※ What are these trainings?"
+                            android:textColor="@color/colorOkhome"
+                            android:textSize="13sp" />
+
                     </LinearLayout>
 
-                    <TextView
-                        style="@style/FontOpenSansLight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center"
-                        android:text="※ What are these trainings?"
-                        android:textColor="@color/colorOkhome"
-                        android:textSize="13sp" />
 
                 </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-
-        <View
-            android:layout_marginTop="13dp" android:layout_marginBottom="13dp"
-            android:layout_marginLeft="24dp"
-            android:layout_width="2px"
-            android:layout_height="10dp"
-            android:layout_marginRight="22dp"
-            android:background="#000000" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="24dp"
-            android:paddingRight="28dp">
-            <!-- title -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
-
-                <TextView
-                    style="@style/FontOpenSansLight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="40dp"
-                    android:text="NEXT JOB TRAINING"
-                    android:textColor="@color/colorLightBlueGray"
-                    android:textSize="15sp" />
-
 
             </LinearLayout>
 
-
             <LinearLayout
+                android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center_vertical">
-
-                <View
-                    android:layout_width="2px"
-                    android:layout_height="90dp"
-                    android:layout_marginRight="22dp"
-                    android:background="#000000" />
-
+                android:orientation="vertical">
+                <!-- title -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/FontOpenSansRegular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="-2dp"
-                        android:text="General Cleaning"
-                        android:textColor="@color/colorDeepGray"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_marginTop="2dp"
-                        style="@style/FontOpenSansLight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="Our cleaning is very professional and suitable for you"
-                        android:textColor="@color/colorBlueBlack"
-                        android:textSize="14sp" />
+                    android:gravity="center_vertical">
 
                     <TextView
                         style="@style/FontOpenSansLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
+                        android:layout_marginRight="40dp"
+                        android:text="NEXT JOB TRAINING"
+                        android:textColor="@color/colorLightBlueGray"
+                        android:textSize="15sp" />
+
+
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_marginRight="45dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+
+                        <LinearLayout
+                            android:paddingTop="5dp" android:paddingBottom="8dp"
+                            android:paddingLeft="26dp"
+                            android:background="@drawable/bg_item_training"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="General Cleaning"
+                                android:textColor="@color/colorDeepGray"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:layout_marginTop="2dp"
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="Our cleaning is very professional and suitable for you"
+                                android:textColor="@color/colorBlueGray"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="5dp"
+                                android:text="16 Jan 2018, 10:00 AM"
+                                android:textColor="#66000000"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_marginTop="5dp"
-                        android:text="16 Jan 2018, 10:00 AM"
-                        android:textColor="#66000000"
-                        android:textSize="12sp" />
-                </LinearLayout>
+                        android:gravity="center"
+                        android:layout_alignParentRight="true"
+                        android:background="#484d9e"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp">
+
+                        <ImageView
+                            android:src="@drawable/ic_right_simplearrow_left_white"
+                            android:adjustViewBounds="true"
+                            android:layout_width="14dp"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+
             </LinearLayout>
 
 
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="5dp"
             android:layout_height="5dp"
-            android:layout_marginLeft="22dp"
+            android:layout_marginLeft="18dp"
             android:layout_marginTop="15dp"
             android:background="#000000">
 
@@ -413,7 +478,7 @@
         <LinearLayout
             android:layout_width="5dp"
             android:layout_height="5dp"
-            android:layout_marginLeft="22dp"
+            android:layout_marginLeft="18dp"
             android:layout_marginTop="6dp"
             android:background="#000000">
 

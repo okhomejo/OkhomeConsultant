@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    tools:context="id.co.okhome.consultant.view.main.MainActivity">
+    tools:context="id.co.okhome.consultant.view.main.trainee.TraineeMainActivity">
 
     <RelativeLayout
         android:paddingLeft="20dp" android:paddingRight="10dp"
@@ -24,7 +24,7 @@
                 android:id="@+id/actPoint_tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:text="OKHOME"
-                android:textSize="19.5dp" />
+                android:textSize="20.5dp" />
 
         </LinearLayout>
 
@@ -68,7 +68,7 @@
     <View
         android:layout_above="@+id/actMain_vgBottom"
         android:layout_width="match_parent"
-        android:layout_height="1px" android:background="#38000000"/>
+        android:layout_height="1px" android:background="#44000000"/>
     <LinearLayout
         android:paddingBottom="3dp"
         android:layout_alignParentBottom="true"

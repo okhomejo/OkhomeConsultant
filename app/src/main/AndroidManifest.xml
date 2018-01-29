@@ -19,7 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="id.co.okhome.consultant.view.main.MainActivity" />
+        <activity android:name="id.co.okhome.consultant.view.main.trainee.TraineeMainActivity" />
         <activity android:name="id.co.okhome.consultant.view.etc.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

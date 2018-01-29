@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.view.main;
+package id.co.okhome.consultant.view.main.trainee;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,9 +12,11 @@ import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.OkhomeUtil;
 import id.co.okhome.consultant.lib.fragment_pager.FragmentTabAdapter;
-import id.co.okhome.consultant.view.main.trainee.HomeTabFragment;
+import id.co.okhome.consultant.view.main.trainee.fragment.ChatTabFragment;
+import id.co.okhome.consultant.view.main.trainee.fragment.HomeTabFragment;
+import id.co.okhome.consultant.view.main.trainee.fragment.TrainingTabFragment;
 
-public class MainActivity extends OkHomeParentActivity {
+public class TraineeMainActivity extends OkHomeParentActivity {
 
     @BindView(R.id.actMain_vp)
     ViewPager vpMain;
@@ -61,10 +63,10 @@ public class MainActivity extends OkHomeParentActivity {
                     f = new HomeTabFragment();
                     break;
                 case 1:
-                    f = new HomeTabFragment();
+                    f = new TrainingTabFragment();
                     break;
                 case 2:
-                    f = new HomeTabFragment();
+                    f = new ChatTabFragment();
                     break;
                 case 3:
                     f = new HomeTabFragment();

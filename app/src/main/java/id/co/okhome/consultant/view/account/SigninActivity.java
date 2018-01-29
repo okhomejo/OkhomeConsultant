@@ -8,7 +8,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.OkHomeParentActivity;
-import id.co.okhome.consultant.view.main.MainActivity;
+import id.co.okhome.consultant.view.main.trainee.TraineeMainActivity;
 
 public class SigninActivity extends OkHomeParentActivity {
 
@@ -23,6 +23,6 @@ public class SigninActivity extends OkHomeParentActivity {
 
     @OnClick(R.id.actSignIn_vbtnSignin)
     public void onSignin(View v){
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, TraineeMainActivity.class));
     }
 }

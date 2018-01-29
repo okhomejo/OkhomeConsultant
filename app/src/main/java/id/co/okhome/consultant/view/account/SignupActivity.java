@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.credentials.Credential;
 import com.google.android.gms.auth.api.credentials.HintRequest;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -34,6 +35,7 @@ public class SignupActivity extends OkHomeParentActivity implements
 
     private static final int RESOLVE_HINT = 9;
     private GoogleApiClient mGoogleApiClient;
+    private PhoneVerificationDialog phoneVerificationDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +83,7 @@ public class SignupActivity extends OkHomeParentActivity implements
         mGoogleApiClient.connect();
     }
 
-    private void requestPhoneNumber() {
+    public void requestPhoneNumber() {
         HintRequest hintRequest = new HintRequest.Builder()
                 .setPhoneNumberIdentifierSupported(true)
                 .build();
@@ -93,6 +95,24 @@ public class SignupActivity extends OkHomeParentActivity implements
                     RESOLVE_HINT, null, 0, 0, 0);
         } catch (IntentSender.SendIntentException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        phoneVerificationDialog = new PhoneVerificationDialog(this);
+        phoneVerificationDialog.show();
+
+        if (requestCode == RESOLVE_HINT) {
+
+
+            if (resultCode == RESULT_OK) {
+                Credential credential = data.getParcelableExtra(Credential.EXTRA_KEY);
+
+                phoneVerificationDialog.setPhoneNumber(credential.getId());
+            }
         }
     }
 
@@ -128,9 +148,7 @@ public class SignupActivity extends OkHomeParentActivity implements
 
     @OnClick(R.id.actSignup_tvPhone)
     public void onClickPhone(){
-        new PhoneVerificationDialog(this).show();
         requestPhoneNumber();
-        Toast.makeText(this, "Phone verification", Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.view.mainpage_tab.trainee;
+package id.co.okhome.consultant.view.main.trainee.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,12 +14,12 @@ import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
  * Created by jo on 2018-01-23.
  */
 
-public class HomeTabFragment extends Fragment implements TabFragmentStatusListener {
+public class ChatTabFragment extends Fragment implements TabFragmentStatusListener {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_tab_home, null);
+        return inflater.inflate(R.layout.fragment_tab_chat_f_trainee, null);
     }
 
     @Override
@@ -36,9 +36,5 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
     public void onDeselect() {
 
     }
-
-//페이지 활성화.
-
-    //비활성화.
 
 }

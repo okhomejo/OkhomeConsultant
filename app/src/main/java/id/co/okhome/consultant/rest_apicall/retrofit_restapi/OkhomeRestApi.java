@@ -31,7 +31,7 @@ public class OkhomeRestApi {
     }
 
     /**get consultant api client*/
-    public final static ConsultantClient getConsultantClient(){
-        return OkhomeRestApi.getInstance(ConsultantClient.class);
+    public final static AccountClient getAccountClient(){
+        return OkhomeRestApi.getInstance(AccountClient.class);
     }
 }

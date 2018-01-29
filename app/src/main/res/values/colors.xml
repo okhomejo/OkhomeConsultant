@@ -5,6 +5,7 @@
     <color name="colorAccent">@color/colorOkhome</color>
 
 
+    <color name="colorOkhomeDeep">#0386c3</color>
     <color name="colorOkhome">#0095da</color>
     <color name="colorBlueGray">#656f81</color>
     <color name="colorLightBlueGray">#cc7f8a9e</color>

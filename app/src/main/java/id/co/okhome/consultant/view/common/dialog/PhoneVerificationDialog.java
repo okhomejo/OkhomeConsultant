@@ -24,7 +24,6 @@ public class PhoneVerificationDialog extends DialogParent{
     @BindView(R.id.dialogPhoneVerificatoin_tvSendVerfificationCode)     TextView tvSendVerificationCode;
     @BindView(R.id.dialogPhoneVerificatoin_etCode)                      EditText etCode;
 
-
     Activity activity;
 
     public PhoneVerificationDialog(Activity context) {
@@ -49,6 +48,7 @@ public class PhoneVerificationDialog extends DialogParent{
     public void onShow() {
 
     }
+
 
     //send sms code to phone wrote down
     private void sendSmsCode(){

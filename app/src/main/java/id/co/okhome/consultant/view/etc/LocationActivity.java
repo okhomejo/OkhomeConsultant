@@ -209,9 +209,16 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
         }
     }
 
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
+
+        // define point to center on
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                new LatLng(-6.214305,106.842318) , 11)
+        );
+
         //Initialize Google Play Services
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this,
@@ -382,7 +389,7 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {
             List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
-            if (addresses != null) {
+            if (!addresses.isEmpty()) {
                 String address = addresses.get(0).getAddressLine(0);
                 if (address.contains(",")) {
                     address = address.split(",")[0];

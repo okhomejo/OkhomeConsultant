@@ -8,41 +8,79 @@
     tools:context="id.co.okhome.consultant.view.main.trainee.TraineeMainActivity">
 
     <RelativeLayout
-        android:paddingLeft="20dp" android:paddingRight="10dp"
-        android:background="@color/colorOkhome"
         android:id="@+id/actMain_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="58dp">
+        android:layout_height="56dp">
 
-        <LinearLayout
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                style="@style/FontOpenSansRegular"
-                android:textColor="#ffffff"
-                android:id="@+id/actPoint_tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="OKHOME"
-                android:textSize="20.5dp" />
-
-        </LinearLayout>
-
+        <!--<ImageView-->
+            <!--android:alpha="0.6"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:adjustViewBounds="true"-->
+            <!--android:layout_width="14dp"-->
+            <!--android:layout_height="wrap_content" android:src="@drawable/ic_x" />-->
 
         <ImageView
-            android:rotation="90"
-            android:layout_centerVertical="true"
+            android:layout_marginRight="14dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/ic_more_white"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
             android:adjustViewBounds="true"
-            android:layout_width="17dp"
-            android:layout_height="wrap_content" />
+            android:layout_width="15dp"
+            android:layout_height="wrap_content" android:src="@drawable/ic_more" />
+
+        <TextView
+            android:layout_marginLeft="22dp"
+            style="@style/FontOpenSansRegular"
+            android:textColor="#000000"
+            android:id="@+id/actPoint_tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="OKHOME"
+            android:textSize="18sp"
+            android:layout_centerVertical="true" />
 
         <View
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="1px" android:background="#33000000"/>
+            android:layout_height="1px" android:background="#40000000"/>
     </RelativeLayout>
+
+    <!--<RelativeLayout-->
+        <!--android:visibility="gone"-->
+        <!--android:paddingLeft="20dp" android:paddingRight="10dp"-->
+        <!--android:background="@color/colorOkhome"-->
+        <!--android:id="@+id/actMain_vgTop"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="58dp">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<TextView-->
+                <!--style="@style/FontOpenSansRegular"-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" android:text="OKHOME"-->
+                <!--android:textSize="20.5dp" />-->
+
+        <!--</LinearLayout>-->
+
+
+        <!--<ImageView-->
+            <!--android:rotation="90"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:src="@drawable/ic_more_white"-->
+            <!--android:adjustViewBounds="true"-->
+            <!--android:layout_width="17dp"-->
+            <!--android:layout_height="wrap_content" />-->
+
+        <!--<View-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1px" android:background="#33000000"/>-->
+    <!--</RelativeLayout>-->
 
 
 
@@ -65,10 +103,22 @@
 
 
     <!-- bottom menu -->
-    <View
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_above="@+id/actMain_vgBottom"
         android:layout_width="match_parent"
-        android:layout_height="1px" android:background="#44000000"/>
+        android:layout_height="wrap_content">
+
+
+        <View
+            android:alpha="0.15"
+            android:layout_width="match_parent"
+            android:layout_height="6dp" android:background="@drawable/bg_circle_shadow_flip2"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#11000000"/>
+    </LinearLayout>
+
     <LinearLayout
         android:paddingBottom="3dp"
         android:layout_alignParentBottom="true"
@@ -91,15 +141,15 @@
                 android:layout_height="35dp">
                 <ImageView
                     android:adjustViewBounds="true"
-                    android:src="@drawable/ic_creditcard"
-                    android:layout_width="27dp"
+                    android:src="@drawable/ic_tab_price2"
+                    android:layout_width="25dp"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
             <TextView
                 style="@style/FontOpenSansRegular"
                 android:layout_marginTop="-1dp"
-                android:textColor="@color/colorOkhome"
+                android:textColor="#000000"
                 android:textSize="9dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:text="HOME"/>
@@ -119,7 +169,7 @@
                 android:layout_width="40dp"
                 android:layout_height="35dp">
                 <ImageView
-                    android:alpha="0.6"
+                    android:alpha="0.2"
                     android:adjustViewBounds="true"
                     android:src="@drawable/tidyup3"
                     android:layout_width="26dp"
@@ -128,6 +178,7 @@
             </LinearLayout>
 
             <TextView
+                android:alpha="0.5"
                 style="@style/FontOpenSansLight"
                 android:layout_marginTop="-1dp"
                 android:textColor="@color/colorBlueBlack"
@@ -149,16 +200,17 @@
                 android:layout_width="40dp"
                 android:layout_height="35dp">
                 <ImageView
-                    android:alpha="0.6"
+                    android:alpha="0.2"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_tab_price2"
-                    android:layout_width="24dp"
+                    android:layout_width="25dp"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
 
 
             <TextView
+                android:alpha="0.5"
                 style="@style/FontOpenSansLight"
                 android:layout_marginTop="-1dp"
                 android:textColor="@color/colorBlueBlack"
@@ -181,7 +233,7 @@
                 android:layout_width="40dp"
                 android:layout_height="35dp">
                 <ImageView
-                    android:alpha="0.6"
+                    android:alpha="0.2"
                     android:adjustViewBounds="true"
                     android:src="@drawable/tidyup3"
                     android:layout_width="26dp"
@@ -190,6 +242,7 @@
             </LinearLayout>
 
             <TextView
+                android:alpha="0.5"
                 style="@style/FontOpenSansLight"
                 android:layout_marginTop="-1dp"
                 android:textColor="@color/colorBlueBlack"
@@ -212,7 +265,7 @@
                 android:layout_width="40dp"
                 android:layout_height="35dp">
                 <ImageView
-                    android:alpha="0.6"
+                    android:alpha="0.2"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_tab_more"
                     android:layout_width="23dp"
@@ -221,6 +274,7 @@
             </LinearLayout>
 
             <TextView
+                android:alpha="0.5"
                 style="@style/FontOpenSansLight"
                 android:layout_marginTop="-1dp"
                 android:textColor="@color/colorBlueBlack"

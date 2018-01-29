@@ -8,19 +8,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#12000000" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="#22000000" />
-
         <LinearLayout
-            android:paddingLeft="24dp"
-            android:paddingRight="28dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:paddingTop="20dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -133,7 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="2dp">
+                    android:layout_marginTop="4dp">
 
                     <View
                         android:layout_width="1px"
@@ -321,9 +311,9 @@
 
         <View
             android:layout_marginTop="13dp" android:layout_marginBottom="13dp"
-            android:layout_marginLeft="28dp"
+            android:layout_marginLeft="24dp"
             android:layout_width="2px"
-            android:layout_height="14dp"
+            android:layout_height="10dp"
             android:layout_marginRight="22dp"
             android:background="#000000" />
 
@@ -332,7 +322,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="28dp"
+            android:paddingLeft="24dp"
             android:paddingRight="28dp">
             <!-- title -->
             <LinearLayout
@@ -408,7 +398,7 @@
         <LinearLayout
             android:layout_width="5dp"
             android:layout_height="5dp"
-            android:layout_marginLeft="26dp"
+            android:layout_marginLeft="22dp"
             android:layout_marginTop="15dp"
             android:background="#000000">
 
@@ -423,7 +413,7 @@
         <LinearLayout
             android:layout_width="5dp"
             android:layout_height="5dp"
-            android:layout_marginLeft="26dp"
+            android:layout_marginLeft="22dp"
             android:layout_marginTop="6dp"
             android:background="#000000">
 

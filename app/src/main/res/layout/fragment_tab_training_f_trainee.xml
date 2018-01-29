@@ -5,15 +5,6 @@
     android:layout_height="match_parent">
     <!-- tab-->
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#12000000" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#22000000" />
 
 
     <LinearLayout

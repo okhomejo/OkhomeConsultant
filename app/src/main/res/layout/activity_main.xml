@@ -34,7 +34,7 @@
         <View
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="1dp" android:background="#10000000"/>
+            android:layout_height="1dp" android:background="#18000000"/>
     </RelativeLayout>
 
     <!--<RelativeLayout-->
@@ -138,7 +138,7 @@
                     android:alpha="0.7"
                     android:adjustViewBounds="true"
                     android:src="@drawable/tidyup3"
-                    android:layout_width="29dp"
+                    android:layout_width="28dp"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -168,7 +168,7 @@
                     android:alpha="0.2"
                     android:adjustViewBounds="true"
                     android:src="@drawable/tidyup3"
-                    android:layout_width="29dp"
+                    android:layout_width="28dp"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -199,7 +199,7 @@
                     android:alpha="0.2"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_tab_price2"
-                    android:layout_width="27dp"
+                    android:layout_width="26.5dp"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -232,7 +232,7 @@
                     android:alpha="0.2"
                     android:adjustViewBounds="true"
                     android:src="@drawable/tidyup3"
-                    android:layout_width="29dp"
+                    android:layout_width="28dp"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>

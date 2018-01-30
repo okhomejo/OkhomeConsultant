@@ -114,7 +114,7 @@
 
     <LinearLayout
         android:paddingLeft="-3dp" android:paddingRight="-3dp"
-        android:background="#03efefef"
+        android:background="#04efefef"
         android:paddingBottom="2dp"
         android:layout_alignParentBottom="true"
         android:weightSum="5"

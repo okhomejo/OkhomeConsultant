@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,6 +22,9 @@ import id.co.okhome.consultant.view.main.trainee.fragment.HomeTabFragment;
 import id.co.okhome.consultant.view.main.trainee.fragment.TrainingTabFragment;
 
 public class TraineeMainActivity extends OkHomeParentActivity {
+
+    @BindView(R.id.actMain_tvTitle)
+    TextView tvTitle;
 
     @BindView(R.id.actMain_vgTop)
     ViewGroup vgTop;
@@ -46,9 +50,9 @@ public class TraineeMainActivity extends OkHomeParentActivity {
             decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             OkhomeUtil.setSystemBarColor(this, Color.parseColor("#ffffff"));
 
-            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)vgTop.getLayoutParams();
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)tvTitle.getLayoutParams();
             layoutParams.topMargin = layoutParams.topMargin - OkhomeUtil.getPixelByDp(this, 3);
-            vgTop.setLayoutParams(layoutParams);
+            tvTitle.setLayoutParams(layoutParams);
 
 
         }

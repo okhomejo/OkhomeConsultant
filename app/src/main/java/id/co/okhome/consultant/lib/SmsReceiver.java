@@ -49,7 +49,10 @@ public class SmsReceiver {
                     }
 
                     onSmsReceivedListener.onSmsReceive(ab.toString());
-                    onSmsReceivedListener.onOkhomeVerificationSmsReceive(msg.substring(0, 5));
+//                    onSmsReceivedListener.onOkhomeVerificationSmsReceive(msg.substring(0, 5));
+
+                    // Firebase changed SMS template?
+                    onSmsReceivedListener.onOkhomeVerificationSmsReceive(msg.substring(7, 13));
                     activity.unregisterReceiver(smsReceiver);
                 }
             }

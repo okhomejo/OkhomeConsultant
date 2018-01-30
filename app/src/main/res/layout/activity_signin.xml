@@ -15,6 +15,7 @@
         android:layout_height="55dp">
 
         <ImageView
+            android:id="@+id/actSignIn_vbtnClose"
             android:alpha="0.6"
             android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"
@@ -78,9 +79,11 @@
             android:orientation="vertical"
             android:layout_width="230dp"
             android:layout_height="wrap_content">
+
             <EditText
+                android:id="@+id/actSignIn_etEmail"
                 style="@style/FontOpenSansLight"
-                android:inputType="phone"
+                android:inputType="textEmailAddress"
                 android:background="@drawable/bg_common_edittext"
                 android:lines="1"
                 android:textSize="16sp"
@@ -95,8 +98,9 @@
             android:layout_width="230dp"
             android:layout_height="wrap_content">
             <EditText
+                android:id="@+id/actSignIn_etPassword"
                 style="@style/FontOpenSansLight"
-                android:inputType="phone"
+                android:inputType="textPassword"
                 android:background="@drawable/bg_common_edittext"
                 android:lines="1"
                 android:textSize="16sp"

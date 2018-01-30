@@ -20,4 +20,6 @@ public class ConsultantModel {
 			, marriedYN = ""
 			, childrenCNT = ""
 			, religion = "";
+
+
 }

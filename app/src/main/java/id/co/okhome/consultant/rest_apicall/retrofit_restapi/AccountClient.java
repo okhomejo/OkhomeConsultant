@@ -14,7 +14,7 @@ public interface AccountClient {
     /**signup. **Callback : Integer(consultant id)*/
     Call<Integer> signup(@Query("email") String email, @Query("password") String password);
 
-      @GET("consultant/account/signin")
+    @GET("consultant/account/signin")
     /**signin. */
     Call<ConsultantModel> signin(@Query("email") String email, @Query("password") String password);
 

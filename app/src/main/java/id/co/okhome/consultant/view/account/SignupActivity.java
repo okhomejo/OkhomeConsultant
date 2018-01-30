@@ -6,6 +6,7 @@ import android.content.IntentSender;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,9 +21,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.exception.OkhomeException;
 import id.co.okhome.consultant.lib.OkHomeParentActivity;
+import id.co.okhome.consultant.lib.OkhomeUtil;
+import id.co.okhome.consultant.lib.retrofit.RetrofitFactory;
+import id.co.okhome.consultant.model.ConsultantModel;
+import id.co.okhome.consultant.rest_apicall.retrofit_restapi.AccountClient;
+import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.common.dialog.PhoneVerificationDialog;
 import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignupActivity extends OkHomeParentActivity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -64,14 +74,55 @@ public class SignupActivity extends OkHomeParentActivity implements
 //            OkhomeUtil.showToast(this, e.getMessage());
 //            return;
 //        }
+//
+//        if(phoneVerificationDialog != null && phoneVerificationDialog.isVerified()) {
+//
+//            registrationProcessWithRetrofit(email, password);
+////            signup();
+//
+//        } else {
+//            Toast.makeText(this, "Please verify your phone number.", Toast.LENGTH_SHORT).show();
+//        }
 
-        signup();
+
+        registrationProcessWithRetrofit(email, password);
     }
 
-    private void signup(){
-        //connect to server...
+    private void registrationProcessWithRetrofit(final String email, String password){
 
-        startActivity(new Intent(this, FillupUserInfoActivity.class));
+//        AccountClient mApiService = this.getInterfaceService();
+
+        AccountClient mApiService = OkhomeRestApi.getAccountClient();
+
+        Call<Integer> mService = mApiService.signup(email, password);
+        mService.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+
+                if(response.isSuccessful()) {
+
+                    int consultantId = response.body();
+
+                    Intent loginIntent = new Intent(SignupActivity.this, FillupUserInfoActivity.class);
+                    loginIntent.putExtra("EMAIL", email);
+                    loginIntent.putExtra("ID", consultantId);
+                    startActivity(loginIntent);
+
+                } else {
+
+                    Toast.makeText(SignupActivity.this, "Login fail", Toast.LENGTH_SHORT).show();
+
+                    Log.e("Error Code", String.valueOf(response.code()));
+                    Log.e("Error Body", response.errorBody().toString());
+                }
+
+            }
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                call.cancel();
+                Toast.makeText(SignupActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -106,12 +157,10 @@ public class SignupActivity extends OkHomeParentActivity implements
         phoneVerificationDialog.show();
 
         if (requestCode == RESOLVE_HINT) {
-
-
             if (resultCode == RESULT_OK) {
                 Credential credential = data.getParcelableExtra(Credential.EXTRA_KEY);
-
                 phoneVerificationDialog.setPhoneNumber(credential.getId());
+                phoneVerificationDialog.onSendVerificationCode();
             }
         }
     }
@@ -139,6 +188,11 @@ public class SignupActivity extends OkHomeParentActivity implements
     @OnClick(R.id.actSignup_vbtnGoogle)
     public void onClickGoogle(){
 
+    }
+
+    @OnClick(R.id.actSignup_vbtnClose)
+    public void onCloseActivity() {
+        finish();
     }
 
     @OnClick(R.id.actSignup_vbtnTermsAndConditions)

@@ -35,7 +35,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:layout_marginBottom="6dp"
+                    android:layout_marginBottom="4dp"
                     style="@style/FontOpenSansLight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="14dp"
                     style="@style/FontOpenSansLight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -105,10 +105,16 @@
 
     <LinearLayout
         android:gravity="center"
-        android:background="#6399d2"
+        android:background="#484d9e"
         android:layout_alignParentRight="true"
-        android:layout_width="34dp"
-        android:layout_height="34dp">
+        android:layout_width="33dp"
+        android:layout_height="33dp">
+
+        <!--<ImageView-->
+            <!--android:src="@drawable/ic_rightarrow"-->
+            <!--android:adjustViewBounds="true"-->
+            <!--android:layout_width="14dp"-->
+            <!--android:layout_height="wrap_content" />-->
 
         <ImageView
             android:src="@drawable/ic_right_simplearrow_left_white"

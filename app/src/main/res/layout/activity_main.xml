@@ -21,7 +21,6 @@
             <!--android:layout_width="14dp"-->
             <!--android:layout_height="wrap_content" android:src="@drawable/ic_x" />-->
 
-
         <TextView
             style="@style/FontOpenSansLight"
             android:textColor="#000000"
@@ -34,7 +33,7 @@
         <View
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="1dp" android:background="#18000000"/>
+            android:layout_height="2px" android:background="#000000"/>
     </RelativeLayout>
 
     <!--<RelativeLayout-->
@@ -78,13 +77,13 @@
 
 
     <RelativeLayout
-
         android:layout_below="@+id/actMain_vgTop"
         android:layout_above="@+id/actMain_vgBottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.v4.view.ViewPager
+            android:background="#ffffff"
             android:id="@+id/actMain_vp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -103,8 +102,7 @@
 
 
         <View
-            android:visibility="gone"
-            android:alpha="0.22"
+            android:alpha="0.1"
             android:layout_width="match_parent"
             android:layout_height="5dp" android:background="@drawable/bg_circle_shadow_flip2"/>
         <View

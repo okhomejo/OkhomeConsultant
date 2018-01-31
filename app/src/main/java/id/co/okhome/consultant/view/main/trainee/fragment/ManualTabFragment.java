@@ -17,20 +17,19 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
-import id.co.okhome.consultant.model.TrainingModel;
 import id.co.okhome.consultant.view.viewholder.BlankHolder;
-import id.co.okhome.consultant.view.viewholder.TrainingForTraineeVHolder;
+import id.co.okhome.consultant.view.viewholder.Manual1DepthForTraineeVHolder;
 
 /**
  * Created by jo on 2018-01-23.
  */
 
-public class TrainingTabFragment extends Fragment implements TabFragmentStatusListener {
+public class ManualTabFragment extends Fragment implements TabFragmentStatusListener {
 
-    @BindView(R.id.fragTabTrainingForTrainee_rcv)
+    @BindView(R.id.fragTabManualForTrainee_rcv)
     RecyclerView rcv;
 
-    @BindView(R.id.fragTabTrainingForTrainee_vProgress)
+    @BindView(R.id.fragTabManualForTrainee_vProgress)
     View vLoading;
 
 
@@ -39,7 +38,7 @@ public class TrainingTabFragment extends Fragment implements TabFragmentStatusLi
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_tab_training_f_trainee, null);
+        return inflater.inflate(R.layout.fragment_tab_home_f_manual, null);
     }
 
     @Override
@@ -66,7 +65,7 @@ public class TrainingTabFragment extends Fragment implements TabFragmentStatusLi
         adapter = new JoRecyclerAdapter(
                 new JoRecyclerAdapter.Params()
                         .setRecyclerView(rcv)
-                        .setItemViewHolderCls(TrainingForTraineeVHolder.class)
+                        .setItemViewHolderCls(Manual1DepthForTraineeVHolder.class)
 //                        .setHeaderViewHolderCls(TrainingHeaderForTraineeVHolder.class)
                         .setFooterViewHolderCls(BlankHolder.class)
         );
@@ -79,11 +78,17 @@ public class TrainingTabFragment extends Fragment implements TabFragmentStatusLi
     private void loadList(){
         vLoading.setVisibility(View.VISIBLE);
 
-        List<TrainingModel> list = new ArrayList<>();
-        for(int i = 0; i < 8; i ++){
-            TrainingModel m = new TrainingModel();
-            list.add(m);
-        }
+        List<String> list = new ArrayList<>();
+        list.add("VACUUM CLEANER");
+        list.add("VACUUM MATRAS RAYCOP");
+        list.add("VACUUM BESAR");
+        list.add("KAIN SERBET");
+        list.add("SPONS DAPUR");
+        list.add("KANEBO");
+        list.add("SIKAT PEMBERSIH");
+        list.add("PEL");
+        list.add("SQUEEGEE (SAPU KARET)");
+
         adapter.setListItems(list);
 
         vLoading.setVisibility(View.GONE);

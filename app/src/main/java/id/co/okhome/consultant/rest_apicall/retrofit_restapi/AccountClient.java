@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface AccountClient {
@@ -17,6 +18,10 @@ public interface AccountClient {
     @GET("consultant/account/signin")
     /**signin. */
     Call<ConsultantModel> signin(@Query("email") String email, @Query("password") String password);
+
+    @GET("consultant/account/{consultantId}")
+    /**signin. */
+    Call<ConsultantModel> getConsultantInfo(@Path("consultantId") String consultantId);
 
     @PATCH("consultant/account/update_profile")
     /**

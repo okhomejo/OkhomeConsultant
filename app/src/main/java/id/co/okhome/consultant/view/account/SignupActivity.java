@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,10 +22,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.exception.OkhomeException;
+import id.co.okhome.consultant.lib.ToastUtil;
+import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
+import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
+import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
+import id.co.okhome.consultant.model.ConsultantModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.AccountClient;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.common.dialog.PhoneVerificationDialog;
+import id.co.okhome.consultant.view.main.trainee.TraineeMainActivity;
 import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,6 +47,8 @@ public class SignupActivity extends OkHomeParentActivity implements
     @BindView(R.id.actSignup_etPassword)        EditText etPassword;
     @BindView(R.id.actSignup_etPasswordOneMore) EditText etPasswordOneMore;
     @BindView(R.id.actSignup_tvPhone)           TextView tvPhone;
+    @BindView(R.id.actSignup_vLoading)          View vLoading;
+    @BindView(R.id.actSignup_vbtnSignup)        View vBtnSignUp;
 
     private static final int RESOLVE_HINT = 9;
     private GoogleApiClient mGoogleApiClient;
@@ -47,10 +58,14 @@ public class SignupActivity extends OkHomeParentActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-
         buildGoogleApiClient();
-
         ButterKnife.bind(this);
+
+        init();
+    }
+
+    private void init(){
+        showLoading(false);
     }
 
     //check exception before signup
@@ -61,75 +76,73 @@ public class SignupActivity extends OkHomeParentActivity implements
         final String passwordOneMore = etPasswordOneMore.getText().toString();
         final String phone = tvPhone.getText().toString();
 
-//        try{
+//        try {
 //            OkhomeUtil.chkException(!OkhomeUtil.isValidEmail(email), "Check your email.");
 //            OkhomeUtil.isValidPassword(password);
 //            OkhomeUtil.chkException(!password.equals(passwordOneMore), "Passwords do not match.");
 //
-//        }catch(OkhomeException e){
+//        } catch(OkhomeException e) {
 //            OkhomeUtil.showToast(this, e.getMessage());
 //            return;
 //        }
 //
-//        if(phoneVerificationDialog != null && phoneVerificationDialog.isVerified()) {
-//
-//            registrationProcessWithRetrofit(email, password);
-////            signup();
-//
+//        if (phoneVerificationDialog != null && phoneVerificationDialog.isVerified()) {
+//            signup(email, password);
 //        } else {
 //            Toast.makeText(this, "Please verify your phone number.", Toast.LENGTH_SHORT).show();
 //        }
 
 
-        registrationProcessWithRetrofit(email, password);
+        // For testing purpose
+        OkHomeParentActivity.finishAllActivities();
+        startActivity(new Intent(this, FillupUserInfoActivity.class));
     }
 
-    private void registrationProcessWithRetrofit(final String email, String password){
+    private void signup(final String email, String password) {
 
-//        AccountClient mApiService = this.getInterfaceService();
+        showLoading(true);
+        OkhomeRestApi.getAccountClient().signup(email, password).enqueue(new RetrofitCallback<Integer>() {
 
-        AccountClient mApiService = OkhomeRestApi.getAccountClient();
-
-        Call<Integer> mService = mApiService.signup(email, password);
-        mService.enqueue(new Callback<Integer>() {
             @Override
-            public void onResponse(Call<Integer> call, Response<Integer> response) {
-
-                if(response.isSuccessful()) {
-
-                    int consultantId = response.body();
-
-                    Intent loginIntent = new Intent(SignupActivity.this, FillupUserInfoActivity.class);
-                    loginIntent.putExtra("EMAIL", email);
-                    loginIntent.putExtra("ID", consultantId);
-                    startActivity(loginIntent);
-
-                } else {
-
-                    Toast.makeText(SignupActivity.this, "Login fail", Toast.LENGTH_SHORT).show();
-
-                    Log.e("Error Code", String.valueOf(response.code()));
-                    Log.e("Error Body", response.errorBody().toString());
-                }
-
+            public void onSuccess(Integer result) {
+                onLoginSuccess(result);
             }
+
             @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
-                call.cancel();
-                Toast.makeText(SignupActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
+            public void onJodevError(ErrorModel jodevErrorModel) {
+                super.onJodevError(jodevErrorModel);
+                ToastUtil.showToast(jodevErrorModel.message);
+            }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                showLoading(false);
             }
         });
     }
 
-    protected synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Auth.CREDENTIALS_API)
-                .build();
-        mGoogleApiClient.connect();
+    // on login success
+    private void onLoginSuccess(Integer result){
+
+        ConsultantLoggedIn.set(new ConsultantModel());
+
+        OkHomeParentActivity.finishAllActivities();
+        startActivity(new Intent(this, FillupUserInfoActivity.class));
     }
 
+    //Loading toggle
+    private void showLoading(boolean on){
+        if(on){
+            vBtnSignUp.animate().translationX(-100).alpha(0f).setDuration(300).start();
+            vLoading.animate().translationX(0).alpha(1f).setDuration(300).start();
+        }else{
+            vBtnSignUp.animate().translationX(0).alpha(1f).setDuration(300).start();
+            vLoading.animate().translationX(100).alpha(0f).setDuration(300).start();
+        }
+    }
+
+    // Request phone number connected with Google account
     public void requestPhoneNumber() {
         HintRequest hintRequest = new HintRequest.Builder()
                 .setPhoneNumberIdentifierSupported(true)
@@ -145,6 +158,7 @@ public class SignupActivity extends OkHomeParentActivity implements
         }
     }
 
+    // Give phone number to Dialog window
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -159,6 +173,15 @@ public class SignupActivity extends OkHomeParentActivity implements
                 phoneVerificationDialog.onSendVerificationCode();
             }
         }
+    }
+
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Auth.CREDENTIALS_API)
+                .build();
+        mGoogleApiClient.connect();
     }
 
     @Override
@@ -176,7 +199,7 @@ public class SignupActivity extends OkHomeParentActivity implements
 
     }
 
-    @OnClick(R.id.actSignUp_vbtnSignup)
+    @OnClick(R.id.actSignup_vbtnSignup)
     public void onClickSignUp(){
         checkBeforeSignup();
     }

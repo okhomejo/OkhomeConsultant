@@ -113,6 +113,7 @@
                         <TextView
                             style="@style/FontOpenSansLight"
                             android:text="Jo songmin"
+                            android:id="@+id/actUserInfo_tvName"
                             android:textSize="16sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -160,8 +161,8 @@
                         android:layout_height="wrap_content">
                         <TextView
                             style="@style/FontOpenSansLight"
-                            android:text="+6210 9314 9449"
-                            android:id="@+id/actUserInfo_tvEmail"
+                            android:text="+6200000000000"
+                            android:id="@+id/actUserInfo_tvPhone"
                             android:textSize="16sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

@@ -129,8 +129,6 @@ public class PhoneVerificationDialog extends DialogParent{
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential:success");
 
-                            TextView tvPhone = activity.findViewById(R.id.actSignup_tvPhone);
-                            tvPhone.setText(currentPhoneNum);
                             isVerified = true;
                             dismiss();
 
@@ -141,6 +139,7 @@ public class PhoneVerificationDialog extends DialogParent{
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 etCode.setError("The verification code entered was invalid");
                             }
+                            isVerified = false;
                         }
                     }
                 });
@@ -163,7 +162,7 @@ public class PhoneVerificationDialog extends DialogParent{
     private void sendSmsCode(){
         currentPhoneNum = etInput.getText().toString();
         if(!currentPhoneNum.contains("+")){
-            currentPhoneNum = "+62" + currentPhoneNum;
+            currentPhoneNum = "+62" + currentPhoneNum.substring(1);
         }
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 currentPhoneNum,
@@ -204,6 +203,10 @@ public class PhoneVerificationDialog extends DialogParent{
         etInput.setText(phoneNumber);
     }
 
+    public String getCurrentPhoneNum() {
+        return currentPhoneNum;
+    }
+
     @OnClick(R.id.dialogPhoneVerificatoin_tvSendVerfificationCode)
     public void onSendVerificationCode(){
         sendSmsCode();
@@ -216,6 +219,7 @@ public class PhoneVerificationDialog extends DialogParent{
 
     @OnClick(R.id.dialogCommonInput_vbtnX)
     public void closeDialog() {
+        isVerified = false;
         dismiss();
     }
 

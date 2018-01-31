@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.lib;
+package id.co.okhome.consultant.lib.app;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

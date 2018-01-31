@@ -9,7 +9,7 @@ import com.google.gson.GsonBuilder;
 import java.io.IOException;
 
 import id.co.okhome.consultant.exception.OkhomeException;
-import id.co.okhome.consultant.lib.OkhomeUtil;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import retrofit2.Call;
 import retrofit2.Callback;

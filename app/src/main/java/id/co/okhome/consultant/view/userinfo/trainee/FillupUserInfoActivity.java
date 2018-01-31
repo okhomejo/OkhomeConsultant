@@ -7,7 +7,7 @@ import android.view.View;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.lib.OkHomeParentActivity;
+import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 
 public class FillupUserInfoActivity extends OkHomeParentActivity {
 

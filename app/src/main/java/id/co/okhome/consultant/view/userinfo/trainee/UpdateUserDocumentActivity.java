@@ -4,17 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.lib.OkHomeParentActivity;
-import id.co.okhome.consultant.lib.OkhomeUtil;
+import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.view.etc.LocationActivity;
 
 public class UpdateUserDocumentActivity extends OkHomeParentActivity {

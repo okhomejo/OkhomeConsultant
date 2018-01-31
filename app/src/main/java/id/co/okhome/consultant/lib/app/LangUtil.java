@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.lib;
+package id.co.okhome.consultant.lib.app;
 
 /**
  * Created by jo on 2018-01-06.

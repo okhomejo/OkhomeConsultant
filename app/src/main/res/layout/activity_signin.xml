@@ -128,37 +128,49 @@
                 android:text="Forgot password or Email"/>
 
         </LinearLayout>
-        <LinearLayout
+        <RelativeLayout
             android:layout_marginTop="18dp"
-            android:id="@+id/actSignIn_vbtnSignin"
-            android:gravity="center"
-            android:background="@color/colorOkhome"
-            android:paddingTop="10dp" android:paddingBottom="10dp"
-            android:layout_width="180dp"
-            android:layout_height="50dp">
-
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <LinearLayout
-                android:layout_marginRight="15dp"
+                android:layout_centerInParent="true"
+                android:id="@+id/actSignIn_vbtnSignin"
                 android:gravity="center"
-                android:layout_width="20dp"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="16dp"
-                    android:adjustViewBounds="true"
-                    android:layout_height="wrap_content" android:src="@drawable/ic_downarrow_white"/>
+                android:background="@color/colorOkhome"
+                android:paddingTop="10dp" android:paddingBottom="10dp"
+                android:layout_width="180dp"
+                android:layout_height="50dp">
+
+                <LinearLayout
+                    android:layout_marginRight="15dp"
+                    android:gravity="center"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:adjustViewBounds="true"
+                        android:layout_height="wrap_content" android:src="@drawable/ic_downarrow_white"/>
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text="Sign in"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff" />
 
             </LinearLayout>
 
-            <TextView
-                style="@style/FontOpenSansLight"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:text="Sign in"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:textColor="#ffffff" />
+            <ProgressBar
+                android:id="@+id/actSignIn_vLoading"
+                android:layout_width="35dp"
+                android:layout_height="35dp" android:layout_centerInParent="true"/>
 
-        </LinearLayout>
+        </RelativeLayout>
+
 
 
 

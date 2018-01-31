@@ -5,6 +5,7 @@ import android.content.Context;
 
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.JoSharedPreference;
+import id.co.okhome.consultant.lib.ToastUtil;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
@@ -21,6 +22,8 @@ public class OkhomeApplication extends Application{
                         .setFontAttrId(R.attr.fontPath)
                         .build()
         );
+
+        ToastUtil.setContext(this);
     }
 
 

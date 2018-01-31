@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.lib.OkHomeParentActivity;
+import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.view.account.AuthActivity;
 
 public class SplashActivity extends OkHomeParentActivity {

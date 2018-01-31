@@ -63,8 +63,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.adapter.PlaceAutocompleteAdapter;
-import id.co.okhome.consultant.lib.OkHomeParentActivity;
-import id.co.okhome.consultant.lib.OkhomeUtil;
+import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
 
 public class LocationActivity extends OkHomeParentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,

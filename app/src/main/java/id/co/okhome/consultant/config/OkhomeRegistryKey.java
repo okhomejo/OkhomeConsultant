@@ -6,4 +6,5 @@ package id.co.okhome.consultant.config;
 
 public class OkhomeRegistryKey {
 
+    public final static String LOGIN_CONSULTANT = "LOGIN_CONSULTANT";
 }

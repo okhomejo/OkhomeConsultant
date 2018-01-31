@@ -10,7 +10,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.DialogParent;
-import id.co.okhome.consultant.lib.OkhomeUtil;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
 
 /**
  * Created by jo on 2018-01-24.

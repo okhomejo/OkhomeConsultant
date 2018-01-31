@@ -19,6 +19,8 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.fragment_pager.FragmentTabAdapter;
 import id.co.okhome.consultant.view.main.trainee.fragment.ChatTabFragment;
 import id.co.okhome.consultant.view.main.trainee.fragment.HomeTabFragment;
+import id.co.okhome.consultant.view.main.trainee.fragment.ManualTabFragment;
+import id.co.okhome.consultant.view.main.trainee.fragment.SettingTabFragment;
 import id.co.okhome.consultant.view.main.trainee.fragment.TrainingTabFragment;
 
 public class TraineeMainActivity extends OkHomeParentActivity {
@@ -98,10 +100,10 @@ public class TraineeMainActivity extends OkHomeParentActivity {
                     f = new ChatTabFragment();
                     break;
                 case 3:
-                    f = new HomeTabFragment();
+                    f = new ManualTabFragment();
                     break;
                 case 4:
-                    f = new HomeTabFragment();
+                    f = new SettingTabFragment();
                     break;
             }
             return f;

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- tab-->
+
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:paddingLeft="24dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="54dp">
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="110dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    style="@style/FontOpenSansLight"
+                    android:textColor="#ee313238"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Basic Training"
+                    android:textSize="16.5sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    style="@style/FontOpenSansLight"
+                    android:textColor="#66313238"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Advenced Training"
+                    android:textSize="16.5sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="2.5dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:background="#13313238"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <View
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent" android:background="@color/colorOkhome"/>
+
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:scrollbars="vertical"
+            android:id="@+id/fragTabManualForTrainee_rcv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <ProgressBar
+            android:id="@+id/fragTabManualForTrainee_vProgress"
+            android:layout_width="30dp"
+            android:layout_height="30dp" android:layout_centerInParent="true"/>
+
+
+    </RelativeLayout>
+
+
+    <!--<include android:layout_width="wrap_content" android:layout_height="wrap_content" layout="@layout/layer_empty"-->
+    <!--android:layout_centerInParent="true" />-->
+</LinearLayout>

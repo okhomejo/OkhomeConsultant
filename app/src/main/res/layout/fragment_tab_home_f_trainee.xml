@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="#ffffff"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -29,8 +30,8 @@
                     <!-- sample datas -->
 
                     <FrameLayout
-                        android:layout_width="52dp"
-                        android:layout_height="52dp"
+                        android:layout_width="54dp"
+                        android:layout_height="54dp"
                         android:layout_marginRight="20dp">
 
                         <de.hdodenhof.circleimageview.CircleImageView
@@ -116,13 +117,13 @@
                     </LinearLayout>
                 </LinearLayout>
 
-
                 <LinearLayout
+                    android:layout_centerVertical="true"
                     android:gravity="center"
                     android:layout_alignParentRight="true"
                     android:background="#5bbfec"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp">
+                    android:layout_width="33dp"
+                    android:layout_height="33dp">
 
                     <ImageView
                         android:adjustViewBounds="true"
@@ -156,7 +157,7 @@
 
             <!-- graph -->
             <LinearLayout
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical">
@@ -349,15 +350,29 @@
                             </FrameLayout>
                         </LinearLayout>
 
-                        <TextView
-                            style="@style/FontOpenSansLight"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <LinearLayout
+                            android:gravity="center_vertical"
                             android:layout_marginTop="8dp"
-                            android:gravity="center"
-                            android:text="※ What are these trainings?"
-                            android:textColor="@color/colorOkhome"
-                            android:textSize="13sp" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <ImageView
+                                android:visibility="gone"
+                                android:layout_width="14dp"
+                                android:adjustViewBounds="true"
+                                android:layout_height="wrap_content" android:src="@drawable/ic_substract"/>
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:gravity="center"
+                                android:text="What are these trainings?"
+                                android:textColor="@color/colorOkhome"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
 
                     </LinearLayout>
 
@@ -384,7 +399,7 @@
                         android:layout_marginRight="40dp"
                         android:text="NEXT JOB TRAINING"
                         android:textColor="@color/colorLightBlueGray"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
 
                 </LinearLayout>
@@ -399,7 +414,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical">
-
 
                         <LinearLayout
                             android:paddingTop="5dp" android:paddingBottom="8dp"
@@ -433,7 +447,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginTop="12dp"
                                 android:text="16 Jan 2018, 10:00 AM"
                                 android:textColor="#66000000"
                                 android:textSize="12sp" />
@@ -444,8 +458,8 @@
                         android:gravity="center"
                         android:layout_alignParentRight="true"
                         android:background="#484d9e"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp">
+                        android:layout_width="33dp"
+                        android:layout_height="33dp">
 
                         <ImageView
                             android:src="@drawable/ic_right_simplearrow_left_white"

@@ -72,7 +72,6 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
     }
 
     private void init(){
-
         // create consultant for testing purpose
         consultant = new ConsultantModel();
         consultant.id = "7";
@@ -83,6 +82,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
         tvPhone.setText(consultant.phone);
         tvAddress.setText(consultant.address);
 
+        // Load saved consultant data
         if (ConsultantLoggedIn.hasSavedData()) {
             consultant = ConsultantLoggedIn.get();
             tvName.setText(consultant.name);
@@ -103,12 +103,10 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
             }
         });
 
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 if (data.getExtras() == null) {
@@ -159,7 +157,6 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
     }
 
     private void updateProfile(final String consultantId, final String jsonParams) {
-
         OkhomeRestApi.getAccountClient().updateProfile(consultantId, jsonParams).
                 enqueue(new RetrofitCallback<String>() {
 
@@ -210,17 +207,15 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-
+        mGoogleApiClient.connect();
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
     }
 
     @OnClick(R.id.actUserInfo_tvPhone)
@@ -231,9 +226,10 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
     @OnClick(R.id.fragmentMyCleaningCalendar_btnClose)
     public void onSubmitInfo(){
         consultant.name = tvName.getText().toString();
-        updateProfile(consultant.id, "{\"name\":\"" + consultant.name + "\", " +
-                "\"phone\":\"" + consultant.phone + "\", " +
-                "\"address\":\"" + consultant.address + "\"}"
+        updateProfile(consultant.id, "" +
+                "{\"name\":\"" + consultant.name + "\", " +
+                 "\"phone\":\"" + consultant.phone + "\", " +
+                 "\"address\":\"" + consultant.address + "\"}"
         );
     }
 }

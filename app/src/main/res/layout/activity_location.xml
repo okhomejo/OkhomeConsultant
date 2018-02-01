@@ -8,8 +8,6 @@
     android:background="#ffffff"
     tools:context="id.co.okhome.consultant.view.account.AuthActivity">
 
-
-
     <LinearLayout
         android:gravity="center_vertical"
         android:background="@color/colorOkhome"
@@ -23,6 +21,7 @@
             android:gravity="center"
             android:layout_width="50dp"
             android:layout_height="match_parent">
+
             <ImageView
                 android:alpha="0.9"
                 android:adjustViewBounds="true"
@@ -84,7 +83,6 @@
                 android:focusable="true"
                 android:clickable="true"/>
 
-
             <LinearLayout
                 android:id="@+id/actLocation_vbtnClear"
                 android:paddingRight="15dp"
@@ -94,6 +92,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
+
                 <ImageView
                     android:layout_centerVertical="true"
                     android:layout_width="13dp"
@@ -102,7 +101,6 @@
                     android:src="@drawable/ic_x"/>
 
             </LinearLayout>
-
 
         </RelativeLayout>
 
@@ -196,7 +194,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
 
 </RelativeLayout>

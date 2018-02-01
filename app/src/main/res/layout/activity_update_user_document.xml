@@ -219,7 +219,7 @@
                         <TextView
                             android:id="@+id/actUpdateUserDocument_tvAddress"
                             style="@style/FontOpenSansLight"
-                            android:text="JL.Sudirman, Tebet, Jakarta"
+                            android:text="Your location"
                             android:textSize="16sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

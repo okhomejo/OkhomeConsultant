@@ -98,27 +98,34 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorLightBlueGray"/>
+
                 </LinearLayout>
 
 
                 <RelativeLayout
+                    android:id="@+id/actUserInfo_tvNameLayout"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:layout_marginTop="-4dp"
-                    android:layout_width="84dp"
+                    android:layout_width="130dp"
                     android:layout_height="49dp">
 
                     <LinearLayout
                         android:layout_centerVertical="true"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                        <TextView
+
+                        <EditText
                             style="@style/FontOpenSansLight"
                             android:text="Jo songmin"
                             android:id="@+id/actUserInfo_tvName"
+                            android:background="@android:color/transparent"
                             android:textSize="16sp"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorBlueGray"
-                            android:layout_centerVertical="true" />
+                            android:layout_centerVertical="true"
+                            android:singleLine="true"/>
 
                     </LinearLayout>
 

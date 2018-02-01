@@ -187,6 +187,7 @@ public class SignupActivity extends OkHomeParentActivity implements
             public void onDismiss(final DialogInterface arg0) {
                 if (verifyDialog.isVerified()) {
                     tvPhone.setText(verifyDialog.getCurrentPhoneNum());
+                    vBtnSignUp.requestFocus();
                 }
             }
         });

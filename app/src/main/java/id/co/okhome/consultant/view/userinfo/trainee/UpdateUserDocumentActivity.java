@@ -8,8 +8,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +23,7 @@ import com.google.android.gms.auth.api.credentials.Credential;
 import com.google.android.gms.auth.api.credentials.HintRequest;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.nearby.messages.internal.Update;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -39,9 +44,10 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
-    @BindView(R.id.actUserInfo_tvName)                   TextView tvName;
+    @BindView(R.id.actUserInfo_tvName)                   EditText tvName;
     @BindView(R.id.actUserInfo_tvPhone)                  TextView tvPhone;
     @BindView(R.id.actUpdateUserDocument_tvAddress)      TextView tvAddress;
+    @BindView(R.id.actUserInfo_tvNameLayout)             RelativeLayout rlName;
 
     private String address;
     private Bundle previousBundle = null;
@@ -66,13 +72,6 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
     }
 
     private void init(){
-//        if (ConsultantLoggedIn.hasSavedData()) {
-//            consultant = ConsultantLoggedIn.get();
-//            tvPhone.setText(consultant.phone);
-//            tvAddress.setText(consultant.address);
-//        }
-
-
 
         // create consultant for testing purpose
         consultant = new ConsultantModel();
@@ -83,21 +82,44 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
         tvName.setText(consultant.name);
         tvPhone.setText(consultant.phone);
         tvAddress.setText(consultant.address);
+
+        if (ConsultantLoggedIn.hasSavedData()) {
+            consultant = ConsultantLoggedIn.get();
+            tvName.setText(consultant.name);
+            tvPhone.setText(consultant.phone);
+            tvAddress.setText(consultant.address);
+        }
+
+        tvName.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (i == KeyEvent.KEYCODE_ENTER)) {
+                    tvName.clearFocus();
+                    rlName.requestFocus();
+                    OkhomeUtil.setSoftKeyboardVisiblity(tvName, false);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == 1) {
-            if(data.getExtras() == null) {
-                address = "No address";
-            } else {
-                address = data.getStringExtra("address");
-                previousBundle = data.getExtras();
+            if (resultCode == RESULT_OK) {
+                if (data.getExtras() == null) {
+                    address = "No address";
+                } else {
+                    address = data.getStringExtra("address");
+                    previousBundle = data.getExtras();
+                }
+                consultant.address = address;
+                tvAddress.setText(address);
             }
-            consultant.address = address;
-            tvAddress.setText(address);
-
             isActive = false;
 
         } else if (requestCode == 6) {
@@ -132,8 +154,8 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
             } else {
                 startActivityForResult(new Intent(this, LocationActivity.class), 1);
             }
+            isActive = true;
         }
-        isActive = true;
     }
 
     private void updateProfile(final String consultantId, final String jsonParams) {
@@ -144,6 +166,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
                     @Override
                     public void onSuccess(String result) {
                         Toast.makeText(UpdateUserDocumentActivity.this, "Result: " + result, Toast.LENGTH_SHORT).show();
+                        ConsultantLoggedIn.set(consultant);
                         finish();
                     }
 
@@ -207,6 +230,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
 
     @OnClick(R.id.fragmentMyCleaningCalendar_btnClose)
     public void onSubmitInfo(){
+        consultant.name = tvName.getText().toString();
         updateProfile(consultant.id, "{\"name\":\"" + consultant.name + "\", " +
                 "\"phone\":\"" + consultant.phone + "\", " +
                 "\"address\":\"" + consultant.address + "\"}"

@@ -134,7 +134,7 @@
                     android:hint="what is your name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColorHint="@color/colorLightBlueGray2"/>
+                    android:textColorHint="@color/colorLightBlueGray3"/>
             </LinearLayout>
 
             <!-- item -->
@@ -165,7 +165,7 @@
                         android:hint="Input your phone"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColorHint="@color/colorLightBlueGray2"/>
+                        android:textColorHint="@color/colorLightBlueGray3"/>
                 </LinearLayout>
                 <ImageView
                     android:adjustViewBounds="true"
@@ -204,7 +204,7 @@
                         android:hint="Input your gender"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColorHint="@color/colorLightBlueGray2"/>
+                        android:textColorHint="@color/colorLightBlueGray3"/>
                 </LinearLayout>
                 <ImageView
                     android:adjustViewBounds="true"
@@ -242,7 +242,7 @@
                         android:hint="Input your address"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColorHint="@color/colorLightBlueGray2"/>
+                        android:textColorHint="@color/colorLightBlueGray3"/>
                 </LinearLayout>
 
                 <ImageView

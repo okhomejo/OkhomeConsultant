@@ -21,4 +21,6 @@ public class ConsultantModel {
 			, marriedYN
 			, childrenCNT
 			, religion;
+
+	public AccountStatusModel accountStatus;
 }

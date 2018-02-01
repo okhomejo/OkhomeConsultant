@@ -1,6 +1,7 @@
 package id.co.okhome.consultant.rest_apicall.retrofit_restapi;
 
 
+import id.co.okhome.consultant.model.AccountStatusModel;
 import id.co.okhome.consultant.model.ConsultantModel;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -30,6 +31,11 @@ public interface AccountClient {
      *
      * */
     Call<String> updateProfile(@Query("consultantId") String consultantId, @Query("jsonParams") String jsonParams);
+
+    @GET("consultant/account/check_status/{consultantId}")
+    /**signin. */
+    Call<AccountStatusModel> getAccountStatus(@Path("consultantId") String consultantId);
+
 
 }
 

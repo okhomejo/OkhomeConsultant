@@ -40,6 +40,7 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.9.0'
     compile group: 'commons-io', name: 'commons-io', version: '2.4'
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.edmodo:cropper:1.0.1'
     //--
 
     testImplementation 'junit:junit:4.12'

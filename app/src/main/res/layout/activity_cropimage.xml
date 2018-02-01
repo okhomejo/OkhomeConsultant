@@ -1,0 +1,128 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#000000"
+    android:layout_height="match_parent" >
+
+    <FrameLayout
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:layout_above="@+id/actCropImage_llBox"
+        android:layout_alignParentTop="true"
+        android:padding="10dp" >
+
+        <ImageView
+            android:id="@+id/actCropImage_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+        <com.edmodo.cropper.CropImageView
+            android:id="@+id/actCropImage_cropImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:id="@+id/actCropImage_llBox"
+        android:layout_width="match_parent" android:layout_height="46dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:weightSum="4" >
+
+        <TextView
+            android:layout_marginRight="4dp"
+            android:id="@+id/actCropImage_rotate"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/colorOkhome"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="90도 회전"
+            android:textColor="#ffffff"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_marginRight="4dp"
+            android:id="@+id/actCropImage_cut"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/colorOkhome"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="자르기"
+            android:textColor="#ffffff"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_marginRight="4dp"
+            android:id="@+id/actCropImage_done"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/colorOkhome"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="확인"
+            android:textColor="#ffffff"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/actCropImage_cancel"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/colorOkhome"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="닫기"
+            android:textColor="#ffffff"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/actCropImage_llBoxForCutting"
+        android:layout_width="match_parent" android:layout_height="46dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:weightSum="2" >
+
+        <TextView
+            android:layout_marginRight="4dp"
+            android:id="@+id/actCropImage_tvbtnCuttingOk"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/colorOkhome"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="자르기"
+            android:textColor="#ffffff"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/actCropImage_tvbtnCuttingCancel"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/colorLightBlueGray"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="취소"
+            android:textColor="#ffffff"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

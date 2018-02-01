@@ -8,7 +8,7 @@
     tools:context="id.co.okhome.consultant.view.main.trainee.TraineeMainActivity">
 
     <RelativeLayout
-        android:layout_marginLeft="20dp" android:layout_marginRight="20dp"
+         android:layout_marginRight="20dp"
         android:id="@+id/actMain_vgTop"
         android:layout_width="match_parent"
         android:layout_height="76dp">
@@ -22,17 +22,18 @@
             <!--android:layout_height="wrap_content" android:src="@drawable/ic_x" />-->
 
         <TextView
+            android:layout_marginLeft="20dp"
             style="@style/FontOpenSansLight"
             android:textColor="#000000"
             android:id="@+id/actMain_tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:text="Welcome."
-            android:textSize="30dp"
+            android:textSize="32dp"
             android:layout_centerVertical="true" />
 
         <View
             android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
+            android:layout_width="190dp"
             android:layout_height="2px" android:background="#000000"/>
     </RelativeLayout>
 

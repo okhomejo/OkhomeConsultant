@@ -11,6 +11,10 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
 
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
+
+
     <application
         android:name="id.co.okhome.consultant.app.OkhomeApplication"
         android:allowBackup="true"
@@ -32,6 +36,8 @@
             </intent-filter>
         </activity>
         <activity android:name="id.co.okhome.consultant.view.account.AuthActivity" />
+        <activity android:name="id.co.okhome.consultant.view.photochooser.CropImageActivity" />
+        <activity android:name="id.co.okhome.consultant.view.photochooser.ImageChooserActivity" />
         <activity android:name="id.co.okhome.consultant.view.account.SignupActivity" />
         <activity android:name="id.co.okhome.consultant.view.account.SigninActivity">
 

@@ -12,7 +12,6 @@ public interface CommonClient {
     @GET("version/{os}") //map은 id, value로 구성됨.
     Call<Map> getVersion(@Path("os") String os);
 
-
 }
 
 

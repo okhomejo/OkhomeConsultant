@@ -10,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.credentials.Credential;
@@ -22,11 +21,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.exception.OkhomeException;
 import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
-import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import id.co.okhome.consultant.model.ConsultantModel;
@@ -93,6 +90,7 @@ public class SignupActivity extends OkHomeParentActivity implements
         startActivity(new Intent(this, FillupUserInfoActivity.class));
     }
 
+    //sign up
     private void signup(final String email, String password) {
 
         showLoading(true);
@@ -100,7 +98,7 @@ public class SignupActivity extends OkHomeParentActivity implements
 
             @Override
             public void onSuccess(Integer result) {
-                onLoginSuccess(result);
+                onSignUpSuccess(result);
             }
 
             @Override
@@ -118,27 +116,18 @@ public class SignupActivity extends OkHomeParentActivity implements
     }
 
     // on login success
-    private void onLoginSuccess(Integer result){
-
+    private void onSignUpSuccess(Integer result){
         getConsultantInfo(String.valueOf(result));
         OkHomeParentActivity.finishAllActivities();
         startActivity(new Intent(this, FillupUserInfoActivity.class));
     }
 
     private void getConsultantInfo(final String consultantId) {
-        OkhomeRestApi.getAccountClient().getConsultantInfo(consultantId).enqueue(
-                new RetrofitCallback<ConsultantModel>() {
 
+        ConsultantLoggedIn.reload(new RetrofitCallback<ConsultantModel>() {
             @Override
             public void onSuccess(ConsultantModel result) {
                 result.phone = tvPhone.getText().toString();
-                ConsultantLoggedIn.set(result);
-            }
-
-            @Override
-            public void onJodevError(ErrorModel jodevErrorModel) {
-                super.onJodevError(jodevErrorModel);
-                ToastUtil.showToast(jodevErrorModel.message);
             }
 
             @Override
@@ -147,6 +136,7 @@ public class SignupActivity extends OkHomeParentActivity implements
                 showLoading(false);
             }
         });
+
     }
 
     //Loading toggle

@@ -10,8 +10,11 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
-import id.co.okhome.consultant.view.account.AuthActivity;
+import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
+import id.co.okhome.consultant.model.ConsultantModel;
+import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 
 public class SplashActivity extends OkHomeParentActivity {
 
@@ -25,7 +28,27 @@ public class SplashActivity extends OkHomeParentActivity {
         ButterKnife.bind(this);
         beginLogoAnimation();
 
-        next();
+        login();
+    }
+
+    //login
+    private void login(){
+        final String email = "frizky@okhome.id";
+        final String pass = "test123";
+
+        /**
+         * Note To Fritz
+         * To manage ConsultantModel, use ConsultantLoggedIn's static method.
+         * below code is used for signin.
+         *
+         * */
+        ConsultantLoggedIn.login(email, pass, new RetrofitCallback<ConsultantModel>() {
+            @Override
+            public void onSuccess(ConsultantModel result) {
+                //consulantant model is automatically stored at ConsultantLoggedIn
+                next();
+            }
+        });
     }
 
     private void next(){
@@ -33,9 +56,14 @@ public class SplashActivity extends OkHomeParentActivity {
             @Override
             public void dispatchMessage(Message msg) {
                 super.dispatchMessage(msg);
-                SplashActivity.this.finish();
-                startActivity(new Intent(SplashActivity.this, AuthActivity.class));
+//                startActivity(new Intent(SplashActivity.this, AuthActivity.class));
 
+                /**
+                 * Note To Fritz
+                 * now just for test, go to FillupUserInfoActivity
+                 * */
+                startActivity(new Intent(SplashActivity.this, FillupUserInfoActivity.class));
+                SplashActivity.this.finish();
             }
         }.sendEmptyMessageDelayed(0, 2000);
     }

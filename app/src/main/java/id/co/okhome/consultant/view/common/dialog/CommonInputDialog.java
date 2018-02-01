@@ -9,7 +9,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.lib.DialogParent;
+import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 
 /**
@@ -29,7 +29,6 @@ public class CommonInputDialog extends DialogParent{
 
     @BindView(R.id.dialogCommonInput_tvComment)
     TextView tvComment;
-
 
     CommonDialogListener commonDialogListener;
     String title, subTitle, hint, comment, defaultText;

@@ -3,7 +3,7 @@ package id.co.okhome.consultant.view.common.dialog;
 import android.content.Context;
 
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.lib.DialogParent;
+import id.co.okhome.consultant.lib.dialog.DialogParent;
 
 /**
  * Created by jo on 2018-01-24.

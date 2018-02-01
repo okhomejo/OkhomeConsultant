@@ -9,57 +9,36 @@
     tools:context="id.co.okhome.consultant.view.account.AuthActivity">
 
     <LinearLayout
-        android:id="@+id/actUpdateUserDocu_vgTop"
-        android:paddingTop="18dp" android:paddingBottom="12dp"
-        android:paddingLeft="30dp" android:paddingRight="30dp"
+        android:gravity="center_vertical"
         android:background="@color/colorOkhome"
+        android:id="@+id/actUpdateUserDocu_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="66dp">
 
         <LinearLayout
-            android:paddingBottom="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginRight="6dp"
+            android:id="@+id/actLocation_vbtnX"
+            android:gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-
-                <TextView
-                    android:layout_marginLeft="-4dp"
-                    style="@style/FontOpenSansSemibold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Update"
-                    android:textColor="#ffffff"
-                    android:textSize="56dp" />
-                <LinearLayout
-                    android:gravity="center_vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        style="@style/FontOpenSansLight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="-2dp"
-                        android:text="Kartu Tanda Penduduk"
-                        android:textColor="#ffffff"
-                        android:textSize="16dp" />
-
-                    <View
-                        android:layout_marginLeft="16dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp" android:background="#ffffff"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
+            <ImageView
+                android:alpha="0.9"
+                android:adjustViewBounds="true"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content" android:src="@drawable/ic_action_back_white" />
 
         </LinearLayout>
+
+        <TextView
+            style="@style/FontOpenSansLight"
+            android:textColor="#ffffff"
+            android:id="@+id/actPoint_tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="Update information"
+            android:textSize="21dp"
+            android:layout_centerVertical="true" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -70,197 +49,261 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="4dp" android:background="#16000000"/>
+            android:layout_height="3dp" android:background="#16000000"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1px" android:background="#22000000"/>
         <LinearLayout
-            android:paddingTop="28dp"
+            android:paddingTop="4dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+
+
+            <!-- item -->
             <LinearLayout
-                android:orientation="vertical"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_common_edittext"
+                android:id="@+id/actUpdateUserDocument_vgPhoto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="58dp">
+
+                <TextView
+                    android:gravity="center_vertical"
+                    style="@style/FontOpenSansLight"
+                    android:textColor="@color/colorLightBlueGray"
+                    android:textSize="15sp"
+                    android:text="PHOTO"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true" />
 
                 <LinearLayout
-                    android:gravity="center_vertical"
-                    android:layout_width="wrap_content"
+                    android:gravity="right"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+                    <FrameLayout
+                        android:layout_width="46dp"
+                        android:layout_height="46dp">
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/actUpdateUserDocument_ivPhoto"
+                            android:layout_margin="2dp"
+                            android:layout_gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/img_model4"/>
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" android:src="@drawable/circle_stroke" />
 
-                    <TextView
-                        style="@style/FontOpenSansLight"
-                        android:text="NAME"
-                        android:textSize="13sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorLightBlueGray"/>
+                    </FrameLayout>
 
                 </LinearLayout>
 
-
-                <RelativeLayout
-                    android:id="@+id/actUserInfo_tvNameLayout"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:layout_marginTop="-4dp"
-                    android:layout_width="130dp"
-                    android:layout_height="49dp">
-
-                    <LinearLayout
-                        android:layout_centerVertical="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            style="@style/FontOpenSansLight"
-                            android:text="Jo songmin"
-                            android:id="@+id/actUserInfo_tvName"
-                            android:background="@android:color/transparent"
-                            android:textSize="16sp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/colorBlueGray"
-                            android:layout_centerVertical="true"
-                            android:singleLine="true"/>
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_alignParentBottom="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp" android:background="@color/colorOkhome"/>
-
-                    <ImageView
-                        android:alpha="0.6"
-                        android:adjustViewBounds="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_width="18dp"
-                        android:layout_height="wrap_content" />
-                </RelativeLayout>
             </LinearLayout>
+
+            <!-- item -->
             <LinearLayout
-                android:layout_marginTop="20dp"
-                android:orientation="vertical"
+                android:id="@+id/actUpdateUserDocument_llName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="58dp">
 
                 <TextView
+                    android:background="@drawable/bg_common_edittext"
+                    android:gravity="center_vertical"
                     style="@style/FontOpenSansLight"
-                    android:text="PHONE"
-                    android:textSize="13sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorLightBlueGray"/>
-
-                <RelativeLayout
-                    android:layout_marginTop="-4dp"
-                    android:layout_width="130dp"
-                    android:layout_height="49dp">
-
-                    <LinearLayout
-                        android:layout_centerVertical="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            style="@style/FontOpenSansLight"
-                            android:text="+6200000000000"
-                            android:id="@+id/actUserInfo_tvPhone"
-                            android:textSize="16sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/colorBlueGray"
-                            android:layout_centerVertical="true" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_alignParentBottom="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="1px" android:background="#66000000"/>
-
-                    <ImageView
-                        android:alpha="0.6"
-                        android:adjustViewBounds="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_width="18dp"
-                        android:layout_height="wrap_content" />
-                </RelativeLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="20dp"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/FontOpenSansLight"
-                    android:text="ADDRESS"
-                    android:textSize="13sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorLightBlueGray"/>
-
-                <RelativeLayout
-                    android:id="@+id/actUpdateUserDocument_vgbtnAddress"
-                    android:layout_marginTop="-4dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="49dp">
-
-                    <LinearLayout
-                        android:layout_centerVertical="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:id="@+id/actUpdateUserDocument_tvAddress"
-                            style="@style/FontOpenSansLight"
-                            android:text="Your location"
-                            android:textSize="16sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/colorBlueGray"
-                            android:layout_centerVertical="true" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_alignParentBottom="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="1px" android:background="#66000000"/>
-                    <ImageView
-                        android:alpha="0.6"
-                        android:src="@drawable/ic_tab_more"
-                        android:adjustViewBounds="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_width="18dp"
-                        android:layout_height="wrap_content" />
-                </RelativeLayout>
-                <TextView
-                    android:layout_marginTop="5dp"
-                    style="@style/FontOpenSansLight"
-                    android:text="Make sure your address is correct"
-                    android:textSize="12sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorBlueGray"
+                    android:textColor="@color/colorLightBlueGray"
+                    android:textSize="15sp"
+                    android:text="NAME"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
                     android:layout_centerVertical="true" />
+
+                <EditText
+                    android:background="@drawable/bg_edittext_inactive"
+                    android:id="@+id/actUpdateUserDocument_tvName"
+                    android:gravity="center_vertical"
+                    style="@style/FontOpenSansLight"
+                    android:singleLine="true"
+                    android:textSize="16sp"
+                    android:hint="what is your name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColorHint="@color/colorLightBlueGray2"/>
             </LinearLayout>
+
+            <!-- item -->
+            <RelativeLayout
+                android:id="@+id/actUpdateUserDocument_vgbtnPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:background="@drawable/bg_common_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp">
+
+                    <TextView
+                        android:gravity="center_vertical"
+                        style="@style/FontOpenSansLight"
+                        android:textColor="@color/colorLightBlueGray"
+                        android:textSize="15sp"
+                        android:text="PHONE"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/actUpdateUserDocument_tvPhone"
+                        android:gravity="center_vertical"
+                        style="@style/FontOpenSansLight"
+                        android:textSize="16sp"
+                        android:hint="Input your phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColorHint="@color/colorLightBlueGray2"/>
+                </LinearLayout>
+                <ImageView
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_right_simplearrow_black"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17dp"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <!-- item -->
+            <RelativeLayout
+                android:id="@+id/actUpdateUserDocument_vgbtnGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:background="@drawable/bg_common_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp">
+
+                    <TextView
+                        android:gravity="center_vertical"
+                        style="@style/FontOpenSansLight"
+                        android:textColor="@color/colorLightBlueGray"
+                        android:textSize="15sp"
+                        android:text="GENDER"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/actUpdateUserDocument_tvGender"
+                        android:gravity="center_vertical"
+                        style="@style/FontOpenSansLight"
+                        android:textSize="16sp"
+                        android:hint="Input your gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColorHint="@color/colorLightBlueGray2"/>
+                </LinearLayout>
+                <ImageView
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_right_simplearrow_black"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17dp"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <!-- item -->
+            <RelativeLayout
+                android:id="@+id/actUpdateUserDocument_vgbtnAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:background="@drawable/bg_common_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp">
+
+                    <TextView
+                        android:gravity="center_vertical"
+                        style="@style/FontOpenSansLight"
+                        android:textColor="@color/colorLightBlueGray"
+                        android:textSize="15sp"
+                        android:text="ADDRESS"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/actUpdateUserDocument_tvAddress"
+                        android:gravity="center_vertical"
+                        style="@style/FontOpenSansLight"
+                        android:textSize="16sp"
+                        android:hint="Input your address"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColorHint="@color/colorLightBlueGray2"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_right_simplearrow_black"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17dp"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
 
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
+        android:weightSum="2"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="52dp">
+        <LinearLayout
+            android:layout_weight="1"
+            android:id="@+id/actUpdateUserDocument_vbtnCancel"
+            android:gravity="center"
+            android:background="@color/colorLightBlueGray"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:adjustViewBounds="true"
+                android:layout_width="16dp"
+                android:layout_height="wrap_content" android:src="@drawable/ic_close_bold_white"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:id="@+id/actUpdateUserDocument_vbtnOk"
+            android:gravity="center"
+            android:background="@color/colorOkhome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:adjustViewBounds="true"
+                android:layout_width="19dp"
+                android:layout_height="wrap_content" android:src="@drawable/ic_check_type2"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:visibility="gone"
         android:layout_margin="20dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:gravity="center"
-        android:id="@+id/fragmentMyCleaningCalendar_btnClose"
+        android:id="@+id/actUpdateUserDocument_vbtnClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 

@@ -4,60 +4,63 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
 
-    <uses-feature android:name="android.hardware.camera"
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name="id.co.okhome.consultant.app.OkhomeApplication"
+        android:name=".app.OkhomeApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="id.co.okhome.consultant.view.main.trainee.TraineeMainActivity">
+        <activity android:name=".view.main.trainee.TraineeMainActivity">
+        </activity>
+        <activity android:name=".view.etc.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="id.co.okhome.consultant.view.etc.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".view.account.AuthActivity" />
+        <activity android:name=".view.photochooser.CropImageActivity" />
+        <activity android:name=".view.photochooser.ImageChooserActivity" />
+        <activity android:name=".view.account.SignupActivity" />
+        <activity android:name=".view.account.SigninActivity" />
+        <activity android:name=".view.userinfo.trainee.FillupUserInfoActivity">
         </activity>
-        <activity android:name="id.co.okhome.consultant.view.account.AuthActivity" />
-        <activity android:name="id.co.okhome.consultant.view.photochooser.CropImageActivity" />
-        <activity android:name="id.co.okhome.consultant.view.photochooser.ImageChooserActivity" />
-        <activity android:name="id.co.okhome.consultant.view.account.SignupActivity" />
-        <activity android:name="id.co.okhome.consultant.view.account.SigninActivity">
-
-        </activity>
-        <activity android:name="id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name="id.co.okhome.consultant.view.userinfo.trainee.UpdateUserDocumentActivity" />
-        <activity android:name="id.co.okhome.consultant.view.etc.LocationActivity" />
+        <activity android:name=".view.userinfo.trainee.UpdateUserDocumentActivity" />
+        <activity android:name=".view.etc.LocationActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBotNQOUVtAnpV7UzhoDZ4AfCWFa_q_4iw"/>
-    </application>
+            android:value="AIzaSyBotNQOUVtAnpV7UzhoDZ4AfCWFa_q_4iw" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        <activity
+            android:name=".view.etc.TestActivity"
+            android:label="@string/title_activity_test"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.userinfo.trainee.UpdateExtraUserDocumentActivity" />
+        <activity android:name=".view.userinfo.trainee.TraineeScreeningMornitorActivity"></activity>
+    </application>
 
 </manifest>

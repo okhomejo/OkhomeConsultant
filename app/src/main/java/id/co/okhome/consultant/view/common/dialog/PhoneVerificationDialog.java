@@ -3,7 +3,6 @@ package id.co.okhome.consultant.view.common.dialog;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,20 +18,17 @@ import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.lib.DialogParent;
+import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.lib.SmsReceiver;
-import id.co.okhome.consultant.view.account.SignupActivity;
 
 /**
  * Created by jo on 2018-01-24.

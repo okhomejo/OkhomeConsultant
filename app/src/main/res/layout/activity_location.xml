@@ -25,13 +25,13 @@
             <ImageView
                 android:alpha="0.9"
                 android:adjustViewBounds="true"
-                android:layout_width="22dp"
+                android:layout_width="20dp"
                 android:layout_height="wrap_content" android:src="@drawable/ic_action_back_white" />
 
         </LinearLayout>
 
         <TextView
-            style="@style/FontOpenSansRegular"
+            style="@style/FontOpenSansLight"
             android:textColor="#ffffff"
             android:id="@+id/actPoint_tvTitle"
             android:layout_width="wrap_content"

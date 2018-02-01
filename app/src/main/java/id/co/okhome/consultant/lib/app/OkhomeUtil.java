@@ -58,6 +58,18 @@ import id.co.okhome.consultant.exception.OkhomeException;
 
 public class OkhomeUtil {
 
+    public static final boolean isEmptyString(String str){
+        if(str == null){
+            return true;
+        }
+
+        if(str.trim().length() == 0){
+            return true;
+        }
+
+        return false;
+    }
+
     public static final void Log(Object msg){
         Log.d(OkhomeConstant.LOGTAG, msg.toString());
     }

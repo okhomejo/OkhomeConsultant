@@ -41,4 +41,13 @@ public class OkhomeException extends Exception {
     public String getMessage() {
         return message;
     }
+
+    /**check exception*/
+    public final static void chkException(boolean expression, String err) throws OkhomeException{
+        if(expression){
+            throw new OkhomeException(-100, err);
+        }
+
+    }
+
 }

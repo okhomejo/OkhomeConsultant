@@ -34,7 +34,7 @@ public interface AccountClient {
 
     @GET("consultant/account/check_status/{consultantId}")
     /**signin. */
-    Call<AccountStatusModel> getAccountStatus(@Path("consultantId") String consultantId);
+        Call<AccountStatusModel> getAccountStatus(@Path("consultantId") String consultantId);
 
 
 }

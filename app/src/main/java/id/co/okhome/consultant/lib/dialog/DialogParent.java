@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.lib;
+package id.co.okhome.consultant.lib.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -26,7 +26,7 @@ public abstract class DialogParent extends Dialog {
     View contentView;
     Context context;
     Map<String, Object> params = new HashMap<>();
-
+    protected CommonDialogListener commonDialogListener;
     public DialogParent(Context context) {
         super(context);
         this.context = context;
@@ -94,6 +94,15 @@ public abstract class DialogParent extends Dialog {
             return (E)params.get(key);
         }
 
+    }
+
+    public DialogParent setCommonDialogListener(CommonDialogListener commonDialogListener) {
+        this.commonDialogListener = commonDialogListener;
+        return this;
+    }
+
+    public CommonDialogListener getCommonDialogListener() {
+        return commonDialogListener;
     }
 
     public abstract int onInit();

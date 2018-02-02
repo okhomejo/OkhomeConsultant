@@ -27,6 +27,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     @BindView(R.id.actFillupUserInfo_ivBarEducation)                    ImageView ivBarEdu;
     @BindView(R.id.actFillupUserInfo_ivBarJobExp)                       ImageView ivBarJob;
     @BindView(R.id.actFillupUserInfo_ivBarBasicInfo)                    ImageView ivBarBasicInfo;
+    @BindView(R.id.actFillupUserInfo_ivBarAdditionalInfo)               ImageView ivBarAdditionalInfo;
     @BindView(R.id.actFillupUserInfo_ivBarKTP)                          ImageView ivBarKTP;
 
 
@@ -94,7 +95,17 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
         }
 
         //step 2. ~~~
+        try{
+            OkhomeException.chkException(consultant.nik == null, "");
+            OkhomeException.chkException(consultant.marriedYN == null, "");
+            OkhomeException.chkException(consultant.religion == null, "");
+            OkhomeException.chkException(consultant.bikeYN == null, "");
+            OkhomeException.chkException(consultant.likeDogYN == null, "");
 
+            ivBarAdditionalInfo.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
+        }catch(OkhomeException e){
+            ivBarAdditionalInfo.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
+        }
 
         //step. ktp photo
         try{

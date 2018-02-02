@@ -10,10 +10,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
@@ -21,6 +23,7 @@ import com.google.android.gms.auth.api.credentials.Credential;
 import com.google.android.gms.auth.api.credentials.HintRequest;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +37,7 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.jobrowser.callback.ApiResultCallback;
 import id.co.okhome.consultant.lib.jobrowser.model.ApiResult;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
+import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import id.co.okhome.consultant.model.ConsultantModel;
 import id.co.okhome.consultant.rest_apicall.raw_restapi.ImageUploadCall;
 import id.co.okhome.consultant.view.common.dialog.CommonListDialog;
@@ -79,71 +83,58 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
     }
 
     private void init(){
-        // create consultant for testing purpose
-        consultant = new ConsultantModel();
-        consultant.id = "7";
-        consultant.name = "Frizky";
-        consultant.address = "Teststreet 6";
-        consultant.phone = "123456";
-
-        tvName.setText(consultant.name);
-        tvPhone.setText(consultant.phone);
-        tvAddress.setText(consultant.address);
 
         // Load saved consultant data
         if (ConsultantLoggedIn.hasSavedData()) {
             consultant = ConsultantLoggedIn.get();
+
             tvName.setText(consultant.name);
             tvPhone.setText(consultant.phone);
             tvAddress.setText(consultant.address);
-        }
 
+            Glide.with(this)
+                    .load(consultant.photoUrl)
+                    .thumbnail(0.5f)
+                    .dontAnimate()
+                    .into(ivPhoto);
+
+            if (!TextUtils.isEmpty(consultant.gender)) {
+                String consultantGender = "";
+                if (consultant.gender.equals("M")) {
+                    consultantGender = "Male";
+                } else if (consultant.gender.equals("F")) {
+                    consultantGender = "Female";
+                }
+                tvGender.setText(consultantGender);
+            }
+        }
     }
 
     //profile update.
     private void updateProfile() {
 
-        /**Note To Fritz
-         * to make json string, use Gson.
-         * also before sending data to server, Always check the error.
-         * */
-        final String name = tvName.getText().toString();
-        final String phone = consultant.phone;
-        final String gender = consultant.gender;
-        final String address = consultant.address;
-        final String photoFilePath = this.photoFilePath;
+        final String name       = tvName.getText().toString();
+        final String phone      = consultant.phone;
+        final String gender     = consultant.gender;
+        final String address    = consultant.address;
 
-        try{
+        try {
+            OkhomeException.chkException(OkhomeUtil.isEmpty(consultant.photoUrl), "Photo must be chosen");
             OkhomeException.chkException(name.length() <= 2, "Name must be more than 2");
-            OkhomeException.chkException(OkhomeUtil.isEmpty(photoFilePath), "Photo must be choosed");
-            /**Note To Fritz
-             * make code to check exception
-             * */
+            OkhomeException.chkException(OkhomeUtil.isEmpty(phone), "Please verify your phone number");
+            OkhomeException.chkException(OkhomeUtil.isEmpty(gender), "Please state your gender");
+            OkhomeException.chkException(OkhomeUtil.isEmpty(address), "Please state your address");
 
-//            OkhomeException.chkException(phone ..., "Name must be more than 2");
-//            OkhomeException.chkException(gender ... , "Name must be more than 2");
-//            OkhomeException.chkException(address..., "Name must be more than 2");
-
-        }catch (OkhomeException e){
+        } catch (OkhomeException e) {
             ToastUtil.showToast(e.getMessage());
             return;
         }
 
-        /**Note To Fritz
-         * Every asyncronized work need to show progress.
-         * */
         final ProgressDialog p = ProgressDialog.show(this, "", "Loading");
         final RetrofitCallback retrofitCallback = new RetrofitCallback<String>() {
 
             @Override
             public void onSuccess(String result) {
-//                        Toast.makeText(UpdateUserDocumentActivity.this, "Result: " + result, Toast.LENGTH_SHORT).show();
-//                        ConsultantLoggedIn.set(consultant);
-
-                /**Note To Fritz
-                 * After updating datas,  Don't use local data. refresh by getting datas from server instead.
-                 * In this case, the latest data(consulant) will be retrieved on super page.
-                 * */
                 finish();
             }
 
@@ -152,38 +143,31 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
                 super.onFinish();
                 p.dismiss();
             }
-
-            /**Note To Fritz
-             * If you don't Override onJodevError, Error toast msg appears automatically.
-             *
-             * */
-//                    @Override
-//                    public void onJodevError(ErrorModel jodevErrorModel) {
-//                        super.onJodevError(jodevErrorModel);
-//
-//                        ToastUtil.showToast(jodevErrorModel.message + jodevErrorModel.code);
-//                    }
         };
 
 
-        //updating. first upload photo, and then update info.
-        new ImageUploadCall(photoFilePath).asyncWork(new ApiResultCallback<String>() {
-            @Override
-            public void onFinish(ApiResult<String> apiResult) {
-                if(apiResult.resultCode == 200){ //success
-
-                    String imgPath = apiResult.result;
-
-                    //update documents
-                    ConsultantLoggedIn.updateUserInfo(
-                            OkhomeUtil.makeMap("name", consultant.name, "phone", phone, "address", address, "photo_url", imgPath)
-                            , retrofitCallback);
-                }else{
-                    p.dismiss();
+        // Don't start if the user already uploaded photo and does not want to change his photo
+        if (photoFilePath != null) {
+            //updating. first upload photo, and then update info.
+            new ImageUploadCall(photoFilePath).asyncWork(new ApiResultCallback<String>() {
+                @Override
+                public void onFinish(ApiResult<String> apiResult) {
+                    if (apiResult.resultCode == 200) { //success
+                        // User wants to upload new image or edit old one
+                        ConsultantLoggedIn.updateUserInfo(
+                                OkhomeUtil.makeMap("name", name, "gender", gender, "phone", phone, "address", address, "photo_url", apiResult.object), retrofitCallback
+                        );
+                    } else {
+                        p.dismiss();
+                    }
                 }
-            }
-        });
-
+            });
+        } else {
+            // Image already exists and user does not want to edit it
+            ConsultantLoggedIn.updateUserInfo(
+                    OkhomeUtil.makeMap("name", name, "gender", gender, "phone", phone, "address", address), retrofitCallback
+            );
+        }
     }
 
     //photo load
@@ -195,7 +179,6 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
                 .into(ivPhoto);
 
         photoFilePath = imgPath;
-
     }
 
     public void requestPhoneNumber() {
@@ -334,6 +317,10 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
     @OnClick(R.id.actUpdateUserDocument_vbtnOk)
     public void onSubmitInfo(){
         updateProfile();
+    }
 
+    @OnClick({R.id.actLocation_vbtnX, R.id.actUpdateUserDocument_vbtnCancel})
+    public void onCloseActivity() {
+        finish();
     }
 }

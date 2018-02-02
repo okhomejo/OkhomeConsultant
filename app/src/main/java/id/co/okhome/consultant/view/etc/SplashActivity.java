@@ -33,7 +33,7 @@ public class SplashActivity extends OkHomeParentActivity {
 
     //login
     private void login(){
-        final String email = "frizky@okhome.id";
+        final String email = "friz@test.com";
         final String pass = "test123";
 
         /**

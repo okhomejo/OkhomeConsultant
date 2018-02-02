@@ -23,10 +23,11 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:alpha="0.9"
-                android:adjustViewBounds="true"
                 android:layout_width="20dp"
-                android:layout_height="wrap_content" android:src="@drawable/ic_action_back_white" />
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:alpha="0.9"
+                android:src="@drawable/ic_action_back_white" />
 
         </LinearLayout>
 

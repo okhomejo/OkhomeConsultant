@@ -27,11 +27,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.main.trainee.TraineeMainActivity">
-        </activity>
+        <activity android:name=".view.main.trainee.TraineeMainActivity"></activity>
         <activity android:name=".view.etc.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -40,8 +40,7 @@
         <activity android:name=".view.photochooser.ImageChooserActivity" />
         <activity android:name=".view.account.SignupActivity" />
         <activity android:name=".view.account.SigninActivity" />
-        <activity android:name=".view.userinfo.trainee.FillupUserInfoActivity">
-        </activity>
+        <activity android:name=".view.userinfo.trainee.FillupUserInfoActivity"></activity>
         <activity android:name=".view.userinfo.trainee.UpdateUserDocumentActivity" />
         <activity android:name=".view.etc.LocationActivity" />
 
@@ -60,7 +59,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.userinfo.trainee.UpdateExtraUserDocumentActivity" />
-        <activity android:name=".view.userinfo.trainee.TraineeScreeningMornitorActivity"></activity>
+        <activity android:name=".view.userinfo.trainee.TraineeScreeningMornitorActivity" />
+        <activity android:name=".view.userinfo.trainee.UpdateConsultantEducationActivity"></activity>
     </application>
 
 </manifest>

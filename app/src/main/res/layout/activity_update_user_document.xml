@@ -70,13 +70,13 @@
                 android:background="@drawable/bg_common_edittext"
                 android:id="@+id/actUpdateUserDocument_vgPhoto"
                 android:layout_width="match_parent"
-                android:layout_height="58dp">
+                android:layout_height="57dp">
 
                 <TextView
                     android:gravity="center_vertical"
                     style="@style/FontOpenSansLight"
                     android:textColor="@color/colorLightBlueGray"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:text="PHOTO"
                     android:layout_width="90dp"
                     android:layout_height="match_parent"
@@ -112,26 +112,27 @@
             <LinearLayout
                 android:id="@+id/actUpdateUserDocument_llName"
                 android:layout_width="match_parent"
-                android:layout_height="58dp">
+                android:layout_height="57dp">
 
                 <TextView
                     android:background="@drawable/bg_common_edittext"
                     android:gravity="center_vertical"
                     style="@style/FontOpenSansLight"
                     android:textColor="@color/colorLightBlueGray"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:text="NAME"
                     android:layout_width="90dp"
                     android:layout_height="match_parent"
                     android:layout_centerVertical="true" />
 
                 <EditText
+                    android:textColor="@color/colorBlueBlack"
                     android:background="@drawable/bg_edittext_inactive"
                     android:id="@+id/actUpdateUserDocument_tvName"
                     android:gravity="center_vertical"
                     style="@style/FontOpenSansLight"
                     android:singleLine="true"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:hint="what is your name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -146,23 +147,25 @@
                 <LinearLayout
                     android:background="@drawable/bg_common_edittext"
                     android:layout_width="match_parent"
-                    android:layout_height="58dp">
+                    android:layout_height="57dp">
 
                     <TextView
                         android:gravity="center_vertical"
                         style="@style/FontOpenSansLight"
                         android:textColor="@color/colorLightBlueGray"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:text="PHONE"
                         android:layout_width="90dp"
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true" />
 
                     <TextView
+                        android:textColor="@color/colorBlueBlack"
                         android:id="@+id/actUpdateUserDocument_tvPhone"
                         android:gravity="center_vertical"
                         style="@style/FontOpenSansLight"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
+                        android:inputType="phone"
                         android:hint="Input your phone"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -185,23 +188,24 @@
                 <LinearLayout
                     android:background="@drawable/bg_common_edittext"
                     android:layout_width="match_parent"
-                    android:layout_height="58dp">
+                    android:layout_height="57dp">
 
                     <TextView
                         android:gravity="center_vertical"
                         style="@style/FontOpenSansLight"
                         android:textColor="@color/colorLightBlueGray"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:text="GENDER"
                         android:layout_width="90dp"
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true" />
 
                     <TextView
+                        android:textColor="@color/colorBlueBlack"
                         android:id="@+id/actUpdateUserDocument_tvGender"
                         android:gravity="center_vertical"
                         style="@style/FontOpenSansLight"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:hint="Input your gender"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -223,23 +227,24 @@
                 <LinearLayout
                     android:background="@drawable/bg_common_edittext"
                     android:layout_width="match_parent"
-                    android:layout_height="58dp">
+                    android:layout_height="57dp">
 
                     <TextView
                         android:gravity="center_vertical"
                         style="@style/FontOpenSansLight"
                         android:textColor="@color/colorLightBlueGray"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:text="ADDRESS"
                         android:layout_width="90dp"
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true" />
 
                     <TextView
+                        android:textColor="@color/colorBlueBlack"
                         android:id="@+id/actUpdateUserDocument_tvAddress"
                         android:gravity="center_vertical"
                         style="@style/FontOpenSansLight"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:hint="Input your address"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -261,6 +266,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:visibility="gone"
         android:weightSum="2"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
@@ -283,7 +289,6 @@
 
         <LinearLayout
             android:layout_weight="1"
-            android:id="@+id/actUpdateUserDocument_vbtnOk"
             android:gravity="center"
             android:background="@color/colorOkhome"
             android:layout_width="match_parent"
@@ -299,20 +304,19 @@
 
 
     <LinearLayout
-        android:visibility="gone"
         android:layout_margin="20dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:gravity="center"
-        android:id="@+id/actUpdateUserDocument_vbtnClose"
+        android:id="@+id/actUpdateUserDocument_vbtnOk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <LinearLayout
             android:gravity="center"
-            android:background="@drawable/circle_green_shadow"
-            android:layout_width="62dp"
-            android:layout_height="62dp">
+            android:background="@drawable/circle_appcolor_shadow"
+            android:layout_width="60dp"
+            android:layout_height="60dp">
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="wrap_content" android:src="@drawable/ic_check_white"/>

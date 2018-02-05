@@ -90,7 +90,29 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
             return;
         }
 
-        //Section1 data entry completion check
+        //Section3 data entry completion check
+        try{
+            OkhomeException.chkException(consultant.ktpPhotoUrl == null, "");
+
+        }catch(OkhomeException e){
+            ToastUtil.showToast("Data entry(KTP Information) must be completed.");
+            return;
+        }
+
+
+        //Section5 data entry completion check
+        try{
+            OkhomeException.chkException(OkhomeUtil.isEmpty(consultant.sdPhotoUrl)
+                    && OkhomeUtil.isEmpty(consultant.smaPhotoURl)
+                    && OkhomeUtil.isEmpty(consultant.smpPhotoUrl)
+                    && OkhomeUtil.isEmpty(consultant.univPhotoUrl), "");
+
+        }catch(OkhomeException e){
+            ToastUtil.showToast("Data entry(Education) must be completed.");
+            return;
+        }
+
+        // Finish trainee registration process
         startActivity(new Intent(this, TraineeScreeningMornitorActivity.class));
     }
 
@@ -99,7 +121,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
         ConsultantModel consultant = ConsultantLoggedIn.get();
 
-        //step 1.
+        //step 1. Basic information
         try{
             OkhomeException.chkException(consultant.name == null, "");
             OkhomeException.chkException(consultant.phone == null, "");
@@ -111,7 +133,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
             ivBarBasicInfo.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
         }
 
-        //step 2. ~~~
+        //step 2. Additional information
         try{
             OkhomeException.chkException(consultant.nik == null, "");
             OkhomeException.chkException(consultant.marriedYN == null, "");
@@ -124,13 +146,25 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
             ivBarAdditionalInfo.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
         }
 
-        //step. ktp photo
+        //step 3. KTP photo
         try{
             OkhomeException.chkException(consultant.ktpPhotoUrl == null, "");
 
             ivBarKTP.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
         }catch(OkhomeException e){
             ivBarKTP.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
+        }
+
+        //step 5. Education information
+        try{
+            OkhomeException.chkException(OkhomeUtil.isEmpty(consultant.sdPhotoUrl)
+                    && OkhomeUtil.isEmpty(consultant.smaPhotoURl)
+                    && OkhomeUtil.isEmpty(consultant.smpPhotoUrl)
+                    && OkhomeUtil.isEmpty(consultant.univPhotoUrl), "");
+
+            ivBarEdu.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
+        }catch(OkhomeException e){
+            ivBarEdu.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
         }
 
     }

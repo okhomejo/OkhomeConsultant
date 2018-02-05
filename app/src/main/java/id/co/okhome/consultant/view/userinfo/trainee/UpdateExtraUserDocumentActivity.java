@@ -128,7 +128,7 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
     }
 
     //-- onclick methods ---------------------------------
-    @OnClick(R.id.actUpdateUserExtraDoc_vgNIK)
+    @OnClick(R.id.actUpdateUserExtraDoc_tvNIK)
     public void onClickNIK(){
         CommonInputDialog inputDialog = new CommonInputDialog(this)
                 .setTitle("NIK")

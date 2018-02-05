@@ -159,12 +159,11 @@
 
                     </FrameLayout>
                     <FrameLayout
+                        android:id="@+id/actUpdateEducation_vgPhotoSMP"
                         android:background="@drawable/bg_square_line_black"
                         android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="140dp">
-
-
 
                         <LinearLayout
                             android:gravity="center"
@@ -187,6 +186,7 @@
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
                         <ImageView
+                            android:id="@+id/actUpdateEducation_ivPhotoSMP"
                             android:layout_margin="4dp"
                             android:scaleType="centerCrop"
                             android:adjustViewBounds="true"
@@ -230,6 +230,7 @@
 
                     </FrameLayout>
                     <FrameLayout
+                        android:id="@+id/actUpdateEducation_vgPhotoSMA"
                         android:background="@drawable/bg_square_line_black"
                         android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
@@ -256,6 +257,7 @@
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
                         <ImageView
+                            android:id="@+id/actUpdateEducation_ivPhotoSMA"
                             android:layout_margin="4dp"
                             android:scaleType="centerCrop"
                             android:adjustViewBounds="true"
@@ -292,12 +294,11 @@
 
                     </FrameLayout>
                     <FrameLayout
+                        android:id="@+id/actUpdateEducation_vgPhotoUNIV"
                         android:background="@drawable/bg_square_line_black"
                         android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="140dp">
-
-
 
                         <LinearLayout
                             android:gravity="center"
@@ -320,6 +321,7 @@
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
                         <ImageView
+                            android:id="@+id/actUpdateEducation_ivPhotoUNIV"
                             android:layout_margin="4dp"
                             android:scaleType="centerCrop"
                             android:adjustViewBounds="true"

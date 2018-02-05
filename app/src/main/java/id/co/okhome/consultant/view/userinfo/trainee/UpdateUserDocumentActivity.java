@@ -22,12 +22,14 @@ import com.google.android.gms.auth.api.credentials.Credential;
 import com.google.android.gms.auth.api.credentials.HintRequest;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.nearby.messages.internal.Update;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.exception.OkhomeException;
+import id.co.okhome.consultant.lib.AutoPhoneNumberGetter;
 import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
@@ -60,6 +62,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
     private ConsultantModel consultant;
     private boolean isActive = false;
 
+    private AutoPhoneNumberGetter autoPhoneNumberGetter;
     private GoogleApiClient mGoogleApiClient;
     private PhoneVerificationDialog verifyDialog;
 
@@ -277,7 +280,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
         startActivityForResult(new Intent(this, ImageChooserActivity.class), 1001);
     }
 
-    @OnClick(R.id.actUpdateUserDocument_vgbtnPhone)
+    @OnClick({R.id.actUpdateUserDocument_vgbtnPhone, R.id.actUpdateUserDocument_tvPhone})
     public void onClickPhone(){
         requestPhoneNumber();
     }

@@ -5,9 +5,10 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,18 +19,16 @@ import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
-import id.co.okhome.consultant.lib.jobrowser.callback.ApiResultCallback;
-import id.co.okhome.consultant.lib.jobrowser.model.ApiResult;
+import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
-import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import id.co.okhome.consultant.model.ConsultantModel;
-import id.co.okhome.consultant.rest_apicall.raw_restapi.ImageUploadCall;
+import id.co.okhome.consultant.view.common.dialog.CommonInputDialog;
 import id.co.okhome.consultant.view.common.dialog.CommonListDialog;
 import id.co.okhome.consultant.view.viewholder.StringHolder;
 
 public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
 
-    @BindView(R.id.actUpdateUserExtraDoc_etNIK)         EditText etNIK;
+    @BindView(R.id.actUpdateUserExtraDoc_tvNIK)         TextView tvNIK;
     @BindView(R.id.actUpdateUserExtraDoc_tvMarried)     TextView tvMarried;
     @BindView(R.id.actUpdateUserExtraDoc_tvReligion)    TextView tvReligion;
     @BindView(R.id.actUpdateUserExtraDoc_ivChkBikeYES)  ImageView btnBikeYes;
@@ -57,7 +56,7 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
         if (ConsultantLoggedIn.hasSavedData()) {
             consultant = ConsultantLoggedIn.get();
 
-            etNIK.setText(consultant.nik);
+            tvNIK.setText(consultant.nik);
             tvReligion.setText(consultant.religion);
 
             if (!TextUtils.isEmpty(consultant.marriedYN)) {
@@ -89,7 +88,7 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
 
     private void updateProfile() {
 
-        final String nik        = etNIK.getText().toString();
+        final String nik        = tvNIK.getText().toString();
         final String married    = consultant.marriedYN;
         final String religion   = consultant.religion;
         final String hasBike    = consultant.bikeYN;
@@ -121,12 +120,6 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
                 p.dismiss();
             }
 
-            @Override
-            public void onJodevError(ErrorModel jodevErrorModel) {
-                super.onJodevError(jodevErrorModel);
-
-                ToastUtil.showToast(jodevErrorModel.message + jodevErrorModel.code);
-            }
         };
 
         ConsultantLoggedIn.updateUserInfo(
@@ -135,6 +128,33 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
     }
 
     //-- onclick methods ---------------------------------
+    @OnClick(R.id.actUpdateUserExtraDoc_vgNIK)
+    public void onClickNIK(){
+        CommonInputDialog inputDialog = new CommonInputDialog(this)
+                .setTitle("NIK")
+                .setSubTitle("Input your NIK Number.")
+                .setComment("NIK must be 16 numbers")
+                .setDefaultText(consultant.nik)
+                .setCommonDialogListener(new DialogParent.CommonDialogListener() {
+                    @Override
+                    public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
+                        if(actionCode == DialogParent.CommonDialogListener.ACTIONCODE_OK){
+                            String text = (String)mapResult.get(CommonInputDialog.TAG_INPUT_TEXT);
+                            tvNIK.setText(text);
+                        }
+                        dialog.dismiss();
+
+
+                    }
+                })
+                .setHint("NIK");
+
+        inputDialog.show();
+        inputDialog.getEtInput().setMaxEms(16);
+
+
+    }
+
     @OnClick(R.id.actUpdateUserExtraDoc_vgMarried)
     public void onClickMarried(){
 
@@ -204,9 +224,5 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
         updateProfile();
     }
 
-    @OnClick({R.id.actLocation_vbtnX, R.id.actUpdateUserDocument_vbtnCancel})
-    public void onCloseActivity() {
-        finish();
-    }
 
 }

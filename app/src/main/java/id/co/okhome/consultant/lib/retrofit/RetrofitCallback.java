@@ -65,7 +65,7 @@ public abstract class RetrofitCallback<T> implements Callback<T>{
     abstract public void onSuccess(T result);
     public void onJodevError(ErrorModel jodevErrorModel){
         //오버라이딩안되면 자동으로 토스트만 듸움
-        OkhomeUtil.showToast(RetrofitCallback.context, jodevErrorModel.message);
+        OkhomeUtil.showToast(RetrofitCallback.context, jodevErrorModel.code + " " + jodevErrorModel.message);
     }
 
     @Override

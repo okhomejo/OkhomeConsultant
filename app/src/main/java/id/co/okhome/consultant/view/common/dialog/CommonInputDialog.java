@@ -18,6 +18,8 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 
 public class CommonInputDialog extends DialogParent{
 
+    public final static String TAG_INPUT_TEXT = "INPUT_TEXT";
+
     @BindView(R.id.dialogCommonInput_etInput)
     EditText etInput;
 
@@ -43,6 +45,46 @@ public class CommonInputDialog extends DialogParent{
         this.comment = comment;
         this.defaultText = defaultText;
     }
+
+
+    public CommonInputDialog(Context context){
+        super(context);
+    }
+
+    //
+
+    public CommonInputDialog setTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public CommonInputDialog setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
+        return this;
+    }
+
+    public CommonInputDialog setHint(String hint) {
+        this.hint = hint;
+        return this;
+    }
+
+    public CommonInputDialog setComment(String comment) {
+        this.comment = comment;
+        return this;
+    }
+
+    public CommonInputDialog setDefaultText(String defaultText) {
+        this.defaultText = defaultText;
+        return this;
+    }
+
+    @Override
+    public CommonInputDialog setCommonDialogListener(CommonDialogListener commonDialogListener) {
+        this.commonDialogListener = commonDialogListener;
+        return this;
+    }
+    //
+
 
     @Override
     public int onInit() {
@@ -80,11 +122,15 @@ public class CommonInputDialog extends DialogParent{
 
     }
 
+    public EditText getEtInput() {
+        return etInput;
+    }
+
     @OnClick(R.id.dialogCommonInput_vbtnOk)
     public void ok(){
 
         if(commonDialogListener != null){
-            commonDialogListener.onCommonDialogWorkDone(this, CommonDialogListener.ACTIONCODE_OK, OkhomeUtil.makeMap("INPUT_TEXT", etInput.getText().toString()));
+            commonDialogListener.onCommonDialogWorkDone(this, CommonDialogListener.ACTIONCODE_OK, OkhomeUtil.makeMap(TAG_INPUT_TEXT, etInput.getText().toString()));
         }else{
             dismiss();
         }

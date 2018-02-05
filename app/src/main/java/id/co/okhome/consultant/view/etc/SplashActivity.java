@@ -60,7 +60,7 @@ public class SplashActivity extends OkHomeParentActivity {
 
                 /**
                  * Note To Fritz
-                 * now just for test, go to FillupUserInfoActivity
+                 * now just for test, it goes to FillupUserInfoActivity
                  * */
                 startActivity(new Intent(SplashActivity.this, FillupUserInfoActivity.class));
                 SplashActivity.this.finish();

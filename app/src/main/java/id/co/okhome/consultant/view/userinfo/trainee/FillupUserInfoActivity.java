@@ -1,8 +1,11 @@
 package id.co.okhome.consultant.view.userinfo.trainee;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -15,8 +18,15 @@ import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
+import id.co.okhome.consultant.lib.jobrowser.callback.ApiResultCallback;
+import id.co.okhome.consultant.lib.jobrowser.model.ApiResult;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.ConsultantModel;
+import id.co.okhome.consultant.rest_apicall.raw_restapi.ImageUploadCall;
+import id.co.okhome.consultant.view.common.dialog.CommonListDialog;
+import id.co.okhome.consultant.view.common.dialog.ShowPhotoDialog;
+import id.co.okhome.consultant.view.photochooser.ImageChooserActivity;
+import id.co.okhome.consultant.view.viewholder.StringHolder;
 
 public class FillupUserInfoActivity extends OkHomeParentActivity {
 
@@ -29,6 +39,9 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     @BindView(R.id.actFillupUserInfo_ivBarBasicInfo)                    ImageView ivBarBasicInfo;
     @BindView(R.id.actFillupUserInfo_ivBarAdditionalInfo)               ImageView ivBarAdditionalInfo;
     @BindView(R.id.actFillupUserInfo_ivBarKTP)                          ImageView ivBarKTP;
+    @BindView(R.id.actFillupUserInfo_ivBarPreferenceArea)               ImageView ivBarPreferenceArea;
+
+
 
 
     @Override
@@ -160,35 +173,57 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     }
 
     //on photo choosed
-    private void onPhotoChoosed(final int requestCode, final String imgPath){
+    private void onKtpPhotoChoosed(final String imgPath){
 
-//        final ProgressDialog p = ProgressDialog.show(this, "", "Upload photo");
-//        new ImageUploadCall(imgPath).asyncWork(new ApiResultCallback<String>() {
-//            @Override
-//            public void onFinish(ApiResult<String> apiResult) {
-//                p.dismiss();
-//                if(apiResult.resultCode == 200){
-//
-//                    //update photo url
-//                    switch(requestCode){
-//                        case REQ_GET_PHOTO_FOR_KTP:
-//                            updatePhoto("ktp_photo_url", imgPath);
-//                            break;
-//
-//                    }
-//
-//                }else{
-//                    //faild
-//                    ToastUtil.showToast(apiResult.result);
-//                }
-//            }
-//        });
+        final ProgressDialog p = ProgressDialog.show(this, "", "Upload KTP");
+        new ImageUploadCall(imgPath).asyncWork(new ApiResultCallback<String>() {
+            @Override
+            public void onFinish(ApiResult<String> apiResult) {
+                p.dismiss();
+                if(apiResult.resultCode == 200){
+                    //update photo url
+                    updatePhoto("ktp_photo_url", imgPath);
+                }else{
+                    //faild
+                    ToastUtil.showToast(apiResult.result);
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == REQ_GET_PHOTO_FOR_KTP && resultCode == RESULT_OK){
+            String imgPath = data.getStringExtra(ImageChooserActivity.RESULT_IMAGE_PATH);
+            onKtpPhotoChoosed(imgPath);
+        }
     }
 
     //--------on click
-    @OnClick(R.id.actFillUpUserInfo_vbtnKartuTandaPerduduk)
+    @OnClick({R.id.actFillUpUserInfo_vbtnKTP, R.id.actFillUpUserInfo_tvKTP})
     public void onClickKTP(View v){
-//        startActivityForResult(new Intent(this, ImageChooserActivity.class), REQ_GET_PHOTO_FOR_KTP);
+        if(TextUtils.isEmpty(ConsultantLoggedIn.get().ktpPhotoUrl)){
+            startActivityForResult(new Intent(this, ImageChooserActivity.class), REQ_GET_PHOTO_FOR_KTP);
+        }else{
+            new CommonListDialog(this)
+                    .setTitle("Choose")
+                    .setColumnCount(1)
+                    .setArrItems("Change KTP photo", "See current KTP photo")
+                    .setItemClickListener(new StringHolder.ItemClickListener() {
+                        @Override
+                        public void onItemClick(Dialog dialog, int pos, String value, String tag) {
+                            dialog.dismiss();
+
+                            if(pos == 0){
+                                startActivityForResult(new Intent(FillupUserInfoActivity.this, ImageChooserActivity.class), REQ_GET_PHOTO_FOR_KTP);
+                            }else{
+                                new ShowPhotoDialog(FillupUserInfoActivity.this, ConsultantLoggedIn.get().ktpPhotoUrl).show();
+                            }
+                        }
+                    }).show();
+        }
     }
 
     @OnClick({R.id.actFillUpUserInfo_vbtnBasicInformation})
@@ -199,6 +234,16 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     @OnClick(R.id.actFillUpUserInfo_vbtnAddtionalInformation)
     public void onAdditionalInfoClick(){
         startActivity(new Intent(this, UpdateExtraUserDocumentActivity.class));
+    }
+
+    @OnClick(R.id.actFillUpUserInfo_vbtnEducation)
+    public void onEducationClick(){
+        startActivity(new Intent(this, UpdateConsultantEducationActivity.class));
+    }
+
+    @OnClick(R.id.actFillUpUserInfo_vbtnPreferenceArea)
+    public void onPreferenceAreaClick(){
+//        startActivity(new Intent(this, UpdateConsultantEducationActivity.class));
     }
 
     @OnClick(R.id.actFillUpUserInfo_vgConfirm)

@@ -50,23 +50,21 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
-    @BindView(R.id.actUpdateUserDocument_tvName)                    TextView tvName;
-    @BindView(R.id.actUpdateUserDocument_tvPhone)                   TextView tvPhone;
-    @BindView(R.id.actUpdateUserDocument_tvAddress)                 TextView tvAddress;
-    @BindView(R.id.actUpdateUserDocument_tvGender)                  TextView tvGender;
-    @BindView(R.id.actUpdateUserDocument_llName)                    LinearLayout vgName;
-    @BindView(R.id.actUpdateUserDocument_ivPhoto)                   ImageView ivPhoto;
+    @BindView(R.id.actUpdateUserDocument_tvName)        TextView tvName;
+    @BindView(R.id.actUpdateUserDocument_tvPhone)       TextView tvPhone;
+    @BindView(R.id.actUpdateUserDocument_tvAddress)     TextView tvAddress;
+    @BindView(R.id.actUpdateUserDocument_tvGender)      TextView tvGender;
+    @BindView(R.id.actUpdateUserDocument_llName)        LinearLayout vgName;
+    @BindView(R.id.actUpdateUserDocument_ivPhoto)       ImageView ivPhoto;
 
     private String address;
+    private String photoFilePath = null;
     private Bundle previousBundle = null;
     private ConsultantModel consultant;
     private boolean isActive = false;
 
     private GoogleApiClient mGoogleApiClient;
     private PhoneVerificationDialog verifyDialog;
-
-    //
-    String photoFilePath = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,8 +116,13 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
         final String gender     = consultant.gender;
         final String address    = consultant.address;
 
+        boolean photoEmpty = true;
+        if (!OkhomeUtil.isEmpty(consultant.photoUrl) || !OkhomeUtil.isEmpty(photoFilePath)) {
+            photoEmpty = false;
+        }
+
         try {
-            OkhomeException.chkException(OkhomeUtil.isEmpty(consultant.photoUrl), "Photo must be chosen");
+            OkhomeException.chkException(photoEmpty, "Photo must be chosen");
             OkhomeException.chkException(name.length() <= 2, "Name must be more than 2");
             OkhomeException.chkException(OkhomeUtil.isEmpty(phone), "Please verify your phone number");
             OkhomeException.chkException(OkhomeUtil.isEmpty(gender), "Please state your gender");
@@ -205,13 +208,6 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
         mGoogleApiClient.connect();
     }
 
-    /**
-     * Note to Fritz
-     * Method palcement rule.
-     *
-     * Activity's @Override method -> custom method -> @Override method -> @OnClick method -> Inner class
-     * */
-
     @Override
     public void onConnected(@Nullable Bundle bundle) {
     }
@@ -259,9 +255,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
                 verifyDialog.setPhoneNumber(credential.getId());
                 verifyDialog.onSendVerificationCode();
             }
-        }
-
-        else if(requestCode == 1001 && resultCode == RESULT_OK){
+        } else if(requestCode == 1001 && resultCode == RESULT_OK){
             String imgPath = data.getStringExtra(ImageChooserActivity.RESULT_IMAGE_PATH);
             onPhotoChoosed(imgPath);
         }
@@ -293,11 +287,6 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
 
     @OnClick(R.id.actUpdateUserDocument_vgbtnGender)
     public void onClickGender(){
-        /**
-         * Note to Fritz
-         * Check below code to show String list dialog.
-         * */
-
         new CommonListDialog(this)
                 .setTitle("Choose your gender")
                 .setArrItems("Male", "Female") //value displayd on list

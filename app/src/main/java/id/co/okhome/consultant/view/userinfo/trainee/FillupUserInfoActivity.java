@@ -50,11 +50,6 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     //check exception. if no error, go to next page.
     private void confirm(){
 
-        /**
-         * Note To Fritz
-         * Check data entry completion
-         * If All sections are completed, Customer request it to server and can go TraineeScreeningMornitorActivity.
-         * */
         ConsultantModel consultant = ConsultantLoggedIn.get();
 
         //Section1 data entry completion check
@@ -65,7 +60,20 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
             OkhomeException.chkException(consultant.address == null, "");
 
         }catch(OkhomeException e){
-            ToastUtil.showToast("Data entry(Basic Informations) must be completed.");
+            ToastUtil.showToast("Data entry(Basic Information) must be completed.");
+            return;
+        }
+
+        //Section2 data entry completion check
+        try{
+            OkhomeException.chkException(consultant.nik == null, "");
+            OkhomeException.chkException(consultant.marriedYN == null, "");
+            OkhomeException.chkException(consultant.religion == null, "");
+            OkhomeException.chkException(consultant.bikeYN == null, "");
+            OkhomeException.chkException(consultant.likeDogYN == null, "");
+
+        }catch(OkhomeException e){
+            ToastUtil.showToast("Data entry(Additional Information) must be completed.");
             return;
         }
 
@@ -75,11 +83,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
     //check progress to turn on/off left bar lamp.
     private void chkProgress(){
-        /**
-         * Note To Fritz
-         * Check data entry completion and as a result, turn on/off left bar lamp.
-         *
-         * */
+
         ConsultantModel consultant = ConsultantLoggedIn.get();
 
         //step 1.

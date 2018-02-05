@@ -103,12 +103,6 @@ public class ConsultantLoggedIn {
 
     /**update user profile*/
     public final static void updateUserInfo(Map param, RetrofitCallback<String> callback){
-        /**Note To Fritz
-         * You can make json param by using Gson.
-         * Check below code
-         *
-         * */
-
         String jsonParam = new Gson().toJson(param);
         OkhomeRestApi.getAccountClient().updateProfile(get().id, jsonParam).enqueue(callback);
     }

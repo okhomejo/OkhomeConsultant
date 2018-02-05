@@ -146,11 +146,6 @@ public class PhoneVerificationDialog extends DialogParent{
         signInWithPhoneAuthCredential(credential);
     }
 
-    @Override
-    public void onShow() {
-
-    }
-
     public boolean isVerified() {
         return isVerified;
     }
@@ -201,6 +196,11 @@ public class PhoneVerificationDialog extends DialogParent{
 
     public String getCurrentPhoneNum() {
         return currentPhoneNum;
+    }
+
+    @Override
+    public void onShow() {
+
     }
 
     @OnClick(R.id.dialogPhoneVerificatoin_tvSendVerfificationCode)

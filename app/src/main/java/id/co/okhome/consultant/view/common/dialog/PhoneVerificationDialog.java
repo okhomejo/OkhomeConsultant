@@ -1,6 +1,7 @@
 package id.co.okhome.consultant.view.common.dialog;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.Log;
@@ -51,7 +52,8 @@ public class PhoneVerificationDialog extends DialogParent{
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private String mVerificationId;
-    private String currentPhoneNum;
+    private String currentPhoneNum = "";
+    private ProgressDialog progressDialog;
 
     public PhoneVerificationDialog(Activity context) {
         super(context);
@@ -82,6 +84,7 @@ public class PhoneVerificationDialog extends DialogParent{
 
                 Log.d(TAG, "onVerificationCompleted: " + credential.getSmsCode());
                 mVerificationInProgress = false;
+                progressDialog = ProgressDialog.show(activity, "", "Loading");
 
                 signInWithPhoneAuthCredential(credential);
             }
@@ -113,6 +116,7 @@ public class PhoneVerificationDialog extends DialogParent{
                 etCode.requestFocus();
 
                 Toast.makeText(activity, "Code has been sent", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
             }
         };
     }
@@ -126,6 +130,7 @@ public class PhoneVerificationDialog extends DialogParent{
                             Log.d(TAG, "signInWithCredential:success");
 
                             isVerified = true;
+                            progressDialog.dismiss();
                             dismiss();
 
                         } else {
@@ -152,20 +157,29 @@ public class PhoneVerificationDialog extends DialogParent{
 
     private void sendSmsCode(){
         currentPhoneNum = etInput.getText().toString();
-        if(!currentPhoneNum.contains("+")){
-            currentPhoneNum = "+62" + currentPhoneNum.substring(1);
-        }
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                currentPhoneNum,
-                60,
-                TimeUnit.SECONDS,
-                activity,
-                mCallbacks);
+        if(!currentPhoneNum.isEmpty()) {
 
-        mVerificationInProgress = true;
+            progressDialog = ProgressDialog.show(activity, "", "Loading");
+
+            if (!currentPhoneNum.contains("+")) {
+                currentPhoneNum = "+62" + currentPhoneNum.substring(1);
+            }
+            PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                    currentPhoneNum,
+                    60,
+                    TimeUnit.SECONDS,
+                    activity,
+                    mCallbacks);
+
+            mVerificationInProgress = true;
+        } else {
+            etInput.setError("Don't leave this empty!");
+        }
     }
 
     private void resendVerificationCode(PhoneAuthProvider.ForceResendingToken token) {
+        progressDialog = ProgressDialog.show(activity, "", "Loading");
+
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 currentPhoneNum,
                 60,

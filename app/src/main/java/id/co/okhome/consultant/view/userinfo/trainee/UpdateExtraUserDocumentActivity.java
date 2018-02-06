@@ -224,5 +224,9 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
         updateProfile();
     }
 
+    @OnClick(R.id.actLocation_vbtnX)
+    public void onCloseActivity() {
+        finish();
+    }
 
 }

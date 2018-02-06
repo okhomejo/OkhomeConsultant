@@ -179,6 +179,7 @@ public class UpdateConsultantEducationActivity extends OkHomeParentActivity {
 
         //upload.
         Iterator<Map.Entry<Integer, String>> itr = mapFiles.entrySet().iterator();
+
         while(itr.hasNext()){
             Map.Entry<Integer, String> entry = itr.next();
             final Integer key = entry.getKey();

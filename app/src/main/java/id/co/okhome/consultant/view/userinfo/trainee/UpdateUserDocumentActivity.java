@@ -1,11 +1,8 @@
 package id.co.okhome.consultant.view.userinfo.trainee;
 
 import android.app.Dialog;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,11 +15,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.credentials.Credential;
-import com.google.android.gms.auth.api.credentials.HintRequest;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.nearby.messages.internal.Update;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +34,6 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.ConsultantModel;
 import id.co.okhome.consultant.rest_apicall.raw_restapi.ImageUploadCall;
 import id.co.okhome.consultant.view.common.dialog.CommonListDialog;
-import id.co.okhome.consultant.view.common.dialog.PhoneVerificationDialog;
 import id.co.okhome.consultant.view.etc.LocationActivity;
 import id.co.okhome.consultant.view.photochooser.ImageChooserActivity;
 import id.co.okhome.consultant.view.viewholder.StringHolder;
@@ -64,7 +57,6 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
 
     private AutoPhoneNumberGetter autoPhoneNumberGetter;
     private GoogleApiClient mGoogleApiClient;
-    private PhoneVerificationDialog verifyDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +126,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
         }
 
         final ProgressDialog p = ProgressDialog.show(this, "", "Loading");
-        final RetrofitCallback retrofitCallback = new RetrofitCallback<String>() {
+        final RetrofitCallback<String> retrofitCallback = new RetrofitCallback<String>() {
 
             @Override
             public void onSuccess(String result) {
@@ -148,7 +140,6 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
             }
         };
 
-
         // Don't start if the user already uploaded photo and does not want to change his photo
         if (photoFilePath != null) {
             //updating. first upload photo, and then update info.
@@ -158,7 +149,13 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
                     if (apiResult.resultCode == 200) { //success
                         // User wants to upload new image or edit old one
                         ConsultantLoggedIn.updateUserInfo(
-                                OkhomeUtil.makeMap("name", name, "gender", gender, "phone", phone, "address", address, "photo_url", apiResult.object), retrofitCallback
+                                OkhomeUtil.makeMap(
+                                        "name", name,
+                                        "gender", gender,
+                                        "phone", phone,
+                                        "address", address,
+                                        "photo_url", apiResult.object),
+                                retrofitCallback
                         );
                     } else {
                         p.dismiss();
@@ -168,7 +165,12 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
         } else {
             // Image already exists and user does not want to edit it
             ConsultantLoggedIn.updateUserInfo(
-                    OkhomeUtil.makeMap("name", name, "gender", gender, "phone", phone, "address", address), retrofitCallback
+                    OkhomeUtil.makeMap(
+                            "name", name,
+                            "gender", gender,
+                            "phone", phone,
+                            "address", address),
+                    retrofitCallback
             );
         }
     }
@@ -184,21 +186,6 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
         photoFilePath = imgPath;
     }
 
-    public void requestPhoneNumber() {
-        HintRequest hintRequest = new HintRequest.Builder()
-                .setPhoneNumberIdentifierSupported(true)
-                .build();
-
-        PendingIntent intent = Auth.CredentialsApi.getHintPickerIntent(
-                mGoogleApiClient, hintRequest);
-        try {
-            startIntentSenderForResult(intent.getIntentSender(),
-                    6, null, 0, 0, 0);
-        } catch (IntentSender.SendIntentException e) {
-            e.printStackTrace();
-        }
-    }
-
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -209,20 +196,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
     }
 
     @Override
-    public void onConnected(@Nullable Bundle bundle) {
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        mGoogleApiClient.connect();
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 if (data.getExtras() == null) {
@@ -236,28 +210,12 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
             }
             isActive = false;
 
-        } else if (requestCode == 6) {
-
-            verifyDialog = new PhoneVerificationDialog(this);
-            verifyDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(final DialogInterface arg0) {
-                    if (verifyDialog.isVerified()) {
-                        consultant.phone = verifyDialog.getCurrentPhoneNum();
-                        tvPhone.setText(verifyDialog.getCurrentPhoneNum());
-                    }
-                }
-            });
-            verifyDialog.show();
-
-            if (resultCode == RESULT_OK) {
-                Credential credential = data.getParcelableExtra(Credential.EXTRA_KEY);
-                verifyDialog.setPhoneNumber(credential.getId());
-                verifyDialog.onSendVerificationCode();
-            }
-        } else if(requestCode == 1001 && resultCode == RESULT_OK){
+        } else if (requestCode == 1001 && resultCode == RESULT_OK) {
             String imgPath = data.getStringExtra(ImageChooserActivity.RESULT_IMAGE_PATH);
             onPhotoChoosed(imgPath);
+        }
+        if (autoPhoneNumberGetter != null) {
+            autoPhoneNumberGetter.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -282,14 +240,20 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
 
     @OnClick({R.id.actUpdateUserDocument_vgbtnPhone, R.id.actUpdateUserDocument_tvPhone})
     public void onClickPhone(){
-        requestPhoneNumber();
+        autoPhoneNumberGetter = new AutoPhoneNumberGetter(this, mGoogleApiClient,
+                new AutoPhoneNumberGetter.PhoneNumCallback() {
+            @Override
+            public void sendVerifiedPhoneNumber(String phoneNum) {
+                tvPhone.setText(phoneNum);
+            }
+        });
     }
 
     @OnClick(R.id.actUpdateUserDocument_vgbtnGender)
     public void onClickGender(){
         new CommonListDialog(this)
                 .setTitle("Choose your gender")
-                .setArrItems("Male", "Female") //value displayd on list
+                .setArrItems("Male", "Female") //value displayed on list
                 .setArrItemTag("M", "F") // value will be sent to server
                 .setColumnCount(2)
                 .setItemClickListener(new StringHolder.ItemClickListener() {
@@ -311,5 +275,20 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
     @OnClick({R.id.actLocation_vbtnX})
     public void onCloseActivity() {
         finish();
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }

@@ -62,6 +62,41 @@ public class PlaceAutocompleteAdapter
         mBounds = bounds;
     }
 
+    private ArrayList<AutocompletePrediction> getAutocomplete(CharSequence constraint) {
+        Log.i(TAG, "Starting autocomplete query for: " + constraint);
+
+        // Submit the query to the autocomplete API and retrieve a PendingResult that will
+        // contain the results when the query completes.
+        Task<AutocompletePredictionBufferResponse> results =
+                mGeoDataClient.getAutocompletePredictions(constraint.toString(), mBounds,
+                        mPlaceFilter);
+
+        try {
+            Tasks.await(results, 60, TimeUnit.SECONDS);
+        } catch (ExecutionException | InterruptedException | TimeoutException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            AutocompletePredictionBufferResponse autocompletePredictions = results.getResult();
+
+            Log.i(TAG, "Query completed. Received " + autocompletePredictions.getCount()
+                    + " predictions.");
+
+            // Freeze the results immutable representation that can be stored safely.
+
+            return DataBufferUtils.freezeAndClose(autocompletePredictions);
+        } catch (RuntimeExecutionException e) {
+            // If the query did not complete successfully return null
+            Toast.makeText(getContext(), "Error contacting API: " + e.toString(),
+                    Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "Error getting autocomplete prediction API call", e);
+
+            return null;
+        }
+
+    }
+
     @Override
     public int getCount() {
         return mResultList.size();
@@ -137,41 +172,6 @@ public class PlaceAutocompleteAdapter
                 }
             }
         };
-    }
-
-    private ArrayList<AutocompletePrediction> getAutocomplete(CharSequence constraint) {
-        Log.i(TAG, "Starting autocomplete query for: " + constraint);
-
-        // Submit the query to the autocomplete API and retrieve a PendingResult that will
-        // contain the results when the query completes.
-        Task<AutocompletePredictionBufferResponse> results =
-                mGeoDataClient.getAutocompletePredictions(constraint.toString(), mBounds,
-                        mPlaceFilter);
-
-        try {
-            Tasks.await(results, 60, TimeUnit.SECONDS);
-        } catch (ExecutionException | InterruptedException | TimeoutException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            AutocompletePredictionBufferResponse autocompletePredictions = results.getResult();
-
-            Log.i(TAG, "Query completed. Received " + autocompletePredictions.getCount()
-                    + " predictions.");
-
-            // Freeze the results immutable representation that can be stored safely.
-
-            return DataBufferUtils.freezeAndClose(autocompletePredictions);
-        } catch (RuntimeExecutionException e) {
-            // If the query did not complete successfully return null
-            Toast.makeText(getContext(), "Error contacting API: " + e.toString(),
-                    Toast.LENGTH_SHORT).show();
-            Log.e(TAG, "Error getting autocomplete prediction API call", e);
-
-            return null;
-        }
-
     }
 
 }

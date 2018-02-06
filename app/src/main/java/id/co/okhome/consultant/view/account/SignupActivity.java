@@ -1,9 +1,6 @@
 package id.co.okhome.consultant.view.account;
 
-import android.app.PendingIntent;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,8 +9,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.credentials.Credential;
-import com.google.android.gms.auth.api.credentials.HintRequest;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -28,7 +23,7 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import id.co.okhome.consultant.model.ConsultantModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
-import id.co.okhome.consultant.view.common.dialog.PhoneVerificationDialog;
+import id.co.okhome.consultant.lib.AutoPhoneNumberGetter;
 import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 
 public class SignupActivity extends OkHomeParentActivity implements
@@ -42,9 +37,8 @@ public class SignupActivity extends OkHomeParentActivity implements
     @BindView(R.id.actSignup_vLoading)          View vLoading;
     @BindView(R.id.actSignup_vbtnSignup)        View vBtnSignUp;
 
-    private static final int RESOLVE_HINT = 9;
     private GoogleApiClient mGoogleApiClient;
-    private PhoneVerificationDialog verifyDialog;
+    private AutoPhoneNumberGetter autoPhoneNumberGetter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,48 +144,6 @@ public class SignupActivity extends OkHomeParentActivity implements
         }
     }
 
-    // Request phone number connected with Google account
-    public void requestPhoneNumber() {
-        HintRequest hintRequest = new HintRequest.Builder()
-                .setPhoneNumberIdentifierSupported(true)
-                .build();
-
-        PendingIntent intent = Auth.CredentialsApi.getHintPickerIntent(
-                mGoogleApiClient, hintRequest);
-        try {
-            startIntentSenderForResult(intent.getIntentSender(),
-                    RESOLVE_HINT, null, 0, 0, 0);
-        } catch (IntentSender.SendIntentException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Give phone number to Dialog window
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        verifyDialog = new PhoneVerificationDialog(this);
-        verifyDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(final DialogInterface arg0) {
-                if (verifyDialog.isVerified()) {
-                    tvPhone.setText(verifyDialog.getCurrentPhoneNum());
-                    vBtnSignUp.requestFocus();
-                }
-            }
-        });
-        verifyDialog.show();
-
-        if (requestCode == RESOLVE_HINT) {
-            if (resultCode == RESULT_OK) {
-                Credential credential = data.getParcelableExtra(Credential.EXTRA_KEY);
-                verifyDialog.setPhoneNumber(credential.getId());
-                verifyDialog.onSendVerificationCode();
-            }
-        }
-    }
-
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -199,6 +151,14 @@ public class SignupActivity extends OkHomeParentActivity implements
                 .addApi(Auth.CREDENTIALS_API)
                 .build();
         mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (autoPhoneNumberGetter != null) {
+            autoPhoneNumberGetter.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override
@@ -238,7 +198,13 @@ public class SignupActivity extends OkHomeParentActivity implements
 
     @OnClick(R.id.actSignup_tvPhone)
     public void onClickPhone(){
-        requestPhoneNumber();
+        autoPhoneNumberGetter = new AutoPhoneNumberGetter(this, mGoogleApiClient,
+                new AutoPhoneNumberGetter.PhoneNumCallback() {
+                    @Override
+                    public void sendVerifiedPhoneNumber(String phoneNum) {
+                        tvPhone.setText(phoneNum);
+                    }
+                });
     }
 
 }

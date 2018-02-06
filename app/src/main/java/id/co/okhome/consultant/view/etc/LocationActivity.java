@@ -91,6 +91,53 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
     private LocationRequest mLocationRequest;
     private LatLng currentLocation;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        mGeoDataClient = Places.getGeoDataClient(this, null);
+        setContentView(R.layout.activity_location);
+
+        ButterKnife.bind(this);
+        adaptViewsAndData();
+    }
+
+    private void adaptViewsAndData() {
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.actLocation_fmMap);
+        mapFragment.getMapAsync(this);
+
+        OkhomeUtil.setSystemBarColor(this, ContextCompat.getColor(this, R.color.colorOkhome));
+//                ContextCompat.getColor(this, R.color.colorOkhome));
+
+        etLocation.setOnItemClickListener(mAutocompleteClickListener);
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mAdapter = new PlaceAutocompleteAdapter(this, mGeoDataClient, BOUNDS_GREATER_JAKARTA, null);
+
+        etLocation.setAdapter(mAdapter);
+        etLocation.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if (etLocation.length() > 0) {
+                    btnClear.setVisibility(View.VISIBLE);
+                } else {
+                    btnClear.setVisibility(View.GONE);
+                }
+            }
+
+        });
+    }
+
     private OnCompleteListener<PlaceBufferResponse> mUpdatePlaceDetailsCallback
             = new OnCompleteListener<PlaceBufferResponse>() {
 
@@ -147,157 +194,6 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
         }
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        mGeoDataClient = Places.getGeoDataClient(this, null);
-        setContentView(R.layout.activity_location);
-
-        ButterKnife.bind(this);
-
-        adaptViewsAndData();
-    }
-
-    private void adaptViewsAndData() {
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.actLocation_fmMap);
-        mapFragment.getMapAsync(this);
-
-        OkhomeUtil.setSystemBarColor(this, ContextCompat.getColor(this, R.color.colorOkhome));
-//                ContextCompat.getColor(this, R.color.colorOkhome));
-
-        etLocation.setOnItemClickListener(mAutocompleteClickListener);
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        mAdapter = new PlaceAutocompleteAdapter(this, mGeoDataClient, BOUNDS_GREATER_JAKARTA, null);
-
-        etLocation.setAdapter(mAdapter);
-        etLocation.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                if (etLocation.length() > 0) {
-                    btnClear.setVisibility(View.VISIBLE);
-                } else {
-                    btnClear.setVisibility(View.GONE);
-                }
-            }
-
-        });
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        if (mFusedLocationClient != null) {
-            mFusedLocationClient.removeLocationUpdates(mLocationCallback);
-        }
-    }
-
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        this.googleMap = googleMap;
-
-        // define point to center on
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                new LatLng(-6.214305,106.842318) , 11)
-        );
-
-        //Initialize Google Play Services
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED) {
-                //Location Permission already granted
-                buildGoogleApiClient();
-                googleMap.setMyLocationEnabled(true);
-            } else {
-                //Request Location Permission
-                checkLocationPermission();
-            }
-        } else {
-            buildGoogleApiClient();
-            googleMap.setMyLocationEnabled(true);
-        }
-        googleMap.getUiSettings().setMyLocationButtonEnabled(false);
-
-        // Adjust map style
-        try {
-            boolean success = googleMap.setMapStyle(
-                    MapStyleOptions.loadRawResourceStyle(
-                            this, R.raw.map_style_json));
-
-            if (!success) {
-                Log.e(TAG, "Style parsing failed.");
-            }
-        } catch (Resources.NotFoundException e) {
-            Log.e(TAG, "Can't find style. Error: ", e);
-        }
-    }
-
-    protected synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-        mGoogleApiClient.connect();
-    }
-
-    public void changeLocation(Location location) {
-
-        double latitude     = location.getLatitude();
-        double longitude    = location.getLongitude();
-        LatLng latLng = new LatLng(latitude, longitude);
-
-        // Not able to move the camera when animation is active
-        googleMap.getUiSettings().setAllGesturesEnabled(false);
-
-        CameraUpdate camUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
-        googleMap.animateCamera(camUpdate, new GoogleMap.CancelableCallback() {
-            @Override
-            public void onFinish() {
-                googleMap.getUiSettings().setAllGesturesEnabled(true);
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-        });
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
-        // Only fire once during creation
-        mLocationRequest = new LocationRequest();
-        mLocationRequest.setNumUpdates(1);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
-        }
-    }
-
     LocationCallback mLocationCallback = new LocationCallback(){
         @Override
         public void onLocationResult(LocationResult locationResult) {
@@ -308,12 +204,14 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
                 if(getIntent().getExtras() == null) {
                     // Go to current device location
                     googleMap.getUiSettings().setAllGesturesEnabled(false);
+                    etLocation.setEnabled(false);
 
                     CameraUpdate camUpdate = CameraUpdateFactory.newLatLngZoom(currentLocation, 17);
                     googleMap.animateCamera(camUpdate, new GoogleMap.CancelableCallback() {
                         @Override
                         public void onFinish() {
                             googleMap.getUiSettings().setAllGesturesEnabled(true);
+                            etLocation.setEnabled(true);
                         }
 
                         @Override
@@ -340,9 +238,17 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
         }
     };
 
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+        mGoogleApiClient.connect();
+    }
+
     //toggle confirm button visiblity
     private void toggleConfirmBtnVisibility(boolean show){
-
         if(show){
             buttonContainer.animate().translationX(0f).setDuration(200).start();
         }else{
@@ -351,7 +257,6 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
     }
 
     public void mapCameraMovementListeners() {
-
         googleMap.setOnCameraMoveStartedListener(new GoogleMap.OnCameraMoveStartedListener() {
             @Override
             public void onCameraMoveStarted(int i) {
@@ -440,6 +345,76 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
     }
 
     @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        // Only fire once during creation
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setNumUpdates(1);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if (mFusedLocationClient != null) {
+            mFusedLocationClient.removeLocationUpdates(mLocationCallback);
+        }
+    }
+
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        this.googleMap = googleMap;
+
+        // define point to center on
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                new LatLng(-6.214305,106.842318) , 11)
+        );
+
+        //Initialize Google Play Services
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                //Location Permission already granted
+                buildGoogleApiClient();
+                googleMap.setMyLocationEnabled(true);
+            } else {
+                //Request Location Permission
+                checkLocationPermission();
+            }
+        } else {
+            buildGoogleApiClient();
+            googleMap.setMyLocationEnabled(true);
+        }
+        googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+
+        // Adjust map style
+        try {
+            boolean success = googleMap.setMapStyle(
+                    MapStyleOptions.loadRawResourceStyle(
+                            this, R.raw.map_style_json));
+
+            if (!success) {
+                Log.e(TAG, "Style parsing failed.");
+            }
+        } catch (Resources.NotFoundException e) {
+            Log.e(TAG, "Can't find style. Error: ", e);
+        }
+    }
+
+    @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
@@ -483,7 +458,6 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
 
     @OnClick(R.id.actLocation_vbtnClear)
     public void clearText() {
-
         etLocation.getText().clear();
         etLocation.setFocusableInTouchMode(true);
         etLocation.requestFocus();
@@ -495,7 +469,6 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
 
     @OnClick(R.id.actLocation_vbtnConfirm)
     public void submitLocation(){
-
         Double lat = googleMap.getCameraPosition().target.latitude;
         Double lon = googleMap.getCameraPosition().target.longitude;
 
@@ -510,7 +483,6 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
 
     @OnClick(R.id.actLocation_vbtnMyLocation)
     public void goToMyLocation() {
-
         CameraUpdate location = CameraUpdateFactory.newLatLngZoom(currentLocation, 17);
         googleMap.animateCamera(location);
     }

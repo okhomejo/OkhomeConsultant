@@ -12,6 +12,9 @@ import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 
+import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListener.ACTIONCODE_NO;
+import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListener.ACTIONCODE_OK;
+
 /**
  * Created by jo on 2018-01-24.
  */
@@ -130,7 +133,7 @@ public class CommonInputDialog extends DialogParent{
     public void ok(){
 
         if(commonDialogListener != null){
-            commonDialogListener.onCommonDialogWorkDone(this, CommonDialogListener.ACTIONCODE_OK, OkhomeUtil.makeMap(TAG_INPUT_TEXT, etInput.getText().toString()));
+            commonDialogListener.onCommonDialogWorkDone(this, ACTIONCODE_OK, OkhomeUtil.makeMap(TAG_INPUT_TEXT, etInput.getText().toString()));
         }else{
             dismiss();
         }
@@ -139,8 +142,9 @@ public class CommonInputDialog extends DialogParent{
     @OnClick(R.id.dialogCommonInput_vbtnX)
     public void x(){
         dismiss();
+
         if(commonDialogListener!= null){
-            commonDialogListener.onCommonDialogWorkDone(this, CommonDialogListener.ACTIONCODE_NO, null);
+            commonDialogListener.onCommonDialogWorkDone(this, ACTIONCODE_NO, null);
         }
     }
 }

@@ -214,6 +214,8 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
             String imgPath = data.getStringExtra(ImageChooserActivity.RESULT_IMAGE_PATH);
             onPhotoChoosed(imgPath);
         }
+
+
         if (autoPhoneNumberGetter != null) {
             autoPhoneNumberGetter.onActivityResult(requestCode, resultCode, data);
         }

@@ -6,10 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.webkit.URLUtil;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -68,27 +66,21 @@ public class UpdateConsultantEducationActivity extends OkHomeParentActivity {
         smaUrl  = ConsultantLoggedIn.get().smaPhotoURl;
         univUrl = ConsultantLoggedIn.get().univPhotoUrl;
 
-        Glide.with(this).load(sdUrl).thumbnail(0.5f).dontAnimate().into(ivPhotoSD);
-        Glide.with(this).load(smpUrl).thumbnail(0.5f).dontAnimate().into(ivPhotoSMP);
-        Glide.with(this).load(smaUrl).thumbnail(0.5f).dontAnimate().into(ivPhotoSMA);
-        Glide.with(this).load(univUrl).thumbnail(0.5f).dontAnimate().into(ivPhotoUNIV);
+        Glide.with(this).load(sdUrl).thumbnail(0.5f).into(ivPhotoSD);
+        Glide.with(this).load(smpUrl).thumbnail(0.5f).into(ivPhotoSMP);
+        Glide.with(this).load(smaUrl).thumbnail(0.5f).into(ivPhotoSMA);
+        Glide.with(this).load(univUrl).thumbnail(0.5f).into(ivPhotoUNIV);
     }
 
     //update photo urls.
     private void updatePhotoUrls(){
 
-        final RetrofitCallback retrofitCallback = new RetrofitCallback<String>() {
-
-            @Override
-            public void onSuccess(String result) {
-                finish();
-            }
-
-            @Override
-            public void onFinish() {
-                super.onFinish();
-            }
-        };
+        /**
+         * Note To Fritz
+         * When an operation runs in the background, We have to show progress dialog.
+         *
+         * And it is usually recommended to write callback in an inner class in order to understand the code easily.
+         * */
 
         ConsultantLoggedIn.updateUserInfo(
                 OkhomeUtil.makeMap(
@@ -96,7 +88,18 @@ public class UpdateConsultantEducationActivity extends OkHomeParentActivity {
                         "smp_photo_url", smpUrl,
                         "sma_photo_url", smaUrl,
                         "univ_photo_url", univUrl),
-                retrofitCallback
+                new RetrofitCallback<String>() {
+
+                    @Override
+                    public void onSuccess(String result) {
+                        finish();
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        super.onFinish();
+                    }
+                }
         );
     }
 
@@ -201,7 +204,7 @@ public class UpdateConsultantEducationActivity extends OkHomeParentActivity {
                     }
                 });
             }else{
-                // it may occur when the source is from web.
+                // it occurs when the image is from Web.
                 Message msg = OkhomeUtil.makeHandlerMessage(-2, "");
                 handlerCheckingcompletion.sendMessage(msg);
             }
@@ -239,6 +242,9 @@ public class UpdateConsultantEducationActivity extends OkHomeParentActivity {
                 .dontAnimate()
                 .into(ivTarget);
     }
+
+
+    //------------------------
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

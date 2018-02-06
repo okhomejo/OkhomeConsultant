@@ -138,7 +138,7 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
                 .setCommonDialogListener(new DialogParent.CommonDialogListener() {
                     @Override
                     public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
-                        if(actionCode == DialogParent.CommonDialogListener.ACTIONCODE_OK){
+                        if(actionCode == ACTIONCODE_OK){
                             String text = (String)mapResult.get(CommonInputDialog.TAG_INPUT_TEXT);
                             tvNIK.setText(text);
                         }
@@ -148,6 +148,7 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
                     }
                 })
                 .setHint("NIK");
+
 
         inputDialog.show();
         inputDialog.getEtInput().setMaxEms(16);

@@ -348,6 +348,7 @@
                     android:text="Make sure all license is clear that all information is legible.\nNo blurriness, No flash."/>
 
                 <TextView
+                    android:layout_marginTop="10dp"
                     style="@style/FontOpenSansLight"
                     android:id="@+id/actSignUp_tvbtnTerm"
                     android:textColor="@color/colorOkhome"

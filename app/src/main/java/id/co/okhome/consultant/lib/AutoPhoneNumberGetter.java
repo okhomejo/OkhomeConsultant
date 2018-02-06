@@ -3,18 +3,14 @@ package id.co.okhome.consultant.lib;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.credentials.Credential;
 import com.google.android.gms.auth.api.credentials.HintRequest;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import id.co.okhome.consultant.view.common.dialog.PhoneVerificationDialog;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by frizurd on 05/02/2018.
@@ -54,30 +50,30 @@ public class AutoPhoneNumberGetter {
     }
 
     public void onActivityResult(int requestCode, int resultCode, final Intent data) {
-
-        if (requestCode == 6) {
-            final Activity activity = (Activity) context;
-            verifyDialog = new PhoneVerificationDialog(activity);
-            verifyDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(final DialogInterface arg0) {
-                    if (verifyDialog.isVerified()) {
-
-                        isVerified = true;
-                        verifiedPhoneNumber = verifyDialog.getCurrentPhoneNum();
-
-                        callback.sendVerifiedPhoneNumber(verifiedPhoneNumber);
-                    }
-                }
-            });
-            verifyDialog.show();
-
-            if (resultCode == RESULT_OK) {
-                Credential credential = data.getParcelableExtra(Credential.EXTRA_KEY);
-                verifyDialog.setPhoneNumber(credential.getId());
-                verifyDialog.onSendVerificationCode();
-            }
-        }
+//
+//        if (requestCode == 6) {
+//            final Activity activity = (Activity) context;
+//            verifyDialog = new PhoneVerificationDialog(activity);
+//            verifyDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+//                @Override
+//                public void onDismiss(final DialogInterface arg0) {
+//                    if (verifyDialog.isVerified()) {
+//
+//                        isVerified = true;
+//                        verifiedPhoneNumber = verifyDialog.getCurrentPhoneNum();
+//
+//                        callback.sendVerifiedPhoneNumber(verifiedPhoneNumber);
+//                    }
+//                }
+//            });
+//            verifyDialog.show();
+//
+//            if (resultCode == RESULT_OK) {
+//                Credential credential = data.getParcelableExtra(Credential.EXTRA_KEY);
+//                verifyDialog.setPhoneNumber(credential.getId());
+//                verifyDialog.onSendVerificationCode();
+//            }
+//        }
     }
 
     public interface PhoneNumCallback {

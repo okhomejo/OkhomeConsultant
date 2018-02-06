@@ -1,0 +1,11 @@
+package id.co.okhome.consultant.model;
+
+/**
+ * Created by jo on 2018-02-07.
+ */
+
+public class WorkingRegionModel {
+    public int id, parentId;
+    public String address;
+
+}

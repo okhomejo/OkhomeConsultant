@@ -2,62 +2,58 @@ package id.co.okhome.consultant.view.common.dialog;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.support.annotation.NonNull;
-import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseException;
-import com.google.firebase.FirebaseTooManyRequestsException;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthProvider;
-
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.lib.dialog.DialogParent;
+import id.co.okhome.consultant.exception.OkhomeException;
 import id.co.okhome.consultant.lib.SmsReceiver;
+import id.co.okhome.consultant.lib.ToastUtil;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
+import id.co.okhome.consultant.lib.dialog.DialogParent;
+import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
+import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
+
+import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListener.ACTIONCODE_CANCEL;
+import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListener.ACTIONCODE_OK;
 
 /**
  * Created by jo on 2018-01-24.
  */
 
-public class PhoneVerificationDialog extends DialogParent{
+public class PhoneVerificationDialog extends DialogParent implements SmsReceiver.OnSmsReceivedListener{
+
+    public final static String RESULT_PHONE             = "PHONE";
+    public final static String RESULT_VERI_CODE         = "RESULT_VERI_CODE";
 
     @BindView(R.id.dialogPhoneVerificatoin_vgPhoneVerification)         ViewGroup vgPhoneVerification;
     @BindView(R.id.dialogPhoneVerificatoin_tvCodeNotYet)                TextView tvCodeNotYet;
     @BindView(R.id.dialogPhoneVerificatoin_tvSendVerfificationCode)     TextView tvSendVerificationCode;
     @BindView(R.id.dialogPhoneVerificatoin_etCode)                      EditText etCode;
     @BindView(R.id.dialogCommonInput_etInput)                           EditText etInput;
+    @BindView(R.id.dialogPhoneVerificatoin_vCodeLoading)                View vCodeLoading;
 
-    private static final String TAG = "PhoneVerification";
+//    private static final String TAG = "PhoneVerification";
+    /**
+     * Note To Fritz.
+     * For tracking log, use OkhomeUtil.Log("message"); instead of local tag and Log.d
+     * above Tag name is OKHOME_CONSULTANT.
+     **/
 
-    private FirebaseAuth mAuth;
-    private Activity activity;
-    private boolean mVerificationInProgress = false;
-    private boolean isVerified = false;
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
-    private PhoneAuthProvider.ForceResendingToken mResendToken;
-    private String mVerificationId;
-    private String currentPhoneNum = "";
-    private ProgressDialog progressDialog;
+    SmsReceiver smsReceiver;
+    Activity activity;
+    boolean sendCode = false;
 
-    public PhoneVerificationDialog(Activity context) {
-        super(context);
-        this.activity = context;
+    public PhoneVerificationDialog(Activity activity, CommonDialogListener commonDialogListener) {
+        super(activity);
+        this.activity = activity;
+        smsReceiver = new SmsReceiver(activity);
+        this.commonDialogListener = commonDialogListener;
     }
 
     @Override
@@ -68,148 +64,7 @@ public class PhoneVerificationDialog extends DialogParent{
     @Override
     public void onCreate() {
         ButterKnife.bind(this, getDecorView());
-
-        vgPhoneVerification.setVisibility(View.GONE);
-        registerSmsReceiver();
-
-        etInput.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
-
-        FirebaseApp.initializeApp(activity);
-        mAuth = FirebaseAuth.getInstance();
-
-        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
-            @Override
-            public void onVerificationCompleted(PhoneAuthCredential credential) {
-
-                Log.d(TAG, "onVerificationCompleted: " + credential.getSmsCode());
-                mVerificationInProgress = false;
-                progressDialog = ProgressDialog.show(activity, "", "Loading");
-
-                signInWithPhoneAuthCredential(credential);
-            }
-
-            @Override
-            public void onVerificationFailed(FirebaseException e) {
-                Log.w(TAG, "onVerificationFailed", e);
-                mVerificationInProgress = false;
-
-                if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                    etInput.setError("Invalid phone number.");
-                } else if (e instanceof FirebaseTooManyRequestsException) {
-                    Toast.makeText(activity, "Quota exceeded.", Toast.LENGTH_SHORT).show();
-                }
-
-                Toast.makeText(activity, "Fail.", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCodeSent(String verificationId,
-                                   PhoneAuthProvider.ForceResendingToken token) {
-                Log.d(TAG, "onCodeSent:" + verificationId);
-
-                mVerificationId = verificationId;
-                mResendToken = token;
-
-                tvSendVerificationCode.setVisibility(View.GONE);
-                vgPhoneVerification.setVisibility(View.VISIBLE);
-                etCode.requestFocus();
-
-                Toast.makeText(activity, "Code has been sent", Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
-            }
-        };
-    }
-
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithCredential:success");
-
-                            isVerified = true;
-                            progressDialog.dismiss();
-                            dismiss();
-
-                        } else {
-                            Toast.makeText(activity, "Error, please try again.", Toast.LENGTH_SHORT).show();
-
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                etCode.setError("The verification code entered was invalid");
-                            }
-                            isVerified = false;
-                        }
-                    }
-                });
-    }
-
-    private void verifyPhoneNumberWithCode(String verificationId, String code) {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
-        signInWithPhoneAuthCredential(credential);
-    }
-
-    public boolean isVerified() {
-        return isVerified;
-    }
-
-    private void sendSmsCode(){
-        currentPhoneNum = etInput.getText().toString();
-        if(!currentPhoneNum.isEmpty()) {
-
-            progressDialog = ProgressDialog.show(activity, "", "Loading");
-
-            if (!currentPhoneNum.contains("+")) {
-                currentPhoneNum = "+62" + currentPhoneNum.substring(1);
-            }
-            PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                    currentPhoneNum,
-                    60,
-                    TimeUnit.SECONDS,
-                    activity,
-                    mCallbacks);
-
-            mVerificationInProgress = true;
-        } else {
-            etInput.setError("Don't leave this empty!");
-        }
-    }
-
-    private void resendVerificationCode(PhoneAuthProvider.ForceResendingToken token) {
-        progressDialog = ProgressDialog.show(activity, "", "Loading");
-
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                currentPhoneNum,
-                60,
-                TimeUnit.SECONDS,
-                activity,
-                mCallbacks,
-                token);
-    }
-
-    //register sms event reciever
-    private void registerSmsReceiver(){
-        new SmsReceiver(activity).init(new SmsReceiver.OnSmsReceivedListener() {
-            @Override
-            public void onSmsReceive(String message) {
-                //원본
-            }
-
-            @Override
-            public void onOkhomeVerificationSmsReceive(String message) {
-                etCode.setText(message);
-            }
-        });
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        etInput.setText(phoneNumber);
-    }
-
-    public String getCurrentPhoneNum() {
-        return currentPhoneNum;
+        init();
     }
 
     @Override
@@ -217,33 +72,121 @@ public class PhoneVerificationDialog extends DialogParent{
 
     }
 
+    /** seting phone number*/
+    public void setPhoneNumber(String phoneNumber){
+        etInput.setText(phoneNumber);
+    }
+
+    private void onVerificationSuccess(String phone, String code){
+        commonDialogListener.onCommonDialogWorkDone(this, ACTIONCODE_OK, OkhomeUtil.makeMap(RESULT_PHONE, phone, RESULT_VERI_CODE, code));
+        dismiss();
+    }
+
+
+    private void init(){
+        vgPhoneVerification.setVisibility(View.GONE);
+        smsReceiver.init(this);
+    }
+
+    //send verification code
+    private void sendCode(){
+
+
+        String phone = etInput.getText().toString();
+
+        try{
+            OkhomeException.chkException(OkhomeUtil.isEmpty(phone), "Input phone number");
+        }catch(OkhomeException e){
+            ToastUtil.showToast(e.getMessage());
+            return;
+        }
+
+        vgPhoneVerification.setVisibility(View.VISIBLE);
+        vCodeLoading.setVisibility(View.VISIBLE);
+        tvSendVerificationCode.setVisibility(View.GONE);
+        sendCode = true;
+
+        OkhomeRestApi.getCertificationClient().sendCertCode(phone, "Y").enqueue(new RetrofitCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                vCodeLoading.setVisibility(View.GONE);
+            }
+
+        });
+    }
+
+    //check code
+    private void checkCode(){
+        final String code = etCode.getText().toString();
+        final String phone = etInput.getText().toString();
+
+        try{
+            OkhomeException.chkException(OkhomeUtil.isEmpty(phone), "Input phone number");
+            OkhomeException.chkException(OkhomeUtil.isEmpty(code), "Input code");
+        }catch(OkhomeException e){
+            ToastUtil.showToast(e.getMessage());
+            return;
+        }
+
+        final ProgressDialog p = ProgressDialog.show(getContext(), null, "Loading...");
+        OkhomeRestApi.getCertificationClient().chkValidCode(phone, code).enqueue(new RetrofitCallback<Boolean>() {
+            @Override
+            public void onSuccess(Boolean result) {
+                if(result){
+                    onVerificationSuccess(phone, code);
+                }else{
+                    ToastUtil.showToast("Check your verfication code.");
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                p.dismiss();
+            }
+        });
+
+    }
+
+    @Override
+    public void onSmsReceive(String message) {
+        //do nothing.
+    }
+
+    @Override
+    public void onOkhomeVerificationSmsReceive(String code) {
+        etCode.setText(code);
+    }
+
+
     @OnClick(R.id.dialogPhoneVerificatoin_tvSendVerfificationCode)
     public void onSendVerificationCode(){
-        sendSmsCode();
+        sendCode();
     }
 
     @OnClick(R.id.dialogPhoneVerificatoin_tvCodeNotYet)
     public void onResendVerificationCode(){
-        resendVerificationCode(mResendToken);
+        sendCode();
     }
 
-    @OnClick(R.id.dialogCommonInput_vbtnX)
+    @OnClick(R.id.dialogPhoneVerificatoin_vbtnCancel)
     public void closeDialog() {
-        isVerified = false;
         dismiss();
+        commonDialogListener.onCommonDialogWorkDone(this, ACTIONCODE_CANCEL, null);
     }
 
-    @OnClick(R.id.dialogCommonInput_vbtnOk)
-    public void submitPhoneNumber() {
-        if (etCode.isShown()) {
-            if (etCode.getText().toString().trim().length() > 0) {
-                verifyPhoneNumberWithCode(mVerificationId, etCode.getText().toString());
-            } else {
-                etCode.setError("Please fill in the verification code.");
-            }
-        } else {
-            onSendVerificationCode();
+    @OnClick(R.id.dialogPhoneVerificatoin_vbtnOk)
+    public void onOk() {
+        if(sendCode){
+            checkCode();
+        }else{
+            sendCode();
         }
     }
+
 }
 

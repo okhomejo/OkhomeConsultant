@@ -17,6 +17,8 @@ import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.view.viewholder.StringHolder;
 
+import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListener.ACTIONCODE_NO;
+
 /**
  * Created by jo on 2018-01-24.
  */
@@ -93,7 +95,7 @@ public class CommonListDialog extends DialogParent{
     public void x(){
         dismiss();
         if(commonDialogListener!= null){
-            commonDialogListener.onCommonDialogWorkDone(this, CommonDialogListener.ACTIONCODE_NO, null);
+            commonDialogListener.onCommonDialogWorkDone(this, ACTIONCODE_NO, null);
         }
     }
 

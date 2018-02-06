@@ -79,6 +79,7 @@
             <LinearLayout
                 android:id="@+id/dialogPhoneVerificatoin_vgPhoneCode"
                 android:weightSum="10"
+                android:gravity="center_vertical"
                 android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -107,12 +108,18 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:paddingBottom="1px"
                     android:layout_gravity="center_vertical"
-                    android:orientation="vertical"
-                    android:gravity="right"
                     android:layout_weight="6"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        android:id="@+id/dialogPhoneVerificatoin_vCodeLoading"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
+
 
                 </LinearLayout>
 
@@ -133,7 +140,7 @@
         android:layout_height="55dp">
 
         <LinearLayout
-            android:id="@+id/dialogCommonInput_vbtnX"
+            android:id="@+id/dialogPhoneVerificatoin_vbtnCancel"
             android:layout_weight="5"
             android:gravity="center"
             android:background="@color/colorLightBlueGray"
@@ -146,7 +153,7 @@
                 android:layout_height="wrap_content" android:src="@drawable/ic_close_bold_white"/>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/dialogCommonInput_vbtnOk"
+            android:id="@+id/dialogPhoneVerificatoin_vbtnOk"
             android:layout_weight="5"
             android:gravity="center"
             android:background="@color/colorOkhome"

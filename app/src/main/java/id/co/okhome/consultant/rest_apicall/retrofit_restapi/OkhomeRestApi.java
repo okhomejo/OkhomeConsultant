@@ -34,4 +34,8 @@ public class OkhomeRestApi {
     public final static AccountClient getAccountClient(){
         return OkhomeRestApi.getInstance(AccountClient.class);
     }
+
+    public final static CertificationClient getCertificationClient(){
+        return OkhomeRestApi.getInstance(CertificationClient.class);
+    }
 }

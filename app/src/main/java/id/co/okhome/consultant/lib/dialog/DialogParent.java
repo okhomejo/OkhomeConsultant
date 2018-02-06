@@ -22,6 +22,10 @@ import id.co.okhome.consultant.R;
  */
 
 public abstract class DialogParent extends Dialog {
+
+
+
+
     ViewGroup vgContainer;
     View contentView;
     Context context;
@@ -110,9 +114,9 @@ public abstract class DialogParent extends Dialog {
     public abstract void onShow();
 
     public interface CommonDialogListener{
-        int ACTIONCODE_OK = 1;
-        int ACTIONCODE_NO = 2;
-        int ACTIONCODE_CANCEL = -1;
+        public final static int ACTIONCODE_OK = 1;
+        public final static int ACTIONCODE_NO = 2;
+        public final static int ACTIONCODE_CANCEL = -1;
 
         void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult);
     }

@@ -4,6 +4,6 @@
     <item
         android:width="5dp"
         android:gravity="left"
-        android:drawable="@drawable/sqaure_black" />
+        android:drawable="@drawable/sqaure_gray" />
 
 </layer-list>

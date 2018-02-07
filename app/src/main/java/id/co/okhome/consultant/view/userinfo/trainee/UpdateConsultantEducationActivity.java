@@ -75,12 +75,7 @@ public class UpdateConsultantEducationActivity extends OkHomeParentActivity {
     //update photo urls.
     private void updatePhotoUrls(){
 
-        /**
-         * Note To Fritz
-         * When an operation runs in the background, We have to show progress dialog.
-         *
-         * And it is usually recommended to write callback in an inner class in order to understand the code easily.
-         * */
+        final ProgressDialog p = ProgressDialog.show(this, null, "Uploading files...");
 
         ConsultantLoggedIn.updateUserInfo(
                 OkhomeUtil.makeMap(

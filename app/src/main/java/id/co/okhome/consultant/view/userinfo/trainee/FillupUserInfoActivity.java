@@ -277,13 +277,12 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
     @OnClick(R.id.actFillUpUserInfo_vbtnPreferenceArea)
     public void onPreferenceAreaClick(){
-//        startActivity(new Intent(this, UpdateConsultantEducationActivity.class));
+        startActivity(new Intent(this, UpdateConsultantAreaActivity.class));
     }
 
     @OnClick(R.id.actFillUpUserInfo_vgConfirm)
     public void onClickConfirm(){
         confirm();
-
     }
 
 }

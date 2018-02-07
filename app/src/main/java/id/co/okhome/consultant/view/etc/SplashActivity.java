@@ -36,12 +36,6 @@ public class SplashActivity extends OkHomeParentActivity {
         final String email = "hello@gmail.com";
         final String pass = "1234567";
 
-        /**
-         * Note To Fritz
-         * To manage ConsultantModel, use ConsultantLoggedIn's static method.
-         * below code is used for signin.
-         *
-         * */
         ConsultantLoggedIn.login(email, pass, new RetrofitCallback<ConsultantModel>() {
             @Override
             public void onSuccess(ConsultantModel result) {
@@ -58,10 +52,6 @@ public class SplashActivity extends OkHomeParentActivity {
                 super.dispatchMessage(msg);
 //                startActivity(new Intent(SplashActivity.this, AuthActivity.class));
 
-                /**
-                 * Note To Fritz
-                 * now just for test, it goes to FillupUserInfoActivity
-                 * */
                 startActivity(new Intent(SplashActivity.this, FillupUserInfoActivity.class));
                 SplashActivity.this.finish();
             }

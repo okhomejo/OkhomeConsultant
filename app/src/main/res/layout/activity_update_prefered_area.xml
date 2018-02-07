@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context="id.co.okhome.consultant.view.userinfo.trainee.UpdateConsultantAreaActivity">
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:background="@color/colorOkhome"
+        android:id="@+id/actArea_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="66dp">
+
+        <LinearLayout
+            android:layout_marginRight="6dp"
+            android:id="@+id/actArea_vbtnX"
+            android:gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:alpha="0.9"
+                android:src="@drawable/ic_action_back_white" />
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/FontOpenSansLight"
+            android:textColor="#ffffff"
+            android:id="@+id/actArea_tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="Update Prefered Area"
+            android:textSize="21dp"
+            android:layout_centerVertical="true" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_below="@+id/actArea_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="4dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:background="#ffffff" >
+
+            <ExpandableListView
+                android:id="@+id/actArea_lvExp"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:dividerHeight="0.5dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:weightSum="2"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="52dp">
+        <LinearLayout
+            android:layout_weight="1"
+            android:id="@+id/actArea_vbtnCancel"
+            android:gravity="center"
+            android:background="@color/colorLightBlueGray"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:adjustViewBounds="true"
+                android:layout_width="16dp"
+                android:layout_height="wrap_content" android:src="@drawable/ic_close_bold_white"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/colorOkhome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:adjustViewBounds="true"
+                android:layout_width="19dp"
+                android:layout_height="wrap_content" android:src="@drawable/ic_check_type2"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:id="@+id/actArea_vbtnOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center"
+            android:background="@drawable/circle_appcolor_shadow"
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="wrap_content" android:src="@drawable/ic_check_white"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

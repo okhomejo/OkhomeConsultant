@@ -124,7 +124,7 @@
                             style="@style/FontOpenSansLight"
                             android:textColor="@color/colorLightBlueGray"
                             android:textSize="14sp"
-                            android:text="MARRIED"
+                            android:text="FAMILY"
                             android:layout_width="90dp"
                             android:layout_height="match_parent"
                             android:layout_centerVertical="true" />

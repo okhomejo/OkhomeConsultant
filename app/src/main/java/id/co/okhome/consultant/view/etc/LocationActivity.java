@@ -222,12 +222,20 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
                 } else {
                     // Go to last location
                     Bundle bundle = getIntent().getExtras();
-                    LatLng coordinates = new LatLng(
-                            bundle.getDouble("latitude"),
-                            bundle.getDouble("longitude")
-                    );
-                    CameraUpdate current = CameraUpdateFactory.newLatLngZoom(coordinates,17);
-                    googleMap.moveCamera(current);
+                    CameraUpdate currentCameraLoc;
+
+                    if (getIntent().hasExtra("latitude") && getIntent().hasExtra("longitude")) {
+                        LatLng coordinates = new LatLng(
+                                bundle.getDouble("latitude"),
+                                bundle.getDouble("longitude")
+                        );
+                        currentCameraLoc = CameraUpdateFactory.newLatLngZoom(coordinates,17);
+                    } else {
+                        LatLng coordinates = getLocationFromAddress(bundle.getString("address") + ", Jakarta");
+                        currentCameraLoc = CameraUpdateFactory.newLatLngZoom(coordinates,17);
+                    }
+
+                    googleMap.moveCamera(currentCameraLoc);
 
                     etLocation.setAdapter(null);
                     etLocation.setText(bundle.getString("address"));
@@ -311,6 +319,30 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
         return "Error, please check your connection.";
     }
 
+    public LatLng getLocationFromAddress(String strAddress) {
+        Geocoder coder = new Geocoder(this);
+        List<Address> address;
+        LatLng p1 = null;
+
+        try {
+            // May throw an IOException
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+            Address location = address.get(0);
+            location.getLatitude();
+            location.getLongitude();
+
+            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+        return p1;
+    }
+
     private void checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -371,7 +403,6 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
             mFusedLocationClient.removeLocationUpdates(mLocationCallback);
         }
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

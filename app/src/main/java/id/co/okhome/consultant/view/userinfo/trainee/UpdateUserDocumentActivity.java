@@ -24,6 +24,7 @@ import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.exception.OkhomeException;
 import id.co.okhome.consultant.lib.AutoPhoneNumberGetter;
+import id.co.okhome.consultant.lib.PhoneNumberGetter;
 import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
@@ -38,9 +39,7 @@ import id.co.okhome.consultant.view.etc.LocationActivity;
 import id.co.okhome.consultant.view.photochooser.ImageChooserActivity;
 import id.co.okhome.consultant.view.viewholder.StringHolder;
 
-public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener {
+public class UpdateUserDocumentActivity extends OkHomeParentActivity {
 
     @BindView(R.id.actUpdateUserDocument_tvName)        TextView tvName;
     @BindView(R.id.actUpdateUserDocument_tvPhone)       TextView tvPhone;
@@ -55,8 +54,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
     private ConsultantModel consultant;
     private boolean isActive = false;
 
-    private AutoPhoneNumberGetter autoPhoneNumberGetter;
-    private GoogleApiClient mGoogleApiClient;
+    private PhoneNumberGetter phoneNumberGetter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +65,6 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
 //                Color.parseColor("#29313a"));
                 ContextCompat.getColor(this, R.color.colorOkhome));
 
-        buildGoogleApiClient();
         ButterKnife.bind(this);
         init();
     }
@@ -186,15 +183,6 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
         photoFilePath = imgPath;
     }
 
-    protected synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Auth.CREDENTIALS_API)
-                .build();
-        mGoogleApiClient.connect();
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
@@ -215,9 +203,8 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
             onPhotoChoosed(imgPath);
         }
 
-
-        if (autoPhoneNumberGetter != null) {
-            autoPhoneNumberGetter.onActivityResult(requestCode, resultCode, data);
+        if (phoneNumberGetter != null) {
+            phoneNumberGetter.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -229,7 +216,13 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
                 editAddressActivity.putExtras(previousBundle);
                 startActivityForResult(editAddressActivity, 1);
             } else {
-                startActivityForResult(new Intent(this, LocationActivity.class), 1);
+                if (TextUtils.isEmpty(tvAddress.getText().toString())) {
+                    startActivityForResult(new Intent(this, LocationActivity.class), 1);
+                } else {
+                    Intent editAddressActivity = new Intent(this, LocationActivity.class);
+                    editAddressActivity.putExtra("address", tvAddress.getText().toString());
+                    startActivityForResult(editAddressActivity, 1);
+                }
             }
             isActive = true;
         }
@@ -242,13 +235,9 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
 
     @OnClick({R.id.actUpdateUserDocument_vgbtnPhone, R.id.actUpdateUserDocument_tvPhone})
     public void onClickPhone(){
-        autoPhoneNumberGetter = new AutoPhoneNumberGetter(this, mGoogleApiClient,
-                new AutoPhoneNumberGetter.PhoneNumCallback() {
-            @Override
-            public void sendVerifiedPhoneNumber(String phoneNum) {
-                tvPhone.setText(phoneNum);
-            }
-        });
+        phoneNumberGetter = new PhoneNumberGetter(this);
+        phoneNumberGetter.init();
+        phoneNumberGetter.show();
     }
 
     @OnClick(R.id.actUpdateUserDocument_vgbtnGender)
@@ -277,20 +266,5 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity implements
     @OnClick({R.id.actLocation_vbtnX})
     public void onCloseActivity() {
         finish();
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        mGoogleApiClient.connect();
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
     }
 }

@@ -62,7 +62,11 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
             if (!TextUtils.isEmpty(consultant.marriedYN)) {
                 String married = "";
                 if (consultant.marriedYN.equals("Y")) {
-                    married = "Married";
+                    if (TextUtils.isEmpty(consultant.childrenCNT)) {
+                        married = "Married";
+                    } else {
+                        married = "Married, " + consultant.childrenCNT;
+                    }
                 } else if (consultant.marriedYN.equals("N")) {
                     married = "Not yet";
                 }
@@ -90,6 +94,7 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
 
         final String nik        = tvNIK.getText().toString();
         final String married    = consultant.marriedYN;
+        final String children   = consultant.childrenCNT;
         final String religion   = consultant.religion;
         final String hasBike    = consultant.bikeYN;
         final String okWithDog  = consultant.likeDogYN;
@@ -122,9 +127,28 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
 
         };
 
-        ConsultantLoggedIn.updateUserInfo(
-                OkhomeUtil.makeMap("nik", nik, "married_yn", married, "religion", religion, "bike_yn", hasBike, "like_dog_yn", okWithDog), retrofitCallback
-        );
+        if (TextUtils.isEmpty(children)) {
+            ConsultantLoggedIn.updateUserInfo(
+                    OkhomeUtil.makeMap(
+                            "nik", nik,
+                            "married_yn", married,
+                            "religion", religion,
+                            "bike_yn", hasBike,
+                            "like_dog_yn", okWithDog),
+                    retrofitCallback
+            );
+        } else {
+            ConsultantLoggedIn.updateUserInfo(
+                    OkhomeUtil.makeMap(
+                            "nik", nik,
+                            "married_yn", married,
+                            "children_cnt", children,
+                            "religion", religion,
+                            "bike_yn", hasBike,
+                            "like_dog_yn", okWithDog),
+                    retrofitCallback
+            );
+        }
     }
 
     //-- onclick methods ---------------------------------
@@ -169,6 +193,26 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
                         dialog.dismiss();
                         tvMarried.setText(value);
                         consultant.marriedYN = tag;
+
+                        if (tag.equals("Y")) {
+                            new CommonListDialog(UpdateExtraUserDocumentActivity.this)
+                                    .setTitle("Children?")
+                                    .setArrItems("0", "1", "2", "3", "4+")
+                                    .setColumnCount(5)
+                                    .setItemClickListener(new StringHolder.ItemClickListener() {
+                                        @Override
+                                        public void onItemClick(Dialog dialog, int pos, String value, String tag) {
+                                            dialog.dismiss();
+
+                                            String marriedStatus = tvMarried.getText().toString();
+                                            tvMarried.setText(String.format("%s, %s", marriedStatus, value));
+                                            consultant.childrenCNT = value;
+                                        }
+                                    })
+                                    .show();
+                        } else {
+                            consultant.childrenCNT = "";
+                        }
                     }
                 })
                 .show();

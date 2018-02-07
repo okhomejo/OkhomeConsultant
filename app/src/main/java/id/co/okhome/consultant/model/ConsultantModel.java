@@ -25,7 +25,7 @@ public class ConsultantModel {
             , religion;
 
     public String
-            approveYN, bikeYN, likeDogYN, possibleArea, insertDateTime;
+            approveYN, bikeYN, likeDogYN, workingRegions, pastCareers, insertDateTime;
 
     public Map<String, Object> accountStatus;
 }

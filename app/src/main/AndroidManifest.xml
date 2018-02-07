@@ -65,7 +65,8 @@
         </activity>
         <activity android:name=".view.userinfo.trainee.UpdateExtraUserDocumentActivity" />
         <activity android:name=".view.userinfo.trainee.TraineeScreeningMornitorActivity" />
-        <activity android:name=".view.userinfo.trainee.UpdateConsultantEducationActivity"></activity>
+        <activity android:name=".view.userinfo.trainee.UpdateConsultantEducationActivity"/>
+        <activity android:name=".view.userinfo.trainee.UpdateConsultantAreaActivity"/>
     </application>
 
 </manifest>

@@ -7,5 +7,6 @@ package id.co.okhome.consultant.model;
 public class WorkingRegionModel {
     public int id, parentId;
     public String address;
+    public boolean hasChild;
 
 }

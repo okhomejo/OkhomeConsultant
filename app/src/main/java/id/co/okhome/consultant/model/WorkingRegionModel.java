@@ -5,7 +5,7 @@ package id.co.okhome.consultant.model;
  */
 
 public class WorkingRegionModel {
-    public int id, parentId;
+    public int id, parentId, childCount;
     public String address;
     public boolean hasChild;
 

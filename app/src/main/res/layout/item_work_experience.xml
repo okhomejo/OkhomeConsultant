@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="6dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp">
+
+    <RelativeLayout
+        android:id="@+id/itemArea_rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/itemArea_btnParentRegion"
+            android:background="@drawable/bg_common_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                android:layout_marginTop="2dp">
+                <TextView
+                    android:id="@+id/itemJob_tvPosition"
+                    android:gravity="center_vertical"
+                    style="@style/FontOpenSansLight"
+                    android:textSize="18sp"
+                    android:text="IT Consultant / OKhome"
+                    android:textColor="@color/colorBlueBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/itemJob_tvDate"
+                    android:gravity="center_vertical"
+                    style="@style/FontOpenSansLight"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorLightBlueGray"
+                    android:text="Jun, 2016 - Jun, 2017"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/itemJob_vbtnRemoveExp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_circlex"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="32dp"
+            android:padding="5dp"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+</LinearLayout>

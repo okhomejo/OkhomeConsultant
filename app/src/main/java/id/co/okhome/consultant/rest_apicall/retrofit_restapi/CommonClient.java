@@ -23,6 +23,9 @@ public interface CommonClient {
     Call<List<WorkingRegionModel>> getWorkingRegion(@Query("parentId") int parentId);
 
 
+    @GET("consultant/working_region/all")
+    Call<List<WorkingRegionModel>> getAllWorkingRegion();
+
 }
 
 

@@ -280,6 +280,11 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
         startActivity(new Intent(this, UpdateConsultantAreaActivity.class));
     }
 
+    @OnClick(R.id.actFillUpUserInfo_vbtnJobExperience)
+    public void onJobExperienceClick(){
+        startActivity(new Intent(this, UpdateJobExperienceActivity.class));
+    }
+
     @OnClick(R.id.actFillUpUserInfo_vgConfirm)
     public void onClickConfirm(){
         confirm();

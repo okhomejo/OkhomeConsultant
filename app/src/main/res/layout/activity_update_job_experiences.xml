@@ -6,18 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="id.co.okhome.consultant.view.userinfo.trainee.UpdateConsultantAreaActivity">
+    tools:context="id.co.okhome.consultant.view.userinfo.trainee.UpdateJobExperienceActivity">
 
     <LinearLayout
         android:gravity="center_vertical"
         android:background="@color/colorOkhome"
-        android:id="@+id/actArea_vgTop"
+        android:id="@+id/actJobExp_vgTop"
         android:layout_width="match_parent"
         android:layout_height="66dp">
 
         <LinearLayout
             android:layout_marginRight="6dp"
-            android:id="@+id/actArea_vbtnX"
+            android:id="@+id/actJobExp_vbtnX"
             android:gravity="center"
             android:layout_width="50dp"
             android:layout_height="match_parent">
@@ -34,9 +34,9 @@
         <TextView
             style="@style/FontOpenSansLight"
             android:textColor="#ffffff"
-            android:id="@+id/actArea_tvTitle"
+            android:id="@+id/actJobExp_tvTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:text="Update Prefered Area"
+            android:layout_height="wrap_content" android:text="Update Job Experience"
             android:textSize="21dp"
             android:layout_centerVertical="true" />
 
@@ -44,32 +44,37 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_below="@+id/actArea_vgTop"
+        android:layout_below="@+id/actJobExp_vgTop"
         android:layout_width="match_parent"
+        android:gravity="center_horizontal"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/actJobExp_placeholderWorkExp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:textSize="20sp"
+            android:paddingTop="20dp"
+            android:paddingBottom="50dp"
+            android:gravity="center_horizontal"
+            android:text="Add your work experience."/>
+
         <ListView
-            android:id="@+id/actArea_lvRegions"
+            android:id="@+id/actJobExp_list"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="#00000000" />
 
-        <!--<LinearLayout-->
-            <!--android:id="@+id/actArea_llRegions"-->
-            <!--android:paddingTop="4dp"-->
-            <!--android:paddingLeft="30dp"-->
-            <!--android:paddingRight="30dp"-->
-            <!--android:orientation="vertical"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent">-->
-
-            <!--<ExpandableListView-->
-                <!--android:id="@+id/actArea_lvExp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:dividerHeight="0.5dp" />-->
-
-        <!--</LinearLayout>-->
+        <Button
+            android:id="@+id/actJobExp_btnAddExp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@color/colorOkhome"
+            android:textColor="@android:color/white"
+            android:text="+ADD"/>
 
     </LinearLayout>
 
@@ -82,7 +87,7 @@
         android:layout_height="52dp">
         <LinearLayout
             android:layout_weight="1"
-            android:id="@+id/actArea_vbtnCancel"
+            android:id="@+id/actJobExp_vbtnCancel"
             android:gravity="center"
             android:background="@color/colorLightBlueGray"
             android:layout_width="match_parent"
@@ -110,25 +115,42 @@
         </LinearLayout>
     </LinearLayout>
 
-
     <LinearLayout
-        android:layout_margin="20dp"
+        android:id="@+id/actLocation_llActions"
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="14dp"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentRight="true"
-        android:gravity="center"
-        android:id="@+id/actArea_vbtnOk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:layout_marginBottom="8dp"
+            android:id="@+id/actJobExp_vbtnAdd"
+            android:gravity="center"
+            android:background="@drawable/circle_white_shadow"
+            android:layout_width="58dp"
+            android:layout_height="58dp">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/actJobExp_vbtnOk"
             android:gravity="center"
             android:background="@drawable/circle_appcolor_shadow"
-            android:layout_width="60dp"
-            android:layout_height="60dp">
+            android:layout_width="58dp"
+            android:layout_height="58dp">
             <ImageView
                 android:layout_width="20dp"
-                android:layout_height="wrap_content" android:src="@drawable/ic_check_white"/>
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_check_white"/>
         </LinearLayout>
 
     </LinearLayout>
+
 </RelativeLayout>

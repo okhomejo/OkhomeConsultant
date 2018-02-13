@@ -67,6 +67,7 @@
         <activity android:name=".view.userinfo.trainee.TraineeScreeningMornitorActivity" />
         <activity android:name=".view.userinfo.trainee.UpdateConsultantEducationActivity"/>
         <activity android:name=".view.userinfo.trainee.UpdateConsultantAreaActivity"/>
+        <activity android:name=".view.userinfo.trainee.UpdateJobExperienceActivity"/>
     </application>
 
 </manifest>

@@ -1,0 +1,121 @@
+package id.co.okhome.consultant.view.common.dialog;
+
+import android.content.Context;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.adapter.ChildAreaListAdapter;
+import id.co.okhome.consultant.lib.dialog.DialogParent;
+import id.co.okhome.consultant.model.WorkingRegionModel;
+
+import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListener.ACTIONCODE_NO;
+
+/**
+ * Created by frizurd on 14/02/2018.
+ */
+
+public class AreaListDialog extends DialogParent {
+
+    @BindView(R.id.dialogAlertList_tvSubTitle)    TextView tvSubTitle;
+    @BindView(R.id.dialogAlertList_tvTitle)       TextView tvTitle;
+    @BindView(R.id.dialogAlertList_list)          ListView listView;
+
+    Context context;
+    ChildAreaListAdapter regionAdapter;
+    List<WorkingRegionModel> listItems;
+    String title, subTitle;
+    int columnCount = 1;
+    AdapterView.OnItemClickListener itemClickListener;
+
+    public AreaListDialog(Context context) {
+        super(context);
+        this.context = context;
+    }
+
+    @Override
+    public int onInit() {
+        return R.layout.dialog_area_list;
+    }
+
+    @Override
+    public void onCreate() {
+        ButterKnife.bind(this, getDecorView());
+        //view control
+        tvTitle.setVisibility(View.GONE);
+        tvSubTitle.setVisibility(View.GONE);
+        tvSubTitle.setVisibility(View.GONE);
+        if(title != null){
+            tvTitle.setText(title);
+            tvTitle.setVisibility(View.VISIBLE);
+        }
+
+        if(subTitle != null){
+            tvSubTitle.setText(subTitle);
+            tvSubTitle.setVisibility(View.VISIBLE);
+        }
+
+        //set list
+        adaptList();
+    }
+
+    private void adaptList(){
+        regionAdapter = new ChildAreaListAdapter(context, listItems);
+        listView.setAdapter(regionAdapter);
+        listView.setOnItemClickListener(itemClickListener);
+    }
+
+    @Override
+    public void onShow() {
+    }
+
+    @OnClick(R.id.dialogAlertList_vbtnBack)
+    public void x(){
+        dismiss();
+        if(commonDialogListener!= null){
+            commonDialogListener.onCommonDialogWorkDone(this, ACTIONCODE_NO, null);
+        }
+    }
+    //-----------begin setting params
+    public AreaListDialog setTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public AreaListDialog setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
+        return this;
+    }
+
+    @Override
+    public AreaListDialog setCommonDialogListener(CommonDialogListener commonDialogListener) {
+        super.setCommonDialogListener(commonDialogListener);
+        return this;
+    }
+
+    public AreaListDialog setListItems(List<WorkingRegionModel> listItems) {
+        this.listItems = listItems;
+        return this;
+    }
+
+
+    public AreaListDialog setColumnCount(int columnCount) {
+        this.columnCount = columnCount;
+        return this;
+    }
+
+    public AreaListDialog setItemClickListener(AdapterView.OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+        return this;
+    }
+
+    //-----------end setting params
+
+}

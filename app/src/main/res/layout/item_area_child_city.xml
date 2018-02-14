@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="58dp"
+    android:paddingRight="20dp"
+    android:orientation="vertical"
+    android:gravity="center_vertical">
+
+    <RelativeLayout
+        android:id="@+id/itemArea_rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/itemAreaChild_vbtnCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/itemAreaChild_ivCheck"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_check_not_deep"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/itemAreaChild_vbtnCity"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/itemAreaChild_vbtnCheck"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/itemAreaChild_tvCityTitle"
+                android:gravity="center_vertical"
+                style="@style/FontOpenSansLight"
+                android:textSize="18sp"
+                android:text="Jakarta barat"
+                android:textColor="@color/colorBlueBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true" />
+
+            <ImageView
+                android:id="@+id/itemAreaChild_ivArrow"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_right_simplearrow_black"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="17dp"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

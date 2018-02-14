@@ -52,6 +52,7 @@
             android:id="@+id/actArea_lvRegions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:divider="#00000000" />
 
         <!--<LinearLayout-->
@@ -109,7 +110,6 @@
 
         </LinearLayout>
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_margin="20dp"

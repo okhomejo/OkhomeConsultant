@@ -12,6 +12,8 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
@@ -88,14 +90,12 @@ public class JobExperienceListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    //ViewHolder inner class
-    private class ViewHolder {
-        TextView position;
-        TextView date;
+    static class ViewHolder {
+        @BindView(R.id.itemJob_tvPosition)      TextView position;
+        @BindView(R.id.itemJob_tvDate)          TextView date;
 
         public ViewHolder(View view) {
-            position    = view.findViewById(R.id.itemJob_tvPosition);
-            date        = view.findViewById(R.id.itemJob_tvDate);
+            ButterKnife.bind(this, view);
         }
     }
 }

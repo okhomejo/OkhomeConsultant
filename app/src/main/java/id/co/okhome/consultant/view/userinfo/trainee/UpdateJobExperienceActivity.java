@@ -3,11 +3,7 @@ package id.co.okhome.consultant.view.userinfo.trainee;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,7 +20,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.adapter.JobExperienceListAdapter;
-import id.co.okhome.consultant.adapter.RegionListAdapter;
 import id.co.okhome.consultant.exception.OkhomeException;
 import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
@@ -34,9 +29,7 @@ import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.ConsultantModel;
 import id.co.okhome.consultant.model.JobExperienceModel;
-import id.co.okhome.consultant.model.WorkingRegionModel;
 import id.co.okhome.consultant.view.common.dialog.JobExperienceDialog;
-import id.co.okhome.consultant.view.common.dialog.PhoneVerificationDialog;
 
 /**
  * Created by frizurd on 12/02/2018.

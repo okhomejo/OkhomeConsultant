@@ -9,18 +9,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.model.WorkingRegionModel;
 
-public class RegionListAdapter extends BaseAdapter {
+public class AreaListAdapter extends BaseAdapter {
     private Context context;
     private List<WorkingRegionModel> regions;
 
-    public RegionListAdapter(Context context, List<WorkingRegionModel> items) {
+    public AreaListAdapter(Context context, List<WorkingRegionModel> items) {
         this.context = context;
         this.regions = items;
     }
@@ -59,14 +63,12 @@ public class RegionListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    //ViewHolder inner class
-    private class ViewHolder {
-        TextView cityName;
-        TextView selectedAreas;
+    static class ViewHolder {
+        @BindView(R.id.itemArea_tvCityTitle)       TextView cityName;
+        @BindView(R.id.itemArea_tvSelectedAmt)     TextView selectedAreas;
 
         public ViewHolder(View view) {
-            cityName        = (TextView) view.findViewById(R.id.itemArea_tvCityTitle);
-            selectedAreas   = (TextView) view.findViewById(R.id.itemArea_tvSelectedAmt);
+            ButterKnife.bind(this, view);
         }
     }
 }

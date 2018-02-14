@@ -25,7 +25,6 @@ import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListen
 
 public class CommonListDialog extends DialogParent{
 
-
     @BindView(R.id.dialogCommonList_tvSubTitle)    TextView tvSubTitle;
     @BindView(R.id.dialogCommonList_tvTitle)       TextView tvTitle;
     @BindView(R.id.dialogCommonList_rcv)             RecyclerView rcv;

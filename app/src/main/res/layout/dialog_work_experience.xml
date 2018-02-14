@@ -148,16 +148,30 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="8dp"
         android:weightSum="10"
         android:layout_width="match_parent"
         android:layout_height="55dp">
 
         <LinearLayout
+            android:id="@+id/dialogWorkExp_vBtnCancel"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:background="@color/colorLightBlueGray"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:adjustViewBounds="true"
+                android:layout_width="17dp"
+                android:layout_height="wrap_content" android:src="@drawable/ic_close_bold_white"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/dialogWorkExp_vBtnOk"
+            android:layout_weight="5"
             android:gravity="center"
             android:background="@color/colorOkhome"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent">
 
             <ImageView

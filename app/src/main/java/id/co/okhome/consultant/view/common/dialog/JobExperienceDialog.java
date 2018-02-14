@@ -101,6 +101,11 @@ public class JobExperienceDialog extends DialogParent {
         checkInputFields();
     }
 
+    @OnClick(R.id.dialogWorkExp_vBtnCancel)
+    public void onCancel() {
+        dismiss();
+    }
+
     @OnClick(R.id.dialogWorkExp_tvFromDate)
     public void onEditStartDate() {
         callYearMonthPicker(tvFromDate);

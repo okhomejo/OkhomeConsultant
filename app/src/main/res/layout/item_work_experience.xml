@@ -25,16 +25,18 @@
                 android:layout_gravity="center_vertical"
                 android:orientation="vertical"
                 android:layout_marginTop="2dp">
+
                 <TextView
                     android:id="@+id/itemJob_tvPosition"
                     android:gravity="center_vertical"
                     style="@style/FontOpenSansLight"
                     android:textSize="18sp"
+                    android:singleLine="true"
+                    android:layout_marginRight="40dp"
                     android:text="IT Consultant / OKhome"
                     android:textColor="@color/colorBlueBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
                 <TextView
                     android:id="@+id/itemJob_tvDate"
                     android:gravity="center_vertical"
@@ -54,7 +56,7 @@
             android:layout_centerVertical="true"
             android:layout_width="32dp"
             android:padding="5dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
 
 </LinearLayout>

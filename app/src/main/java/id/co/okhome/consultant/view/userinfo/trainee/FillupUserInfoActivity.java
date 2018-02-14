@@ -112,6 +112,15 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
             return;
         }
 
+        //Section6 data entry completion check
+        try{
+            OkhomeException.chkException(OkhomeUtil.isEmpty(consultant.pastCareers), "");
+
+        }catch(OkhomeException e){
+            ToastUtil.showToast("Data entry(Job Experience) must be completed.");
+            return;
+        }
+
         // Finish trainee registration process
         startActivity(new Intent(this, TraineeScreeningMornitorActivity.class));
     }
@@ -165,6 +174,15 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
             ivBarEdu.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
         }catch(OkhomeException e){
             ivBarEdu.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
+        }
+
+        //step 6. Job experience
+        try{
+            OkhomeException.chkException(OkhomeUtil.isEmpty(consultant.pastCareers), "");
+
+            ivBarJob.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
+        }catch(OkhomeException e){
+            ivBarJob.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
         }
 
     }

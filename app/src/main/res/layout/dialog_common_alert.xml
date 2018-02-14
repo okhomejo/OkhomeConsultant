@@ -12,11 +12,13 @@
 
 
         <TextView
+            android:id="@+id/dialogCommonAlert_tvTitle"
             style="@style/FontOpenSansRegular"  android:textColor="@color/colorGray"
             android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="THE TITLE"
             android:textSize="36sp" android:layout_centerVertical="true" />
 
         <TextView
+            android:id="@+id/dialogCommonAlert_tvSubTitle"
             android:layout_marginTop="2dp"
             style="@style/FontOpenSansLight"  android:textColor="@color/colorBlueGray"
             android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="When using OKHOME, Be aware of Monyang."
@@ -32,6 +34,7 @@
         android:layout_height="55dp">
 
         <LinearLayout
+            android:id="@+id/dialogCommonAlert_vbtnX"
             android:layout_weight="5"
             android:gravity="center"
             android:background="@color/colorLightBlueGray"
@@ -44,6 +47,7 @@
                 android:layout_height="wrap_content" android:src="@drawable/ic_close_bold_white"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/dialogCommonAlert_vbtnOk"
             android:layout_weight="5"
             android:gravity="center"
             android:background="@color/colorOkhome"

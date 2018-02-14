@@ -1,13 +1,20 @@
 package id.co.okhome.consultant.view.userinfo.trainee;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,9 +25,14 @@ import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.adapter.JobExperienceListAdapter;
 import id.co.okhome.consultant.adapter.RegionListAdapter;
+import id.co.okhome.consultant.exception.OkhomeException;
+import id.co.okhome.consultant.lib.ToastUtil;
+import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
+import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
+import id.co.okhome.consultant.model.ConsultantModel;
 import id.co.okhome.consultant.model.JobExperienceModel;
 import id.co.okhome.consultant.model.WorkingRegionModel;
 import id.co.okhome.consultant.view.common.dialog.JobExperienceDialog;
@@ -37,6 +49,7 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
 
     private JobExperienceListAdapter jobExperienceAdapter;
     private List<JobExperienceModel> jobExperiences;
+    private ConsultantModel consultant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +61,23 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
     }
 
     private void init() {
-        jobExperiences = new ArrayList<>();
+        // Load saved consultant data
+        if (ConsultantLoggedIn.hasSavedData()) {
+            consultant = ConsultantLoggedIn.get();
+            if (!consultant.pastCareers.isEmpty()) {
+                Type listType = new TypeToken<ArrayList<JobExperienceModel>>(){}.getType();
+                jobExperiences = new Gson().fromJson(consultant.pastCareers, listType);
+            } else {
+                jobExperiences = new ArrayList<>();
+            }
+        } else {
+            jobExperiences = new ArrayList<>();
+        }
 
         jobExperienceAdapter = new JobExperienceListAdapter(this, jobExperiences);
         itemsListView.setAdapter(jobExperienceAdapter);
+
+        checkIfListEmpty();
     }
 
     public void checkIfListEmpty() {
@@ -61,6 +87,38 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
             placeHolderText.setVisibility(View.VISIBLE);
         }
         jobExperienceAdapter.notifyDataSetChanged();
+    }
+
+    private void updateProfile() {
+        final List<JobExperienceModel> jobs = jobExperiences;
+        try {
+            OkhomeException.chkException(jobs.size() < 1, "Please include at least one job before submitting");
+
+        } catch (OkhomeException e) {
+            ToastUtil.showToast(e.getMessage());
+            return;
+        }
+
+        final ProgressDialog p = ProgressDialog.show(this, "", "Loading");
+        final RetrofitCallback retrofitCallback = new RetrofitCallback<String>() {
+
+            @Override
+            public void onSuccess(String result) {
+                finish();
+            }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                p.dismiss();
+            }
+        };
+
+        String jobGson = new Gson().toJson(jobs);
+        ConsultantLoggedIn.updateUserInfo(
+                OkhomeUtil.makeMap("past_careers", jobGson),
+                retrofitCallback
+        );
     }
 
     @OnClick({R.id.actJobExp_btnAddExp, R.id.actJobExp_vbtnAdd})
@@ -76,7 +134,7 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
 
     @OnClick(R.id.actJobExp_vbtnOk)
     public void onButtonSubmit() {
-        finish();
+        updateProfile();
     }
 
     @Override

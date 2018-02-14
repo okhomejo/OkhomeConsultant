@@ -10,10 +10,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
+import java.util.Map;
+
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
+import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.model.JobExperienceModel;
 import id.co.okhome.consultant.view.common.dialog.CommonAlertDialog;
+import id.co.okhome.consultant.view.common.dialog.CommonInputDialog;
 import id.co.okhome.consultant.view.common.dialog.CommonListDialog;
 import id.co.okhome.consultant.view.viewholder.StringHolder;
 
@@ -32,12 +36,12 @@ public class JobExperienceListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return jobExperiences.size(); //returns total item in the list
+        return jobExperiences.size();
     }
 
     @Override
     public JobExperienceModel getItem(int position) {
-        return jobExperiences.get(position); //returns the item at the specified position
+        return jobExperiences.get(position);
     }
 
     @Override
@@ -57,7 +61,7 @@ public class JobExperienceListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        JobExperienceModel jobExp = getItem(position);
+        final JobExperienceModel jobExp = getItem(position);
         viewHolder.position.setText(jobExp.position);
         viewHolder.date.setText(jobExp.workPeriod);
 
@@ -65,16 +69,14 @@ public class JobExperienceListAdapter extends BaseAdapter {
         ImageView rmExp = convertView.findViewById(R.id.itemJob_vbtnRemoveExp);
         rmExp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                new CommonListDialog(context)
+                new CommonAlertDialog(context)
+                        .setSubTitle("Removing job experience")
                         .setTitle("Are you sure?")
-                        .setArrItems("Yes", "No") //value displayed on list
-                        .setArrItemTag("Y", "N") // value will be sent to server
-                        .setColumnCount(2)
-                        .setItemClickListener(new StringHolder.ItemClickListener() {
+                        .setCommonDialogListener(new DialogParent.CommonDialogListener() {
                             @Override
-                            public void onItemClick(Dialog dialog, int pos, String item, String tag) {
-                                if (tag.equals("Y")) {
-                                    jobExperiences.remove(pos);
+                            public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
+                                if(actionCode == ACTIONCODE_OK){
+                                    jobExperiences.remove(jobExp);
                                     notifyDataSetChanged();
                                 }
                                 dialog.dismiss();
@@ -83,7 +85,6 @@ public class JobExperienceListAdapter extends BaseAdapter {
                         .show();
             }
         });
-
         return convertView;
     }
 

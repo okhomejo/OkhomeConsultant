@@ -7,12 +7,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.adapter.ChildAreaListAdapter;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.model.WorkingRegionModel;
 
@@ -28,12 +30,13 @@ public class AreaListDialog extends DialogParent {
     @BindView(R.id.dialogAlertList_tvTitle)       TextView tvTitle;
     @BindView(R.id.dialogAlertList_list)          ListView listView;
 
-    Context context;
-    ChildAreaListAdapter regionAdapter;
-    List<WorkingRegionModel> listItems;
-    String title, subTitle;
-    int columnCount = 1;
-    AdapterView.OnItemClickListener itemClickListener;
+    private Context context;
+    private ChildAreaListAdapter regionAdapter;
+    private List<WorkingRegionModel> listItems;
+    private List<WorkingRegionModel> allRegions;
+    private Set<Integer> chosenRegions;
+    private String title, subTitle;
+    private AdapterView.OnItemClickListener itemClickListener;
 
     public AreaListDialog(Context context) {
         super(context);
@@ -66,23 +69,26 @@ public class AreaListDialog extends DialogParent {
         adaptList();
     }
 
-    private void adaptList(){
-        regionAdapter = new ChildAreaListAdapter(context, listItems);
+    @Override
+    public void onShow() {
+    }
+
+    private void adaptList() {
+        regionAdapter = new ChildAreaListAdapter(context, listItems, chosenRegions, allRegions);
         listView.setAdapter(regionAdapter);
         listView.setOnItemClickListener(itemClickListener);
     }
 
-    @Override
-    public void onShow() {
+    public void updateChildRegionList() {
+        regionAdapter.notifyDataSetChanged();
     }
 
     @OnClick(R.id.dialogAlertList_vbtnBack)
     public void x(){
         dismiss();
-        if(commonDialogListener!= null){
-            commonDialogListener.onCommonDialogWorkDone(this, ACTIONCODE_NO, null);
-        }
     }
+
+
     //-----------begin setting params
     public AreaListDialog setTitle(String title) {
         this.title = title;
@@ -105,9 +111,13 @@ public class AreaListDialog extends DialogParent {
         return this;
     }
 
+    public AreaListDialog setAllRegionItems(List<WorkingRegionModel> allRegions) {
+        this.allRegions = allRegions;
+        return this;
+    }
 
-    public AreaListDialog setColumnCount(int columnCount) {
-        this.columnCount = columnCount;
+    public AreaListDialog setChosenRegions(Set<Integer> chosenRegions) {
+        this.chosenRegions = chosenRegions;
         return this;
     }
 

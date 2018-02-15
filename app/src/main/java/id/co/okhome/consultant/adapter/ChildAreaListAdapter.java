@@ -5,11 +5,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,12 +30,18 @@ public class ChildAreaListAdapter extends BaseAdapter {
 
     private Context context;
     private List<WorkingRegionModel> regions;
+    private List<WorkingRegionModel> allRegions;
     private Set<Integer> chosenRegions;
 
-    public ChildAreaListAdapter(Context context, List<WorkingRegionModel> items) {
+    public ChildAreaListAdapter(Context context, List<WorkingRegionModel> items, Set<Integer> chosenRegions, List<WorkingRegionModel> allRegions) {
         this.context = context;
         this.regions = items;
-        chosenRegions = new HashSet<>();
+        this.allRegions = allRegions;
+        this.chosenRegions = chosenRegions;
+    }
+
+    public void setRegionList(List<WorkingRegionModel> regions) {
+        this.regions = regions;
     }
 
     @Override
@@ -54,6 +62,7 @@ public class ChildAreaListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder viewHolder;
+        final WorkingRegionModel region = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_area_child_city, parent, false);
@@ -63,7 +72,6 @@ public class ChildAreaListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        final WorkingRegionModel region = getItem(position);
         viewHolder.cityName.setText(region.address);
         if (region.hasChild || region.childCount > 0) {
             viewHolder.arrowImage.setVisibility(View.VISIBLE);
@@ -71,35 +79,35 @@ public class ChildAreaListAdapter extends BaseAdapter {
             viewHolder.arrowImage.setVisibility(View.GONE);
         }
 
-        viewHolder.btnCheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (region.childCount > 0) {
-                    for (WorkingRegionModel childReg : regions) {
-                        if (region.parentId == childReg.id && childReg.childCount == 0) {
-                            chosenRegions.add(childReg.id);
-                        } else {
-                            for (WorkingRegionModel secondChildReg : regions) {
-                                if (childReg.parentId == secondChildReg.id && secondChildReg.childCount == 0) {
-                                    chosenRegions.add(childReg.id);
-                                }
-                            }
-                        }
+        if (region.childCount > 0) {
+            int childRegionCount = 0, chosenChildCount = 0;
+            for(WorkingRegionModel newRegion : allRegions) {
+                if (newRegion.parentId == region.id) {
+                    if (chosenRegions.contains(newRegion.id)) {
+                        chosenChildCount++;
                     }
-                    viewHolder.checkImage.setImageResource(R.drawable.ic_checked_sq);
-                } else {
-                    chosenRegions.add(region.id);
-                    viewHolder.checkImage.setImageResource(R.drawable.ic_checked_sq);
+                    childRegionCount++;
                 }
             }
-        });
+            if (childRegionCount == chosenChildCount) {
+                viewHolder.checkImage.setImageResource(R.drawable.ic_checked_sq);
+            } else {
+                viewHolder.checkImage.setImageResource(R.drawable.ic_check_not_deep);
+            }
+        } else {
+            if (chosenRegions.contains(region.id)){
+                viewHolder.checkImage.setImageResource(R.drawable.ic_checked_sq);
+            } else {
+                viewHolder.checkImage.setImageResource(R.drawable.ic_check_not_deep);
+            }
+        }
         return convertView;
     }
 
     static class ViewHolder {
         @BindView(R.id.itemAreaChild_tvCityTitle)   TextView cityName;
-        @BindView(R.id.itemAreaChild_ivCheck)       ImageView checkImage;
         @BindView(R.id.itemAreaChild_ivArrow)       ImageView arrowImage;
+        @BindView(R.id.itemAreaChild_ivCheck)       ImageView checkImage;
         @BindView(R.id.itemAreaChild_vbtnCheck)     LinearLayout btnCheck;
 
         public ViewHolder(View view) {

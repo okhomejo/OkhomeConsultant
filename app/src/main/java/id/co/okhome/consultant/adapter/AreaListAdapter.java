@@ -9,11 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import java.util.ArrayList;
+
 import java.util.List;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,21 +21,26 @@ import id.co.okhome.consultant.model.WorkingRegionModel;
 
 public class AreaListAdapter extends BaseAdapter {
     private Context context;
-    private List<WorkingRegionModel> regions;
+    private List<WorkingRegionModel> parentRegions;
+    private List<WorkingRegionModel> allRegions;
+    private Set<Integer> chosenRegions;
+    private ViewHolder viewHolder;
 
-    public AreaListAdapter(Context context, List<WorkingRegionModel> items) {
+    public AreaListAdapter(Context context, List<WorkingRegionModel> items, Set<Integer> chosenRegions, List<WorkingRegionModel> allRegions) {
         this.context = context;
-        this.regions = items;
+        this.parentRegions = items;
+        this.chosenRegions = chosenRegions;
+        this.allRegions = allRegions;
     }
 
     @Override
     public int getCount() {
-        return regions.size(); //returns total item in the list
+        return parentRegions.size(); //returns total item in the list
     }
 
     @Override
     public WorkingRegionModel getItem(int position) {
-        return regions.get(position); //returns the item at the specified position
+        return parentRegions.get(position); //returns the item at the specified position
     }
 
     @Override
@@ -46,8 +50,6 @@ public class AreaListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
-
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_area_city_title, parent, false);
             viewHolder = new ViewHolder(convertView);
@@ -56,9 +58,26 @@ public class AreaListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        WorkingRegionModel region = (WorkingRegionModel) getItem(position);
+        WorkingRegionModel region =  getItem(position);
         viewHolder.cityName.setText(region.address);
-        viewHolder.selectedAreas.setText("No area selected");
+
+        int selectedAreas = 0;
+        for (WorkingRegionModel childRegion : allRegions) {
+            if (childRegion.parentId == region.id) {
+                for (WorkingRegionModel thirdRegion : allRegions) {
+                    if (thirdRegion.parentId == childRegion.id && chosenRegions.contains(thirdRegion.id)) {
+                        selectedAreas++;
+                    }
+                }
+            }
+        }
+        if (selectedAreas == 0) {
+            viewHolder.selectedAreas.setText("No areas selected");
+        } else if (selectedAreas == 1) {
+            viewHolder.selectedAreas.setText("1 area selected");
+        } else if (selectedAreas > 1) {
+            viewHolder.selectedAreas.setText(selectedAreas + " areas selected");
+        }
 
         return convertView;
     }

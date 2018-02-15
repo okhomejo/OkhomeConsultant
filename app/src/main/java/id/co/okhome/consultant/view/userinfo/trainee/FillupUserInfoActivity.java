@@ -99,6 +99,14 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
             return;
         }
 
+        //Section4 data entry completion check
+        try{
+            OkhomeException.chkException(consultant.workingRegions == null, "");
+
+        }catch(OkhomeException e){
+            ToastUtil.showToast("Data entry(Preferred area) must be completed.");
+            return;
+        }
 
         //Section5 data entry completion check
         try{
@@ -162,6 +170,15 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
             ivBarKTP.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
         }catch(OkhomeException e){
             ivBarKTP.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
+        }
+
+        //step 4. Preferred area for cleaning
+        try{
+            OkhomeException.chkException(consultant.workingRegions == null, "");
+
+            ivBarPreferenceArea.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
+        }catch(OkhomeException e){
+            ivBarPreferenceArea.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
         }
 
         //step 5. Education information

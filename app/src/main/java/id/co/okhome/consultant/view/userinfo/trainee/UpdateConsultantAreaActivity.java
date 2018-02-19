@@ -3,6 +3,7 @@ package id.co.okhome.consultant.view.userinfo.trainee;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -47,8 +48,12 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_prefered_area);
-        ButterKnife.bind(this);
+        OkhomeUtil.setSystemBarColor(this,
 
+//                Color.parseColor("#29313a"));
+                ContextCompat.getColor(this, R.color.colorOkhome));
+
+        ButterKnife.bind(this);
         init();
     }
 
@@ -104,7 +109,7 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
         });
     }
 
-    private void callChildRegionDialog(final WorkingRegionModel region) {
+    public void callChildRegionDialog(final WorkingRegionModel region) {
 
         final List<WorkingRegionModel> childRegionList = new ArrayList<>();
 
@@ -124,43 +129,34 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         final WorkingRegionModel region = childRegionList.get(i);
 
-                        if (region.childCount != 0) {
-                            callChildRegionDialog(region);
-                        }
-
-                        final LinearLayout btnCheck = view.findViewById(R.id.itemAreaChild_vbtnCheck);
-                        btnCheck.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                ImageView imageCheck = view.findViewById(R.id.itemAreaChild_ivCheck);
-                                if (region.childCount == 0) {
-                                    if (chosenRegions.contains(region.id)) {
-                                        chosenRegions.remove(region.id);
-                                    } else {
-                                        chosenRegions.add(region.id);
-                                        OkhomeUtil.showToast(UpdateConsultantAreaActivity.this, "Added child");
-                                    }
-                                } else {
-                                    if (imageCheck.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.ic_checked_sq).getConstantState()) {
-                                        for (WorkingRegionModel newRegion : allRegions) {
-                                            if (newRegion.parentId == region.id) {
-                                                chosenRegions.remove(newRegion.id);
-                                                OkhomeUtil.showToast(UpdateConsultantAreaActivity.this, "All children removed");
-                                            }
-                                        }
-                                    } else {
-                                        for (WorkingRegionModel newRegion : allRegions) {
-                                            if (newRegion.parentId == region.id) {
-                                                chosenRegions.add(newRegion.id);
-                                                OkhomeUtil.showToast(UpdateConsultantAreaActivity.this, "Added all children of root");
-                                            }
-                                        }
+                        ImageView imageCheck = view.findViewById(R.id.itemAreaChild_ivCheck);
+                        if (region.childCount == 0) {
+                            // Add or remove a child region
+                            if (chosenRegions.contains(region.id)) {
+                                chosenRegions.remove(region.id);
+                            } else {
+                                chosenRegions.add(region.id);
+                            }
+                        } else {
+                            // Add or remove all child regions of parent region
+                            if (imageCheck.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.ic_checked_sq).getConstantState()) {
+                                for (WorkingRegionModel newRegion : allRegions) {
+                                    // Add all children
+                                    if (newRegion.parentId == region.id) {
+                                        chosenRegions.remove(newRegion.id);
                                     }
                                 }
-                                areaDialog.updateChildRegionList();
-                                regionAdapter.notifyDataSetChanged();
+                            } else {
+                                for (WorkingRegionModel newRegion : allRegions) {
+                                    // Remove all children
+                                    if (newRegion.parentId == region.id) {
+                                        chosenRegions.add(newRegion.id);
+                                    }
+                                }
                             }
-                        });
+                        }
+                        areaDialog.updateChildRegionList();
+                        regionAdapter.notifyDataSetChanged();
                     }
                 });
         areaDialog.show();

@@ -2,6 +2,7 @@ package id.co.okhome.consultant.view.common.dialog;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -56,7 +57,8 @@ public class JobExperienceDialog extends DialogParent {
 
                 tv.setText(dateFormat.format(calendar.getTime()));
             }
-        }, R.style.MyDialogTheme);
+        }, R.style.MonthYearDialogPicker);
+
         yearMonthPickerDialog.show();
     }
 

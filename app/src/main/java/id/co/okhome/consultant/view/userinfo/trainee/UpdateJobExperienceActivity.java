@@ -3,6 +3,7 @@ package id.co.okhome.consultant.view.userinfo.trainee;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -48,8 +49,12 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_job_experiences);
-        ButterKnife.bind(this);
+        OkhomeUtil.setSystemBarColor(this,
 
+//                Color.parseColor("#29313a"));
+                ContextCompat.getColor(this, R.color.colorOkhome));
+
+        ButterKnife.bind(this);
         init();
     }
 

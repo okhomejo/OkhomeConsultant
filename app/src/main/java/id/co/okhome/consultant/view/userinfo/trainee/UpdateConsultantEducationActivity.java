@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.ContextCompat;
 import android.webkit.URLUtil;
 import android.widget.ImageView;
 
@@ -50,8 +51,12 @@ public class UpdateConsultantEducationActivity extends OkHomeParentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_education);
-        ButterKnife.bind(this);
+        OkhomeUtil.setSystemBarColor(this,
 
+//                Color.parseColor("#29313a"));
+                ContextCompat.getColor(this, R.color.colorOkhome));
+
+        ButterKnife.bind(this);
         init();
     }
 

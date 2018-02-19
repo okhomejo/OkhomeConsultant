@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="58dp"
-    android:paddingRight="20dp"
     android:orientation="vertical"
     android:gravity="center_vertical">
 
@@ -13,7 +12,7 @@
 
         <LinearLayout
             android:id="@+id/itemAreaChild_vbtnCheck"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="20dp"
             android:descendantFocusability="blocksDescendants"
@@ -23,17 +22,8 @@
                 android:id="@+id/itemAreaChild_ivCheck"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginRight="20dp"
-                android:layout_centerVertical="true"
+                android:layout_marginEnd="20dp"
                 android:src="@drawable/ic_check_not_deep"/>
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/itemAreaChild_vbtnCity"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/itemAreaChild_vbtnCheck"
-            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/itemAreaChild_tvCityTitle"
@@ -43,18 +33,22 @@
                 android:text="Jakarta barat"
                 android:textColor="@color/colorBlueBlack"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true" />
+                android:layout_height="wrap_content" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/itemAreaChild_vbtnArrow"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:gravity="center">
             <ImageView
                 android:id="@+id/itemAreaChild_ivArrow"
-                android:adjustViewBounds="true"
                 android:src="@drawable/ic_right_simplearrow_black"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
                 android:layout_width="17dp"
-                android:layout_height="wrap_content" />
-        </RelativeLayout>
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>

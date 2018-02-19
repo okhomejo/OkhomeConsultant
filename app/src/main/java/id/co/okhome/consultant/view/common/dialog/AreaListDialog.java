@@ -77,6 +77,7 @@ public class AreaListDialog extends DialogParent {
         regionAdapter = new ChildAreaListAdapter(context, listItems, chosenRegions, allRegions);
         listView.setAdapter(regionAdapter);
         listView.setOnItemClickListener(itemClickListener);
+
     }
 
     public void updateChildRegionList() {

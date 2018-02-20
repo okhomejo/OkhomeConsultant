@@ -10,8 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -22,6 +24,7 @@ import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.model.WorkingRegionModel;
+import id.co.okhome.consultant.view.common.dialog.AreaListDialog;
 import id.co.okhome.consultant.view.userinfo.trainee.UpdateConsultantAreaActivity;
 
 /**
@@ -34,12 +37,14 @@ public class ChildAreaListAdapter extends BaseAdapter {
     private List<WorkingRegionModel> regions;
     private List<WorkingRegionModel> allRegions;
     private Set<Integer> chosenRegions;
+    private AreaListDialog listDialog;
 
-    public ChildAreaListAdapter(Context context, List<WorkingRegionModel> items, Set<Integer> chosenRegions, List<WorkingRegionModel> allRegions) {
+    public ChildAreaListAdapter(AreaListDialog listDialog, Context context, List<WorkingRegionModel> items, Set<Integer> chosenRegions, List<WorkingRegionModel> allRegions) {
         this.context = context;
         this.regions = items;
         this.allRegions = allRegions;
         this.chosenRegions = chosenRegions;
+        this.listDialog = listDialog;
     }
 
     public void setRegionList(List<WorkingRegionModel> regions) {
@@ -74,14 +79,19 @@ public class ChildAreaListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.btnArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UpdateConsultantAreaActivity areaActivity = (UpdateConsultantAreaActivity) context;
-                areaActivity.callChildRegionDialog(region);
-            }
-        });
+        if (region.childCount > 0) {
+            // Call new child region dialog
+            viewHolder.btnArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    listDialog.dismiss();
+                    UpdateConsultantAreaActivity areaActivity = (UpdateConsultantAreaActivity) context;
+                    areaActivity.callChildRegionDialog(region);
+                }
+            });
+        }
 
+        // Set child region arrow visible or gone
         viewHolder.cityName.setText(region.address);
         if (region.hasChild || region.childCount > 0) {
             viewHolder.arrowImage.setVisibility(View.VISIBLE);
@@ -89,7 +99,9 @@ public class ChildAreaListAdapter extends BaseAdapter {
             viewHolder.arrowImage.setVisibility(View.GONE);
         }
 
+        // Set region check mark image checked, gone or half checked
         if (region.childCount > 0) {
+            viewHolder.subTitle.setVisibility(View.VISIBLE);
             int childRegionCount = 0, chosenChildCount = 0;
             for(WorkingRegionModel newRegion : allRegions) {
                 if (newRegion.parentId == region.id) {
@@ -101,17 +113,24 @@ public class ChildAreaListAdapter extends BaseAdapter {
             }
             if (childRegionCount == chosenChildCount) {
                 viewHolder.checkImage.setImageResource(R.drawable.ic_checked_sq);
+                viewHolder.checkImage.setImageAlpha(255);
+                viewHolder.subTitle.setText(MessageFormat.format("{0} of {0} selected", childRegionCount));
+            } else if (chosenChildCount > 0 && chosenChildCount < childRegionCount) {
+                viewHolder.checkImage.setImageResource(R.drawable.ic_checked_sq);
+                viewHolder.checkImage.setImageAlpha(50);
+                viewHolder.subTitle.setText(MessageFormat.format("{0} of {1} selected", chosenChildCount, childRegionCount));
             } else {
                 viewHolder.checkImage.setImageResource(R.drawable.ic_check_not_deep);
+                viewHolder.subTitle.setText("Not selected");
             }
         } else {
+            viewHolder.subTitle.setVisibility(View.GONE);
             if (chosenRegions.contains(region.id)){
                 viewHolder.checkImage.setImageResource(R.drawable.ic_checked_sq);
             } else {
                 viewHolder.checkImage.setImageResource(R.drawable.ic_check_not_deep);
             }
         }
-
         return convertView;
     }
 
@@ -119,9 +138,10 @@ public class ChildAreaListAdapter extends BaseAdapter {
 
     static class ViewHolder {
         @BindView(R.id.itemAreaChild_tvCityTitle)   TextView cityName;
+        @BindView(R.id.itemAreaChild_tvSubTitle)    TextView subTitle;
         @BindView(R.id.itemAreaChild_ivArrow)       ImageView arrowImage;
         @BindView(R.id.itemAreaChild_ivCheck)       ImageView checkImage;
-        @BindView(R.id.itemAreaChild_vbtnArrow)     LinearLayout btnArrow;
+        @BindView(R.id.itemAreaChild_vbtnArrow)     RelativeLayout btnArrow;
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);

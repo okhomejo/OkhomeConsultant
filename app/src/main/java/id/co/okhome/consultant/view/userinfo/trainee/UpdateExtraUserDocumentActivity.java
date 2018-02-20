@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Map;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,7 +66,11 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
                     if (TextUtils.isEmpty(consultant.childrenCNT)) {
                         married = "Married";
                     } else {
-                        married = "Married, " + consultant.childrenCNT;
+                        if (consultant.childrenCNT.equals("4")) {
+                            married = "Married, 4+";
+                        } else {
+                            married = "Married, " + consultant.childrenCNT;
+                        }
                     }
                 } else if (consultant.marriedYN.equals("N")) {
                     married = "Not yet";
@@ -191,27 +196,25 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
                     @Override
                     public void onItemClick(Dialog dialog, int pos, String value, String tag) {
                         dialog.dismiss();
-                        tvMarried.setText(value);
                         consultant.marriedYN = tag;
-
-                        if (tag.equals("Y")) {
+                        if (tag.equals("N")) {
+                            tvMarried.setText(value);
+                            consultant.childrenCNT = "";
+                        } else if (tag.equals("Y")) {
                             new CommonListDialog(UpdateExtraUserDocumentActivity.this)
                                     .setTitle("Children?")
                                     .setArrItems("0", "1", "2", "3", "4+")
+                                    .setArrItemTag("0", "1", "2", "3", "4")
                                     .setColumnCount(5)
                                     .setItemClickListener(new StringHolder.ItemClickListener() {
                                         @Override
                                         public void onItemClick(Dialog dialog, int pos, String value, String tag) {
                                             dialog.dismiss();
-
-                                            String marriedStatus = tvMarried.getText().toString();
-                                            tvMarried.setText(String.format("%s, %s", marriedStatus, value));
-                                            consultant.childrenCNT = value;
+                                            tvMarried.setText(String.format("Married, %s", value));
+                                            consultant.childrenCNT = tag;
                                         }
                                     })
                                     .show();
-                        } else {
-                            consultant.childrenCNT = "";
                         }
                     }
                 })

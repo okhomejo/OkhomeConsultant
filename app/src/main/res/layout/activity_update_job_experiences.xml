@@ -67,15 +67,6 @@
             android:layout_height="wrap_content"
             android:divider="#00000000" />
 
-        <Button
-            android:id="@+id/actJobExp_btnAddExp"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="@color/colorOkhome"
-            android:textColor="@android:color/white"
-            android:text="+ADD"/>
-
     </LinearLayout>
 
     <LinearLayout

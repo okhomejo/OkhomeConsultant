@@ -3,6 +3,7 @@ package id.co.okhome.consultant.view.common.dialog;
 import android.content.Context;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import id.co.okhome.consultant.adapter.ChildAreaListAdapter;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.model.WorkingRegionModel;
+import id.co.okhome.consultant.view.userinfo.trainee.UpdateConsultantAreaActivity;
 
 import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListener.ACTIONCODE_NO;
 
@@ -26,9 +28,10 @@ import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListen
 
 public class AreaListDialog extends DialogParent {
 
-    @BindView(R.id.dialogAlertList_tvSubTitle)    TextView tvSubTitle;
-    @BindView(R.id.dialogAlertList_tvTitle)       TextView tvTitle;
-    @BindView(R.id.dialogAlertList_list)          ListView listView;
+    @BindView(R.id.dialogAreaList_tvSubTitle)    TextView tvSubTitle;
+    @BindView(R.id.dialogAreaList_tvTitle)       TextView tvTitle;
+    @BindView(R.id.dialogAreaList_list)          ListView listView;
+    @BindView(R.id.dialogAreaList_btnConfirm)    Button btnConfirm;
 
     private Context context;
     private ChildAreaListAdapter regionAdapter;
@@ -74,21 +77,29 @@ public class AreaListDialog extends DialogParent {
     }
 
     private void adaptList() {
-        regionAdapter = new ChildAreaListAdapter(context, listItems, chosenRegions, allRegions);
+        regionAdapter = new ChildAreaListAdapter(this, context, listItems, chosenRegions, allRegions);
         listView.setAdapter(regionAdapter);
         listView.setOnItemClickListener(itemClickListener);
-
     }
 
     public void updateChildRegionList() {
         regionAdapter.notifyDataSetChanged();
     }
 
-    @OnClick(R.id.dialogAlertList_vbtnBack)
+    public ChildAreaListAdapter getRegionAdapter() {
+        return regionAdapter;
+    }
+
+    @OnClick(R.id.dialogAreaList_vbtnBack)
     public void x(){
         dismiss();
     }
 
+    @OnClick(R.id.dialogAreaList_btnConfirm)
+    public void confirmSelection(){
+        UpdateConsultantAreaActivity areaActivity = (UpdateConsultantAreaActivity) context;
+        areaActivity.saveAndCloseDialog();
+    }
 
     //-----------begin setting params
     public AreaListDialog setTitle(String title) {

@@ -119,7 +119,7 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
         );
     }
 
-    @OnClick({R.id.actJobExp_btnAddExp, R.id.actJobExp_vbtnAdd})
+    @OnClick(R.id.actJobExp_vbtnAdd)
     public void onButtonAddExperience() {
         JobExperienceDialog expDialog = new JobExperienceDialog(this, this);
         expDialog.show();

@@ -1,14 +1,10 @@
 package id.co.okhome.consultant.view.userinfo.trainee;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -43,6 +39,7 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
     private List<WorkingRegionModel> allRegions;
     private AreaListAdapter regionAdapter;
     private Set<Integer> chosenRegions;
+    private AreaListDialog parentDialog, childDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,14 +109,13 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
     public void callChildRegionDialog(final WorkingRegionModel region) {
 
         final List<WorkingRegionModel> childRegionList = new ArrayList<>();
-
         for (WorkingRegionModel childRegion : allRegions) {
             if (region.id == childRegion.parentId) {
                 childRegionList.add(childRegion);
             }
         }
-        final AreaListDialog areaDialog = new AreaListDialog(UpdateConsultantAreaActivity.this);
 
+        final AreaListDialog areaDialog = new AreaListDialog(UpdateConsultantAreaActivity.this);
         areaDialog.setTitle(region.address)
                 .setListItems(childRegionList)
                 .setAllRegionItems(allRegions)
@@ -129,7 +125,6 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         final WorkingRegionModel region = childRegionList.get(i);
 
-                        ImageView imageCheck = view.findViewById(R.id.itemAreaChild_ivCheck);
                         if (region.childCount == 0) {
                             // Add or remove a child region
                             if (chosenRegions.contains(region.id)) {
@@ -138,15 +133,25 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
                                 chosenRegions.add(region.id);
                             }
                         } else {
+                            // Count how many child regions and how many of them are selected
+                            int childRegionCount = 0, chosenChildCount = 0;
+                            for(WorkingRegionModel newRegion : allRegions) {
+                                if (newRegion.parentId == region.id) {
+                                    if (chosenRegions.contains(newRegion.id)) {
+                                        chosenChildCount++;
+                                    }
+                                    childRegionCount++;
+                                }
+                            }
                             // Add or remove all child regions of parent region
-                            if (imageCheck.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.ic_checked_sq).getConstantState()) {
+                            if (childRegionCount == chosenChildCount) {
                                 for (WorkingRegionModel newRegion : allRegions) {
                                     // Add all children
                                     if (newRegion.parentId == region.id) {
                                         chosenRegions.remove(newRegion.id);
                                     }
                                 }
-                            } else {
+                            } else if (chosenChildCount == 0 || chosenChildCount < childRegionCount) {
                                 for (WorkingRegionModel newRegion : allRegions) {
                                     // Remove all children
                                     if (newRegion.parentId == region.id) {
@@ -155,11 +160,24 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
                                 }
                             }
                         }
-                        areaDialog.updateChildRegionList();
-                        regionAdapter.notifyDataSetChanged();
+                        parentDialog.updateChildRegionList();
+                        childDialog.updateChildRegionList();
                     }
                 });
-        areaDialog.show();
+
+        if (parentDialog != null && parentDialog.isShowing()) {
+            childDialog = areaDialog;
+            childDialog.show();
+        } else {
+            parentDialog = areaDialog;
+            parentDialog.show();
+        }
+    }
+
+    public void saveAndCloseDialog() {
+        childDialog.dismiss();
+        parentDialog.dismiss();
+        regionAdapter.notifyDataSetChanged();
     }
 
     private void updateWorkingRegions(){

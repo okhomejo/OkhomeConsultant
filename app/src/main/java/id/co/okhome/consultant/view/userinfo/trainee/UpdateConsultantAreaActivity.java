@@ -1,6 +1,7 @@
 package id.co.okhome.consultant.view.userinfo.trainee;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -37,9 +38,10 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
     @BindView(R.id.actArea_lvRegions)     ListView itemsListView;
 
     private List<WorkingRegionModel> allRegions;
-    private AreaListAdapter regionAdapter;
-    private Set<Integer> chosenRegions;
+    private Set<Integer> chosenRegions, finalRegions;
     private AreaListDialog parentDialog, childDialog;
+    private AreaListAdapter regionAdapter;
+    private boolean savedSelection = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +56,13 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
         init();
     }
 
-    private void init(){
+    private void init() {
         if (ConsultantLoggedIn.hasSavedData()) {
             ConsultantModel consultant = ConsultantLoggedIn.get();
             if (!Objects.equals(consultant.workingRegions, "")) {
                 List<String> regionStringList = Arrays.asList(consultant.workingRegions.split(","));
                 chosenRegions = new HashSet<>(regionStringList.size());
-                for (String current : regionStringList){
+                for (String current : regionStringList) {
                     chosenRegions.add(Integer.parseInt(current));
                 }
             } else {
@@ -68,6 +70,10 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
             }
         } else {
             chosenRegions = new HashSet<>();
+        }
+        finalRegions = new HashSet<>();
+        if (!chosenRegions.isEmpty()) {
+            finalRegions.addAll(chosenRegions);
         }
         getAllRegions();
     }
@@ -87,12 +93,13 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
                         parentRegions.add(region);
                     }
                 }
-                regionAdapter = new AreaListAdapter(UpdateConsultantAreaActivity.this, parentRegions, chosenRegions, allRegions);
+                regionAdapter = new AreaListAdapter(UpdateConsultantAreaActivity.this, parentRegions, finalRegions, allRegions);
                 itemsListView.setAdapter(regionAdapter);
 
                 itemsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                        if( parentDialog != null && parentDialog.isShowing() ) return;
                         callChildRegionDialog(regionAdapter.getItem(pos));
                     }
                 });
@@ -108,13 +115,14 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
 
     public void callChildRegionDialog(final WorkingRegionModel region) {
 
+        if( childDialog != null && childDialog.isShowing() ) return;
+
         final List<WorkingRegionModel> childRegionList = new ArrayList<>();
         for (WorkingRegionModel childRegion : allRegions) {
             if (region.id == childRegion.parentId) {
                 childRegionList.add(childRegion);
             }
         }
-
         final AreaListDialog areaDialog = new AreaListDialog(UpdateConsultantAreaActivity.this);
         areaDialog.setTitle(region.address)
                 .setListItems(childRegionList)
@@ -161,10 +169,11 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
                             }
                         }
                         parentDialog.updateChildRegionList();
-                        childDialog.updateChildRegionList();
+                        if (childDialog != null && childDialog.isShowing()) {
+                            childDialog.updateChildRegionList();
+                        }
                     }
                 });
-
         if (parentDialog != null && parentDialog.isShowing()) {
             childDialog = areaDialog;
             childDialog.show();
@@ -172,11 +181,31 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
             parentDialog = areaDialog;
             parentDialog.show();
         }
+
+        parentDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                if (!savedSelection) {
+                    chosenRegions.clear();
+                    chosenRegions.addAll(finalRegions);
+                } else {
+                    savedSelection = false;
+                }
+            }
+        });
     }
 
     public void saveAndCloseDialog() {
-        childDialog.dismiss();
-        parentDialog.dismiss();
+        savedSelection = true;
+
+        finalRegions.clear();
+        finalRegions.addAll(chosenRegions);
+
+        if (childDialog != null && childDialog.isShowing())
+            childDialog.dismiss();
+        if (parentDialog != null && parentDialog.isShowing())
+            parentDialog.dismiss();
+
         regionAdapter.notifyDataSetChanged();
     }
 
@@ -192,7 +221,6 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
                 regionString = regionString + "," + id;
             }
         }
-
         ConsultantLoggedIn.updateUserInfo(
                 OkhomeUtil.makeMap(
                         "working_regions", regionString),

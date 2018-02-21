@@ -121,6 +121,7 @@ public class ChildAreaListAdapter extends BaseAdapter {
                 viewHolder.subTitle.setText(MessageFormat.format("{0} of {1} selected", chosenChildCount, childRegionCount));
             } else {
                 viewHolder.checkImage.setImageResource(R.drawable.ic_check_not_deep);
+                viewHolder.checkImage.setImageAlpha(255);
                 viewHolder.subTitle.setText("Not selected");
             }
         } else {

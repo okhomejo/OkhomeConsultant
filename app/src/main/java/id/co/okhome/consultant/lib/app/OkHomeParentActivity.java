@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +66,8 @@ public class OkHomeParentActivity extends AppCompatActivity {
         inputNewActivity(this);
         super.onCreate(savedInstanceState);
 
+        // Disable screenshots in all child activities
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
     }
 
     @Override
@@ -99,8 +102,5 @@ public class OkHomeParentActivity extends AppCompatActivity {
         //폰트, 스케일 설정
         ContextWrapper contextWrapper = CalligraphyContextWrapper.wrap(newBase);
         super.attachBaseContext(contextWrapper);
-
     }
-
-
 }

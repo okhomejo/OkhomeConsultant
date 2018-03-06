@@ -135,8 +135,6 @@ public class ChildAreaListAdapter extends BaseAdapter {
         return convertView;
     }
 
-
-
     static class ViewHolder {
         @BindView(R.id.itemAreaChild_tvCityTitle)   TextView cityName;
         @BindView(R.id.itemAreaChild_tvSubTitle)    TextView subTitle;

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import butterknife.BindView;
@@ -41,9 +42,6 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     @BindView(R.id.actFillupUserInfo_ivBarKTP)                          ImageView ivBarKTP;
     @BindView(R.id.actFillupUserInfo_ivBarPreferenceArea)               ImageView ivBarPreferenceArea;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +56,6 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
         reload();
     }
-
 
     //check exception. if no error, go to next page.
     private void confirm(){
@@ -324,5 +321,4 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     public void onClickConfirm(){
         confirm();
     }
-
 }

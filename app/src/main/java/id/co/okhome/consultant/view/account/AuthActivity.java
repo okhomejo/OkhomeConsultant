@@ -19,7 +19,7 @@ public class AuthActivity extends OkHomeParentActivity {
         ButterKnife.bind(this);
 
 
-        //<uses-permission android:name="android/.permission.READ_CONTACTS" />
+//<uses-permission android:name="android/.permission.READ_CONTACTS" />
 //<uses-permission android:name="android.permission.READ_PROFILE" />
 //        PermissionUtil.requestPermission(this, new String[]{
 //                Manifest.permission.READ_PHONE_STATE});

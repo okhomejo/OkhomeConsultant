@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.PhoneNumberGetter;
 import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
@@ -38,7 +39,8 @@ public class SignupActivity extends OkHomeParentActivity implements
     @BindView(R.id.actSignup_vbtnSignup)        View vBtnSignUp;
 
     private GoogleApiClient mGoogleApiClient;
-    private AutoPhoneNumberGetter autoPhoneNumberGetter;
+//    private AutoPhoneNumberGetter autoPhoneNumberGetter;
+    private PhoneNumberGetter phoneNumberGetter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,8 +158,12 @@ public class SignupActivity extends OkHomeParentActivity implements
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (autoPhoneNumberGetter != null) {
-            autoPhoneNumberGetter.onActivityResult(requestCode, resultCode, data);
+//        if (autoPhoneNumberGetter != null) {
+//            autoPhoneNumberGetter.onActivityResult(requestCode, resultCode, data);
+//        }
+
+        if (phoneNumberGetter != null) {
+            phoneNumberGetter.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -198,13 +204,18 @@ public class SignupActivity extends OkHomeParentActivity implements
 
     @OnClick(R.id.actSignup_tvPhone)
     public void onClickPhone(){
-        autoPhoneNumberGetter = new AutoPhoneNumberGetter(this, mGoogleApiClient,
-                new AutoPhoneNumberGetter.PhoneNumCallback() {
-                    @Override
-                    public void sendVerifiedPhoneNumber(String phoneNum) {
-                        tvPhone.setText(phoneNum);
-                    }
-                });
+//        autoPhoneNumberGetter = new AutoPhoneNumberGetter(this, mGoogleApiClient,
+//                new AutoPhoneNumberGetter.PhoneNumCallback() {
+//                    @Override
+//                    public void sendVerifiedPhoneNumber(String phoneNum) {
+//                        tvPhone.setText(phoneNum);
+//                    }
+//                });
+
+
+        phoneNumberGetter = new PhoneNumberGetter(this);
+        phoneNumberGetter.init();
+        phoneNumberGetter.show();
     }
 
 }

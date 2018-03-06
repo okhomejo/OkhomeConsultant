@@ -137,7 +137,5 @@ public class AreaListDialog extends DialogParent {
         this.itemClickListener = itemClickListener;
         return this;
     }
-
     //-----------end setting params
-
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.ContextCompat;
+import android.view.WindowManager;
 import android.webkit.URLUtil;
 import android.widget.ImageView;
 

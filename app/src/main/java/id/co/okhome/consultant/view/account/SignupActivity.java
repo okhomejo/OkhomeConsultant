@@ -24,7 +24,6 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import id.co.okhome.consultant.model.ConsultantModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
-import id.co.okhome.consultant.lib.AutoPhoneNumberGetter;
 import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 
 public class SignupActivity extends OkHomeParentActivity implements

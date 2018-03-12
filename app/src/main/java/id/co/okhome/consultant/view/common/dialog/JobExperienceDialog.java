@@ -1,8 +1,6 @@
 package id.co.okhome.consultant.view.common.dialog;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,9 +17,7 @@ import id.co.okhome.consultant.exception.OkhomeException;
 import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
-import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.JobExperienceModel;
-import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 
 import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListener.ACTIONCODE_OK;
 

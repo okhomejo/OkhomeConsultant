@@ -34,7 +34,7 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".view.etc.SplashActivity">
+        <activity android:name=".view.etc.SplashActivity" android:label="SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

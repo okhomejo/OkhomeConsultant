@@ -9,5 +9,6 @@ public class AccountStatusModel {
 //            "isDoumentCompleted": false,
 //            "consultantType": "READY"
     public boolean isBlocked = false, isDoumentCompleted = false;
+    public String blockReason;
     public String consultantType;
 }

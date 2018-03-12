@@ -2,8 +2,6 @@ package id.co.okhome.consultant.view.etc;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,6 +12,7 @@ import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.ConsultantModel;
+import id.co.okhome.consultant.view.account.AuthActivity;
 import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 
 public class SplashActivity extends OkHomeParentActivity {
@@ -28,34 +27,34 @@ public class SplashActivity extends OkHomeParentActivity {
         ButterKnife.bind(this);
         beginLogoAnimation();
 
-        login();
+        chkCachedAccount();
+    }
+
+    private void chkCachedAccount(){
+        if(ConsultantLoggedIn.hasSavedData()){
+
+//            ConsultantModel consultantModel = ConsultantLoggedIn.get();
+            login("hello@gmail.com", "1234567");
+        }else{
+            startActivity(new Intent(this, AuthActivity.class));
+            finish();
+            //go to login activity.
+        }
     }
 
     //login
-    private void login(){
-        final String email = "hello@gmail.com";
-        final String pass = "1234567";
-
-        ConsultantLoggedIn.login(email, pass, new RetrofitCallback<ConsultantModel>() {
+    private void login(final String email, final String password){
+        ConsultantLoggedIn.login(this, email, password, new RetrofitCallback<ConsultantModel>() {
             @Override
             public void onSuccess(ConsultantModel result) {
-                //consulantant model is automatically stored at ConsultantLoggedIn
-                next();
+                gotoNext();
             }
         });
     }
 
-    private void next(){
-        new Handler(){
-            @Override
-            public void dispatchMessage(Message msg) {
-                super.dispatchMessage(msg);
-//                startActivity(new Intent(SplashActivity.this, AuthActivity.class));
-
-                startActivity(new Intent(SplashActivity.this, FillupUserInfoActivity.class));
-                SplashActivity.this.finish();
-            }
-        }.sendEmptyMessageDelayed(0, 2000);
+    private void gotoNext(){
+        startActivity(new Intent(SplashActivity.this, FillupUserInfoActivity.class));
+        SplashActivity.this.finish();
     }
 
     //begin logo animation

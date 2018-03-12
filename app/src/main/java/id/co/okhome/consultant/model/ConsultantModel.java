@@ -1,7 +1,5 @@
 package id.co.okhome.consultant.model;
 
-import java.util.Map;
-
 public class ConsultantModel {
 
     public String id
@@ -27,5 +25,7 @@ public class ConsultantModel {
     public String
             approveYN, bikeYN, likeDogYN, workingRegions, pastCareers, insertDateTime;
 
-    public Map<String, Object> accountStatus;
+    public AccountStatusModel accountStatus;
+
+    public String blocked;
 }

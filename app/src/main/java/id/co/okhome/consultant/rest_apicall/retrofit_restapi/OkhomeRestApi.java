@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import id.co.okhome.consultant.lib.retrofit.RetrofitFactory;
+import id.co.okhome.consultant.rest_apicall.retrofit_restapi.v1.AccountClient;
+import id.co.okhome.consultant.rest_apicall.retrofit_restapi.v1.CertificationClient;
+import id.co.okhome.consultant.rest_apicall.retrofit_restapi.v1.CommonClient;
 
 
 /**

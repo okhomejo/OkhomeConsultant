@@ -1,5 +1,7 @@
 package id.co.okhome.consultant.lib.app;
 
+import android.app.Activity;
+
 import com.google.gson.Gson;
 
 import java.util.Map;
@@ -52,12 +54,18 @@ public class ConsultantLoggedIn {
     }
 
     /**login*/
-    public final static void login(final String email, final String pass, final RetrofitCallback<ConsultantModel> retrofitCallback){
+    public final static void login(final Activity activity, final String email, final String pass, final RetrofitCallback<ConsultantModel> retrofitCallback){
         OkhomeRestApi.getAccountClient().signin(email, pass).enqueue(new RetrofitCallback<ConsultantModel>() {
             @Override
             public void onSuccess(ConsultantModel result) {
                 ConsultantLoggedIn.set(result);
                 retrofitCallback.onSuccess(result);
+
+                if(result.accountStatus.isBlocked){
+                    //블럭화면으로
+                }else if(!result.accountStatus.isDoumentCompleted){
+                    //문서 완료 안됬으면
+                }
             }
 
             @Override

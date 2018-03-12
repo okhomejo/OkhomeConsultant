@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.rest_apicall.retrofit_restapi;
+package id.co.okhome.consultant.rest_apicall.retrofit_restapi.v1;
 
 
 import id.co.okhome.consultant.model.AccountStatusModel;

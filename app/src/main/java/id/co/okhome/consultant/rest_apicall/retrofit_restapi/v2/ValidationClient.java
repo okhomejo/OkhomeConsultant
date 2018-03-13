@@ -1,11 +1,8 @@
 package id.co.okhome.consultant.rest_apicall.retrofit_restapi.v2;
 
-
-import java.util.List;
-
-import id.co.okhome.consultant.model.WorkingRegionModel;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -21,8 +18,10 @@ public interface ValidationClient {
     /**
      * Check if the code is valid
      * */
-    Call<List<WorkingRegionModel>> checkPhoneValidationCode(@Query("phone") int phone, @Query("code") int code);
+    Call<Boolean> checkPhoneValidationCode(@Query("phone") String phone, @Query("code") String code);
 
+//    @PATCH("update/phone")
+//    Call<String> updatePhoneNumber(@Query("accountId") String accountId, @Query("phone") String phone, @Query("code") String code);
 }
 
 

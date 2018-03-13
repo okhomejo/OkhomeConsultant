@@ -9,14 +9,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.exception.OkhomeException;
 import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
-import id.co.okhome.consultant.model.ConsultantModel;
+import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
+import id.co.okhome.consultant.view.etc.BlockedActivity;
 import id.co.okhome.consultant.view.main.trainee.TraineeMainActivity;
+import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 
 public class SigninActivity extends OkHomeParentActivity {
 
@@ -43,29 +47,29 @@ public class SigninActivity extends OkHomeParentActivity {
         final String email = etEmail.getText().toString();
         final String password = etPassword.getText().toString();
 
-//        try {
-//            OkhomeUtil.chkException(!OkhomeUtil.isValidEmail(email), "Check your email.");
-//            OkhomeUtil.isValidPassword(password);
-//
-//        } catch(OkhomeException e) {
-//            OkhomeUtil.showToast(this, e.getMessage());
-//            return;
-//        }
-//
-//        login(email, password);
+        try {
+            OkhomeUtil.chkException(!OkhomeUtil.isValidEmail(email), "Check your email.");
+            OkhomeUtil.isValidPassword(password);
 
+        } catch(OkhomeException e) {
+            OkhomeUtil.showToast(this, e.getMessage());
+            return;
+        }
 
-        OkHomeParentActivity.finishAllActivities();
-        startActivity(new Intent(this, TraineeMainActivity.class));
+        login(email, password);
+
+//
+//        OkHomeParentActivity.finishAllActivities();
+//        startActivity(new Intent(this, TraineeMainActivity.class));
     }
 
     private void login(final String email, final String password){
 
         showLoading(true);
-        OkhomeRestApi.getAccountClient().signin(email, password).enqueue(new RetrofitCallback<ConsultantModel>() {
+        OkhomeRestApi.getAccountClient().login(email, password).enqueue(new RetrofitCallback<AccountModel>() {
 
             @Override
-            public void onSuccess(ConsultantModel result) {
+            public void onSuccess(AccountModel result) {
                 onLoginSuccess(result);
             }
 
@@ -84,13 +88,18 @@ public class SigninActivity extends OkHomeParentActivity {
     }
 
     // on login success
-    private void onLoginSuccess(ConsultantModel result){
+    private void onLoginSuccess(AccountModel account){
 
-        ConsultantLoggedIn.set(result);
-
+        ConsultantLoggedIn.set(account);
         OkHomeParentActivity.finishAllActivities();
-        startActivity(new Intent(this, TraineeMainActivity.class));
 
+        if(account.blocked != null) {
+            startActivity(new Intent(this, BlockedActivity.class));
+        } else if (account.trainee.approveYN.equals("N")) {
+            startActivity(new Intent(this, FillupUserInfoActivity.class));
+        } else {
+            startActivity(new Intent(this, TraineeMainActivity.class));
+        }
     }
 
     //Loading toggle

@@ -15,7 +15,7 @@ public interface AccountClient {
 
     @POST("account/signup")
     /**signup. ** signupBy : EMAIL, GOOGLE */
-    Call<AccountModel> signup(@Query("email") String email, @Query("password") String password, @Query("signupBy") String signupBy);
+    Call<Integer> signup(@Query("email") String email, @Query("password") String password, @Query("signupBy") String signupBy);
 
     /**sign in*/
     @GET("account/login")
@@ -43,7 +43,7 @@ public interface AccountClient {
      * but now We don't need to use this function.
      * */
     @PATCH("account/update")
-    Call<String> update(@Query("accountId") int accountId, @Query("jsonReqStr") int jsonReqStr);
+    Call<String> update(@Query("accountId") String accountId, @Query("jsonReqStr") String jsonReqStr);
 
 }
 

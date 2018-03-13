@@ -21,7 +21,7 @@ import okhttp3.RequestBody;
  */
 
 public class ImageUploadCall extends CommonApiCall {
-    final String url = OkhomeConstant.OKHOME_URL + "file";
+    final String url = OkhomeConstant.OKHOME_URL_IMAGE + "file";
     String filePath;
 
     public ImageUploadCall(String filePath) {

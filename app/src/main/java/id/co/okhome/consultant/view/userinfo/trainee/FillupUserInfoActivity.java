@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
 import butterknife.BindView;
@@ -22,7 +21,8 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.jobrowser.callback.ApiResultCallback;
 import id.co.okhome.consultant.lib.jobrowser.model.ApiResult;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
-import id.co.okhome.consultant.model.ConsultantModel;
+import id.co.okhome.consultant.model.v2.AccountModel;
+import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.rest_apicall.raw_restapi.ImageUploadCall;
 import id.co.okhome.consultant.view.common.dialog.CommonListDialog;
 import id.co.okhome.consultant.view.common.dialog.ShowPhotoDialog;
@@ -60,14 +60,14 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     //check exception. if no error, go to next page.
     private void confirm(){
 
-        ConsultantModel consultant = ConsultantLoggedIn.get();
+        ProfileModel profile = ConsultantLoggedIn.get().profile;
 
         //Section1 data entry completion check
         try{
-            OkhomeException.chkException(consultant.name == null, "");
-            OkhomeException.chkException(consultant.phone == null, "");
-            OkhomeException.chkException(consultant.gender == null, "");
-            OkhomeException.chkException(consultant.address == null, "");
+            OkhomeException.chkException(profile.name == null, "");
+            OkhomeException.chkException(profile.phone == null, "");
+            OkhomeException.chkException(profile.gender == null, "");
+            OkhomeException.chkException(profile.address == null, "");
 
         }catch(OkhomeException e){
             ToastUtil.showToast("Data entry(Basic Information) must be completed.");
@@ -76,11 +76,11 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
         //Section2 data entry completion check
         try{
-            OkhomeException.chkException(consultant.nik == null, "");
-            OkhomeException.chkException(consultant.marriedYN == null, "");
-            OkhomeException.chkException(consultant.religion == null, "");
-            OkhomeException.chkException(consultant.bikeYN == null, "");
-            OkhomeException.chkException(consultant.likeDogYN == null, "");
+            OkhomeException.chkException(profile.nik == null, "");
+            OkhomeException.chkException(profile.marriedYN == null, "");
+            OkhomeException.chkException(profile.religion == null, "");
+            OkhomeException.chkException(profile.bikeYN == null, "");
+            OkhomeException.chkException(profile.likeDogYN == null, "");
 
         }catch(OkhomeException e){
             ToastUtil.showToast("Data entry(Additional Information) must be completed.");
@@ -89,7 +89,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
         //Section3 data entry completion check
         try{
-            OkhomeException.chkException(consultant.ktpPhotoUrl == null, "");
+            OkhomeException.chkException(profile.ktpPhotoUrl == null, "");
 
         }catch(OkhomeException e){
             ToastUtil.showToast("Data entry(KTP Information) must be completed.");
@@ -98,7 +98,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
         //Section4 data entry completion check
         try{
-            OkhomeException.chkException(consultant.workingRegions == null, "");
+            OkhomeException.chkException(profile.workingRegions == null, "");
 
         }catch(OkhomeException e){
             ToastUtil.showToast("Data entry(Preferred area) must be completed.");
@@ -107,10 +107,10 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
         //Section5 data entry completion check
         try{
-            OkhomeException.chkException(OkhomeUtil.isEmpty(consultant.sdPhotoUrl)
-                    && OkhomeUtil.isEmpty(consultant.smaPhotoURl)
-                    && OkhomeUtil.isEmpty(consultant.smpPhotoUrl)
-                    && OkhomeUtil.isEmpty(consultant.univPhotoUrl), "");
+            OkhomeException.chkException(OkhomeUtil.isEmpty(profile.sdPhotoUrl)
+                    && OkhomeUtil.isEmpty(profile.smaPhotoUrl)
+                    && OkhomeUtil.isEmpty(profile.smpPhotoUrl)
+                    && OkhomeUtil.isEmpty(profile.univPhotoUrl), "");
 
         }catch(OkhomeException e){
             ToastUtil.showToast("Data entry(Education) must be completed.");
@@ -119,7 +119,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
         //Section6 data entry completion check
         try{
-            OkhomeException.chkException(OkhomeUtil.isEmpty(consultant.pastCareers), "");
+            OkhomeException.chkException(OkhomeUtil.isEmpty(profile.pastCareers), "");
 
         }catch(OkhomeException e){
             ToastUtil.showToast("Data entry(Job Experience) must be completed.");
@@ -133,14 +133,14 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     //check progress to turn on/off left bar lamp.
     private void chkProgress(){
 
-        ConsultantModel consultant = ConsultantLoggedIn.get();
+        ProfileModel profile = ConsultantLoggedIn.get().profile;
 
         //step 1. Basic information
         try{
-            OkhomeException.chkException(consultant.name == null, "");
-            OkhomeException.chkException(consultant.phone == null, "");
-            OkhomeException.chkException(consultant.gender == null, "");
-            OkhomeException.chkException(consultant.address == null, "");
+            OkhomeException.chkException(profile.name == null, "");
+            OkhomeException.chkException(profile.phone == null, "");
+            OkhomeException.chkException(profile.gender == null, "");
+            OkhomeException.chkException(profile.address == null, "");
 
             ivBarBasicInfo.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
         }catch(OkhomeException e){
@@ -149,11 +149,11 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
         //step 2. Additional information
         try{
-            OkhomeException.chkException(consultant.nik == null, "");
-            OkhomeException.chkException(consultant.marriedYN == null, "");
-            OkhomeException.chkException(consultant.religion == null, "");
-            OkhomeException.chkException(consultant.bikeYN == null, "");
-            OkhomeException.chkException(consultant.likeDogYN == null, "");
+            OkhomeException.chkException(profile.nik == null, "");
+            OkhomeException.chkException(profile.marriedYN == null, "");
+            OkhomeException.chkException(profile.religion == null, "");
+            OkhomeException.chkException(profile.bikeYN == null, "");
+            OkhomeException.chkException(profile.likeDogYN == null, "");
 
             ivBarAdditionalInfo.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
         }catch(OkhomeException e){
@@ -162,7 +162,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
         //step 3. KTP photo
         try{
-            OkhomeException.chkException(consultant.ktpPhotoUrl == null, "");
+            OkhomeException.chkException(profile.ktpPhotoUrl == null, "");
 
             ivBarKTP.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
         }catch(OkhomeException e){
@@ -171,7 +171,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
         //step 4. Preferred area for cleaning
         try{
-            OkhomeException.chkException(consultant.workingRegions == null, "");
+            OkhomeException.chkException(profile.workingRegions == null, "");
 
             ivBarPreferenceArea.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
         }catch(OkhomeException e){
@@ -180,10 +180,10 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
         //step 5. Education information
         try{
-            OkhomeException.chkException(OkhomeUtil.isEmpty(consultant.sdPhotoUrl)
-                    && OkhomeUtil.isEmpty(consultant.smaPhotoURl)
-                    && OkhomeUtil.isEmpty(consultant.smpPhotoUrl)
-                    && OkhomeUtil.isEmpty(consultant.univPhotoUrl), "");
+            OkhomeException.chkException(OkhomeUtil.isEmpty(profile.sdPhotoUrl)
+                    && OkhomeUtil.isEmpty(profile.smaPhotoUrl)
+                    && OkhomeUtil.isEmpty(profile.smpPhotoUrl)
+                    && OkhomeUtil.isEmpty(profile.univPhotoUrl), "");
 
             ivBarEdu.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
         }catch(OkhomeException e){
@@ -192,7 +192,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
         //step 6. Job experience
         try{
-            OkhomeException.chkException(OkhomeUtil.isEmpty(consultant.pastCareers), "");
+            OkhomeException.chkException(OkhomeUtil.isEmpty(profile.pastCareers), "");
 
             ivBarJob.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
         }catch(OkhomeException e){
@@ -205,9 +205,9 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     private void reload(){
         vLoading.setVisibility(View.VISIBLE);
 
-        ConsultantLoggedIn.reload(new RetrofitCallback<ConsultantModel>() {
+        ConsultantLoggedIn.reload(new RetrofitCallback<AccountModel>() {
             @Override
-            public void onSuccess(ConsultantModel result) {
+            public void onSuccess(AccountModel result) {
                 ;
                 chkProgress();
             }
@@ -248,9 +248,9 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
                 p.dismiss();
                 if(apiResult.resultCode == 200){
                     //update photo url
-                    updatePhoto("ktp_photo_url", imgPath);
+                    updatePhoto("ktp_photo_url", apiResult.object);
                 }else{
-                    //faild
+                    //failed
                     ToastUtil.showToast(apiResult.result);
                 }
             }
@@ -270,7 +270,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     //--------on click
     @OnClick({R.id.actFillUpUserInfo_vbtnKTP, R.id.actFillUpUserInfo_tvKTP})
     public void onClickKTP(View v){
-        if(TextUtils.isEmpty(ConsultantLoggedIn.get().ktpPhotoUrl)){
+        if(TextUtils.isEmpty(ConsultantLoggedIn.get().profile.ktpPhotoUrl)){
             startActivityForResult(new Intent(this, ImageChooserActivity.class), REQ_GET_PHOTO_FOR_KTP);
         }else{
             new CommonListDialog(this)
@@ -285,7 +285,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
                             if(pos == 0){
                                 startActivityForResult(new Intent(FillupUserInfoActivity.this, ImageChooserActivity.class), REQ_GET_PHOTO_FOR_KTP);
                             }else{
-                                new ShowPhotoDialog(FillupUserInfoActivity.this, ConsultantLoggedIn.get().ktpPhotoUrl).show();
+                                new ShowPhotoDialog(FillupUserInfoActivity.this, ConsultantLoggedIn.get().profile.ktpPhotoUrl).show();
                             }
                         }
                     }).show();

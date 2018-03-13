@@ -28,18 +28,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.main.trainee.TraineeMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
 
-        </activity>
-        <activity android:name=".view.etc.SplashActivity" android:label="SplashActivity">
+        <activity android:name=".view.etc.SplashActivity" android:label="OKHOME Consultants">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.etc.BlockedActivity" />
         <activity android:name=".view.account.AuthActivity" />
         <activity android:name=".view.photochooser.CropImageActivity" />
         <activity android:name=".view.photochooser.ImageChooserActivity" />
@@ -59,7 +60,6 @@
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

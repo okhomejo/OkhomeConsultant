@@ -52,6 +52,9 @@ public class JobExperienceDialog extends DialogParent {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy");
 
                 tv.setText(dateFormat.format(calendar.getTime()));
+                if(!tvFromDate.getText().toString().matches("") && tvToDate.getText().toString().matches("")) {
+                    onEditEndDate();
+                }
             }
         }, R.style.MonthYearDialogPicker);
 
@@ -63,11 +66,11 @@ public class JobExperienceDialog extends DialogParent {
         final String fromDate   = tvFromDate.getText().toString();
         final String toDate     = tvToDate.getText().toString();
 
-        try{
+        try {
             OkhomeException.chkException(OkhomeUtil.isEmpty(position), "Please fill in your position");
             OkhomeException.chkException(OkhomeUtil.isEmpty(fromDate), "Please choose a starting date");
             OkhomeException.chkException(OkhomeUtil.isEmpty(toDate), "Please choose an ending date");
-        }catch(OkhomeException e){
+        } catch(OkhomeException e) {
             ToastUtil.showToast(e.getMessage());
             return;
         }
@@ -75,7 +78,7 @@ public class JobExperienceDialog extends DialogParent {
         onJobExperienceDone(newJobExp);
     }
 
-    private void onJobExperienceDone(JobExperienceModel jobExp){
+    private void onJobExperienceDone(JobExperienceModel jobExp) {
         commonDialogListener.onCommonDialogWorkDone(this, ACTIONCODE_OK, OkhomeUtil.makeMap(RESULT_POSITION, jobExp));
         dismiss();
     }

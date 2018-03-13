@@ -29,6 +29,7 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.jobrowser.callback.ApiResultCallback;
 import id.co.okhome.consultant.lib.jobrowser.model.ApiResult;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
+import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.rest_apicall.raw_restapi.ImageUploadCall;
 import id.co.okhome.consultant.view.common.dialog.ShowPhotoDialog;
 import id.co.okhome.consultant.view.photochooser.ImageChooserActivity;
@@ -67,10 +68,11 @@ public class UpdateConsultantEducationActivity extends OkHomeParentActivity {
 
     //first visit, set default image.
     private void initDefaultPhoto(){
-        sdUrl   = ConsultantLoggedIn.get().sdPhotoUrl;
-        smpUrl  = ConsultantLoggedIn.get().smpPhotoUrl;
-        smaUrl  = ConsultantLoggedIn.get().smaPhotoURl;
-        univUrl = ConsultantLoggedIn.get().univPhotoUrl;
+        ProfileModel profile = ConsultantLoggedIn.get().profile;
+        sdUrl   = profile.sdPhotoUrl;
+        smpUrl  = profile.smpPhotoUrl;
+        smaUrl  = profile.smaPhotoUrl;
+        univUrl = profile.univPhotoUrl;
 
         Glide.with(this).load(sdUrl).thumbnail(0.5f).into(ivPhotoSD);
         Glide.with(this).load(smpUrl).thumbnail(0.5f).into(ivPhotoSMP);

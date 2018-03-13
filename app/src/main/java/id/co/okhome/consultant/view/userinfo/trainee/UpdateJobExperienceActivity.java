@@ -16,6 +16,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +32,7 @@ import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.ConsultantModel;
 import id.co.okhome.consultant.model.JobExperienceModel;
+import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.view.common.dialog.JobExperienceDialog;
 
 /**
@@ -44,7 +46,7 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
 
     private JobExperienceListAdapter jobExperienceAdapter;
     private List<JobExperienceModel> jobExperiences;
-    private ConsultantModel consultant;
+    private ProfileModel profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +64,10 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
     private void init() {
         // Load saved consultant data
         if (ConsultantLoggedIn.hasSavedData()) {
-            consultant = ConsultantLoggedIn.get();
-            if (!consultant.pastCareers.isEmpty()) {
+            profile = ConsultantLoggedIn.get().profile;
+            if (Objects.equals(profile.pastCareers, "") || profile.pastCareers != null) {
                 Type listType = new TypeToken<ArrayList<JobExperienceModel>>(){}.getType();
-                jobExperiences = new Gson().fromJson(consultant.pastCareers, listType);
+                jobExperiences = new Gson().fromJson(profile.pastCareers, listType);
             } else {
                 jobExperiences = new ArrayList<>();
             }
@@ -94,7 +96,7 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
             OkhomeException.chkException(jobs.size() < 1, "Please include at least one job before submitting");
 
         } catch (OkhomeException e) {
-            ToastUtil.showToast(e.getMessage());
+            finish();
             return;
         }
 

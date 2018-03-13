@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -11,7 +12,7 @@ import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
-import id.co.okhome.consultant.model.ConsultantModel;
+import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.view.account.AuthActivity;
 import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 
@@ -31,22 +32,23 @@ public class SplashActivity extends OkHomeParentActivity {
     }
 
     private void chkCachedAccount(){
-        if(ConsultantLoggedIn.hasSavedData()){
-
-//            ConsultantModel consultantModel = ConsultantLoggedIn.get();
-            login("hello@gmail.com", "1234567");
-        }else{
+        if (ConsultantLoggedIn.hasSavedData()){
+            if (ConsultantLoggedIn.get().blocked != null) {
+                startActivity(new Intent(SplashActivity.this, BlockedActivity.class));
+            } else {
+                login("frizky@okhome.id", "tester123");
+            }
+        } else {
             startActivity(new Intent(this, AuthActivity.class));
             finish();
-            //go to login activity.
         }
     }
 
     //login
     private void login(final String email, final String password){
-        ConsultantLoggedIn.login(this, email, password, new RetrofitCallback<ConsultantModel>() {
+        ConsultantLoggedIn.login(this, email, password, new RetrofitCallback<AccountModel>() {
             @Override
-            public void onSuccess(ConsultantModel result) {
+            public void onSuccess(AccountModel result) {
                 gotoNext();
             }
         });

@@ -12,14 +12,12 @@ import retrofit2.http.Query;
 
 public interface ProfileClient {
 
-
     @GET("profile/{accountId}")
     /**
      * To get profile by id.
      * ** Recommend to use AccountClient.getInfo instead of this.
      * */
     Call<ProfileModel> getProfile(@Path("accountId") int accountId);
-
 
     @GET("profile/{accountId}")
     /**
@@ -29,13 +27,12 @@ public interface ProfileClient {
      * */
     Call<Map<String, Object>> getProfileSpecificFieldValue(@Path("accountId") int accountId, @Query("keys") int keys);
 
-
     @PATCH("profile/update")
     /**update Account Profile's specific fields at once.(without accountId, phone)
      * key which able to be changed : signUpBy, type.
      * jsonReqStr example : jsonReqStr={"address":"hhh","ktpPhotoUrl":"http://aAAAa.jpg"}
      * */
-    Call<String> update(@Path("accountId") int accountId, @Query("jsonReqStr") int jsonReqStr);
+    Call<String> update(@Query("accountId") String accountId, @Query("jsonReqStr") String jsonReqStr);
 }
 
 

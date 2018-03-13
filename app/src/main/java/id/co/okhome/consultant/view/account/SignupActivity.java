@@ -16,13 +16,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.exception.OkhomeException;
 import id.co.okhome.consultant.lib.PhoneNumberGetter;
 import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
-import id.co.okhome.consultant.model.ConsultantModel;
+import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 
@@ -38,8 +40,6 @@ public class SignupActivity extends OkHomeParentActivity implements
     @BindView(R.id.actSignup_vbtnSignup)        View vBtnSignUp;
 
     private GoogleApiClient mGoogleApiClient;
-//    private AutoPhoneNumberGetter autoPhoneNumberGetter;
-    private PhoneNumberGetter phoneNumberGetter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,22 +63,18 @@ public class SignupActivity extends OkHomeParentActivity implements
         final String passwordOneMore = etPasswordOneMore.getText().toString();
         final String phone = tvPhone.getText().toString();
 
-//        try {
-//            OkhomeUtil.chkException(!OkhomeUtil.isValidEmail(email), "Check your email.");
-//            OkhomeUtil.isValidPassword(password);
-//            OkhomeUtil.chkException(!password.equals(passwordOneMore), "Passwords do not match.");
-//
-//        } catch(OkhomeException e) {
-//            OkhomeUtil.showToast(this, e.getMessage());
-//            return;
-//        }
-//
-//        if (verifyDialog != null && verifyDialog.isVerified()) {
-//            signup(email, password);
-//        } else {
-//            Toast.makeText(this, "Please verify your phone number.", Toast.LENGTH_SHORT).show();
-//        }
+        try {
+            OkhomeUtil.chkException(!OkhomeUtil.isValidEmail(email), "Check your email.");
+            OkhomeUtil.isValidPassword(password);
+            OkhomeUtil.chkException(!password.equals(passwordOneMore), "Passwords do not match.");
+            OkhomeUtil.chkException(phone.equals(""), "Please verify your phone number.");
 
+        } catch(OkhomeException e) {
+            OkhomeUtil.showToast(this, e.getMessage());
+            return;
+        }
+
+        //        signup(email, password);
 
         // Skip login check -- Only for testing purpose
         OkHomeParentActivity.finishAllActivities();
@@ -89,8 +85,7 @@ public class SignupActivity extends OkHomeParentActivity implements
     private void signup(final String email, String password) {
 
         showLoading(true);
-        OkhomeRestApi.getAccountClient().signup(email, password).enqueue(new RetrofitCallback<Integer>() {
-
+        OkhomeRestApi.getAccountClient().signup(email, password, "EMAIL").enqueue(new RetrofitCallback<Integer>() {
             @Override
             public void onSuccess(Integer result) {
                 onSignUpSuccess(result);
@@ -119,10 +114,10 @@ public class SignupActivity extends OkHomeParentActivity implements
 
     private void getConsultantInfo(final String consultantId) {
 
-        ConsultantLoggedIn.reload(new RetrofitCallback<ConsultantModel>() {
+        ConsultantLoggedIn.reload(new RetrofitCallback<AccountModel>() {
             @Override
-            public void onSuccess(ConsultantModel result) {
-                result.phone = tvPhone.getText().toString();
+            public void onSuccess(AccountModel account) {
+                account.profile.phone = tvPhone.getText().toString();
             }
 
             @Override
@@ -131,7 +126,6 @@ public class SignupActivity extends OkHomeParentActivity implements
                 showLoading(false);
             }
         });
-
     }
 
     //Loading toggle
@@ -157,13 +151,13 @@ public class SignupActivity extends OkHomeParentActivity implements
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        if (autoPhoneNumberGetter != null) {
-//            autoPhoneNumberGetter.onActivityResult(requestCode, resultCode, data);
-//        }
+        PhoneNumberGetter.with(this).onActivityResult(requestCode, resultCode, data);
+    }
 
-        if (phoneNumberGetter != null) {
-            phoneNumberGetter.onActivityResult(requestCode, resultCode, data);
-        }
+    @Override
+    protected void onDestroy() {
+        PhoneNumberGetter.with(this).destroy();
+        super.onDestroy();
     }
 
     @Override
@@ -203,18 +197,14 @@ public class SignupActivity extends OkHomeParentActivity implements
 
     @OnClick(R.id.actSignup_tvPhone)
     public void onClickPhone(){
-//        autoPhoneNumberGetter = new AutoPhoneNumberGetter(this, mGoogleApiClient,
-//                new AutoPhoneNumberGetter.PhoneNumCallback() {
-//                    @Override
-//                    public void sendVerifiedPhoneNumber(String phoneNum) {
-//                        tvPhone.setText(phoneNum);
-//                    }
-//                });
-
-
-        phoneNumberGetter = new PhoneNumberGetter(this);
-        phoneNumberGetter.init();
-        phoneNumberGetter.show();
+        PhoneNumberGetter.with(this)
+                .setPhoneVerificationCallback(new PhoneNumberGetter.PhoneVerificationCallback() {
+                    @Override
+                    public void onVerificationSuccess(String phone, String code) {
+                        tvPhone.setText(phone);
+                    }
+                })
+                .show();
     }
 
 }

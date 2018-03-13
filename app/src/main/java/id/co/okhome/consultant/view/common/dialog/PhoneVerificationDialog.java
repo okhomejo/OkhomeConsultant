@@ -38,13 +38,6 @@ public class PhoneVerificationDialog extends DialogParent implements SmsReceiver
     @BindView(R.id.dialogCommonInput_etInput)                           EditText etInput;
     @BindView(R.id.dialogPhoneVerificatoin_vCodeLoading)                View vCodeLoading;
 
-//    private static final String TAG = "PhoneVerification";
-    /**
-     * Note To Fritz.
-     * For tracking log, use OkhomeUtil.Log("message"); instead of local tag and Log.d
-     * above Tag name is OKHOME_CONSULTANT.
-     **/
-
     SmsReceiver smsReceiver;
     Activity activity;
     boolean sendCode = false;
@@ -82,7 +75,6 @@ public class PhoneVerificationDialog extends DialogParent implements SmsReceiver
         dismiss();
     }
 
-
     private void init(){
         vgPhoneVerification.setVisibility(View.GONE);
         smsReceiver.init(this);
@@ -90,13 +82,10 @@ public class PhoneVerificationDialog extends DialogParent implements SmsReceiver
 
     //send verification code
     private void sendCode(){
-
-
         String phone = etInput.getText().toString();
-
-        try{
+        try {
             OkhomeException.chkException(OkhomeUtil.isEmpty(phone), "Input phone number");
-        }catch(OkhomeException e){
+        } catch (OkhomeException e){
             ToastUtil.showToast(e.getMessage());
             return;
         }
@@ -106,10 +95,9 @@ public class PhoneVerificationDialog extends DialogParent implements SmsReceiver
         tvSendVerificationCode.setVisibility(View.GONE);
         sendCode = true;
 
-        OkhomeRestApi.getCertificationClient().sendCertCode(phone, "Y").enqueue(new RetrofitCallback<String>() {
+        OkhomeRestApi.getValidationClient().issuePhoneValidationCode(phone).enqueue(new RetrofitCallback<String>() {
             @Override
             public void onSuccess(String result) {
-
             }
 
             @Override
@@ -134,7 +122,7 @@ public class PhoneVerificationDialog extends DialogParent implements SmsReceiver
         }
 
         final ProgressDialog p = ProgressDialog.show(getContext(), null, "Loading...");
-        OkhomeRestApi.getCertificationClient().chkValidCode(phone, code).enqueue(new RetrofitCallback<Boolean>() {
+        OkhomeRestApi.getValidationClient().checkPhoneValidationCode(phone, code).enqueue(new RetrofitCallback<Boolean>() {
             @Override
             public void onSuccess(Boolean result) {
                 if(result){
@@ -149,7 +137,6 @@ public class PhoneVerificationDialog extends DialogParent implements SmsReceiver
                 p.dismiss();
             }
         });
-
     }
 
     @Override
@@ -185,6 +172,7 @@ public class PhoneVerificationDialog extends DialogParent implements SmsReceiver
             checkCode();
         }else{
             sendCode();
+            etCode.requestFocus();
         }
     }
 

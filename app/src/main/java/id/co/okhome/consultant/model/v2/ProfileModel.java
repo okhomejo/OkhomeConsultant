@@ -2,6 +2,7 @@ package id.co.okhome.consultant.model.v2;
 
 public class ProfileModel {
     public String accountId
+            , name
             , phone
             , address
             , photoUrl

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,7 +27,7 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.jobrowser.callback.ApiResultCallback;
 import id.co.okhome.consultant.lib.jobrowser.model.ApiResult;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
-import id.co.okhome.consultant.model.ConsultantModel;
+import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.rest_apicall.raw_restapi.ImageUploadCall;
 import id.co.okhome.consultant.view.common.dialog.CommonListDialog;
 import id.co.okhome.consultant.view.etc.LocationActivity;
@@ -45,10 +46,10 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
     private String address;
     private String photoFilePath = null;
     private Bundle previousBundle = null;
-    private ConsultantModel consultant;
+    private ProfileModel profile;
     private boolean isActive = false;
 
-    private PhoneNumberGetter phoneNumberGetter;
+    private String phoneCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,23 +68,23 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
 
         // Load saved consultant data
         if (ConsultantLoggedIn.hasSavedData()) {
-            consultant = ConsultantLoggedIn.get();
+            profile = ConsultantLoggedIn.get().profile;
 
-            tvName.setText(consultant.name);
-            tvPhone.setText(consultant.phone);
-            tvAddress.setText(consultant.address);
+            tvName.setText(profile.name);
+            tvPhone.setText(profile.phone);
+            tvAddress.setText(profile.address);
 
             Glide.with(this)
-                    .load(consultant.photoUrl)
+                    .load(profile.photoUrl)
                     .thumbnail(0.5f)
                     .dontAnimate()
                     .into(ivPhoto);
 
-            if (!TextUtils.isEmpty(consultant.gender)) {
+            if (!TextUtils.isEmpty(profile.gender)) {
                 String consultantGender = "";
-                if (consultant.gender.equals("M")) {
+                if (profile.gender.equals("M")) {
                     consultantGender = "Male";
-                } else if (consultant.gender.equals("F")) {
+                } else if (profile.gender.equals("F")) {
                     consultantGender = "Female";
                 }
                 tvGender.setText(consultantGender);
@@ -95,12 +96,12 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
     private void updateProfile() {
 
         final String name       = tvName.getText().toString();
-        final String phone      = consultant.phone;
-        final String gender     = consultant.gender;
-        final String address    = consultant.address;
+        final String phone      = profile.phone;
+        final String gender     = profile.gender;
+        final String address    = profile.address;
 
         boolean photoEmpty = true;
-        if (!OkhomeUtil.isEmpty(consultant.photoUrl) || !OkhomeUtil.isEmpty(photoFilePath)) {
+        if (!OkhomeUtil.isEmpty(profile.photoUrl) || !OkhomeUtil.isEmpty(photoFilePath)) {
             photoEmpty = false;
         }
 
@@ -187,7 +188,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
                     address = data.getStringExtra("address");
                     previousBundle = data.getExtras();
                 }
-                consultant.address = address;
+                profile.address = address;
                 tvAddress.setText(address);
             }
             isActive = false;
@@ -197,9 +198,13 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
             onPhotoChoosed(imgPath);
         }
 
-        if (phoneNumberGetter != null) {
-            phoneNumberGetter.onActivityResult(requestCode, resultCode, data);
-        }
+        PhoneNumberGetter.with(this).onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onDestroy() {
+        PhoneNumberGetter.with(this).destroy();
+        super.onDestroy();
     }
 
     @OnClick(R.id.actUpdateUserDocument_vgbtnAddress)
@@ -229,9 +234,16 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
 
     @OnClick({R.id.actUpdateUserDocument_vgbtnPhone, R.id.actUpdateUserDocument_tvPhone})
     public void onClickPhone(){
-        phoneNumberGetter = new PhoneNumberGetter(this);
-        phoneNumberGetter.init();
-        phoneNumberGetter.show();
+        PhoneNumberGetter.with(this)
+                .setPhoneVerificationCallback(new PhoneNumberGetter.PhoneVerificationCallback() {
+                    @Override
+                    public void onVerificationSuccess(String phone, String code) {
+                        tvPhone.setText(phone);
+                        profile.phone = phone;
+                        phoneCode = code;
+                    }
+                })
+                .show();
     }
 
     @OnClick(R.id.actUpdateUserDocument_vgbtnGender)
@@ -245,7 +257,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
                     @Override
                     public void onItemClick(Dialog dialog, int pos, String item, String tag) {
                         tvGender.setText(item);
-                        consultant.gender = tag;
+                        profile.gender = tag;
                         dialog.dismiss();
                     }
                 })

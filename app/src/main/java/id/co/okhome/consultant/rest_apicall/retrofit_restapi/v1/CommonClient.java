@@ -15,7 +15,7 @@ public interface CommonClient {
     @GET("version/{os}") //map은 id, value로 구성됨.
     Call<Map> getVersion(@Path("os") String os);
 
-    @GET("consultant/working_region")
+    @GET("working_region")
         //The address system has up to two levels.
         // If you want to get first level address list, place -1 on {addressId}.
         // If you want second level address list, place address's id on {addressId}
@@ -23,7 +23,7 @@ public interface CommonClient {
     Call<List<WorkingRegionModel>> getWorkingRegion(@Query("parentId") int parentId);
 
 
-    @GET("consultant/working_region/all")
+    @GET("working_region/all")
     Call<List<WorkingRegionModel>> getAllWorkingRegion();
 
 }

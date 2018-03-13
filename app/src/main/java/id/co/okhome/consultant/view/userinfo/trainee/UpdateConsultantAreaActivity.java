@@ -26,6 +26,7 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.ConsultantModel;
 import id.co.okhome.consultant.model.WorkingRegionModel;
+import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.common.dialog.AreaListDialog;
 
@@ -58,9 +59,11 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
 
     private void init() {
         if (ConsultantLoggedIn.hasSavedData()) {
-            ConsultantModel consultant = ConsultantLoggedIn.get();
-            if (!Objects.equals(consultant.workingRegions, "")) {
-                List<String> regionStringList = Arrays.asList(consultant.workingRegions.split(","));
+            ProfileModel profile = ConsultantLoggedIn.get().profile;
+//            if (!Objects.equals(profile.workingRegions, "")) {
+
+            if (profile.workingRegions != null && !Objects.equals(profile.workingRegions, "")) {
+                List<String> regionStringList = Arrays.asList(profile.workingRegions.split(","));
                 chosenRegions = new HashSet<>(regionStringList.size());
                 for (String current : regionStringList) {
                     chosenRegions.add(Integer.parseInt(current));

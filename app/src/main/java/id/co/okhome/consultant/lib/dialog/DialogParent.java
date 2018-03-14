@@ -23,18 +23,15 @@ import id.co.okhome.consultant.R;
 
 public abstract class DialogParent extends Dialog {
 
-
-
-
     ViewGroup vgContainer;
     View contentView;
     Context context;
     Map<String, Object> params = new HashMap<>();
     protected CommonDialogListener commonDialogListener;
+
     public DialogParent(Context context) {
         super(context);
         this.context = context;
-
     }
 
     @Override

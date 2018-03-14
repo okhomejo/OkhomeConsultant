@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -40,6 +41,7 @@ public class SignupActivity extends OkHomeParentActivity implements
     @BindView(R.id.actSignup_vbtnSignup)        View vBtnSignUp;
 
     private GoogleApiClient mGoogleApiClient;
+    private String phoneNum, phoneCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +59,6 @@ public class SignupActivity extends OkHomeParentActivity implements
 
     //check exception before signup
     private void checkBeforeSignup(){
-
         final String email = etEmail.getText().toString();
         final String password = etPassword.getText().toString();
         final String passwordOneMore = etPasswordOneMore.getText().toString();
@@ -74,20 +75,19 @@ public class SignupActivity extends OkHomeParentActivity implements
             return;
         }
 
-        //        signup(email, password);
+        signup(email, password);
 
         // Skip login check -- Only for testing purpose
-        OkHomeParentActivity.finishAllActivities();
-        startActivity(new Intent(this, FillupUserInfoActivity.class));
+//        OkHomeParentActivity.finishAllActivities();
+//        startActivity(new Intent(this, FillupUserInfoActivity.class));
     }
 
-    //sign up
     private void signup(final String email, String password) {
-
         showLoading(true);
-        OkhomeRestApi.getAccountClient().signup(email, password, "EMAIL").enqueue(new RetrofitCallback<Integer>() {
+        OkhomeRestApi.getAccountClient().signup(email, password, "EMAIL").enqueue(new RetrofitCallback<AccountModel>() {
             @Override
-            public void onSuccess(Integer result) {
+            public void onSuccess(AccountModel result) {
+                savePhoneNumber(result.id);
                 onSignUpSuccess(result);
             }
 
@@ -106,18 +106,23 @@ public class SignupActivity extends OkHomeParentActivity implements
     }
 
     // on login success
-    private void onSignUpSuccess(Integer result){
-        getConsultantInfo(String.valueOf(result));
+    private void onSignUpSuccess(AccountModel result){
+        ConsultantLoggedIn.set(result);
         OkHomeParentActivity.finishAllActivities();
         startActivity(new Intent(this, FillupUserInfoActivity.class));
     }
 
-    private void getConsultantInfo(final String consultantId) {
-
-        ConsultantLoggedIn.reload(new RetrofitCallback<AccountModel>() {
+    private void savePhoneNumber(final String id) {
+        showLoading(true);
+        OkhomeRestApi.getValidationClient().updatePhoneNumber(id, phoneNum, phoneCode).enqueue(new RetrofitCallback<String>() {
             @Override
-            public void onSuccess(AccountModel account) {
-                account.profile.phone = tvPhone.getText().toString();
+            public void onSuccess(String result) {
+            }
+
+            @Override
+            public void onJodevError(ErrorModel jodevErrorModel) {
+                super.onJodevError(jodevErrorModel);
+                ToastUtil.showToast(jodevErrorModel.message);
             }
 
             @Override
@@ -202,6 +207,9 @@ public class SignupActivity extends OkHomeParentActivity implements
                     @Override
                     public void onVerificationSuccess(String phone, String code) {
                         tvPhone.setText(phone);
+                        phoneNum = phone;
+                        phoneCode = code;
+                        vBtnSignUp.requestFocus();
                     }
                 })
                 .show();

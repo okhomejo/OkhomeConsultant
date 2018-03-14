@@ -12,13 +12,19 @@
         android:id="@+id/actFillUpUserInfo_vgTop"
         android:layout_width="match_parent"
         android:layout_height="55dp">
-        <ImageView
-            android:alpha="0.6"
-            android:layout_marginLeft="22dp"
-            android:layout_centerVertical="true"
-            android:adjustViewBounds="true"
-            android:layout_width="15dp"
-            android:layout_height="wrap_content" android:src="@drawable/ic_x" />
+        <LinearLayout
+            android:layout_marginRight="6dp"
+            android:id="@+id/actFillUpUserInfo_vbtnX"
+            android:gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:alpha="0.6"
+                android:adjustViewBounds="true"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content" android:src="@drawable/ic_x" />
+        </LinearLayout>
 
         <TextView
             style="@style/FontOpenSansRegular"

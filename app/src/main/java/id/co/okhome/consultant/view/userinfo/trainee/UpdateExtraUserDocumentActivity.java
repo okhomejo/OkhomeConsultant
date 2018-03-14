@@ -2,9 +2,12 @@ package id.co.okhome.consultant.view.userinfo.trainee;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -157,6 +160,8 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
     //-- onclick methods ---------------------------------
     @OnClick(R.id.actUpdateUserExtraDoc_tvNIK)
     public void onClickNIK(){
+        final InputMethodManager imm = (InputMethodManager)   getSystemService(Context.INPUT_METHOD_SERVICE);
+
         CommonInputDialog inputDialog = new CommonInputDialog(this)
                 .setTitle("NIK")
                 .setSubTitle("Input your NIK Number.")

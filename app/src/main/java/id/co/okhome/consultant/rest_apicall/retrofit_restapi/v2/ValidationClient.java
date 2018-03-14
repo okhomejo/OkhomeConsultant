@@ -20,8 +20,8 @@ public interface ValidationClient {
      * */
     Call<Boolean> checkPhoneValidationCode(@Query("phone") String phone, @Query("code") String code);
 
-//    @PATCH("update/phone")
-//    Call<String> updatePhoneNumber(@Query("accountId") String accountId, @Query("phone") String phone, @Query("code") String code);
+    @PATCH("profile/update/phone")
+    Call<String> updatePhoneNumber(@Query("accountId") String accountId, @Query("phone") String phone, @Query("code") String code);
 }
 
 

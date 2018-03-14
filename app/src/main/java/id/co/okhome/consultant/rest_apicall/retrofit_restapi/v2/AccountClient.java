@@ -15,7 +15,7 @@ public interface AccountClient {
 
     @POST("account/signup")
     /**signup. ** signupBy : EMAIL, GOOGLE */
-    Call<Integer> signup(@Query("email") String email, @Query("password") String password, @Query("signupBy") String signupBy);
+    Call<AccountModel> signup(@Query("email") String email, @Query("password") String password, @Query("signupBy") String signupBy);
 
     /**sign in*/
     @GET("account/login")
@@ -29,13 +29,17 @@ public interface AccountClient {
     @GET("account/{id}")
     Call<Map<String, Object>> getSpecificInfo(@Path("id") int accountId, @Query("keys") int keys);
 
+    /**get account email address.*/
+    @GET("account/{phone}/by_phone")
+    Call<AccountModel> getInfoByPhone(@Path("phone") String phone, @Query("code") String code);
+
     /**logout. after calling this, the user can't get push notification and related actions.*/
     @POST("account/logout")
     Call<String> logout(@Path("id") int accountId);
 
     /**update password only*/
     @PATCH("account/update_password")
-    Call<String> updatePassword(@Query("accountId") int accountId, @Query("prevPassword") String prevPassword, @Query("newPassword") int newPassword);
+    Call<String> updatePassword(@Query("accountId") int accountId, @Query("prevPassword") String prevPassword, @Query("newPassword") String newPassword);
 
     /**update Account's specific fields at once.(without password, id, email)
      * key which able to be changed : signUpBy, type.

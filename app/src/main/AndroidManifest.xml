@@ -46,6 +46,7 @@
         <activity android:name=".view.photochooser.ImageChooserActivity" />
         <activity android:name=".view.account.SignupActivity" />
         <activity android:name=".view.account.SigninActivity" />
+        <activity android:name=".view.account.reset.ForgotLoginActivity" />
         <activity android:name=".view.userinfo.trainee.FillupUserInfoActivity"></activity>
         <activity android:name=".view.userinfo.trainee.UpdateUserDocumentActivity" />
         <activity android:name=".view.etc.LocationActivity" />

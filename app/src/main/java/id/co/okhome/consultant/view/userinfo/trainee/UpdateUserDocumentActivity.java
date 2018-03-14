@@ -27,8 +27,11 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.jobrowser.callback.ApiResultCallback;
 import id.co.okhome.consultant.lib.jobrowser.model.ApiResult;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
+import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
+import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.rest_apicall.raw_restapi.ImageUploadCall;
+import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.common.dialog.CommonListDialog;
 import id.co.okhome.consultant.view.etc.LocationActivity;
 import id.co.okhome.consultant.view.photochooser.ImageChooserActivity;
@@ -47,6 +50,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
     private String photoFilePath = null;
     private Bundle previousBundle = null;
     private ProfileModel profile;
+    private String accountId;
     private boolean isActive = false;
 
     private String phoneCode;
@@ -69,6 +73,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
         // Load saved consultant data
         if (ConsultantLoggedIn.hasSavedData()) {
             profile = ConsultantLoggedIn.get().profile;
+            accountId = ConsultantLoggedIn.get().id;
 
             tvName.setText(profile.name);
             tvPhone.setText(profile.phone);
@@ -95,10 +100,10 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
     //profile update.
     private void updateProfile() {
 
-        final String name       = tvName.getText().toString();
-        final String phone      = profile.phone;
-        final String gender     = profile.gender;
-        final String address    = profile.address;
+        final String name           = tvName.getText().toString();
+        final String phone          = profile.phone;
+        final String gender         = profile.gender;
+        final String address        = profile.address;
 
         boolean photoEmpty = true;
         if (!OkhomeUtil.isEmpty(profile.photoUrl) || !OkhomeUtil.isEmpty(photoFilePath)) {
@@ -122,6 +127,9 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
 
             @Override
             public void onSuccess(String result) {
+                if (phoneCode != null) {
+                    savePhoneNumber();
+                }
                 finish();
             }
 
@@ -144,7 +152,6 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
                                 OkhomeUtil.makeMap(
                                         "name", name,
                                         "gender", gender,
-                                        "phone", phone,
                                         "address", address,
                                         "photo_url", apiResult.object),
                                 retrofitCallback
@@ -160,11 +167,31 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
                     OkhomeUtil.makeMap(
                             "name", name,
                             "gender", gender,
-                            "phone", phone,
                             "address", address),
                     retrofitCallback
             );
         }
+    }
+
+    private void savePhoneNumber() {
+        final ProgressDialog p = ProgressDialog.show(this, "", "Loading");
+        OkhomeRestApi.getValidationClient().updatePhoneNumber(accountId, profile.phone, phoneCode)
+                .enqueue(new RetrofitCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+            }
+
+            @Override
+            public void onJodevError(ErrorModel jodevErrorModel) {
+                super.onJodevError(jodevErrorModel);
+            }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                p.dismiss();
+            }
+        });
     }
 
     //photo load
@@ -174,7 +201,6 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
                 .thumbnail(0.5f)
                 .dontAnimate()
                 .into(ivPhoto);
-
         photoFilePath = imgPath;
     }
 
@@ -197,7 +223,6 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
             String imgPath = data.getStringExtra(ImageChooserActivity.RESULT_IMAGE_PATH);
             onPhotoChoosed(imgPath);
         }
-
         PhoneNumberGetter.with(this).onActivityResult(requestCode, resultCode, data);
     }
 

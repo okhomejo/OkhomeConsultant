@@ -1,8 +1,12 @@
 package id.co.okhome.consultant.view.account;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 import butterknife.BindView;
@@ -18,9 +22,12 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
+import id.co.okhome.consultant.view.account.reset.ForgotLoginActivity;
+import id.co.okhome.consultant.view.common.dialog.BottomOptionDialog;
 import id.co.okhome.consultant.view.etc.BlockedActivity;
 import id.co.okhome.consultant.view.main.trainee.TraineeMainActivity;
 import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
+import id.co.okhome.consultant.view.viewholder.StringHolder;
 
 public class SigninActivity extends OkHomeParentActivity {
 
@@ -121,5 +128,28 @@ public class SigninActivity extends OkHomeParentActivity {
     @OnClick(R.id.actSignIn_vbtnSignin)
     public void onSignin(View v){
         checkBeforeSignup();
+    }
+
+    @OnClick(R.id.actSignIn_vbtnForgotInfo)
+    public void onForgotInfoClick() {
+        BottomOptionDialog dialog = new BottomOptionDialog(this)
+                .setArrItems("Find Email by phone", "Reset password by phone")
+                .setItemClickListener(new StringHolder.ItemClickListener() {
+                    @Override
+                    public void onItemClick(Dialog dialog, int pos, String value, String tag) {
+                        Intent i = new Intent(SigninActivity.this, ForgotLoginActivity.class);
+                        i.putExtra("actTitle", value);
+                        startActivity(i);
+                        dialog.dismiss();
+                    }
+                });
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        wlp.gravity = Gravity.BOTTOM;
+        wlp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        wlp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(wlp);
+
+        dialog.show();
     }
 }

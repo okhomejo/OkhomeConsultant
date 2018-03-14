@@ -33,9 +33,7 @@ public class AuthActivity extends OkHomeParentActivity {
     }
 
     private void init(){
-
     }
-
 
     @OnClick(R.id.activityAuth_vbtnSignUp)
     public void onClickSignup(View v){

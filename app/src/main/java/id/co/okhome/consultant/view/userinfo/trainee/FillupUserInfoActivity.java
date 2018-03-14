@@ -321,4 +321,9 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     public void onClickConfirm(){
         confirm();
     }
+
+    @OnClick(R.id.actFillUpUserInfo_vbtnX)
+    public void onCloseActivityClick() {
+        finish();
+    }
 }

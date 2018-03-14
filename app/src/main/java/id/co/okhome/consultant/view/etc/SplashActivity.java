@@ -36,7 +36,8 @@ public class SplashActivity extends OkHomeParentActivity {
             if (ConsultantLoggedIn.get().blocked != null) {
                 startActivity(new Intent(SplashActivity.this, BlockedActivity.class));
             } else {
-                login("frizky@okhome.id", "tester123");
+                gotoNext();
+//                login("frizky@okhome.id", "tester123");
             }
         } else {
             startActivity(new Intent(this, AuthActivity.class));

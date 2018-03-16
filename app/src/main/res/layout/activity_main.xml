@@ -130,11 +130,13 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/actMain_vgTabIcon"
+                android:alpha="0.7"
                 android:gravity="center"
                 android:layout_width="40dp"
                 android:layout_height="35dp">
                 <ImageView
-                    android:alpha="0.7"
+
                     android:adjustViewBounds="true"
                     android:src="@drawable/tidyup3"
                     android:layout_width="28dp"
@@ -142,6 +144,7 @@
 
             </LinearLayout>
             <TextView
+                android:id="@+id/actMain_tvTabText"
                 style="@style/FontOpenSansLight"
                 android:layout_marginTop="0dp"
                 android:textColor="@color/colorBlueBlack"
@@ -160,11 +163,13 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/actMain_vgTabIcon"
+                android:alpha="0.2"
                 android:gravity="center"
                 android:layout_width="40dp"
                 android:layout_height="35dp">
                 <ImageView
-                    android:alpha="0.2"
+                    android:id="@+id/actMain_ivTabBtn2"
                     android:adjustViewBounds="true"
                     android:src="@drawable/tidyup3"
                     android:layout_width="28dp"
@@ -173,6 +178,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/actMain_tvTabText"
                 android:alpha="0.5"
                 style="@style/FontOpenSansLight"
                 android:layout_marginTop="0dp"
@@ -191,11 +197,13 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/actMain_vgTabIcon"
+                android:alpha="0.2"
                 android:gravity="center"
                 android:layout_width="40dp"
                 android:layout_height="35dp">
                 <ImageView
-                    android:alpha="0.2"
+                    android:id="@+id/actMain_ivTabBtn3"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_tab_price2"
                     android:layout_width="26.5dp"
@@ -205,6 +213,7 @@
 
 
             <TextView
+                android:id="@+id/actMain_tvTabText"
                 android:alpha="0.5"
                 style="@style/FontOpenSansLight"
                 android:layout_marginTop="0dp"
@@ -224,11 +233,13 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/actMain_vgTabIcon"
+                android:alpha="0.2"
                 android:gravity="center"
                 android:layout_width="40dp"
                 android:layout_height="35dp">
                 <ImageView
-                    android:alpha="0.2"
+                    android:id="@+id/actMain_ivTabBtn4"
                     android:adjustViewBounds="true"
                     android:src="@drawable/tidyup3"
                     android:layout_width="28dp"
@@ -237,6 +248,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/actMain_tvTabText"
                 android:alpha="0.5"
                 style="@style/FontOpenSansLight"
                 android:layout_marginTop="0dp"
@@ -256,11 +268,13 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/actMain_vgTabIcon"
+                android:alpha="0.2"
                 android:gravity="center"
                 android:layout_width="40dp"
                 android:layout_height="35dp">
                 <ImageView
-                    android:alpha="0.2"
+                    android:id="@+id/actMain_ivTabBtn5"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_tab_more"
                     android:layout_width="25dp"
@@ -269,6 +283,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/actMain_tvTabText"
                 android:alpha="0.5"
                 style="@style/FontOpenSansLight"
                 android:layout_marginTop="0dp"

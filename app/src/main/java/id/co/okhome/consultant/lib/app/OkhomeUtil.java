@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -92,6 +93,12 @@ public class OkhomeUtil {
             throw new OkhomeException(-100, err);
         }
 
+    }
+
+    final public static void setWhiteSystembar(Activity act){
+        View decor = act.getWindow().getDecorView();
+        decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        OkhomeUtil.setSystemBarColor(act, Color.parseColor("#ffffff"));
     }
 
     final public static void setSystemBarColor(Activity activity, int color){

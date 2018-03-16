@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:paddingTop="16dp"
+            android:paddingTop="14dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:layout_width="match_parent"
@@ -46,7 +46,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:text="Change Trainee profile"
+                            android:text="Michel Bay, Trainee, 32, Male"
                             android:textColor="@color/colorLightBlueGray"
                             android:textSize="13sp" />
                     </LinearLayout>
@@ -55,7 +55,7 @@
 
 
                 <View
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="14dp"
                     android:layout_width="match_parent"
                     android:layout_height="1px" android:background="#22000000"/>
             </LinearLayout>
@@ -79,11 +79,59 @@
 
         </RelativeLayout>
 
+        <LinearLayout
+            android:id="@+id/fragTabSettingForTrainee_vbtnAccount"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="14dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Account"
+                        android:textColor="@color/colorBlueBlack"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="944899@gmail.com"
+                        android:textColor="@color/colorLightBlueGray"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_marginTop="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="1px" android:background="#22000000"/>
+        </LinearLayout>
+
 
         <LinearLayout
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:paddingTop="16dp"
+            android:paddingTop="14dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -105,7 +153,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Documents"
+                        android:text="News"
                         android:textColor="@color/colorBlueBlack"
                         android:textSize="18dp" />
 
@@ -114,7 +162,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Update documents"
+                        android:text="News from okhome"
                         android:textColor="@color/colorLightBlueGray"
                         android:textSize="13sp" />
                 </LinearLayout>
@@ -123,7 +171,7 @@
 
 
             <View
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="14dp"
                 android:layout_width="match_parent"
                 android:layout_height="1px" android:background="#22000000"/>
         </LinearLayout>
@@ -131,7 +179,7 @@
         <LinearLayout
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:paddingTop="16dp"
+            android:paddingTop="14dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -153,7 +201,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="News from Okhome"
+                        android:text="FAQ"
                         android:textColor="@color/colorBlueBlack"
                         android:textSize="18dp" />
 
@@ -162,7 +210,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Change Trainee profile"
+                        android:text="Frequently asked questions"
                         android:textColor="@color/colorLightBlueGray"
                         android:textSize="13sp" />
                 </LinearLayout>
@@ -171,15 +219,16 @@
 
 
             <View
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="14dp"
                 android:layout_width="match_parent"
                 android:layout_height="1px" android:background="#22000000"/>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/fragTabSettingForTrainee_vbtnAbout"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:paddingTop="16dp"
+            android:paddingTop="14dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -201,7 +250,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Help / FAQ"
+                        android:text="About"
                         android:textColor="@color/colorBlueBlack"
                         android:textSize="18dp" />
 
@@ -210,7 +259,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Change Trainee profile"
+                        android:text="about Okhome"
                         android:textColor="@color/colorLightBlueGray"
                         android:textSize="13sp" />
                 </LinearLayout>
@@ -219,58 +268,12 @@
 
 
             <View
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="14dp"
                 android:layout_width="match_parent"
                 android:layout_height="1px" android:background="#22000000"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="16dp"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:gravity="center_vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-                <LinearLayout
-                    android:layout_centerVertical="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/FontOpenSansLight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="Account Setting"
-                        android:textColor="@color/colorBlueBlack"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        style="@style/FontOpenSansLight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="Logout / Quit service"
-                        android:textColor="@color/colorLightBlueGray"
-                        android:textSize="13sp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-            <View
-                android:layout_marginTop="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="1px" android:background="#22000000"/>
-        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>

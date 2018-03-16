@@ -16,7 +16,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.config.OkhomeRegistryKey;
 import id.co.okhome.consultant.exception.OkhomeException;
+import id.co.okhome.consultant.lib.JoSharedPreference;
 import id.co.okhome.consultant.lib.PhoneNumberGetter;
 import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
@@ -80,15 +82,15 @@ public class SignupActivity extends OkHomeParentActivity implements
 //        startActivity(new Intent(this, FillupUserInfoActivity.class));
     }
 
-    private void signup(final String email, String password) {
+    private void signup(final String email, final String password) {
         showLoading(true);
 
 
         OkhomeRestApi.getAccountClient().signup(email, password, "EMAIL").enqueue(new RetrofitCallback<AccountModel>() {
             @Override
-            public void onSuccess(AccountModel result) {
-                savePhoneNumber(result.id);
-                onSignUpSuccess(result);
+            public void onSuccess(AccountModel account) {
+                savePhoneNumber(account.id);
+                onSignUpSuccess(account, email, password);
             }
 
             @Override
@@ -106,9 +108,12 @@ public class SignupActivity extends OkHomeParentActivity implements
     }
 
     // on login success
-    private void onSignUpSuccess(AccountModel account){
+    private void onSignUpSuccess(AccountModel account, String email, String password){
         ConsultantLoggedIn.set(account);
-        ConsultantLoggedIn.doWorkByConsultantCondition(account, new ConsultantLoggedIn.CommonLoginSuccessImpl(this, true));
+        JoSharedPreference.with().push(OkhomeRegistryKey.EMAIL_LAST_LOGIN, email);
+        JoSharedPreference.with().push(OkhomeRegistryKey.PASSWORD_LAST_LOGIN, password);
+
+        ConsultantLoggedIn.doCommonWorkAfterAcquiringAccount(account, new ConsultantLoggedIn.CommonLoginSuccessImpl(this, true));
 
     }
 

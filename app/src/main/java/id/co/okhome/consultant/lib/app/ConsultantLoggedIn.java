@@ -73,6 +73,9 @@ public class ConsultantLoggedIn {
 //                }else if(!result.accountStatus.isDoumentCompleted){
                     //문서 완료 안됬으면
                 }
+
+                JoSharedPreference.with().push(OkhomeRegistryKey.EMAIL_LAST_LOGIN, email);
+                JoSharedPreference.with().push(OkhomeRegistryKey.PASSWORD_LAST_LOGIN, pass);
             }
 
             @Override
@@ -122,9 +125,13 @@ public class ConsultantLoggedIn {
         OkhomeRestApi.getProfileClient().update(get().id, jsonParam).enqueue(callback);
     }
 
-    public final static void doWorkByConsultantCondition(AccountModel account, final OnLoginSuccessListener onLoginSuccessListener){
+    /**after acquiring account info*/
+    public final static void doCommonWorkAfterAcquiringAccount(AccountModel account, final AfterAcquringAccountInfoListener afterAcquringAccount){
+
+        afterAcquringAccount.beginWork();
+
         if (account.blocked != null) {
-            onLoginSuccessListener.onBlocked();
+            afterAcquringAccount.onBlocked();
         }
 
         // or not, have to check consultant's type
@@ -132,22 +139,22 @@ public class ConsultantLoggedIn {
 
             if(account.type.equals("C")){
                 //go to consultant main activity
-                onLoginSuccessListener.onConsultant();
+                afterAcquringAccount.onConsultant();
             }else{
                 //check trainee's status by admin.
 
                 if(account.trainee.approveYN.equals("Y")){
-                    onLoginSuccessListener.onTrainee();
+                    afterAcquringAccount.onTrainee();
                 }else{
-                    onLoginSuccessListener.onTraineeNotApproved();
+                    afterAcquringAccount.onTraineeNotApproved();
                 }
             }
         }
 
-        onLoginSuccessListener.afterWork();
+        afterAcquringAccount.afterWork();
     }
 
-    public interface OnLoginSuccessListener{
+    public interface AfterAcquringAccountInfoListener{
         void beginWork();
         void onBlocked();
         void onConsultant();
@@ -156,7 +163,7 @@ public class ConsultantLoggedIn {
         void afterWork();
     }
 
-    public static class CommonLoginSuccessImpl implements OnLoginSuccessListener{
+    public static class CommonLoginSuccessImpl implements AfterAcquringAccountInfoListener{
 
         OkHomeParentActivity activity;
         boolean finishAllActivity = false;

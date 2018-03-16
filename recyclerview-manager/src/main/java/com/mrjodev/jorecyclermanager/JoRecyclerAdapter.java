@@ -483,5 +483,9 @@ public class JoRecyclerAdapter<ITEM, HEADER, FOOTER> extends RecyclerView.Adapte
             return t;
         }
 
+        public Map getGlobalParams(){
+            return globalParams;
+        }
+
     }
 }

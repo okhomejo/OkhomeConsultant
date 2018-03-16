@@ -78,7 +78,7 @@ public class SigninActivity extends OkHomeParentActivity {
         ConsultantLoggedIn.login(this, email, password, new RetrofitCallback<AccountModel>() {
             @Override
             public void onSuccess(AccountModel account) {
-                ConsultantLoggedIn.doWorkByConsultantCondition(account, new ConsultantLoggedIn.CommonLoginSuccessImpl(SigninActivity.this, false));
+                ConsultantLoggedIn.doCommonWorkAfterAcquiringAccount(account, new ConsultantLoggedIn.CommonLoginSuccessImpl(SigninActivity.this, false));
             }
 
             @Override
@@ -90,7 +90,7 @@ public class SigninActivity extends OkHomeParentActivity {
             @Override
             public void onJodevError(ErrorModel jodevErrorModel) {
                 super.onJodevError(jodevErrorModel);
-                ToastUtil.showToast(jodevErrorModel.message);
+                ToastUtil.showToast(jodevErrorModel.obj.toString());
             }
         });
     }

@@ -65,7 +65,7 @@ public class SplashActivity extends OkHomeParentActivity {
         ConsultantLoggedIn.login(this, email, password, new RetrofitCallback<AccountModel>() {
             @Override
             public void onSuccess(AccountModel account) {
-                ConsultantLoggedIn.doWorkByConsultantCondition(account, new ConsultantLoggedIn.CommonLoginSuccessImpl(SplashActivity.this, false));
+                ConsultantLoggedIn.doCommonWorkAfterAcquiringAccount(account, new ConsultantLoggedIn.CommonLoginSuccessImpl(SplashActivity.this, false));
             }
         });
     }

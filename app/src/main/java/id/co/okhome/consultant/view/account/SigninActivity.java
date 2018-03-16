@@ -13,7 +13,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.config.OkhomeRegistryKey;
 import id.co.okhome.consultant.exception.OkhomeException;
+import id.co.okhome.consultant.lib.JoSharedPreference;
 import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
@@ -47,6 +49,10 @@ public class SigninActivity extends OkHomeParentActivity {
 
     private void init(){
         showLoading(false);
+
+        //set last loggedin email
+        String savedEmail = JoSharedPreference.with().get(OkhomeRegistryKey.EMAIL_LAST_LOGIN);
+        etEmail.setText(savedEmail);
     }
 
     private void checkBeforeSignup(){

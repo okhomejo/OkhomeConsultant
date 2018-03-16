@@ -16,7 +16,7 @@ public class DelayedWorkRepeator {
     Object obj;
     int delay;
     Job job;
-    int count = -1;
+    int count = 1;
     Handler handler;
     int pos = 0;
     public DelayedWorkRepeator(Object obj) {

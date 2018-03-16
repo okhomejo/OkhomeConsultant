@@ -28,11 +28,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.main.trainee.TraineeMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".view.etc.SplashActivity"
@@ -62,11 +57,6 @@
             android:name=".view.etc.TestActivity"
             android:label="@string/title_activity_test"
             android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".view.userinfo.trainee.UpdateExtraUserDocumentActivity" />
         <activity android:name=".view.userinfo.trainee.TraineeScreeningMornitorActivity" />

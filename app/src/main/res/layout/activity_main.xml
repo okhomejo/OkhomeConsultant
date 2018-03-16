@@ -138,8 +138,8 @@
                 <ImageView
 
                     android:adjustViewBounds="true"
-                    android:src="@drawable/tidyup3"
-                    android:layout_width="28dp"
+                    android:src="@drawable/ic_home1"
+                    android:layout_width="27dp"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -171,7 +171,7 @@
                 <ImageView
                     android:id="@+id/actMain_ivTabBtn2"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/tidyup3"
+                    android:src="@drawable/ic_circle_star"
                     android:layout_width="28dp"
                     android:layout_height="wrap_content" />
 
@@ -205,8 +205,8 @@
                 <ImageView
                     android:id="@+id/actMain_ivTabBtn3"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/ic_tab_price2"
-                    android:layout_width="26.5dp"
+                    android:src="@drawable/ic_speach_bubble_right_gray"
+                    android:layout_width="27dp"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -241,8 +241,8 @@
                 <ImageView
                     android:id="@+id/actMain_ivTabBtn4"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/tidyup3"
-                    android:layout_width="28dp"
+                    android:src="@drawable/ic_tab_price2"
+                    android:layout_width="26.5dp"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>

@@ -6,6 +6,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
 
 public class AccountActivity extends OkHomeParentActivity {
 
@@ -15,6 +16,7 @@ public class AccountActivity extends OkHomeParentActivity {
         setContentView(R.layout.activity_account);
 
         ButterKnife.bind(this);
+        OkhomeUtil.setWhiteSystembar(this);
     }
 
     private void init(){

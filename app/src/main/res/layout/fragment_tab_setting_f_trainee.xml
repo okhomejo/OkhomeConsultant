@@ -43,6 +43,7 @@
                             android:textSize="18dp" />
 
                         <TextView
+                            android:id="@+id/fragTabSettingForTrainee_tvProfileInfo"
                             style="@style/FontOpenSansLight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -67,6 +68,7 @@
                 android:layout_height="40dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/fragTabSettingForTrainee_ivProfileImage"
                     android:layout_margin="2dp"
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
@@ -81,7 +83,6 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:id="@+id/fragTabSettingForTrainee_vbtnAccount"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:paddingTop="14dp"
@@ -90,6 +91,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/fragTabSettingForTrainee_vbtnAccount"
                 android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -110,6 +112,7 @@
                         android:textSize="18dp" />
 
                     <TextView
+                        android:id="@+id/fragTabSettingForTrainee_tvAccountEmail"
                         style="@style/FontOpenSansLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -138,13 +141,13 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/fragTabSettingsForTrainee_vbtnNews"
                 android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
 
                 <LinearLayout
-                    android:id="@+id/fragTabSettingsForTrainee_vbtnNews"
                     android:layout_centerVertical="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -187,6 +190,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/fragTabSettingsForTrainee_vbtnFaqs"
                 android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

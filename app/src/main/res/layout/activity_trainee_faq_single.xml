@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context="id.co.okhome.consultant.view.main.trainee.TraineeFaqSingleActivity">
+
+    <RelativeLayout
+        android:id="@+id/actTraineeFaqSingle_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+
+        <LinearLayout
+            android:id="@+id/actTraineeFaqSingle_vbtnX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_leftarrow" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/actTraineeFaqSingle_tvTitle"
+            android:layout_below="@id/actTraineeFaqSingle_vbtnX"
+            style="@style/FontOpenSansLight"
+            android:paddingLeft="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="I am interested in using your service. How do I make a reservation?"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="6dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/actTraineeFaqSingle_vgBorder"
+        android:layout_below="@id/actTraineeFaqSingle_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="2px" android:background="#000000"/>
+
+    <!-- bottom-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/actTraineeFaqSingle_vgBorder"
+        android:layout_centerInParent="true"
+        android:gravity="center|center_horizontal"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+
+        <WebView
+            android:id="@+id/actTraineeFaqSingle_webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ProgressBar
+            android:id="@+id/actTraineeFaqSingle_vProgress"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -20,26 +20,28 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.model.FaqModel;
 import id.co.okhome.consultant.model.NewsModel;
 
-public class NewsListAdapter extends BaseAdapter {
+public class FaqListAdapter extends BaseAdapter {
+
     private Context context;
-    private List<NewsModel> newsList;
+    private List<FaqModel> faqList;
     private ViewHolder viewHolder;
 
-    public NewsListAdapter(Context context, List<NewsModel> news) {
+    public FaqListAdapter(Context context, List<FaqModel> faqs) {
         this.context = context;
-        this.newsList = news;
+        this.faqList = faqs;
     }
 
     @Override
     public int getCount() {
-        return newsList.size();
+        return faqList.size();
     }
 
     @Override
-    public NewsModel getItem(int position) {
-        return newsList.get(position);
+    public FaqModel getItem(int position) {
+        return faqList.get(position);
     }
 
     @Override
@@ -50,23 +52,21 @@ public class NewsListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_news_element, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_faq_element, parent, false);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        NewsModel news =  getItem(position);
-        viewHolder.newsTitle.setText(news.subject);
-        viewHolder.newsDate.setText(news.insertDateTime);
+        FaqModel faq =  getItem(position);
+        viewHolder.faqTitle.setText(faq.subject);
 
         return convertView;
     }
 
     static class ViewHolder {
-        @BindView(R.id.itemNews_tvTitle)    TextView newsTitle;
-        @BindView(R.id.itemNews_tvDate)     TextView newsDate;
+        @BindView(R.id.itemFaqs_tvTitle)    TextView faqTitle;
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);

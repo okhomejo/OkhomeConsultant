@@ -4,6 +4,7 @@ package id.co.okhome.consultant.rest_apicall.retrofit_restapi.v1;
 import java.util.List;
 import java.util.Map;
 
+import id.co.okhome.consultant.model.FaqModel;
 import id.co.okhome.consultant.model.NewsModel;
 import id.co.okhome.consultant.model.WorkingRegionModel;
 import retrofit2.Call;
@@ -29,6 +30,11 @@ public interface CommonClient {
     @GET("news")
     Call<List<NewsModel>> getAllNews();
 
+    @GET("faq/{faqId}")
+    Call<FaqModel> getFaq(@Path("faqId") int faqId);
+
+    @GET("faq")
+    Call<List<FaqModel>> getAllFaqs(@Query("parentFaqId") int faqId);
 }
 
 

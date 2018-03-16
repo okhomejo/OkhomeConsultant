@@ -6,16 +6,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="id.co.okhome.consultant.view.main.trainee.TraineeNewsActivity">
+    tools:context="id.co.okhome.consultant.view.main.trainee.TraineeNewsSingleActivity">
 
     <RelativeLayout
         android:layout_marginRight="20dp"
-        android:id="@+id/actTraineeNews_vgTop"
+        android:id="@+id/actTraineeNewsSingle_vgTop"
         android:layout_width="match_parent"
         android:layout_height="76dp">
 
         <LinearLayout
-            android:id="@+id/actTraineeNews_vbtnX"
+            android:id="@+id/actTraineeNewsSingle_vbtnX"
             android:paddingLeft="17dp"
             android:paddingRight="20dp"
             android:layout_centerVertical="true"
@@ -30,10 +30,10 @@
 
         </LinearLayout>
         <TextView
-            android:layout_toRightOf="@+id/actTraineeNews_vbtnX"
+            android:id="@+id/actTraineeNewsSingle_tvTitle"
+            android:layout_toRightOf="@+id/actTraineeNewsSingle_vbtnX"
             style="@style/FontOpenSansLight"
             android:textColor="#000000"
-            android:id="@+id/actTraineeNews_tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:text="News"
             android:textSize="23dp"
@@ -48,28 +48,24 @@
 
     <!-- bottom-->
     <RelativeLayout
-        android:layout_below="@+id/actTraineeNews_vgTop"
+        android:layout_below="@+id/actTraineeNewsSingle_vgTop"
         android:layout_centerInParent="true"
         android:gravity="center|center_horizontal"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <ListView
-            android:id="@+id/actTraineeNews_list"
+        <WebView
+            android:id="@+id/actTraineeNewsSingle_webView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:listSelector="@android:color/transparent"
-            android:cacheColorHint="@android:color/transparent"
-            android:divider="#00000000"/>
+            android:layout_height="match_parent" />
 
         <ProgressBar
-            android:id="@+id/actTraineeNews_vProgress"
+            android:id="@+id/actTraineeNewsSingle_vProgress"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_centerInParent="true"
-            android:visibility="gone"/>
+            android:layout_centerInParent="true"/>
+
     </RelativeLayout>
 
 </RelativeLayout>

@@ -6,49 +6,54 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="id.co.okhome.consultant.view.main.trainee.TraineeNewsActivity">
+    tools:context="id.co.okhome.consultant.view.main.trainee.TraineeFaqActivity">
 
     <RelativeLayout
-        android:layout_marginRight="20dp"
-        android:id="@+id/actTraineeNews_vgTop"
+        android:id="@+id/actTraineeFAQ_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="76dp">
+        android:layout_height="76dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <LinearLayout
-            android:id="@+id/actTraineeNews_vbtnX"
-            android:paddingLeft="17dp"
-            android:paddingRight="20dp"
+            android:id="@+id/actTraineeFAQ_vbtnX"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp">
+
             <ImageView
-                android:adjustViewBounds="true"
-                android:src="@drawable/ic_leftarrow"
                 android:layout_width="18dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_leftarrow" />
 
         </LinearLayout>
+
         <TextView
-            android:layout_toRightOf="@+id/actTraineeNews_vbtnX"
+            android:id="@+id/actTraineeFAQ_tvTitle"
             style="@style/FontOpenSansLight"
-            android:textColor="#000000"
-            android:id="@+id/actTraineeNews_tvTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:text="News"
-            android:textSize="23dp"
-            android:layout_centerVertical="true" />
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/actTraineeFAQ_vbtnX"
+            android:text="FAQ"
+            android:textColor="#000000"
+            android:textSize="23dp" />
 
         <View
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="2px" android:background="#000000"/>
+            android:layout_height="2px"
+            android:layout_alignParentBottom="true"
+            android:background="#000000" />
     </RelativeLayout>
 
 
     <!-- bottom-->
     <RelativeLayout
-        android:layout_below="@+id/actTraineeNews_vgTop"
+        android:layout_below="@+id/actTraineeFAQ_vgTop"
         android:layout_centerInParent="true"
         android:gravity="center|center_horizontal"
         android:orientation="vertical"
@@ -57,7 +62,7 @@
 
 
         <ListView
-            android:id="@+id/actTraineeNews_list"
+            android:id="@+id/actTraineeFAQ_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:listSelector="@android:color/transparent"
@@ -65,11 +70,12 @@
             android:divider="#00000000"/>
 
         <ProgressBar
-            android:id="@+id/actTraineeNews_vProgress"
+            android:id="@+id/actTraineeFAQ_vProgress"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerInParent="true"
             android:visibility="gone"/>
+
     </RelativeLayout>
 
 </RelativeLayout>

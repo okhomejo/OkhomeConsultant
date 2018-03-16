@@ -1,45 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingTop="8dp"
-    android:paddingLeft="30dp"
-    android:paddingRight="30dp">
 
-    <RelativeLayout
-        android:id="@+id/itemNews_vbtnNews"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="22dp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="58dp">
+        android:layout_height="wrap_content">
 
-        <TextView
-        android:id="@+id/itemNews_tvTitle"
-        android:gravity="center_vertical"
-        android:layout_centerVertical="true"
-        style="@style/FontOpenSansLight"
-        android:textSize="18sp"
-        android:text="This is the title"
-        android:textColor="@color/colorBlueBlack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/itemNews_tvDate"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            style="@style/FontOpenSansLight"
-            android:textSize="15sp"
-            android:textColor="@color/colorLightBlueGray"
-            android:text="06 June 07"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <view
+        <LinearLayout
+            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/bg_common_edittext"/>
+            android:layout_height="wrap_content">
 
-    </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-</LinearLayout>
+                <TextView
+                    android:id="@+id/itemNews_tvTitle"
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="News title"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="17sp" />
+
+                <LinearLayout
+                    android:gravity="right|center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/itemNews_tvDate"
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="5 June 07"
+                        android:textColor="@color/colorLightBlueGray"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_marginTop="22dp"
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#22000000"/>
+    </LinearLayout>

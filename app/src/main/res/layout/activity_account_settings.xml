@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context="id.co.okhome.consultant.view.common.account.AccountSettingsActivity">
+
+    <RelativeLayout
+        android:layout_marginRight="20dp"
+        android:id="@+id/actAccount_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="76dp">
+
+
+        <LinearLayout
+            android:id="@+id/actAccount_vbtnX"
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <ImageView
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_leftarrow"
+                android:layout_width="18dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <TextView
+            android:layout_toRightOf="@+id/actAccount_vbtnX"
+            style="@style/FontOpenSansLight"
+            android:textColor="#000000"
+            android:id="@+id/actAccount_tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="Account"
+            android:textSize="23dp"
+            android:layout_centerVertical="true" />
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="2px" android:background="#000000"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/actAccount_vbtnChangePassword"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="22dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Change password"
+                        android:textColor="@color/colorBlueBlack"
+                        android:textSize="17sp" />
+
+                    <LinearLayout
+                        android:gravity="right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_marginTop="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="1px" android:background="#22000000"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/actAccount_vbtnLogOut"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="22dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Log out"
+                        android:textColor="@color/colorBlueBlack"
+                        android:textSize="17sp" />
+
+                    <LinearLayout
+                        android:gravity="right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_marginTop="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="1px" android:background="#22000000"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/actAccount_vbtnDeleteAccount"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="22dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Delete account"
+                        android:textColor="@color/colorBlueBlack"
+                        android:textSize="17sp" />
+
+                    <LinearLayout
+                        android:gravity="right|center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_marginTop="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="1px" android:background="#22000000"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

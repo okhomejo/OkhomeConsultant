@@ -1,10 +1,12 @@
 package id.co.okhome.consultant.view.main.trainee;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,33 +28,35 @@ import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 
 public class TraineeNewsActivity extends OkHomeParentActivity {
 
-    @BindView(R.id.actTraineeNews_list)     ListView listView;
+    @BindView(R.id.actTraineeNews_list)         ListView listView;
+    @BindView(R.id.actTraineeNews_vProgress)    ProgressBar progressBar;
 
     private NewsListAdapter newsAdapter;
-    private List<NewsModel> newsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainee_news);
-
+        OkhomeUtil.setWhiteSystembar(this);
         ButterKnife.bind(this);
         getAllNews();
     }
 
     private void getAllNews() {
-        final ProgressDialog p = ProgressDialog.show(this, null, "Loading news...");
+        progressBar.setVisibility(View.VISIBLE);
         OkhomeRestApi.getCommonClient().getAllNews().enqueue(new RetrofitCallback<List<NewsModel>>() {
 
             @Override
-            public void onSuccess(List<NewsModel> news) {
-                newsList = news;
+            public void onSuccess(final List<NewsModel> news) {
                 newsAdapter = new NewsListAdapter(TraineeNewsActivity.this, news);
                 listView.setAdapter(newsAdapter);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                        OkhomeUtil.showToast(TraineeNewsActivity.this, "boop");
+                        Intent intent = new Intent(getBaseContext(), TraineeNewsSingleActivity.class);
+                        intent.putExtra("NEWS_TITLE", news.get(pos).subject);
+                        intent.putExtra("NEWS_CONTENTS", news.get(pos).contents);
+                        startActivity(intent);
                     }
                 });
             }
@@ -60,7 +64,7 @@ public class TraineeNewsActivity extends OkHomeParentActivity {
             @Override
             public void onFinish() {
                 super.onFinish();
-                p.dismiss();
+                progressBar.setVisibility(View.GONE);
             }
         });
     }

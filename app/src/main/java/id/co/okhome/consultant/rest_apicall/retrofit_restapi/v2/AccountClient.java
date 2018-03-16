@@ -35,7 +35,7 @@ public interface AccountClient {
 
     /**logout. after calling this, the user can't get push notification and related actions.*/
     @POST("account/logout")
-    Call<String> logout(@Path("id") int accountId);
+    Call<String> logout(@Query("accountId") int accountId);
 
     /**update password only*/
     @PATCH("account/update_password")

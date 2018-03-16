@@ -204,9 +204,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_centerVertical="true"
-                                    android:text="2/4"
+                                    android:text="2/8"
                                     android:textColor="@color/colorLightBlueGray"
-                                    android:textSize="14sp" />
+                                    android:textSize="13sp" />
 
 
                             </RelativeLayout>
@@ -220,7 +220,7 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:weightSum="4">
+                                    android:weightSum="7">
 
                                     <View
                                         android:layout_width="0dp"
@@ -242,6 +242,24 @@
                                         android:layout_weight="1"
                                         android:background="@drawable/graphbg_traning_off" />
 
+                                    <View
+                                        android:layout_marginLeft="2dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/graphbg_traning_off" />
+                                    <View
+                                        android:layout_marginLeft="2dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/graphbg_traning_off" />
+                                    <View
+                                        android:layout_marginLeft="2dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/graphbg_traning_off" />
                                     <View
                                         android:layout_marginLeft="2dp"
                                         android:layout_width="0dp"
@@ -284,9 +302,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_centerVertical="true"
-                                    android:text="2/4"
+                                    android:text="2/8"
                                     android:textColor="@color/colorLightBlueGray"
-                                    android:textSize="14sp" />
+                                    android:textSize="13sp" />
 
 
                             </RelativeLayout>
@@ -297,17 +315,6 @@
                                 android:layout_height="8dp"
                                 android:layout_marginTop="6dp">
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:weightSum="100">
-
-                                    <View
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="@drawable/graphbg_traning_off" />
-
-                                </LinearLayout>
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -317,7 +324,7 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:weightSum="4">
+                                        android:weightSum="7">
 
                                         <View
                                             android:layout_width="0dp"
@@ -338,6 +345,27 @@
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
                                             android:background="#16acf2" />
+
+                                        <View
+                                            android:layout_marginLeft="2dp"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/graphbg_traning_off" />
+
+                                        <View
+                                            android:layout_marginLeft="2dp"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/graphbg_traning_off" />
+
+                                        <View
+                                            android:layout_marginLeft="2dp"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/graphbg_traning_off" />
 
                                         <View
                                             android:layout_marginLeft="2dp"

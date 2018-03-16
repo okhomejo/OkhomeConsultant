@@ -14,6 +14,7 @@ import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.view.main.trainee.TraineeNewsActivity;
 import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
+import id.co.okhome.consultant.view.etc.AboutOkhomeActivity;
 
 /**
  * Created by jo on 2018-01-23.
@@ -32,6 +33,8 @@ public class SettingTabFragment extends Fragment implements TabFragmentStatusLis
     @Override
     public void onStart() {
         super.onStart();
+        ButterKnife.bind(this, getView());
+
     }
 
     @Override
@@ -46,11 +49,16 @@ public class SettingTabFragment extends Fragment implements TabFragmentStatusLis
 
     @OnClick(R.id.fragTabSettingsForTrainee_vbtnProfile)
     public void onClickProfile() {
-        startActivity(new Intent(super.getContext(), FillupUserInfoActivity.class));
+        startActivity(new Intent(getActivity(), FillupUserInfoActivity.class));
     }
 
     @OnClick(R.id.fragTabSettingsForTrainee_vbtnNews)
     public void onClickNews() {
-        startActivity(new Intent(super.getContext(), TraineeNewsActivity.class));
+        startActivity(new Intent(getActivity(), TraineeNewsActivity.class));
     }
+    @OnClick(R.id.fragTabSettingForTrainee_vbtnAbout)
+    public void onAboutClick(View v){
+        startActivity(new Intent(getActivity(), AboutOkhomeActivity.class));
+    }
+
 }

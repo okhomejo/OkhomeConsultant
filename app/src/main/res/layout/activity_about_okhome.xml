@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context="id.co.okhome.consultant.view.main.trainee.TraineeMainActivity">
+
+    <RelativeLayout
+        android:layout_marginRight="20dp"
+        android:id="@+id/actMain_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="76dp">
+
+        <!--<ImageView-->
+        <!--android:alpha="0.6"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:adjustViewBounds="true"-->
+        <!--android:layout_width="14dp"-->
+        <!--android:layout_height="wrap_content" android:src="@drawable/ic_x" />-->
+
+        <LinearLayout
+            android:id="@+id/actAboutOkhome_vbtnX"
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_leftarrow"
+                android:layout_width="18dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <TextView
+            android:layout_toRightOf="@+id/actAboutOkhome_vbtnX"
+            style="@style/FontOpenSansLight"
+            android:textColor="#000000"
+            android:id="@+id/actMain_tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="About Okhome"
+            android:textSize="23dp"
+            android:layout_centerVertical="true" />
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="2px" android:background="#000000"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="22dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Agreements"
+                        android:textColor="@color/colorBlueBlack"
+                        android:textSize="17sp" />
+
+                    <LinearLayout
+                        android:gravity="right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_marginTop="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="1px" android:background="#22000000"/>
+        </LinearLayout>
+        <LinearLayout
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="22dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Software License"
+                        android:textColor="@color/colorBlueBlack"
+                        android:textSize="17sp" />
+
+                    <LinearLayout
+                        android:gravity="right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_marginTop="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="1px" android:background="#22000000"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="22dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Version"
+                        android:textColor="@color/colorBlueBlack"
+                        android:textSize="17sp" />
+
+                    <LinearLayout
+                        android:gravity="right|center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="1.0.0.1"
+                            android:textColor="@color/colorOkhome"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_marginTop="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="1px" android:background="#22000000"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

@@ -1,5 +1,6 @@
 package id.co.okhome.consultant.view.main.trainee.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,8 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
+import id.co.okhome.consultant.view.main.trainee.TraineeNewsActivity;
+import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 
 /**
  * Created by jo on 2018-01-23.
@@ -19,7 +24,9 @@ public class SettingTabFragment extends Fragment implements TabFragmentStatusLis
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_tab_setting_f_trainee, null);
+        View view = inflater.inflate(R.layout.fragment_tab_setting_f_trainee, null);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
@@ -37,4 +44,13 @@ public class SettingTabFragment extends Fragment implements TabFragmentStatusLis
 
     }
 
+    @OnClick(R.id.fragTabSettingsForTrainee_vbtnProfile)
+    public void onClickProfile() {
+        startActivity(new Intent(super.getContext(), FillupUserInfoActivity.class));
+    }
+
+    @OnClick(R.id.fragTabSettingsForTrainee_vbtnNews)
+    public void onClickNews() {
+        startActivity(new Intent(super.getContext(), TraineeNewsActivity.class));
+    }
 }

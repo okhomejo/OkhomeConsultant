@@ -4,6 +4,7 @@ package id.co.okhome.consultant.rest_apicall.retrofit_restapi.v1;
 import java.util.List;
 import java.util.Map;
 
+import id.co.okhome.consultant.model.NewsModel;
 import id.co.okhome.consultant.model.WorkingRegionModel;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -22,9 +23,11 @@ public interface CommonClient {
 
     Call<List<WorkingRegionModel>> getWorkingRegion(@Query("parentId") int parentId);
 
-
     @GET("working_region/all")
     Call<List<WorkingRegionModel>> getAllWorkingRegion();
+
+    @GET("news")
+    Call<List<NewsModel>> getAllNews();
 
 }
 

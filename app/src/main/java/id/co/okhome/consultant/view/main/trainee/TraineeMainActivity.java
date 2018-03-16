@@ -25,14 +25,9 @@ import id.co.okhome.consultant.view.main.trainee.fragment.TrainingTabFragment;
 
 public class TraineeMainActivity extends OkHomeParentActivity {
 
-    @BindView(R.id.actMain_tvTitle)
-    TextView tvTitle;
-
-    @BindView(R.id.actMain_vgTop)
-    ViewGroup vgTop;
-
-    @BindView(R.id.actMain_vp)
-    ViewPager vpMain;
+    @BindView(R.id.actMain_tvTitle)     TextView tvTitle;
+    @BindView(R.id.actMain_vgTop)       ViewGroup vgTop;
+    @BindView(R.id.actMain_vp)          ViewPager vpMain;
 
     MainTabAdapter tabAdapter;
 
@@ -55,10 +50,7 @@ public class TraineeMainActivity extends OkHomeParentActivity {
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)tvTitle.getLayoutParams();
             layoutParams.topMargin = layoutParams.topMargin - OkhomeUtil.getPixelByDp(this, 3);
             tvTitle.setLayoutParams(layoutParams);
-
-
         }
-
 
         init();
 

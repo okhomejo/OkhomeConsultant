@@ -8,5 +8,4 @@ public class WorkingRegionModel {
     public int id, parentId, childCount;
     public String address;
     public boolean hasChild;
-
 }

@@ -14,6 +14,7 @@ import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.view.account.AuthActivity;
+import id.co.okhome.consultant.view.main.trainee.TraineeMainActivity;
 import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 
 public class SplashActivity extends OkHomeParentActivity {
@@ -33,12 +34,7 @@ public class SplashActivity extends OkHomeParentActivity {
 
     private void chkCachedAccount(){
         if (ConsultantLoggedIn.hasSavedData()){
-            if (ConsultantLoggedIn.get().blocked != null) {
-                startActivity(new Intent(SplashActivity.this, BlockedActivity.class));
-            } else {
-                gotoNext();
-//                login("frizky@okhome.id", "tester123");
-            }
+            gotoNext();
         } else {
             startActivity(new Intent(this, AuthActivity.class));
             finish();
@@ -56,7 +52,13 @@ public class SplashActivity extends OkHomeParentActivity {
     }
 
     private void gotoNext(){
-        startActivity(new Intent(SplashActivity.this, FillupUserInfoActivity.class));
+        if (ConsultantLoggedIn.get().blocked != null) {
+            startActivity(new Intent(SplashActivity.this, BlockedActivity.class));
+        } else if (ConsultantLoggedIn.get().trainee.approveYN.equals("N")) {
+            startActivity(new Intent(SplashActivity.this, FillupUserInfoActivity.class));
+        } else {
+            startActivity(new Intent(this, TraineeMainActivity.class));
+        }
         SplashActivity.this.finish();
     }
 

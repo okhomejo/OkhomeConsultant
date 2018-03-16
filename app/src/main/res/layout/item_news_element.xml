@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp">
+
+    <RelativeLayout
+        android:id="@+id/itemNews_vbtnNews"
+        android:layout_width="match_parent"
+        android:layout_height="58dp">
+
+        <TextView
+        android:id="@+id/itemNews_tvTitle"
+        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
+        style="@style/FontOpenSansLight"
+        android:textSize="18sp"
+        android:text="This is the title"
+        android:textColor="@color/colorBlueBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/itemNews_tvDate"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            style="@style/FontOpenSansLight"
+            android:textSize="15sp"
+            android:textColor="@color/colorLightBlueGray"
+            android:text="06 June 07"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <view
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_common_edittext"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

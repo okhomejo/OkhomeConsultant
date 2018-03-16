@@ -81,7 +81,7 @@ public class ForgotLoginActivity extends OkHomeParentActivity {
 
         try {
             OkhomeUtil.chkException(!firstPass.equals(secondPass), "Passwords does not match.");
-
+            OkhomeUtil.isValidPassword(firstPass);
         } catch(OkhomeException e) {
             OkhomeUtil.showToast(this, e.getMessage());
             return;

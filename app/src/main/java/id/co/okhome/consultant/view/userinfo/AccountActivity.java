@@ -17,6 +17,8 @@ public class AccountActivity extends OkHomeParentActivity {
 
         ButterKnife.bind(this);
         OkhomeUtil.setWhiteSystembar(this);
+
+        int i = 0;
     }
 
     private void init(){

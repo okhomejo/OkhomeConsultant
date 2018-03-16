@@ -13,6 +13,7 @@ import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.view.etc.AboutOkhomeActivity;
+import id.co.okhome.consultant.view.userinfo.AccountActivity;
 
 /**
  * Created by jo on 2018-01-23.
@@ -48,4 +49,8 @@ public class SettingTabFragment extends Fragment implements TabFragmentStatusLis
         startActivity(new Intent(getActivity(), AboutOkhomeActivity.class));
     }
 
+    @OnClick(R.id.fragTabSettingForTrainee_vbtnAccount)
+    public void onAccountClick(View v){
+        startActivity(new Intent(getActivity(), AccountActivity.class));
+    }
 }

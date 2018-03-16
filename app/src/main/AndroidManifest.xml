@@ -73,7 +73,8 @@
         <activity android:name=".view.userinfo.trainee.UpdateConsultantEducationActivity" />
         <activity android:name=".view.userinfo.trainee.UpdateConsultantAreaActivity" />
         <activity android:name=".view.userinfo.trainee.UpdateJobExperienceActivity" />
-        <activity android:name=".view.etc.AboutOkhomeActivity"></activity>
+        <activity android:name=".view.etc.AboutOkhomeActivity" />
+        <activity android:name=".view.userinfo.AccountActivity"></activity>
     </application>
 
 </manifest>

@@ -49,6 +49,10 @@ public interface AccountClient {
     @PATCH("account/update")
     Call<String> update(@Query("accountId") String accountId, @Query("jsonReqStr") String jsonReqStr);
 
+    /**logout. after calling this, the user can't get push notification and related actions.*/
+    @POST("account/delete")
+    Call<String> deleteAccount(@Query("accountId") int accountId, @Query("password") String password);
+
 }
 
 

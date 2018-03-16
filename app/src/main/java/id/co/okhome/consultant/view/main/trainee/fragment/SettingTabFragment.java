@@ -25,6 +25,7 @@ import id.co.okhome.consultant.view.main.trainee.TraineeFaqActivity;
 import id.co.okhome.consultant.view.main.trainee.TraineeNewsActivity;
 import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 import id.co.okhome.consultant.view.etc.AboutOkhomeActivity;
+import id.co.okhome.consultant.view.userinfo.AccountActivity;
 
 /**
  * Created by jo on 2018-01-23.

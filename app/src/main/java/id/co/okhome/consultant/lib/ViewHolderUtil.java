@@ -8,7 +8,7 @@ import android.view.View;
  */
 
 public class ViewHolderUtil {
-    /**parentView의 태그는 비워둬야한다.*/
+    /**Keep parentView's tag empty */
     public static <T extends View> T getView(View parentView, int id) {
         SparseArray<View> viewHolder = (SparseArray<View>) parentView.getTag();
         if (viewHolder == null) {

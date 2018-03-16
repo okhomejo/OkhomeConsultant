@@ -4,18 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.config.OkhomeRegistryKey;
+import id.co.okhome.consultant.lib.DelayedWorkRepeator;
+import id.co.okhome.consultant.lib.JoSharedPreference;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.view.account.AuthActivity;
-import id.co.okhome.consultant.view.main.trainee.TraineeMainActivity;
-import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 
 public class SplashActivity extends OkHomeParentActivity {
 
@@ -29,37 +29,45 @@ public class SplashActivity extends OkHomeParentActivity {
         ButterKnife.bind(this);
         beginLogoAnimation();
 
-        chkCachedAccount();
+        chkAutoLogin();
     }
 
-    private void chkCachedAccount(){
-        if (ConsultantLoggedIn.hasSavedData()){
-            gotoNext();
-        } else {
-            startActivity(new Intent(this, AuthActivity.class));
-            finish();
+
+    //chk if there are saved email and password.
+    private void chkAutoLogin(){
+        final String emailLastLogin = JoSharedPreference.with().get(OkhomeRegistryKey.EMAIL_LAST_LOGIN);
+        final String passwordLastLogin = JoSharedPreference.with().get(OkhomeRegistryKey.PASSWORD_LAST_LOGIN);
+
+        if(emailLastLogin != null && passwordLastLogin != null){
+            //
+            DelayedWorkRepeator.with("1").setJob(new DelayedWorkRepeator.Job() {
+                @Override
+                public void work() {
+                    autologin(emailLastLogin, passwordLastLogin);
+                }
+            }).setDelay(1200).work();
+
+        }else{
+
+            //delayed start
+            DelayedWorkRepeator.with("2").setJob(new DelayedWorkRepeator.Job() {
+                @Override
+                public void work() {
+                    startActivity(new Intent(SplashActivity.this, AuthActivity.class));
+                    finish();
+                }
+            }).setDelay(1800).work();
         }
     }
 
     //login
-    private void login(final String email, final String password){
+    private void autologin(final String email, final String password){
         ConsultantLoggedIn.login(this, email, password, new RetrofitCallback<AccountModel>() {
             @Override
-            public void onSuccess(AccountModel result) {
-                gotoNext();
+            public void onSuccess(AccountModel account) {
+                ConsultantLoggedIn.doCommonWorkAfterAcquiringAccount(account, new ConsultantLoggedIn.CommonLoginSuccessImpl(SplashActivity.this, false));
             }
         });
-    }
-
-    private void gotoNext(){
-        if (ConsultantLoggedIn.get().blocked != null) {
-            startActivity(new Intent(SplashActivity.this, BlockedActivity.class));
-        } else if (ConsultantLoggedIn.get().trainee.approveYN.equals("N")) {
-            startActivity(new Intent(SplashActivity.this, FillupUserInfoActivity.class));
-        } else {
-            startActivity(new Intent(this, TraineeMainActivity.class));
-        }
-        SplashActivity.this.finish();
     }
 
     //begin logo animation

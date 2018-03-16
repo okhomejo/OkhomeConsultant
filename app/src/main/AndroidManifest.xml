@@ -29,11 +29,8 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".view.main.trainee.TraineeMainActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".view.main.trainee.ConsultantMainActivity">
         </activity>
 
         <activity android:name=".view.main.trainee.TraineeNewsActivity" />
@@ -71,18 +68,14 @@
             android:name=".view.etc.TestActivity"
             android:label="@string/title_activity_test"
             android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".view.userinfo.trainee.UpdateExtraUserDocumentActivity" />
         <activity android:name=".view.userinfo.trainee.TraineeScreeningMornitorActivity" />
         <activity android:name=".view.userinfo.trainee.UpdateConsultantEducationActivity" />
         <activity android:name=".view.userinfo.trainee.UpdateConsultantAreaActivity" />
         <activity android:name=".view.userinfo.trainee.UpdateJobExperienceActivity" />
-        <activity android:name=".view.etc.AboutOkhomeActivity"></activity>
+        <activity android:name=".view.etc.AboutOkhomeActivity" />
+        <activity android:name=".view.userinfo.AccountActivity"></activity>
     </application>
 
 </manifest>

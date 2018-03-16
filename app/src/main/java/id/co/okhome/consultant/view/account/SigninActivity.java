@@ -23,12 +23,8 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import id.co.okhome.consultant.model.v2.AccountModel;
-import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.account.reset.ForgotLoginActivity;
 import id.co.okhome.consultant.view.common.dialog.BottomOptionDialog;
-import id.co.okhome.consultant.view.etc.BlockedActivity;
-import id.co.okhome.consultant.view.main.trainee.TraineeMainActivity;
-import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 import id.co.okhome.consultant.view.viewholder.StringHolder;
 
 public class SigninActivity extends OkHomeParentActivity {
@@ -79,17 +75,10 @@ public class SigninActivity extends OkHomeParentActivity {
     private void login(final String email, final String password){
 
         showLoading(true);
-        OkhomeRestApi.getAccountClient().login(email, password).enqueue(new RetrofitCallback<AccountModel>() {
-
+        ConsultantLoggedIn.login(this, email, password, new RetrofitCallback<AccountModel>() {
             @Override
-            public void onSuccess(AccountModel result) {
-                onLoginSuccess(result);
-            }
-
-            @Override
-            public void onJodevError(ErrorModel jodevErrorModel) {
-                super.onJodevError(jodevErrorModel);
-                ToastUtil.showToast(jodevErrorModel.message);
+            public void onSuccess(AccountModel account) {
+                ConsultantLoggedIn.doWorkByConsultantCondition(account, new ConsultantLoggedIn.CommonLoginSuccessImpl(SigninActivity.this, false));
             }
 
             @Override
@@ -97,23 +86,15 @@ public class SigninActivity extends OkHomeParentActivity {
                 super.onFinish();
                 showLoading(false);
             }
+
+            @Override
+            public void onJodevError(ErrorModel jodevErrorModel) {
+                super.onJodevError(jodevErrorModel);
+                ToastUtil.showToast(jodevErrorModel.message);
+            }
         });
     }
 
-    // on login success
-    private void onLoginSuccess(AccountModel account){
-
-        ConsultantLoggedIn.set(account);
-        OkHomeParentActivity.finishAllActivities();
-
-        if(account.blocked != null) {
-            startActivity(new Intent(this, BlockedActivity.class));
-        } else if (account.trainee.approveYN.equals("N")) {
-            startActivity(new Intent(this, FillupUserInfoActivity.class));
-        } else {
-            startActivity(new Intent(this, TraineeMainActivity.class));
-        }
-    }
 
     //Loading toggle
     private void showLoading(boolean on){

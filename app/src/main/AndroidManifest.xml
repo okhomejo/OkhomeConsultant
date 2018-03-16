@@ -29,6 +29,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".view.main.trainee.TraineeMainActivity">
         </activity>
+        <activity android:name=".view.main.trainee.ConsultantMainActivity">
+        </activity>
         <activity
             android:name=".view.etc.SplashActivity"
             android:label="OKHOME Consultants">

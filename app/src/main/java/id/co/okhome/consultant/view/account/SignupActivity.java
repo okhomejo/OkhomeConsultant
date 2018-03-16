@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -27,7 +26,6 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
-import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 
 public class SignupActivity extends OkHomeParentActivity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -84,6 +82,8 @@ public class SignupActivity extends OkHomeParentActivity implements
 
     private void signup(final String email, String password) {
         showLoading(true);
+
+
         OkhomeRestApi.getAccountClient().signup(email, password, "EMAIL").enqueue(new RetrofitCallback<AccountModel>() {
             @Override
             public void onSuccess(AccountModel result) {
@@ -106,10 +106,10 @@ public class SignupActivity extends OkHomeParentActivity implements
     }
 
     // on login success
-    private void onSignUpSuccess(AccountModel result){
-        ConsultantLoggedIn.set(result);
-        OkHomeParentActivity.finishAllActivities();
-        startActivity(new Intent(this, FillupUserInfoActivity.class));
+    private void onSignUpSuccess(AccountModel account){
+        ConsultantLoggedIn.set(account);
+        ConsultantLoggedIn.doWorkByConsultantCondition(account, new ConsultantLoggedIn.CommonLoginSuccessImpl(this, true));
+
     }
 
     private void savePhoneNumber(final String id) {

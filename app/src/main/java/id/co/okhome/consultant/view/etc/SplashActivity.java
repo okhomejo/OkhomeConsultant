@@ -16,8 +16,6 @@ import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.view.account.AuthActivity;
-import id.co.okhome.consultant.view.main.trainee.TraineeMainActivity;
-import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 
 public class SplashActivity extends OkHomeParentActivity {
 
@@ -48,7 +46,6 @@ public class SplashActivity extends OkHomeParentActivity {
                 }
             }).setDelay(1200).work();
 
-
         }else{
 
             //delayed start
@@ -68,31 +65,7 @@ public class SplashActivity extends OkHomeParentActivity {
         ConsultantLoggedIn.login(this, email, password, new RetrofitCallback<AccountModel>() {
             @Override
             public void onSuccess(AccountModel account) {
-
-                // if blocked,
-                if (account.blocked != null) {
-                    startActivity(new Intent(SplashActivity.this, BlockedActivity.class));
-                }
-
-                // or not, have to check consultant's type
-                else {
-
-                    if(account.type.equals("C")){
-                        //go to consultant main activity
-                    }else{
-                        //check trainee's status by admin.
-
-                        if(account.trainee.approveYN.equals("Y")){
-                            startActivity(new Intent(SplashActivity.this, TraineeMainActivity.class));
-                            finish();
-                        }else{
-                            startActivity(new Intent(SplashActivity.this, FillupUserInfoActivity.class));
-                            finish();
-                        }
-                    }
-                    SplashActivity.this.finish();
-                }
-
+                ConsultantLoggedIn.doWorkByConsultantCondition(account, new ConsultantLoggedIn.CommonLoginSuccessImpl(SplashActivity.this, false));
             }
         });
     }

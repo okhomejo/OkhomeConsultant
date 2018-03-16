@@ -1,8 +1,12 @@
 package id.co.okhome.consultant.lib.app;
 
 import android.app.Activity;
+import android.content.Intent;
+
 import com.google.gson.Gson;
+
 import java.util.Map;
+
 import id.co.okhome.consultant.config.OkhomeRegistryKey;
 import id.co.okhome.consultant.lib.JoSharedPreference;
 import id.co.okhome.consultant.lib.ToastUtil;
@@ -10,6 +14,10 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
+import id.co.okhome.consultant.view.etc.BlockedActivity;
+import id.co.okhome.consultant.view.main.trainee.ConsultantMainActivity;
+import id.co.okhome.consultant.view.main.trainee.TraineeMainActivity;
+import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 
 /**
  * Created by jo on 2018-01-28.
@@ -48,6 +56,7 @@ public class ConsultantLoggedIn {
     /**clear all data. It may be called on logout*/
     public final static void clear(){
         JoSharedPreference.with().push(OkhomeRegistryKey.LOGIN_CONSULTANT, null);
+        JoSharedPreference.with().push(OkhomeRegistryKey.PASSWORD_LAST_LOGIN, null);
     }
 
     /**login*/
@@ -111,5 +120,84 @@ public class ConsultantLoggedIn {
     public final static void updateUserInfo(Map param, RetrofitCallback<String> callback){
         String jsonParam = new Gson().toJson(param);
         OkhomeRestApi.getProfileClient().update(get().id, jsonParam).enqueue(callback);
+    }
+
+    public final static void doWorkByConsultantCondition(AccountModel account, final OnLoginSuccessListener onLoginSuccessListener){
+        if (account.blocked != null) {
+            onLoginSuccessListener.onBlocked();
+        }
+
+        // or not, have to check consultant's type
+        else {
+
+            if(account.type.equals("C")){
+                //go to consultant main activity
+                onLoginSuccessListener.onConsultant();
+            }else{
+                //check trainee's status by admin.
+
+                if(account.trainee.approveYN.equals("Y")){
+                    onLoginSuccessListener.onTrainee();
+                }else{
+                    onLoginSuccessListener.onTraineeNotApproved();
+                }
+            }
+        }
+
+        onLoginSuccessListener.afterWork();
+    }
+
+    public interface OnLoginSuccessListener{
+        void beginWork();
+        void onBlocked();
+        void onConsultant();
+        void onTraineeNotApproved();
+        void onTrainee();
+        void afterWork();
+    }
+
+    public static class CommonLoginSuccessImpl implements OnLoginSuccessListener{
+
+        OkHomeParentActivity activity;
+        boolean finishAllActivity = false;
+
+        public CommonLoginSuccessImpl(OkHomeParentActivity activity, boolean finishAllActivity) {
+            this.activity = activity;
+            this.finishAllActivity = finishAllActivity;
+        }
+
+        @Override
+        public void beginWork() {
+            if(finishAllActivity){
+                OkHomeParentActivity.finishAllActivities();
+            }
+        }
+
+        @Override
+        public void onBlocked() {
+            activity.startActivity(new Intent(activity, BlockedActivity.class));
+        }
+
+        @Override
+        public void onConsultant() {
+            activity.startActivity(new Intent(activity, ConsultantMainActivity.class));
+        }
+
+        @Override
+        public void onTraineeNotApproved() {
+            activity.startActivity(new Intent(activity, FillupUserInfoActivity.class));
+        }
+
+        @Override
+        public void onTrainee() {
+            activity.startActivity(new Intent(activity, TraineeMainActivity.class));
+        }
+
+        @Override
+        public void afterWork() {
+            if(!finishAllActivity){
+                activity.finish();
+            }
+        }
     }
 }

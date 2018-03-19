@@ -12,6 +12,8 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -85,7 +87,6 @@ public class SignupActivity extends OkHomeParentActivity implements
     private void signup(final String email, final String password) {
         showLoading(true);
 
-
         OkhomeRestApi.getAccountClient().signup(email, password, "EMAIL").enqueue(new RetrofitCallback<AccountModel>() {
             @Override
             public void onSuccess(AccountModel account) {
@@ -114,7 +115,6 @@ public class SignupActivity extends OkHomeParentActivity implements
         JoSharedPreference.with().push(OkhomeRegistryKey.PASSWORD_LAST_LOGIN, password);
 
         ConsultantLoggedIn.doCommonWorkAfterAcquiringAccount(account, new ConsultantLoggedIn.CommonLoginSuccessImpl(this, true));
-
     }
 
     private void savePhoneNumber(final String id) {
@@ -127,7 +127,9 @@ public class SignupActivity extends OkHomeParentActivity implements
             @Override
             public void onJodevError(ErrorModel jodevErrorModel) {
                 super.onJodevError(jodevErrorModel);
-                ToastUtil.showToast(jodevErrorModel.message);
+                if (Objects.equals(jodevErrorModel.code, "-102")) {
+                    tvPhone.setError("Make sure the phone number is unique.");
+                }
             }
 
             @Override
@@ -219,5 +221,4 @@ public class SignupActivity extends OkHomeParentActivity implements
                 })
                 .show();
     }
-
 }

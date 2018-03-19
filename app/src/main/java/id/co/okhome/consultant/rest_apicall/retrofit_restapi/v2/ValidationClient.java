@@ -23,5 +23,3 @@ public interface ValidationClient {
     @PATCH("profile/update/phone")
     Call<String> updatePhoneNumber(@Query("accountId") String accountId, @Query("phone") String phone, @Query("code") String code);
 }
-
-

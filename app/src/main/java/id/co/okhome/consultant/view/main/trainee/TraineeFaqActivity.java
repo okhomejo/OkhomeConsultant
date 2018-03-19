@@ -38,10 +38,19 @@ public class TraineeFaqActivity extends OkHomeParentActivity {
         OkhomeUtil.setWhiteSystembar(this);
 
         ButterKnife.bind(this);
-        getAllFaq(0);
+        init();
     }
 
-    private void getAllFaq(int faqId) {
+    private void init() {
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            getAllFaq(extras.getInt("FAQ_ID"));
+        } else {
+            getAllFaq(0);
+        }
+    }
+
+    private void getAllFaq(final int faqId) {
         progressBar.setVisibility(View.VISIBLE);
         OkhomeRestApi.getCommonClient().getAllFaqs(faqId).enqueue(new RetrofitCallback<List<FaqModel>>() {
 
@@ -58,7 +67,9 @@ public class TraineeFaqActivity extends OkHomeParentActivity {
                             intent.putExtra("FAQ_CONTENTS", faqs.get(pos).contents);
                             startActivity(intent);
                         } else {
-                            getAllFaq(faqs.get(pos).id);
+                            Intent intent = new Intent(getBaseContext(), TraineeFaqActivity.class);
+                            intent.putExtra("FAQ_ID", faqs.get(pos).id);
+                            startActivity(intent);
                         }
                     }
                 });

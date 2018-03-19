@@ -67,13 +67,6 @@ public class ConsultantLoggedIn {
                 ConsultantLoggedIn.set(result);
                 retrofitCallback.onSuccess(result);
 
-                if(result.blocked != null){
-                    //블럭화면으로
-                }else if(!result.trainee.approveYN.equals("N")){
-//                }else if(!result.accountStatus.isDoumentCompleted){
-                    //문서 완료 안됬으면
-                }
-
                 JoSharedPreference.with().push(OkhomeRegistryKey.EMAIL_LAST_LOGIN, email);
                 JoSharedPreference.with().push(OkhomeRegistryKey.PASSWORD_LAST_LOGIN, pass);
             }

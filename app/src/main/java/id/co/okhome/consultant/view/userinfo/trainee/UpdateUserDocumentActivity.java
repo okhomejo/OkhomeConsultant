@@ -51,9 +51,8 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
     private Bundle previousBundle = null;
     private ProfileModel profile;
     private String accountId;
-    private boolean isActive = false;
-
     private String phoneCode;
+    private boolean isActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

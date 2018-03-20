@@ -24,7 +24,6 @@ import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListen
 
 public class UpdatePasswordDialog extends DialogParent {
 
-    @BindView(R.id.dialogUpdatePassword_etPasswordPrev)     EditText oldPassword;
     @BindView(R.id.dialogUpdatePassword_etPassword1)        EditText etPassword1;
     @BindView(R.id.dialogUpdatePassword_etPassword2)        EditText etPassword2;
 
@@ -32,10 +31,12 @@ public class UpdatePasswordDialog extends DialogParent {
     public final static String CURRENT_PASSWORD   = "CURRENT PASSWORD";
 
     private CommonDialogListener commonDialogListener;
+    private String oldPassword;
 
-    public UpdatePasswordDialog(Context context, CommonDialogListener commonDialogListener) {
+    public UpdatePasswordDialog(Context context, CommonDialogListener commonDialogListener, String oldPassword) {
         super(context);
         this.commonDialogListener = commonDialogListener;
+        this.oldPassword = oldPassword;
     }
 
     @Override
@@ -53,22 +54,20 @@ public class UpdatePasswordDialog extends DialogParent {
     }
 
     private void checkInputFields(){
-        final String oldPass    = oldPassword.getText().toString();
         final String newPass1   = etPassword1.getText().toString();
         final String newPass2   = etPassword2.getText().toString();
 
         try {
             OkhomeUtil.chkException(!newPass1.equals(newPass2), "Passwords does not match.");
-            OkhomeUtil.isValidPassword(oldPass);
             OkhomeUtil.isValidPassword(newPass1);
         } catch(OkhomeException e) {
             ToastUtil.showToast(e.getMessage());
             return;
         }
-        onPasswordChangeDone(newPass1, oldPass);
+        onPasswordChangeDone(newPass1);
     }
 
-    private void onPasswordChangeDone(String newPassword, String oldPassword) {
+    private void onPasswordChangeDone(String newPassword) {
         commonDialogListener.onCommonDialogWorkDone(this, 1,
                 OkhomeUtil.makeMap(RESULT_PASSWORD, newPassword, CURRENT_PASSWORD, oldPassword)
         );

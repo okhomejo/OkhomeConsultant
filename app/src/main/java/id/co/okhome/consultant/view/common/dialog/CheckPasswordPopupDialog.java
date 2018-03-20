@@ -23,12 +23,15 @@ public class CheckPasswordPopupDialog extends DialogParent {
     @BindView(R.id.dialogCheckPassword_etPasswordPrev)   EditText currentPassword;
 
     public final static String CUR_PASSWORD    = "CURRENT PASSWORD";
+    public final static String DIALOG_ACTION   = "DIALOG ACTION";
 
     private CommonDialogListener commonDialogListener;
+    private String action;
 
-    public CheckPasswordPopupDialog(Context context, CommonDialogListener commonDialogListener) {
+    public CheckPasswordPopupDialog(Context context, CommonDialogListener commonDialogListener, String action) {
         super(context);
         this.commonDialogListener = commonDialogListener;
+        this.action = action;
     }
 
     @Override
@@ -59,7 +62,7 @@ public class CheckPasswordPopupDialog extends DialogParent {
     }
 
     private void onPasswordCorrect(String password) {
-        commonDialogListener.onCommonDialogWorkDone(this, 2, OkhomeUtil.makeMap(CUR_PASSWORD, password));
+        commonDialogListener.onCommonDialogWorkDone(this, 2, OkhomeUtil.makeMap(CUR_PASSWORD, password, DIALOG_ACTION, action));
     }
 
     public void passwordError(String error) {

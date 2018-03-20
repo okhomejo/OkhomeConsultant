@@ -1,18 +1,27 @@
 package id.co.okhome.consultant.view.main.trainee;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
 import android.widget.TextView;
+
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.adapter.FaqListAdapter;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
+import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
+import id.co.okhome.consultant.model.FaqModel;
+import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 
 /**
  * Created by frizurd on 16/03/2018.
@@ -34,12 +43,28 @@ public class TraineeFaqSingleActivity extends OkHomeParentActivity {
     }
 
     private void init() {
-        String newsTitle = getIntent().getStringExtra("FAQ_TITLE");
-        tvTitle.setText(newsTitle);
-        loadWebView();
+        getFaq(getIntent().getExtras().getInt("FAQ_ID"));
     }
 
-    private void loadWebView() {
+    private void getFaq(int faqId) {
+        vLoading.setVisibility(View.VISIBLE);
+        OkhomeRestApi.getCommonClient().getFaq(faqId).enqueue(new RetrofitCallback<FaqModel>() {
+
+            @Override
+            public void onSuccess(final FaqModel faq) {
+                tvTitle.setText(faq.subject);
+                loadWebView(faq.contents);
+            }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                vLoading.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void loadWebView(String contents) {
         WebSettings webSettings =  webView.getSettings();
         webSettings.setUseWideViewPort(true);
         webSettings.setJavaScriptEnabled(true);
@@ -69,9 +94,8 @@ public class TraineeFaqSingleActivity extends OkHomeParentActivity {
             }
         });
 
-        String newsContents = getIntent().getStringExtra("FAQ_CONTENTS");
-        if (newsContents != null) {
-            webView.loadData(newsContents, "text/html", "UTF-8");
+        if (contents != null) {
+            webView.loadData(contents, "text/html", "UTF-8");
         } else {
             webView .loadUrl("http://www.okhome.id");
         }

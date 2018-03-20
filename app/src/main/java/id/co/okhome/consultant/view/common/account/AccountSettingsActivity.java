@@ -106,6 +106,31 @@ public class AccountSettingsActivity extends OkHomeParentActivity implements Dia
                 });
     }
 
+    private void checkPassword(final String password) {
+        final ProgressDialog p = ProgressDialog.show(AccountSettingsActivity.this, null, "Checking password...");
+        OkhomeRestApi.getAccountClient().login(ConsultantLoggedIn.get().email, password)
+                .enqueue(new RetrofitCallback<AccountModel>() {
+                    @Override
+                    public void onSuccess(AccountModel account) {
+                        checkPasswordDialog.dismiss();
+                        updatePasswordDialog = new UpdatePasswordDialog(AccountSettingsActivity.this, AccountSettingsActivity.this, password);
+                        updatePasswordDialog.show();
+                    }
+
+                    @Override
+                    public void onJodevError(ErrorModel jodevErrorModel) {
+                        super.onJodevError(jodevErrorModel);
+                        OkhomeUtil.showToast(AccountSettingsActivity.this, "Incorrect password.");
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        super.onFinish();
+                        p.dismiss();
+                    }
+                });
+    }
+
     private void deleteAccount(String curPassword) {
         final ProgressDialog p = ProgressDialog.show(AccountSettingsActivity.this, null, "Deleting account...");
         int consultantID = Integer.parseInt(ConsultantLoggedIn.get().id);
@@ -137,39 +162,36 @@ public class AccountSettingsActivity extends OkHomeParentActivity implements Dia
                 });
     }
 
-//    public void checkLogin(String oldPassword) {
-//        OkhomeRestApi.getAccountClient().login(ConsultantLoggedIn.get().email, oldPassword)
-//                .enqueue(new RetrofitCallback<AccountModel>() {
-//                    @Override
-//                    public void onSuccess(AccountModel account) {
-//                        if (account.email == ConsultantLoggedIn.get().email) {
-//                            updatePassword();
-//                        }
-//                    }
-//                });
-//    }
-
     @Override
     public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
-        if(actionCode == 1){
+        if(actionCode == 1) {
             String newPassword = (String) mapResult.get(UpdatePasswordDialog.RESULT_PASSWORD);
             String curPassword = (String) mapResult.get(UpdatePasswordDialog.CURRENT_PASSWORD);
+
             updatePassword(curPassword, newPassword);
+
         } else if (actionCode == 2) {
             String curPassword = (String) mapResult.get(CheckPasswordPopupDialog.CUR_PASSWORD);
-            deleteAccount(curPassword);
+            String action      = (String) mapResult.get(CheckPasswordPopupDialog.DIALOG_ACTION);
+
+            if (Objects.equals(action, "DELETE")) {
+                deleteAccount(curPassword);
+            } else if (Objects.equals(action, "CHECK")) {
+                checkPassword(curPassword);
+            }
         }
     }
 
     @OnClick(R.id.actAccount_vbtnChangePassword)
     public void onClickChangePassword() {
-        updatePasswordDialog = new UpdatePasswordDialog(this, this);
-        updatePasswordDialog.show();
+
+        checkPasswordDialog = new CheckPasswordPopupDialog(this, this, "CHECK");
+        checkPasswordDialog.show();
     }
 
     @OnClick(R.id.actAccount_vbtnDeleteAccount)
     public void onClickDeleteAccount() {
-        checkPasswordDialog = new CheckPasswordPopupDialog(this, this);
+        checkPasswordDialog = new CheckPasswordPopupDialog(this, this, "DELETE");
         checkPasswordDialog.show();
     }
 

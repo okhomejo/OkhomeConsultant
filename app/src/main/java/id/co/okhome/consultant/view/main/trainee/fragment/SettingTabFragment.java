@@ -17,7 +17,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
+import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.view.common.account.AccountSettingsActivity;
@@ -84,6 +86,12 @@ public class SettingTabFragment extends Fragment implements TabFragmentStatusLis
     @Override
     public void onDeselect() {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        init();
     }
 
     @OnClick(R.id.fragTabSettingsForTrainee_vbtnProfile)

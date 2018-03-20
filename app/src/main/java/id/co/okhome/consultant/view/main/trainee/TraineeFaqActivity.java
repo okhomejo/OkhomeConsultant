@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,6 +27,7 @@ import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 
 public class TraineeFaqActivity extends OkHomeParentActivity {
 
+    @BindView(R.id.actTraineeFAQ_tvTitle)      TextView tvTitle;
     @BindView(R.id.actTraineeFAQ_list)         ListView listView;
     @BindView(R.id.actTraineeFAQ_vProgress)    ProgressBar progressBar;
 
@@ -45,6 +47,7 @@ public class TraineeFaqActivity extends OkHomeParentActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             getAllFaq(extras.getInt("FAQ_ID"));
+            tvTitle.setText(extras.getString("FAQ_TITLE"));
         } else {
             getAllFaq(0);
         }
@@ -63,12 +66,12 @@ public class TraineeFaqActivity extends OkHomeParentActivity {
                     public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
                         if (faqs.get(pos).childCount == 0) {
                             Intent intent = new Intent(getBaseContext(), TraineeFaqSingleActivity.class);
-                            intent.putExtra("FAQ_TITLE", faqs.get(pos).subject);
-                            intent.putExtra("FAQ_CONTENTS", faqs.get(pos).contents);
+                            intent.putExtra("FAQ_ID", faqs.get(pos).id);
                             startActivity(intent);
                         } else {
                             Intent intent = new Intent(getBaseContext(), TraineeFaqActivity.class);
                             intent.putExtra("FAQ_ID", faqs.get(pos).id);
+                            intent.putExtra("FAQ_TITLE", faqs.get(pos).subject);
                             startActivity(intent);
                         }
                     }

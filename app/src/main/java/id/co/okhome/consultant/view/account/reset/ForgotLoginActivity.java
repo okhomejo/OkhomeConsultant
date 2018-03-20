@@ -10,8 +10,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.config.OkhomeRegistryKey;
 import id.co.okhome.consultant.exception.OkhomeException;
+import id.co.okhome.consultant.lib.JoSharedPreference;
 import id.co.okhome.consultant.lib.PhoneNumberGetter;
+import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
@@ -26,7 +29,6 @@ import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 public class ForgotLoginActivity extends OkHomeParentActivity {
 
     @BindView(R.id.actForgotLogin_llHidden)        LinearLayout hiddenContent;
-    @BindView(R.id.actForgotLogin_tvTitle)         TextView tvTitle;
     @BindView(R.id.actForgotLogin_tvEmail)         TextView tvEmail;
     @BindView(R.id.actForgotLogin_tvPhone)         TextView tvPhone;
     @BindView(R.id.actForgotLogin_etPassword1)     EditText firstPassword;
@@ -46,7 +48,6 @@ public class ForgotLoginActivity extends OkHomeParentActivity {
     private void init() {
         hiddenContent.setAlpha(0.0f);
         hiddenContent.animate().translationY(hiddenContent.getHeight());
-        tvTitle.setText(getIntent().getExtras().getString("actTitle"));
     }
 
     public void getEmailAddress(String phone, String code) {
@@ -89,12 +90,18 @@ public class ForgotLoginActivity extends OkHomeParentActivity {
         updatePassword(firstPass);
     }
 
-    public void updatePassword(String newPassword) {
-        OkhomeRestApi.getAccountClient().updatePassword(accountID, "", newPassword)
+    public void updatePassword(final String newPassword) {
+        OkhomeRestApi.getAccountClient().updatePasswordType2(accountID, newPassword)
                 .enqueue(new RetrofitCallback<String>() {
             @Override
             public void onSuccess(String account) {
                 OkhomeUtil.showToast(ForgotLoginActivity.this, "Password has been changed!");
+                ConsultantLoggedIn.reload(new RetrofitCallback<AccountModel>() {
+                    @Override
+                    public void onSuccess(AccountModel result) {
+                        JoSharedPreference.with().push(OkhomeRegistryKey.PASSWORD_LAST_LOGIN, newPassword);
+                    }
+                });
             }
 
             @Override

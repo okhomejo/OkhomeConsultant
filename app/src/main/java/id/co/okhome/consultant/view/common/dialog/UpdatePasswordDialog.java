@@ -29,6 +29,7 @@ public class UpdatePasswordDialog extends DialogParent {
     @BindView(R.id.dialogUpdatePassword_etPassword2)        EditText etPassword2;
 
     public final static String RESULT_PASSWORD    = "NEW PASSWORD";
+    public final static String CURRENT_PASSWORD   = "CURRENT PASSWORD";
 
     private CommonDialogListener commonDialogListener;
 
@@ -64,12 +65,13 @@ public class UpdatePasswordDialog extends DialogParent {
             ToastUtil.showToast(e.getMessage());
             return;
         }
-        onPasswordChangeDone(newPass1);
+        onPasswordChangeDone(newPass1, oldPass);
     }
 
-    private void onPasswordChangeDone(String password) {
-        commonDialogListener.onCommonDialogWorkDone(this, 1, OkhomeUtil.makeMap(RESULT_PASSWORD, password));
-        dismiss();
+    private void onPasswordChangeDone(String newPassword, String oldPassword) {
+        commonDialogListener.onCommonDialogWorkDone(this, 1,
+                OkhomeUtil.makeMap(RESULT_PASSWORD, newPassword, CURRENT_PASSWORD, oldPassword)
+        );
     }
 
     @Override

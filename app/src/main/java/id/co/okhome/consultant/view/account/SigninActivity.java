@@ -79,6 +79,7 @@ public class SigninActivity extends OkHomeParentActivity {
             @Override
             public void onSuccess(AccountModel account) {
                 ConsultantLoggedIn.doCommonWorkAfterAcquiringAccount(account, new ConsultantLoggedIn.CommonLoginSuccessImpl(SigninActivity.this, false));
+                finishAllActivities();
             }
 
             @Override
@@ -119,24 +120,27 @@ public class SigninActivity extends OkHomeParentActivity {
 
     @OnClick(R.id.actSignIn_vbtnForgotInfo)
     public void onForgotInfoClick() {
-        BottomOptionDialog dialog = new BottomOptionDialog(this)
-                .setArrItems("Find Email by phone", "Reset password by phone")
-                .setItemClickListener(new StringHolder.ItemClickListener() {
-                    @Override
-                    public void onItemClick(Dialog dialog, int pos, String value, String tag) {
-                        Intent i = new Intent(SigninActivity.this, ForgotLoginActivity.class);
-                        i.putExtra("actTitle", value);
-                        startActivity(i);
-                        dialog.dismiss();
-                    }
-                });
-        Window window = dialog.getWindow();
-        WindowManager.LayoutParams wlp = window.getAttributes();
-        wlp.gravity = Gravity.BOTTOM;
-        wlp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        wlp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        window.setAttributes(wlp);
 
-        dialog.show();
+        startActivity(new Intent(this, ForgotLoginActivity.class));
+
+//        BottomOptionDialog dialog = new BottomOptionDialog(this)
+//                .setArrItems("Find Email by phone", "Reset password by phone")
+//                .setItemClickListener(new StringHolder.ItemClickListener() {
+//                    @Override
+//                    public void onItemClick(Dialog dialog, int pos, String value, String tag) {
+//                        Intent i = new Intent(SigninActivity.this, ForgotLoginActivity.class);
+//                        i.putExtra("actTitle", value);
+//                        startActivity(i);
+//                        dialog.dismiss();
+//                    }
+//                });
+//        Window window = dialog.getWindow();
+//        WindowManager.LayoutParams wlp = window.getAttributes();
+//        wlp.gravity = Gravity.BOTTOM;
+//        wlp.width = WindowManager.LayoutParams.MATCH_PARENT;
+//        wlp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+//        window.setAttributes(wlp);
+//
+//        dialog.show();
     }
 }

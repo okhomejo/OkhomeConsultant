@@ -81,6 +81,4 @@ public class SplashActivity extends OkHomeParentActivity {
             vTarget.animate().translationX(-700f).alpha(0f).setDuration(500).setStartDelay(delay).start();
         }
     }
-
-
 }

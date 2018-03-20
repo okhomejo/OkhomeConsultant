@@ -12,6 +12,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -58,6 +60,7 @@ public class NewsListAdapter extends BaseAdapter {
         }
 
         NewsModel news =  getItem(position);
+
         viewHolder.newsTitle.setText(news.subject);
         viewHolder.newsDate.setText(news.insertDateTime);
 

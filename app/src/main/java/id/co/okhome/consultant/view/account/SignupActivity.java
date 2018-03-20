@@ -6,9 +6,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -51,7 +56,6 @@ public class SignupActivity extends OkHomeParentActivity implements
         setContentView(R.layout.activity_signup);
         buildGoogleApiClient();
         ButterKnife.bind(this);
-
         init();
     }
 
@@ -70,7 +74,7 @@ public class SignupActivity extends OkHomeParentActivity implements
             OkhomeUtil.chkException(!OkhomeUtil.isValidEmail(email), "Check your email.");
             OkhomeUtil.isValidPassword(password);
             OkhomeUtil.chkException(!password.equals(passwordOneMore), "Passwords do not match.");
-            OkhomeUtil.chkException(phone.equals(""), "Please verify your phone number.");
+            OkhomeUtil.chkException(phone.equals(""), "Please verify your phone number first.");
 
         } catch(OkhomeException e) {
             OkhomeUtil.showToast(this, e.getMessage());
@@ -87,17 +91,18 @@ public class SignupActivity extends OkHomeParentActivity implements
     private void signup(final String email, final String password) {
         showLoading(true);
 
-        OkhomeRestApi.getAccountClient().signup(email, password, "EMAIL").enqueue(new RetrofitCallback<AccountModel>() {
+        OkhomeRestApi.getAccountClient().signup(email, password, "EMAIL", phoneNum, phoneCode).enqueue(new RetrofitCallback<AccountModel>() {
             @Override
             public void onSuccess(AccountModel account) {
-                savePhoneNumber(account.id);
                 onSignUpSuccess(account, email, password);
             }
 
             @Override
             public void onJodevError(ErrorModel jodevErrorModel) {
                 super.onJodevError(jodevErrorModel);
-                ToastUtil.showToast(jodevErrorModel.message);
+                if (Objects.equals(jodevErrorModel.code, "-102")) {
+                    OkhomeUtil.showToast(SignupActivity.this, "Your email and phone number may only be used once.");
+                }
             }
 
             @Override
@@ -117,35 +122,35 @@ public class SignupActivity extends OkHomeParentActivity implements
         ConsultantLoggedIn.doCommonWorkAfterAcquiringAccount(account, new ConsultantLoggedIn.CommonLoginSuccessImpl(this, true));
     }
 
-    private void savePhoneNumber(final String id) {
-        showLoading(true);
-        OkhomeRestApi.getValidationClient().updatePhoneNumber(id, phoneNum, phoneCode).enqueue(new RetrofitCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-            }
-
-            @Override
-            public void onJodevError(ErrorModel jodevErrorModel) {
-                super.onJodevError(jodevErrorModel);
-                if (Objects.equals(jodevErrorModel.code, "-102")) {
-                    tvPhone.setError("Make sure the phone number is unique.");
-                }
-            }
-
-            @Override
-            public void onFinish() {
-                super.onFinish();
-                showLoading(false);
-            }
-        });
-    }
+//    private void savePhoneNumber(final String id) {
+//        showLoading(true);
+//        OkhomeRestApi.getValidationClient().updatePhoneNumber(id, phoneNum, phoneCode).enqueue(new RetrofitCallback<String>() {
+//            @Override
+//            public void onSuccess(String result) {
+//            }
+//
+//            @Override
+//            public void onJodevError(ErrorModel jodevErrorModel) {
+//                super.onJodevError(jodevErrorModel);
+//                if (Objects.equals(jodevErrorModel.code, "-102")) {
+//                    tvPhone.setError("Make sure the phone number is unique.");
+//                }
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                super.onFinish();
+//                showLoading(false);
+//            }
+//        });
+//    }
 
     //Loading toggle
-    private void showLoading(boolean on){
-        if(on){
+    private void showLoading(boolean on) {
+        if(on) {
             vBtnSignUp.animate().translationX(-100).alpha(0f).setDuration(300).start();
             vLoading.animate().translationX(0).alpha(1f).setDuration(300).start();
-        }else{
+        } else {
             vBtnSignUp.animate().translationX(0).alpha(1f).setDuration(300).start();
             vLoading.animate().translationX(100).alpha(0f).setDuration(300).start();
         }
@@ -184,6 +189,11 @@ public class SignupActivity extends OkHomeParentActivity implements
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @OnClick(R.id.actSignup_vbtnGoogle)
+    public void onClickGoogleSignUp() {
 
     }
 

@@ -1,5 +1,6 @@
 package id.co.okhome.consultant.view.common.account;
 
+import android.accounts.Account;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -20,7 +21,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.adapter.NewsListAdapter;
+import id.co.okhome.consultant.config.OkhomeRegistryKey;
 import id.co.okhome.consultant.exception.OkhomeException;
+import id.co.okhome.consultant.lib.JoSharedPreference;
 import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
@@ -53,6 +56,7 @@ public class AccountSettingsActivity extends OkHomeParentActivity implements Dia
     @BindView(R.id.actAccount_vbtnChangePassword)       LinearLayout passwordLayout;
 
     private CheckPasswordPopupDialog checkPasswordDialog;
+    private UpdatePasswordDialog updatePasswordDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,14 +73,29 @@ public class AccountSettingsActivity extends OkHomeParentActivity implements Dia
         }
     }
 
-    public void updatePassword(String newPassword) {
+    public void updatePassword(String oldPassword, final String newPassword) {
         final ProgressDialog p = ProgressDialog.show(AccountSettingsActivity.this, null, "Updating password...");
         int consultantID = Integer.parseInt(ConsultantLoggedIn.get().id);
-        OkhomeRestApi.getAccountClient().updatePassword(consultantID, "", newPassword)
+        OkhomeRestApi.getAccountClient().updatePassword(consultantID, oldPassword, newPassword)
                 .enqueue(new RetrofitCallback<String>() {
                     @Override
                     public void onSuccess(String account) {
                         OkhomeUtil.showToast(AccountSettingsActivity.this, "Password has been changed!");
+                        ConsultantLoggedIn.reload(new RetrofitCallback<AccountModel>() {
+                            @Override
+                            public void onSuccess(AccountModel result) {
+                                JoSharedPreference.with().push(OkhomeRegistryKey.PASSWORD_LAST_LOGIN, newPassword);
+                            }
+                        });
+                        updatePasswordDialog.dismiss();
+                    }
+
+                    @Override
+                    public void onJodevError(ErrorModel jodevErrorModel) {
+                        super.onJodevError(jodevErrorModel);
+                        if (Objects.equals(jodevErrorModel.code, "-101")) {
+                            OkhomeUtil.showToast(AccountSettingsActivity.this, "Make sure your current password is correct.");
+                        }
                     }
 
                     @Override
@@ -134,7 +153,8 @@ public class AccountSettingsActivity extends OkHomeParentActivity implements Dia
     public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
         if(actionCode == 1){
             String newPassword = (String) mapResult.get(UpdatePasswordDialog.RESULT_PASSWORD);
-            updatePassword(newPassword);
+            String curPassword = (String) mapResult.get(UpdatePasswordDialog.CURRENT_PASSWORD);
+            updatePassword(curPassword, newPassword);
         } else if (actionCode == 2) {
             String curPassword = (String) mapResult.get(CheckPasswordPopupDialog.CUR_PASSWORD);
             deleteAccount(curPassword);
@@ -143,8 +163,8 @@ public class AccountSettingsActivity extends OkHomeParentActivity implements Dia
 
     @OnClick(R.id.actAccount_vbtnChangePassword)
     public void onClickChangePassword() {
-        UpdatePasswordDialog passwordDialog = new UpdatePasswordDialog(this, this);
-        passwordDialog.show();
+        updatePasswordDialog = new UpdatePasswordDialog(this, this);
+        updatePasswordDialog.show();
     }
 
     @OnClick(R.id.actAccount_vbtnDeleteAccount)

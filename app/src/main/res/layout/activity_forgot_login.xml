@@ -20,12 +20,12 @@
             android:layout_width="50dp"
             android:layout_height="match_parent">
 
+
             <ImageView
-                android:alpha="0.5"
-                android:adjustViewBounds="true"
-                android:layout_width="20dp"
+                android:layout_width="18dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_back" />
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_leftarrow" />
         </LinearLayout>
 
         <TextView
@@ -35,7 +35,7 @@
             android:id="@+id/actForgotLogin_tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Find email by phone"
+            android:text="Forgot password or Email"
             android:textSize="17sp"
             android:layout_centerVertical="true" />
 

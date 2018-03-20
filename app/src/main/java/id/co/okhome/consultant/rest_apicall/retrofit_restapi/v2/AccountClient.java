@@ -15,7 +15,7 @@ public interface AccountClient {
 
     @POST("account/signup")
     /**signup. ** signupBy : EMAIL, GOOGLE */
-    Call<AccountModel> signup(@Query("email") String email, @Query("password") String password, @Query("signupBy") String signupBy);
+    Call<AccountModel> signup(@Query("email") String email, @Query("password") String password, @Query("signupBy") String signupBy, @Query("phone") String phone, @Query("code") String code);
 
     /**sign in*/
     @GET("account/login")
@@ -38,8 +38,14 @@ public interface AccountClient {
     Call<String> logout(@Query("accountId") int accountId);
 
     /**update password only*/
-    @PATCH("account/update_password")
+    @PATCH("account/update_password_type1")
     Call<String> updatePassword(@Query("accountId") int accountId, @Query("prevPassword") String prevPassword, @Query("newPassword") String newPassword);
+
+    /**update password only*/
+    @PATCH("account/update_password_type2")
+    Call<String> updatePasswordType2(@Query("accountId") int accountId, @Query("newPassword") String newPassword);
+
+
 
     /**update Account's specific fields at once.(without password, id, email)
      * key which able to be changed : signUpBy, type.

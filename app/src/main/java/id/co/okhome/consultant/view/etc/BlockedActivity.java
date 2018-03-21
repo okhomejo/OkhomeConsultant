@@ -43,6 +43,7 @@ public class BlockedActivity extends OkHomeParentActivity {
             account = ConsultantLoggedIn.get();
             if (account.blocked != null) {
                 tvReason.setText(account.blocked.toString());
+                tvDate.setText(account.blocked.get(0).toString());
             }
         }
     }

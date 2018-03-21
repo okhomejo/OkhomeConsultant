@@ -97,7 +97,7 @@ public class TraineeFaqSingleActivity extends OkHomeParentActivity {
         if (contents != null) {
             webView.loadData(contents, "text/html", "UTF-8");
         } else {
-            webView .loadUrl("http://www.okhome.id");
+            webView.loadData("No information available.", "text/html", "UTF-8");
         }
     }
 

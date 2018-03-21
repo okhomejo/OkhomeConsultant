@@ -31,7 +31,7 @@
                 <LinearLayout
                     android:gravity="right|center_vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/itemNews_tvDate"
@@ -41,7 +41,7 @@
                         android:layout_centerVertical="true"
                         android:text="5 June 07"
                         android:textColor="@color/colorLightBlueGray"
-                        android:textSize="15sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
 

@@ -120,7 +120,7 @@ public class AccountSettingsActivity extends OkHomeParentActivity implements Dia
                     @Override
                     public void onJodevError(ErrorModel jodevErrorModel) {
                         super.onJodevError(jodevErrorModel);
-                        OkhomeUtil.showToast(AccountSettingsActivity.this, "Incorrect password.");
+                        checkPasswordDialog.passwordError("Incorrect password.");
                     }
 
                     @Override

@@ -62,7 +62,10 @@ public class NewsListAdapter extends BaseAdapter {
         NewsModel news =  getItem(position);
 
         viewHolder.newsTitle.setText(news.subject);
-        viewHolder.newsDate.setText(news.insertDateTime);
+
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss.S");
+        DateTime dt = formatter.parseDateTime(news.insertDateTime);
+        viewHolder.newsDate.setText(dt.toString(DateTimeFormat.mediumDate()));
 
         return convertView;
     }

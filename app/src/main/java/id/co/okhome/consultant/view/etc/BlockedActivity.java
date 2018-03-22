@@ -58,7 +58,7 @@ public class BlockedActivity extends OkHomeParentActivity {
     @OnClick(R.id.actBlocked_btnContact)
     public void contactOkhome() {
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                "mailto", "staff@okhome.id", null));
+                "mailto", "ask@okhome.id", null));
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "My account got blocked!");
         this.startActivity(Intent.createChooser(emailIntent, null));
     }

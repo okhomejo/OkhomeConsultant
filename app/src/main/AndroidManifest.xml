@@ -37,6 +37,7 @@
         <activity android:name=".view.main.trainee.TraineeNewsSingleActivity" />
         <activity android:name=".view.main.trainee.TraineeFaqActivity" />
         <activity android:name=".view.main.trainee.TraineeFaqSingleActivity" />
+        <activity android:name=".view.main.trainee.TraineeFaqSearchResultActivity" />
 
         <activity android:name=".view.common.account.AccountSettingsActivity" />
 

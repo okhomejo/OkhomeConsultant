@@ -1,18 +1,12 @@
 package id.co.okhome.consultant.view.common.account;
 
-import android.accounts.Account;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.google.android.gms.nearby.messages.internal.Update;
-
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -20,9 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.adapter.NewsListAdapter;
 import id.co.okhome.consultant.config.OkhomeRegistryKey;
-import id.co.okhome.consultant.exception.OkhomeException;
 import id.co.okhome.consultant.lib.JoSharedPreference;
 import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
@@ -31,21 +23,12 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
-import id.co.okhome.consultant.model.NewsModel;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.common.dialog.CheckPasswordPopupDialog;
 import id.co.okhome.consultant.view.common.dialog.CommonAlertDialog;
-import id.co.okhome.consultant.view.common.dialog.CommonInputDialog;
 import id.co.okhome.consultant.view.common.dialog.UpdatePasswordDialog;
-import id.co.okhome.consultant.view.etc.AboutOkhomeActivity;
 import id.co.okhome.consultant.view.etc.SplashActivity;
-import id.co.okhome.consultant.view.main.trainee.TraineeNewsActivity;
-import id.co.okhome.consultant.view.main.trainee.TraineeNewsSingleActivity;
-import retrofit2.Call;
-import retrofit2.Response;
-
-import static id.co.okhome.consultant.lib.JoSharedPreference.context;
 
 /**
  * Created by frizurd on 16/03/2018.

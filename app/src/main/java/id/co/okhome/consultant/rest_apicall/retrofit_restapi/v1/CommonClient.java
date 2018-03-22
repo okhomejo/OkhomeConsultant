@@ -30,11 +30,18 @@ public interface CommonClient {
     @GET("news")
     Call<List<NewsModel>> getAllNews();
 
+
     @GET("faq/{faqId}")
     Call<FaqModel> getFaq(@Path("faqId") int faqId);
 
     @GET("faq")
     Call<List<FaqModel>> getAllFaqs(@Query("parentFaqId") int faqId);
+
+    @GET("faq/keywords")
+    Call<Map<Integer, List<String>>> getAllFaqsKeywords();
+
+    @GET("faq/q/id/{faqIdString}")
+    Call<List<FaqModel>> getFaqById(@Path("faqIdString") String faqId);
 }
 
 

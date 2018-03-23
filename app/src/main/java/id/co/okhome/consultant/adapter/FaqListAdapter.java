@@ -20,6 +20,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.ViewHolderUtil;
 import id.co.okhome.consultant.model.FaqModel;
 import id.co.okhome.consultant.model.NewsModel;
 
@@ -27,7 +28,6 @@ public class FaqListAdapter extends BaseAdapter {
 
     private Context context;
     private List<FaqModel> faqList;
-    private ViewHolder viewHolder;
 
     public FaqListAdapter(Context context, List<FaqModel> faqs) {
         this.context = context;
@@ -53,23 +53,13 @@ public class FaqListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_faq_element, parent, false);
-            viewHolder = new ViewHolder(convertView);
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
         }
+
+        TextView faqTitle = ViewHolderUtil.getView(convertView, R.id.itemFaqs_tvTitle);
 
         FaqModel faq =  getItem(position);
-        viewHolder.faqTitle.setText(faq.subject);
+        faqTitle.setText(faq.subject);
 
         return convertView;
-    }
-
-    static class ViewHolder {
-        @BindView(R.id.itemFaqs_tvTitle)    TextView faqTitle;
-
-        public ViewHolder(View view) {
-            ButterKnife.bind(this, view);
-        }
     }
 }

@@ -17,6 +17,7 @@ import java.util.Set;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.ViewHolderUtil;
 import id.co.okhome.consultant.model.WorkingRegionModel;
 
 public class AreaListAdapter extends BaseAdapter {
@@ -24,7 +25,6 @@ public class AreaListAdapter extends BaseAdapter {
     private List<WorkingRegionModel> parentRegions;
     private List<WorkingRegionModel> allRegions;
     private Set<Integer> chosenRegions;
-    private ViewHolder viewHolder;
 
     public AreaListAdapter(Context context, List<WorkingRegionModel> items, Set<Integer> chosenRegions, List<WorkingRegionModel> allRegions) {
         this.context = context;
@@ -52,42 +52,31 @@ public class AreaListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_area_city_title, parent, false);
-            viewHolder = new ViewHolder(convertView);
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        WorkingRegionModel region =  getItem(position);
-        viewHolder.cityName.setText(region.address);
+        TextView cityName        = ViewHolderUtil.getView(convertView, R.id.itemArea_tvCityTitle);
+        TextView selectedAreas   = ViewHolderUtil.getView(convertView, R.id.itemArea_tvSelectedAmt);
 
-        int selectedAreas = 0;
+        WorkingRegionModel region =  getItem(position);
+        cityName.setText(region.address);
+
+        int selectedAreasNum = 0;
         for (WorkingRegionModel childRegion : allRegions) {
             if (childRegion.parentId == region.id) {
                 for (WorkingRegionModel thirdRegion : allRegions) {
                     if (thirdRegion.parentId == childRegion.id && chosenRegions.contains(thirdRegion.id)) {
-                        selectedAreas++;
+                        selectedAreasNum++;
                     }
                 }
             }
         }
-        if (selectedAreas == 0) {
-            viewHolder.selectedAreas.setText("No areas selected");
-        } else if (selectedAreas == 1) {
-            viewHolder.selectedAreas.setText("1 area selected");
-        } else if (selectedAreas > 1) {
-            viewHolder.selectedAreas.setText(selectedAreas + " areas selected");
+        if (selectedAreasNum == 0) {
+            selectedAreas.setText("No areas selected");
+        } else if (selectedAreasNum == 1) {
+            selectedAreas.setText("1 area selected");
+        } else if (selectedAreasNum > 1) {
+            selectedAreas.setText(selectedAreasNum + " areas selected");
         }
-
         return convertView;
-    }
-
-    static class ViewHolder {
-        @BindView(R.id.itemArea_tvCityTitle)       TextView cityName;
-        @BindView(R.id.itemArea_tvSelectedAmt)     TextView selectedAreas;
-
-        public ViewHolder(View view) {
-            ButterKnife.bind(this, view);
-        }
     }
 }

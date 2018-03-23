@@ -22,6 +22,7 @@ import java.util.Set;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.ViewHolderUtil;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.model.WorkingRegionModel;
 import id.co.okhome.consultant.view.common.dialog.AreaListDialog;
@@ -68,20 +69,21 @@ public class ChildAreaListAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
-        final ViewHolder viewHolder;
+
         final WorkingRegionModel region = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_area_child_city, parent, false);
-            viewHolder = new ViewHolder(convertView);
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
         }
+        TextView cityName        = ViewHolderUtil.getView(convertView, R.id.itemAreaChild_tvCityTitle);
+        TextView subTitle        = ViewHolderUtil.getView(convertView, R.id.itemAreaChild_tvSubTitle);
+        ImageView arrowImage     = ViewHolderUtil.getView(convertView, R.id.itemAreaChild_ivArrow);
+        ImageView checkImage     = ViewHolderUtil.getView(convertView, R.id.itemAreaChild_ivCheck);
+        RelativeLayout btnArrow  = ViewHolderUtil.getView(convertView, R.id.itemAreaChild_vbtnArrow);
 
         if (region.childCount > 0) {
             // Call new child region dialog
-            viewHolder.btnArrow.setOnClickListener(new View.OnClickListener() {
+            btnArrow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 //                    listDialog.dismiss();
@@ -92,16 +94,16 @@ public class ChildAreaListAdapter extends BaseAdapter {
         }
 
         // Set child region arrow visible or gone
-        viewHolder.cityName.setText(region.address);
+        cityName.setText(region.address);
         if (region.hasChild || region.childCount > 0) {
-            viewHolder.arrowImage.setVisibility(View.VISIBLE);
+            arrowImage.setVisibility(View.VISIBLE);
         } else {
-            viewHolder.arrowImage.setVisibility(View.GONE);
+            arrowImage.setVisibility(View.GONE);
         }
 
         // Set region check mark image checked, gone or half checked
         if (region.childCount > 0) {
-            viewHolder.subTitle.setVisibility(View.VISIBLE);
+            subTitle.setVisibility(View.VISIBLE);
             int childRegionCount = 0, chosenChildCount = 0;
             for(WorkingRegionModel newRegion : allRegions) {
                 if (newRegion.parentId == region.id) {
@@ -112,38 +114,26 @@ public class ChildAreaListAdapter extends BaseAdapter {
                 }
             }
             if (childRegionCount == chosenChildCount) {
-                viewHolder.checkImage.setImageResource(R.drawable.ic_checked_sq);
-                viewHolder.checkImage.setImageAlpha(255);
-                viewHolder.subTitle.setText(MessageFormat.format("{0} of {0} selected", childRegionCount));
+                checkImage.setImageResource(R.drawable.ic_checked_sq);
+                checkImage.setImageAlpha(255);
+                subTitle.setText(MessageFormat.format("{0} of {0} selected", childRegionCount));
             } else if (chosenChildCount > 0 && chosenChildCount < childRegionCount) {
-                viewHolder.checkImage.setImageResource(R.drawable.ic_checked_sq);
-                viewHolder.checkImage.setImageAlpha(50);
-                viewHolder.subTitle.setText(MessageFormat.format("{0} of {1} selected", chosenChildCount, childRegionCount));
+                checkImage.setImageResource(R.drawable.ic_checked_sq);
+                checkImage.setImageAlpha(50);
+                subTitle.setText(MessageFormat.format("{0} of {1} selected", chosenChildCount, childRegionCount));
             } else {
-                viewHolder.checkImage.setImageResource(R.drawable.ic_check_not_deep);
-                viewHolder.checkImage.setImageAlpha(255);
-                viewHolder.subTitle.setText("Not selected");
+                checkImage.setImageResource(R.drawable.ic_check_not_deep);
+                checkImage.setImageAlpha(255);
+                subTitle.setText("Not selected");
             }
         } else {
-            viewHolder.subTitle.setVisibility(View.GONE);
+            subTitle.setVisibility(View.GONE);
             if (chosenRegions.contains(region.id)){
-                viewHolder.checkImage.setImageResource(R.drawable.ic_checked_sq);
+                checkImage.setImageResource(R.drawable.ic_checked_sq);
             } else {
-                viewHolder.checkImage.setImageResource(R.drawable.ic_check_not_deep);
+                checkImage.setImageResource(R.drawable.ic_check_not_deep);
             }
         }
         return convertView;
-    }
-
-    static class ViewHolder {
-        @BindView(R.id.itemAreaChild_tvCityTitle)   TextView cityName;
-        @BindView(R.id.itemAreaChild_tvSubTitle)    TextView subTitle;
-        @BindView(R.id.itemAreaChild_ivArrow)       ImageView arrowImage;
-        @BindView(R.id.itemAreaChild_ivCheck)       ImageView checkImage;
-        @BindView(R.id.itemAreaChild_vbtnArrow)     RelativeLayout btnArrow;
-
-        public ViewHolder(View view) {
-            ButterKnife.bind(this, view);
-        }
     }
 }

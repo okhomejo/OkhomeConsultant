@@ -1,10 +1,8 @@
 package id.co.okhome.consultant.view.viewholder;
 
 import android.view.View;
-
 import com.mrjodev.jorecyclermanager.JoViewHolder;
 import com.mrjodev.jorecyclermanager.annotations.LayoutMatcher;
-
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 
@@ -14,8 +12,6 @@ import id.co.okhome.consultant.R;
 
 @LayoutMatcher(layoutId = R.layout.item_training_header_f_trainee)
 public class TrainingHeaderForTraineeVHolder extends JoViewHolder<String> {
-
-
 
     public TrainingHeaderForTraineeVHolder(View itemView) {
         super(itemView);
@@ -30,5 +26,4 @@ public class TrainingHeaderForTraineeVHolder extends JoViewHolder<String> {
     public void onBind(String m, int pos, int absPos) {
         super.onBind(m, pos, absPos);
     }
-
 }

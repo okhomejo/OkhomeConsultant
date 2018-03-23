@@ -21,8 +21,8 @@
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:paddingLeft="17dp"
-            android:paddingRight="20dp">
+            android:paddingStart="17dp"
+            android:paddingEnd="20dp">
 
             <ImageView
                 android:layout_width="18dp"
@@ -45,19 +45,19 @@
 
 
         <id.co.okhome.consultant.lib.customview.common_views.FixedAutoCompleteTextView
+            android:id="@+id/actTraineeFAQ_search"
+            style="@style/FontOpenSansLight"
             android:layout_toEndOf="@+id/actTraineeFAQ_vbtnX"
             android:layout_toStartOf="@id/actTraineeFAQ_vbtnSearch"
-            android:id="@+id/actTraineeFAQ_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:background="@null"
-            style="@style/FontOpenSansLight"
             android:textSize="23dp"
             android:hint="Type keyword here"
             android:textColor="@color/colorBlueGray"
             android:singleLine="true"
-            android:inputType="text"
+            android:inputType="textAutoComplete"
             android:dropDownWidth="match_parent"
             android:popupBackground="@android:color/white"
             android:popupElevation="0dp"
@@ -70,11 +70,11 @@
             android:id="@+id/actTraineeFAQ_vbtnSearch"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:paddingLeft="17dp"
-            android:paddingRight="20dp">
+            android:paddingStart="17dp"
+            android:paddingEnd="20dp">
 
             <ImageView
                 android:id="@+id/actTraineeFAQ_ivSearchIcon"
@@ -127,7 +127,7 @@
     <View
         android:layout_below="@+id/actTraineeFAQ_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="2px"
+        android:layout_height="1dp"
         android:background="#000000" />
 
     <FrameLayout

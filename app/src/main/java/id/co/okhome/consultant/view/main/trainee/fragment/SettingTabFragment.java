@@ -45,37 +45,33 @@ public class SettingTabFragment extends Fragment implements TabFragmentStatusLis
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab_setting_f_trainee, null);
         ButterKnife.bind(this, view);
-        init();
         return view;
     }
 
     private void init() {
-        if (ConsultantLoggedIn.hasSavedData()) {
-            AccountModel account = ConsultantLoggedIn.get();
-            String accountType = "";
-            if (account.type.equals("T")) {
-                accountType = "Trainee";
-            } else if (account.type.equals("C")) {
-                accountType = "Consultant";
-            }
-            String gender = "";
-            if (account.profile.gender.equals("M")) {
-                gender = "Male";
-            } else if (account.profile.gender.equals("F")) {
-                gender = "Female";
-            }
-            String personInfo = account.profile.name + ", " + accountType + ", " + gender;
-            tvEmail.setText(account.email);
-            tvPersonInfo.setText(personInfo);
-            Glide.with(this).load(account.profile.photoUrl).thumbnail(0.5f).into(ivProfileImage);
+        AccountModel account = ConsultantLoggedIn.get();
+        String accountType = "";
+        if (account.type.equals("T")) {
+            accountType = "Trainee";
+        } else if (account.type.equals("C")) {
+            accountType = "Consultant";
         }
+        String gender = "";
+        if (account.profile.gender.equals("M")) {
+            gender = "Male";
+        } else if (account.profile.gender.equals("F")) {
+            gender = "Female";
+        }
+        String personInfo = account.profile.name + ", " + accountType + ", " + gender;
+        tvEmail.setText(account.email);
+        tvPersonInfo.setText(personInfo);
+        Glide.with(this).load(account.profile.photoUrl).thumbnail(0.5f).into(ivProfileImage);
     }
 
     @Override
     public void onStart() {
         super.onStart();
         ButterKnife.bind(this, getView());
-
     }
 
     @Override

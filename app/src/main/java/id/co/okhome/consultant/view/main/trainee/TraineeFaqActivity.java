@@ -49,6 +49,7 @@ public class TraineeFaqActivity extends OkHomeParentActivity {
     @BindView(R.id.actTraineeFAQ_search)            AutoCompleteTextView tvSearch;
 
     private FaqListAdapter faqAdapter;
+    private Map<Integer, List<String>> faqKeywords;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,24 +111,25 @@ public class TraineeFaqActivity extends OkHomeParentActivity {
         OkhomeRestApi.getCommonClient().getAllFaqsKeywords().enqueue(new RetrofitCallback<Map<Integer, List<String>>>() {
             @Override
             public void onSuccess(Map<Integer, List<String>> result) {
-                searchFunction(result);
+                faqKeywords = result;
             }
 
             @Override
             public void onFinish() {
                 super.onFinish();
+                searchFunction();
                 p.dismiss();
             }
         });
     }
 
-    private void searchFunction(final Map<Integer, List<String>> kwMap) {
+    private void searchFunction() {
         String[] from   = { "name" };
         int[] to        = { R.id.itemFaqKw_tvTitle };
 
-        SimpleCursorAdapter a = new SimpleCursorAdapter(this, R.layout.item_faq_keyword, null, from, to, 0);
-        a.setStringConversionColumn(1);
-        final FilterQueryProvider provider = new FilterQueryProvider() {
+        SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(this, R.layout.item_faq_keyword, null, from, to, 0);
+        cursorAdapter.setStringConversionColumn(1);
+        final FilterQueryProvider queryProvider = new FilterQueryProvider() {
             @Override
             public Cursor runQuery(CharSequence constraint) {
                 if (constraint == null) {
@@ -138,7 +140,7 @@ public class TraineeFaqActivity extends OkHomeParentActivity {
                 MatrixCursor c = new MatrixCursor(columnNames);
                 try {
                     int counter = 0;
-                    for(List<String> valueList : kwMap.values()) {
+                    for(List<String> valueList : faqKeywords.values()) {
                         for(String value : valueList) {
                             if (value.contains(constraint)) {
                                 c.newRow().add(counter++).add(value);
@@ -156,47 +158,54 @@ public class TraineeFaqActivity extends OkHomeParentActivity {
                 return c;
             }
         };
+        cursorAdapter.setFilterQueryProvider(queryProvider);
+        tvSearch.setAdapter(cursorAdapter);
+        tvSearch.setOnItemClickListener(searchFaqClickListener);
+    }
 
-        a.setFilterQueryProvider(provider);
-        tvSearch.setAdapter(a);
-        tvSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                List<String> faqIds = new ArrayList<>();
-                for (Map.Entry<Integer, List<String>> entry : kwMap.entrySet()) {
-                    for(String value : entry.getValue()) {
-                        if (value.equals(tvSearch.getText().toString())) {
-                            faqIds.add(entry.getKey().toString());
-                        }
+    private AdapterView.OnItemClickListener searchFaqClickListener
+            = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            List<String> faqIds = new ArrayList<>();
+            for (Map.Entry<Integer, List<String>> entry : faqKeywords.entrySet()) {
+                for(String value : entry.getValue()) {
+                    if (value.equals(tvSearch.getText().toString())) {
+                        faqIds.add(entry.getKey().toString());
                     }
                 }
-                if (!faqIds.isEmpty()) {
-                    Intent intent = new Intent(getBaseContext(), TraineeFaqSearchResultActivity.class);
-                    intent.putExtra("FAQ_SEARCH_IDS",   android.text.TextUtils.join(",", faqIds));
-                    intent.putExtra("FAQ_SEARCH_TITLE", tvSearch.getText().toString());
-                    startActivity(intent);
-                    onClickSearchFaq();
+            }
+            if (!faqIds.isEmpty()) {
+                Intent intent = new Intent(getBaseContext(), TraineeFaqSearchResultActivity.class);
+                intent.putExtra("FAQ_SEARCH_IDS",   android.text.TextUtils.join(",", faqIds));
+                intent.putExtra("FAQ_SEARCH_TITLE", tvSearch.getText().toString());
+                startActivity(intent);
+                onClickSearchFaq();
+            }
+        }
+    };
+
+    private void showNoResults(final boolean isTrue) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (isTrue) {
+                    tvNoResults.setVisibility(View.VISIBLE);
+                    tvNoResults.bringToFront();
+                } else {
+                    if (tvNoResults.getVisibility() == View.VISIBLE) {
+                        tvNoResults.setVisibility(View.INVISIBLE);
+                    }
                 }
             }
         });
     }
 
-    private void showNoResults(boolean isTrue) {
-        if (isTrue) {
-            tvNoResults.setVisibility(View.VISIBLE);
-            tvNoResults.bringToFront();
-        } else {
-            if (tvNoResults.getVisibility() == View.VISIBLE) {
-                tvNoResults.setVisibility(View.INVISIBLE);
-            }
-        }
-    }
-
     private void checkIfSearchHidden() {
         if(tvSearch.getVisibility() == View.VISIBLE) {
             tvTitle.setVisibility(View.VISIBLE);
+            tvSearch.getText().clear();
             tvSearch.setVisibility(View.GONE);
-            tvSearch.setText("");
             OkhomeUtil.hideKeyboard(this);
 
             ivSearchIcon.setImageResource(R.drawable.ic_search);

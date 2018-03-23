@@ -22,12 +22,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.ViewHolderUtil;
 import id.co.okhome.consultant.model.NewsModel;
 
 public class NewsListAdapter extends BaseAdapter {
     private Context context;
     private List<NewsModel> newsList;
-    private ViewHolder viewHolder;
 
     public NewsListAdapter(Context context, List<NewsModel> news) {
         this.context = context;
@@ -53,29 +53,19 @@ public class NewsListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_news_element, parent, false);
-            viewHolder = new ViewHolder(convertView);
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
         }
+
+        TextView newsTitle = ViewHolderUtil.getView(convertView, R.id.itemNews_tvTitle);
+        TextView newsDate = ViewHolderUtil.getView(convertView, R.id.itemNews_tvDate);
 
         NewsModel news =  getItem(position);
 
-        viewHolder.newsTitle.setText(news.subject);
+        newsTitle.setText(news.subject);
 
         DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss.S");
         DateTime dt = formatter.parseDateTime(news.insertDateTime);
-        viewHolder.newsDate.setText(dt.toString(DateTimeFormat.mediumDate()));
+        newsDate.setText(dt.toString(DateTimeFormat.mediumDate()));
 
         return convertView;
-    }
-
-    static class ViewHolder {
-        @BindView(R.id.itemNews_tvTitle)    TextView newsTitle;
-        @BindView(R.id.itemNews_tvDate)     TextView newsDate;
-
-        public ViewHolder(View view) {
-            ButterKnife.bind(this, view);
-        }
     }
 }

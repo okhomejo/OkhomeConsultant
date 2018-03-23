@@ -15,6 +15,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.ViewHolderUtil;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.model.JobExperienceModel;
@@ -53,20 +54,16 @@ public class JobExperienceListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
-
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_work_experience, parent, false);
-            viewHolder = new ViewHolder(convertView);
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        final JobExperienceModel jobExp = getItem(position);
-        viewHolder.position.setText(jobExp.position);
-        viewHolder.date.setText(jobExp.workPeriod);
+        TextView numPosition = ViewHolderUtil.getView(convertView, R.id.itemJob_tvPosition);
+        TextView date        = ViewHolderUtil.getView(convertView, R.id.itemJob_tvDate);
 
+        final JobExperienceModel jobExp = getItem(position);
+        numPosition.setText(jobExp.position);
+        date.setText(jobExp.workPeriod);
 
         ImageView rmExp = convertView.findViewById(R.id.itemJob_vbtnRemoveExp);
         rmExp.setOnClickListener(new View.OnClickListener() {
@@ -88,14 +85,5 @@ public class JobExperienceListAdapter extends BaseAdapter {
             }
         });
         return convertView;
-    }
-
-    static class ViewHolder {
-        @BindView(R.id.itemJob_tvPosition)      TextView position;
-        @BindView(R.id.itemJob_tvDate)          TextView date;
-
-        public ViewHolder(View view) {
-            ButterKnife.bind(this, view);
-        }
     }
 }

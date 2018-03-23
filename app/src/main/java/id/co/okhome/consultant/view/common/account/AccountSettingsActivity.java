@@ -34,12 +34,9 @@ import id.co.okhome.consultant.view.etc.SplashActivity;
  * Created by frizurd on 16/03/2018.
  */
 
-public class AccountSettingsActivity extends OkHomeParentActivity implements DialogParent.CommonDialogListener  {
+public class AccountSettingsActivity extends OkHomeParentActivity {
 
     @BindView(R.id.actAccount_vbtnChangePassword)       LinearLayout passwordLayout;
-
-    private CheckPasswordPopupDialog checkPasswordDialog;
-    private UpdatePasswordDialog updatePasswordDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,125 +53,17 @@ public class AccountSettingsActivity extends OkHomeParentActivity implements Dia
         }
     }
 
-    public void updatePassword(String oldPassword, final String newPassword) {
-        final ProgressDialog p = ProgressDialog.show(AccountSettingsActivity.this, null, "Updating password...");
-        int consultantID = Integer.parseInt(ConsultantLoggedIn.get().id);
-        OkhomeRestApi.getAccountClient().updatePassword(consultantID, oldPassword, newPassword)
-                .enqueue(new RetrofitCallback<String>() {
-                    @Override
-                    public void onSuccess(String account) {
-                        OkhomeUtil.showToast(AccountSettingsActivity.this, "Password has been changed!");
-                        ConsultantLoggedIn.reload(new RetrofitCallback<AccountModel>() {
-                            @Override
-                            public void onSuccess(AccountModel result) {
-                                JoSharedPreference.with().push(OkhomeRegistryKey.PASSWORD_LAST_LOGIN, newPassword);
-                            }
-                        });
-                        updatePasswordDialog.dismiss();
-                    }
-
-                    @Override
-                    public void onJodevError(ErrorModel jodevErrorModel) {
-                        super.onJodevError(jodevErrorModel);
-                        if (Objects.equals(jodevErrorModel.code, "-101")) {
-                            OkhomeUtil.showToast(AccountSettingsActivity.this, "Make sure your current password is correct.");
-                        }
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        super.onFinish();
-                        p.dismiss();
-                    }
-                });
-    }
-
-    private void checkPassword(final String password) {
-        final ProgressDialog p = ProgressDialog.show(AccountSettingsActivity.this, null, "Checking password...");
-        OkhomeRestApi.getAccountClient().login(ConsultantLoggedIn.get().email, password)
-                .enqueue(new RetrofitCallback<AccountModel>() {
-                    @Override
-                    public void onSuccess(AccountModel account) {
-                        checkPasswordDialog.dismiss();
-                        updatePasswordDialog = new UpdatePasswordDialog(AccountSettingsActivity.this, AccountSettingsActivity.this, password);
-                        updatePasswordDialog.show();
-                    }
-
-                    @Override
-                    public void onJodevError(ErrorModel jodevErrorModel) {
-                        super.onJodevError(jodevErrorModel);
-                        checkPasswordDialog.passwordError("Incorrect password.");
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        super.onFinish();
-                        p.dismiss();
-                    }
-                });
-    }
-
-    private void deleteAccount(String curPassword) {
-        final ProgressDialog p = ProgressDialog.show(AccountSettingsActivity.this, null, "Deleting account...");
-        int consultantID = Integer.parseInt(ConsultantLoggedIn.get().id);
-        OkhomeRestApi.getAccountClient().deleteAccount(consultantID, curPassword)
-                .enqueue(new RetrofitCallback<String>() {
-                    @Override
-                    public void onSuccess(String account) {
-                        ConsultantLoggedIn.clear();
-                        OkhomeUtil.showToast(AccountSettingsActivity.this, account + ": Account has been deleted.");
-                        finishAllActivities();
-                        startActivity(new Intent(AccountSettingsActivity.this, SplashActivity.class));
-                    }
-
-                    @Override
-                    public void onJodevError(ErrorModel jodevErrorModel) {
-                        super.onJodevError(jodevErrorModel);
-                        if (Objects.equals(jodevErrorModel.code, "-101")) {
-                            checkPasswordDialog.passwordError("Incorrect password.");
-                        } else {
-                            checkPasswordDialog.passwordError("Error, please try again later.");
-                        }
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        super.onFinish();
-                        p.dismiss();
-                    }
-                });
-    }
-
-    @Override
-    public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
-        if(actionCode == 1) {
-            String newPassword = (String) mapResult.get(UpdatePasswordDialog.RESULT_PASSWORD);
-            String curPassword = (String) mapResult.get(UpdatePasswordDialog.CURRENT_PASSWORD);
-
-            updatePassword(curPassword, newPassword);
-
-        } else if (actionCode == 2) {
-            String curPassword = (String) mapResult.get(CheckPasswordPopupDialog.CUR_PASSWORD);
-            String action      = (String) mapResult.get(CheckPasswordPopupDialog.DIALOG_ACTION);
-
-            if (Objects.equals(action, "DELETE")) {
-                deleteAccount(curPassword);
-            } else if (Objects.equals(action, "CHECK")) {
-                checkPassword(curPassword);
-            }
-        }
-    }
-
     @OnClick(R.id.actAccount_vbtnChangePassword)
     public void onClickChangePassword() {
-
-        checkPasswordDialog = new CheckPasswordPopupDialog(this, this, "CHECK");
+        CheckPasswordPopupDialog checkPasswordDialog =
+                new CheckPasswordPopupDialog(this, "CHECK");
         checkPasswordDialog.show();
     }
 
     @OnClick(R.id.actAccount_vbtnDeleteAccount)
     public void onClickDeleteAccount() {
-        checkPasswordDialog = new CheckPasswordPopupDialog(this, this, "DELETE");
+        CheckPasswordPopupDialog checkPasswordDialog =
+                new CheckPasswordPopupDialog(this, "DELETE");
         checkPasswordDialog.show();
     }
 

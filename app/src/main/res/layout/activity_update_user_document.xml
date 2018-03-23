@@ -246,6 +246,9 @@
                         style="@style/FontOpenSansLight"
                         android:textSize="15sp"
                         android:hint="Input your address"
+                        android:ellipsize="end"
+                        android:layout_marginRight="24dp"
+                        android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textColorHint="@color/colorLightBlueGray3"/>

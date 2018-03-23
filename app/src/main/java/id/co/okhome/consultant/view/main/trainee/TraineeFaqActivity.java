@@ -7,11 +7,13 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.os.Bundle;
 import android.provider.BaseColumns;
+import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.FilterQueryProvider;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -40,11 +42,11 @@ public class TraineeFaqActivity extends OkHomeParentActivity {
 
     @BindView(R.id.actTraineeFAQ_fadeBackground)    View fadeBackground;
     @BindView(R.id.actTraineeFAQ_tvTitle)           TextView tvTitle;
+    @BindView(R.id.actTraineeFAQ_vgNoResult)        FrameLayout tvNoResults;
     @BindView(R.id.actTraineeFAQ_list)              ListView listView;
-    @BindView(R.id.actTraineeFAQ_vProgress)         ProgressBar progressBar;
     @BindView(R.id.actTraineeFAQ_ivSearchIcon)      ImageView ivSearchIcon;
+    @BindView(R.id.actTraineeFAQ_vProgress)         ProgressBar progressBar;
     @BindView(R.id.actTraineeFAQ_search)            AutoCompleteTextView tvSearch;
-    @BindView(R.id.actTraineeFAQ_vgNoResult)        LinearLayout noResultView;
 
     private FaqListAdapter faqAdapter;
 
@@ -128,8 +130,8 @@ public class TraineeFaqActivity extends OkHomeParentActivity {
         final FilterQueryProvider provider = new FilterQueryProvider() {
             @Override
             public Cursor runQuery(CharSequence constraint) {
-                
                 if (constraint == null) {
+                    showNoResults(false);
                     return null;
                 }
                 String[] columnNames = { BaseColumns._ID, "name" };
@@ -142,6 +144,11 @@ public class TraineeFaqActivity extends OkHomeParentActivity {
                                 c.newRow().add(counter++).add(value);
                             }
                         }
+                    }
+                    if (constraint.length() > 1 && counter == 0) {
+                        showNoResults(true);
+                    } else {
+                        showNoResults(false);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -172,6 +179,17 @@ public class TraineeFaqActivity extends OkHomeParentActivity {
                 }
             }
         });
+    }
+
+    private void showNoResults(boolean isTrue) {
+        if (isTrue) {
+            tvNoResults.setVisibility(View.VISIBLE);
+            tvNoResults.bringToFront();
+        } else {
+            if (tvNoResults.getVisibility() == View.VISIBLE) {
+                tvNoResults.setVisibility(View.INVISIBLE);
+            }
+        }
     }
 
     private void checkIfSearchHidden() {

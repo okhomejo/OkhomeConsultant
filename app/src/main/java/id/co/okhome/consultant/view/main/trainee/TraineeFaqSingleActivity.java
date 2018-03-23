@@ -68,7 +68,6 @@ public class TraineeFaqSingleActivity extends OkHomeParentActivity {
         WebSettings webSettings =  webView.getSettings();
         webSettings.setUseWideViewPort(true);
         webSettings.setJavaScriptEnabled(true);
-        webSettings.setUseWideViewPort(true);
 
         webView.setWebViewClient(new WebViewClient(){
             @Override

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -124,27 +124,26 @@
             android:background="@android:color/black" />
     </RelativeLayout>
 
-
     <View
         android:layout_below="@+id/actTraineeFAQ_vgTop"
         android:layout_width="match_parent"
         android:layout_height="2px"
         android:background="#000000" />
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/actTraineeFAQ_vgNoResult"
         android:layout_below="@+id/actTraineeFAQ_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:layout_height="55dp"
+        android:paddingBottom="10dp"
+        android:background="@android:color/white"
+        android:visibility="invisible">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:background="@android:color/white"
             android:text="No results"/>
-    </LinearLayout>
+    </FrameLayout>
 
 </RelativeLayout>

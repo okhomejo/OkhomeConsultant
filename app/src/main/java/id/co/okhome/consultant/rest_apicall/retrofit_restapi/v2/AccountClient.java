@@ -45,8 +45,6 @@ public interface AccountClient {
     @PATCH("account/update_password_type2")
     Call<String> updatePasswordType2(@Query("accountId") int accountId, @Query("newPassword") String newPassword);
 
-
-
     /**update Account's specific fields at once.(without password, id, email)
      * key which able to be changed : signUpBy, type.
      * jsonReqStr example : jsonReqStr={"phone":"hhh","address":"N"}

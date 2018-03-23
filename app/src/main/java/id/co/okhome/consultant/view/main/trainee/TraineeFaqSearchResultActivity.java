@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -26,10 +27,10 @@ import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 
 public class TraineeFaqSearchResultActivity extends OkHomeParentActivity {
 
-    @BindView(R.id.actTraineeFAQ_vgNoResult)    LinearLayout noResultView;
+    @BindView(R.id.actTraineeFAQ_tvTitle)       TextView tvTitle;
+    @BindView(R.id.actTraineeFAQ_vgNoResult)    FrameLayout tvNoResults;
     @BindView(R.id.actTraineeFAQ_vbtnSearch)    LinearLayout searchLayout;
     @BindView(R.id.actTraineeFAQ_vProgress)     ProgressBar progressBar;
-    @BindView(R.id.actTraineeFAQ_tvTitle)       TextView tvTitle;
     @BindView(R.id.actTraineeFAQ_list)          ListView listView;
 
     private FaqListAdapter faqAdapter;
@@ -52,7 +53,7 @@ public class TraineeFaqSearchResultActivity extends OkHomeParentActivity {
             tvTitle.setText(String.format("FAQ : %s", extras.getString("FAQ_SEARCH_TITLE")));
             getFaqById(extras.getString("FAQ_SEARCH_IDS"));
         } else {
-            noResultView.setVisibility(View.VISIBLE);
+            tvNoResults.setVisibility(View.VISIBLE);
         }
     }
 

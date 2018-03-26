@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.os.Bundle;
 import android.provider.BaseColumns;
-import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -15,11 +15,12 @@ import android.widget.AutoCompleteTextView;
 import android.widget.FilterQueryProvider;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+
+import com.mrjodev.jorecyclermanager.JoRecyclerAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,12 +28,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.adapter.FaqListAdapter;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.FaqModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
+import id.co.okhome.consultant.view.viewholder.FaqVHolder;
 
 /**
  * Created by frizurd on 16/03/2018.
@@ -42,14 +43,15 @@ public class TraineeFaqActivity extends OkHomeParentActivity {
 
     @BindView(R.id.actTraineeFAQ_fadeBackground)    View fadeBackground;
     @BindView(R.id.actTraineeFAQ_tvTitle)           TextView tvTitle;
-    @BindView(R.id.actTraineeFAQ_vgNoResult)        FrameLayout tvNoResults;
-    @BindView(R.id.actTraineeFAQ_list)              ListView listView;
     @BindView(R.id.actTraineeFAQ_ivSearchIcon)      ImageView ivSearchIcon;
+    @BindView(R.id.actTraineeFAQ_vgNoResult)        FrameLayout tvNoResults;
     @BindView(R.id.actTraineeFAQ_vProgress)         ProgressBar progressBar;
+    @BindView(R.id.actTraineeFAQ_rcv)               RecyclerView rcv;
     @BindView(R.id.actTraineeFAQ_search)            AutoCompleteTextView tvSearch;
 
-    private FaqListAdapter faqAdapter;
     private Map<Integer, List<String>> faqKeywords;
+    private List<String> faqItems;
+    private JoRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,11 +81,11 @@ public class TraineeFaqActivity extends OkHomeParentActivity {
 
             @Override
             public void onSuccess(final List<FaqModel> faqs) {
-                faqAdapter = new FaqListAdapter(TraineeFaqActivity.this, faqs);
-                listView.setAdapter(faqAdapter);
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                FaqVHolder.ItemClickListener faqClickListener
+                        = new FaqVHolder.ItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                    public void onItemClick(int pos, String value, String tag) {
                         if (faqs.get(pos).childCount == 0) {
                             Intent intent = new Intent(getBaseContext(), TraineeFaqSingleActivity.class);
                             intent.putExtra("FAQ_ID", faqs.get(pos).id);
@@ -95,7 +97,19 @@ public class TraineeFaqActivity extends OkHomeParentActivity {
                             startActivity(intent);
                         }
                     }
-                });
+                };
+
+                faqItems = new ArrayList<>();
+                for (FaqModel faq : faqs) {
+                    faqItems.add(faq.subject);
+                }
+                JoRecyclerAdapter.Params params = new JoRecyclerAdapter.Params();
+                params.setRecyclerView(rcv)
+                        .addParam(FaqVHolder.TAG_ITEM_ACT, getBaseContext())
+                        .addParam(FaqVHolder.TAG_ITEM_CLICK, faqClickListener)
+                        .setItemViewHolderCls(FaqVHolder.class);
+                adapter = new JoRecyclerAdapter(params);
+                adapter.setListItems(faqItems);
             }
 
             @Override
@@ -202,7 +216,7 @@ public class TraineeFaqActivity extends OkHomeParentActivity {
     }
 
     private void checkIfSearchHidden() {
-        if(tvSearch.getVisibility() == View.VISIBLE) {
+        if (tvSearch.getVisibility() == View.VISIBLE) {
             tvTitle.setVisibility(View.VISIBLE);
             tvSearch.getText().clear();
             tvSearch.setVisibility(View.GONE);

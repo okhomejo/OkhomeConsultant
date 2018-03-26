@@ -97,8 +97,9 @@
         android:layout_height="match_parent">
 
 
-        <ListView
-            android:id="@+id/actTraineeFAQ_list"
+        <android.support.v7.widget.RecyclerView
+            android:scrollbars="vertical"
+            android:id="@+id/actTraineeFAQ_rcv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:listSelector="@android:color/transparent"
@@ -127,8 +128,8 @@
     <View
         android:layout_below="@+id/actTraineeFAQ_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#000000" />
+        android:layout_height="2px"
+        android:background="#000000"/>
 
     <FrameLayout
         android:id="@+id/actTraineeFAQ_vgNoResult"

@@ -2,24 +2,25 @@ package id.co.okhome.consultant.view.main.trainee;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import com.mrjodev.jorecyclermanager.JoRecyclerAdapter;
+import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.adapter.FaqListAdapter;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.FaqModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
+import id.co.okhome.consultant.view.viewholder.FaqVHolder;
 
 /**
  * Created by frizurd on 22/03/2018.
@@ -31,9 +32,10 @@ public class TraineeFaqSearchResultActivity extends OkHomeParentActivity {
     @BindView(R.id.actTraineeFAQ_vgNoResult)    FrameLayout tvNoResults;
     @BindView(R.id.actTraineeFAQ_vbtnSearch)    LinearLayout searchLayout;
     @BindView(R.id.actTraineeFAQ_vProgress)     ProgressBar progressBar;
-    @BindView(R.id.actTraineeFAQ_list)          ListView listView;
+    @BindView(R.id.actTraineeFAQ_rcv)           RecyclerView rcv;
 
-    private FaqListAdapter faqAdapter;
+    private List<String> faqItems;
+    private JoRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,23 +65,27 @@ public class TraineeFaqSearchResultActivity extends OkHomeParentActivity {
 
             @Override
             public void onSuccess(final List<FaqModel> faqs) {
-                faqAdapter = new FaqListAdapter(getBaseContext(), faqs);
-                listView.setAdapter(faqAdapter);
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                FaqVHolder.ItemClickListener faqClickListener
+                        = new FaqVHolder.ItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                        if (faqs.get(pos).childCount == 0) {
-                            Intent intent = new Intent(getBaseContext(), TraineeFaqSingleActivity.class);
-                            intent.putExtra("FAQ_ID", faqs.get(pos).id);
-                            startActivity(intent);
-                        } else {
-                            Intent intent = new Intent(getBaseContext(), TraineeFaqActivity.class);
-                            intent.putExtra("FAQ_ID", faqs.get(pos).id);
-                            intent.putExtra("FAQ_TITLE", faqs.get(pos).subject);
-                            startActivity(intent);
-                        }
+                    public void onItemClick(int pos, String value, String tag) {
+                        Intent intent = new Intent(getBaseContext(), TraineeFaqSingleActivity.class);
+                        intent.putExtra("FAQ_ID", faqs.get(pos).id);
+                        startActivity(intent);
                     }
-                });
+                };
+
+                faqItems = new ArrayList<>();
+                for (FaqModel faq : faqs) {
+                    faqItems.add(faq.subject);
+                }
+                JoRecyclerAdapter.Params params = new JoRecyclerAdapter.Params();
+                params.setRecyclerView(rcv)
+                        .addParam(FaqVHolder.TAG_ITEM_ACT, getBaseContext())
+                        .addParam(FaqVHolder.TAG_ITEM_CLICK, faqClickListener)
+                        .setItemViewHolderCls(FaqVHolder.class);
+                adapter = new JoRecyclerAdapter(params);
+                adapter.setListItems(faqItems);
             }
 
             @Override

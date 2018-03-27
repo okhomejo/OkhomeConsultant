@@ -26,3 +26,5 @@ local.properties
 reports
 
 !gradle-wrapper.jar
+
+build.gradle

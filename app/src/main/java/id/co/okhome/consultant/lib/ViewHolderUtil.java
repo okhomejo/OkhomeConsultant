@@ -11,6 +11,7 @@ public class ViewHolderUtil {
     /**Keep parentView's tag empty */
     public static <T extends View> T getView(View parentView, int id) {
         SparseArray<View> viewHolder = (SparseArray<View>) parentView.getTag();
+
         if (viewHolder == null) {
             viewHolder = new SparseArray<View>();
             parentView.setTag(viewHolder);

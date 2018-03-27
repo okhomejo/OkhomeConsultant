@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context="id.co.okhome.consultant.view.main.trainee.TraineeFaqActivity">
+
+    <RelativeLayout
+        android:id="@+id/actTraineeFAQ_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:id="@+id/actTraineeFAQ_vbtnX"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_leftarrow" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/actTraineeFAQ_tvTitle"
+            style="@style/FontOpenSansLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/actTraineeFAQ_vbtnX"
+            android:text="Training info"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+
+    </RelativeLayout>
+
+    <!-- bottom-->
+    <ScrollView
+        android:layout_below="@+id/actTraineeFAQ_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_marginLeft="22dp" android:layout_marginRight="22dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- 트레이닝 아이템 -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="40dp"
+                        android:text="Training summary"
+                        android:textColor="@color/colorLightBlueGray"
+                        android:textSize="14sp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical" >
+                        <!-- sample datas -->
+
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="-3dp"
+                            android:text="General Cleaning"
+                            android:textColor="@color/colorDeepGray"
+                            android:textSize="21sp" />
+
+
+
+                        <LinearLayout
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="6dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_marginRight="12dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_clock_mini"
+                                android:layout_width="14dp"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="Training on 16 Jan 2018, 10:00 AM"
+                                android:textColor="#aa000000"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="6dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_marginRight="12dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_map_location"
+                                android:layout_width="14dp"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="Rasuna office park LR-16"
+                                    android:textColor="@color/colorBlueBlack"
+                                    android:textSize="14sp" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1px" android:background="@color/colorBlueBlack" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="6dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_marginRight="12dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_menubtn"
+                                android:layout_width="14dp"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="Check the manual"
+                                    android:textColor="@color/colorBlueBlack"
+                                    android:textSize="14sp" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1px" android:background="@color/colorBlueBlack" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 트레이너이템-->
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="40dp"
+                        android:text="Trainor information"
+                        android:textColor="@color/colorLightBlueGray"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical" >
+                        <!-- sample datas -->
+
+                        <FrameLayout
+                            android:layout_width="46dp"
+                            android:layout_height="46dp"
+                            android:layout_marginRight="10dp">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_margin="2.5dp"
+                                android:src="@drawable/img_model5"
+                                android:layout_gravity="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+                            <ImageView
+                                android:layout_gravity="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" android:src="@drawable/circle_stroke_1dp_appcolor" />
+                        </FrameLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/main_vgProfile"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        style="@style/FontOpenSansLight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="PROFILE"
+                                        android:textColor="@color/colorLightBlueGray"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="-3dp">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true">
+
+                                        <TextView
+                                            style="@style/FontOpenSansLight"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:text="Michel Bay"
+                                            android:textColor="@color/colorDeepGray"
+                                            android:textSize="20sp" />
+
+                                    </LinearLayout>
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical">
+
+                                    <TextView
+                                        style="@style/FontOpenSansLight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:text="Trainor, 32, Male"
+                                        android:textColor="@color/colorBlueGray"
+                                        android:textSize="14sp" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+            <!-- 트레이닝 디테일-->
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="40dp"
+                        android:text="Training details"
+                        android:textColor="@color/colorLightBlueGray"
+                        android:textSize="14sp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="First day of training.\nThere will be introduction of cleaning in OKHOME and trainer will teach trainee how to do basic cleaning and process on general cleaning"
+                        android:textColor="@color/colorBlueBlack"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- 세부 평가 내역 -->
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="40dp"
+                        android:text="Training sections"
+                        android:textColor="@color/colorLightBlueGray"
+                        android:textSize="14sp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:weightSum="10"
+                    android:paddingLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:background="@color/colorBlueBlack"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <LinearLayout
+                        android:gravity="center_vertical"
+                        android:layout_weight="6"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="Current your score"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingRight="10dp"
+                        android:gravity="center_vertical|right"
+                        android:layout_weight="4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="- / 50"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <!-- item -->
+                    <LinearLayout
+                        android:layout_marginTop="12dp"
+                        android:weightSum="10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:gravity="center_vertical"
+                            android:layout_weight="8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_marginRight="12dp"
+                                android:src="@drawable/ic_minus"
+                                android:adjustViewBounds="true"
+                                android:layout_width="10dp"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="General"
+                                android:textColor="@color/colorBlueBlack"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="right"
+                            android:layout_weight="2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="- / 10"
+                                android:textColor="@color/colorBlueGray"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- item -->
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:weightSum="10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:gravity="center_vertical"
+                            android:layout_weight="8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_marginRight="12dp"
+                                android:src="@drawable/ic_minus"
+                                android:adjustViewBounds="true"
+                                android:layout_width="10dp"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="Kitchen"
+                                android:textColor="@color/colorBlueBlack"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="right"
+                            android:layout_weight="2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="- / 10"
+                                android:textColor="@color/colorBlueGray"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- item -->
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:weightSum="10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:gravity="center_vertical"
+                            android:layout_weight="8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_marginRight="12dp"
+                                android:src="@drawable/ic_minus"
+                                android:adjustViewBounds="true"
+                                android:layout_width="10dp"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="Copet"
+                                android:textColor="@color/colorBlueBlack"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="right"
+                            android:layout_weight="2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="- / 10"
+                                android:textColor="@color/colorBlueGray"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- item -->
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:weightSum="10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:gravity="center_vertical"
+                            android:layout_weight="8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_marginRight="12dp"
+                                android:src="@drawable/ic_minus"
+                                android:adjustViewBounds="true"
+                                android:layout_width="10dp"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="Living room"
+                                android:textColor="@color/colorBlueBlack"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="right"
+                            android:layout_weight="2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="- / 10"
+                                android:textColor="@color/colorBlueGray"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <!-- item -->
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:weightSum="10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:gravity="center_vertical"
+                            android:layout_weight="8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_marginRight="12dp"
+                                android:src="@drawable/ic_minus"
+                                android:adjustViewBounds="true"
+                                android:layout_width="10dp"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="Cleaning tools"
+                                android:textColor="@color/colorBlueBlack"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="right"
+                            android:layout_weight="2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="- / 10"
+                                android:textColor="@color/colorBlueGray"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="70dp" />
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <View
+        android:layout_marginRight="160dp"
+        android:layout_below="@+id/actTraineeFAQ_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#000000" />
+
+
+
+</RelativeLayout>

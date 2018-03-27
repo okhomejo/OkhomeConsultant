@@ -122,10 +122,10 @@ public class TraineeMainActivity extends OkHomeParentActivity {
                     f = new TrainingTabFragment();
                     break;
                 case 2:
-                    f = new ChatTabFragment();
+                    f = new ManualTabFragment();
                     break;
                 case 3:
-                    f = new ManualTabFragment();
+                    f = new ChatTabFragment();
                     break;
                 case 4:
                     f = new SettingTabFragment();

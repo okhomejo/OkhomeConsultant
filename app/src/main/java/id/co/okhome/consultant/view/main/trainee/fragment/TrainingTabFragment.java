@@ -33,7 +33,6 @@ public class TrainingTabFragment extends Fragment implements TabFragmentStatusLi
     @BindView(R.id.fragTabTrainingForTrainee_vProgress)
     View vLoading;
 
-
     JoRecyclerAdapter adapter;
 
     @Nullable

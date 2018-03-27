@@ -203,6 +203,40 @@
                 android:layout_width="40dp"
                 android:layout_height="35dp">
                 <ImageView
+                    android:id="@+id/actMain_ivTabBtn4"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_tab_price2"
+                    android:layout_width="26.5dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/actMain_tvTabText"
+                android:alpha="0.5"
+                style="@style/FontOpenSansLight"
+                android:layout_marginTop="0dp"
+                android:textColor="@color/colorBlueBlack"
+                android:textSize="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="MANUAL"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/actMain_vgTabBtn4"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/actMain_vgTabIcon"
+                android:alpha="0.2"
+                android:gravity="center"
+                android:layout_width="40dp"
+                android:layout_height="35dp">
+                <ImageView
                     android:id="@+id/actMain_ivTabBtn3"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_speach_bubble_right_gray"
@@ -223,42 +257,6 @@
                 android:layout_height="wrap_content" android:text="CHAT"/>
 
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/actMain_vgTabBtn4"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:id="@+id/actMain_vgTabIcon"
-                android:alpha="0.2"
-                android:gravity="center"
-                android:layout_width="40dp"
-                android:layout_height="35dp">
-                <ImageView
-                    android:id="@+id/actMain_ivTabBtn4"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_tab_price2"
-                    android:layout_width="26.5dp"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/actMain_tvTabText"
-                android:alpha="0.5"
-                style="@style/FontOpenSansLight"
-                android:layout_marginTop="0dp"
-                android:textColor="@color/colorBlueBlack"
-                android:textSize="9dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="MANUAL"/>
-
-        </LinearLayout>
-
         <LinearLayout
             android:id="@+id/actMain_vgTabBtn5"
             android:orientation="vertical"

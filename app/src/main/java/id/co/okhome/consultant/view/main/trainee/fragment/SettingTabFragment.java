@@ -24,6 +24,7 @@ import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.view.common.account.AccountSettingsActivity;
 import id.co.okhome.consultant.view.main.trainee.TraineeFaqActivity;
+import id.co.okhome.consultant.view.main.trainee.TraineeFaqActivityV2;
 import id.co.okhome.consultant.view.main.trainee.TraineeNewsActivity;
 import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 import id.co.okhome.consultant.view.etc.AboutOkhomeActivity;
@@ -107,7 +108,7 @@ public class SettingTabFragment extends Fragment implements TabFragmentStatusLis
 
     @OnClick(R.id.fragTabSettingsForTrainee_vbtnFaqs)
     public void onFaqClick(){
-        startActivity(new Intent(getActivity(), TraineeFaqActivity.class));
+        startActivity(new Intent(getActivity(), TraineeFaqActivityV2.class));
     }
 
     @OnClick(R.id.fragTabSettingForTrainee_vbtnAccount)

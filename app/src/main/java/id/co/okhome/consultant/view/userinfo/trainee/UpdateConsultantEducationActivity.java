@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.ContextCompat;
-import android.view.WindowManager;
 import android.webkit.URLUtil;
 import android.widget.ImageView;
 
@@ -31,7 +30,6 @@ import id.co.okhome.consultant.lib.jobrowser.model.ApiResult;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.rest_apicall.raw_restapi.ImageUploadCall;
-import id.co.okhome.consultant.view.common.dialog.ShowPhotoDialog;
 import id.co.okhome.consultant.view.photochooser.ImageChooserActivity;
 
 public class UpdateConsultantEducationActivity extends OkHomeParentActivity {
@@ -281,7 +279,7 @@ public class UpdateConsultantEducationActivity extends OkHomeParentActivity {
 
     @OnClick(R.id.actUpdateEducation_vgSeeSample)
     public void onClickSeeSample(){
-        new ShowPhotoDialog(this, R.drawable.img_model2).show();
+//        new ShowPhotoDialog(this, R.drawable.).show();
     }
 
     @OnClick(R.id.actUpdateEducation_vbtnOk)

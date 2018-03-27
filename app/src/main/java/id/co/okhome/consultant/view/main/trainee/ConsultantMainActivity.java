@@ -2,8 +2,6 @@ package id.co.okhome.consultant.view.main.trainee;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -16,9 +14,6 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 public class ConsultantMainActivity extends OkHomeParentActivity {
 
     @BindView(R.id.actMain_tvTitle)     TextView tvTitle;
-    @BindView(R.id.actMain_vgTop)       ViewGroup vgTop;
-    @BindView(R.id.actMain_vp)          ViewPager vpMain;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

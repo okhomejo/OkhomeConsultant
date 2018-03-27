@@ -2,6 +2,7 @@ package id.co.okhome.consultant.lib.app;
 
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;

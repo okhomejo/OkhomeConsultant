@@ -57,22 +57,14 @@
             android:cacheColorHint="@android:color/transparent"
             android:divider="#00000000" />
 
-        <!--<LinearLayout-->
-            <!--android:id="@+id/actArea_llRegions"-->
-            <!--android:paddingTop="4dp"-->
-            <!--android:paddingLeft="30dp"-->
-            <!--android:paddingRight="30dp"-->
-            <!--android:orientation="vertical"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent">-->
-
-            <!--<ExpandableListView-->
-                <!--android:id="@+id/actArea_lvExp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:dividerHeight="0.5dp" />-->
-
-        <!--</LinearLayout>-->
+        <android.support.v7.widget.RecyclerView
+            android:scrollbars="vertical"
+            android:id="@+id/actArea_rcv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:listSelector="@android:color/transparent"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="#00000000"/>
 
     </LinearLayout>
 

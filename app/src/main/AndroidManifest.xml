@@ -33,7 +33,6 @@
         <activity android:name=".view.main.trainee.TraineeNewsActivity" />
         <activity android:name=".view.main.trainee.TraineeNewsSingleActivity" />
         <activity android:name=".view.main.trainee.TraineeFaqActivity" />
-        <activity android:name=".view.main.trainee.TraineeFaqActivityV2" />
 
         <activity android:name=".view.main.trainee.TraineeFaqSingleActivity" />
         <activity android:name=".view.main.trainee.TraineeFaqSearchResultActivity" />

@@ -8,7 +8,7 @@
     <RelativeLayout
         android:id="@+id/itemArea_rlHeader"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="62dp">
 
         <LinearLayout
             android:id="@+id/itemAreaChild_vbtnCheck"

@@ -9,33 +9,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
-import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
-import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.v2.AccountModel;
-import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.view.common.account.AccountSettingsActivity;
 import id.co.okhome.consultant.view.main.trainee.TraineeFaqActivity;
-import id.co.okhome.consultant.view.main.trainee.TraineeFaqActivityV2;
 import id.co.okhome.consultant.view.main.trainee.TraineeNewsActivity;
 import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
 import id.co.okhome.consultant.view.etc.AboutOkhomeActivity;
-import id.co.okhome.consultant.view.userinfo.AccountActivity;
 
 /**
  * Created by jo on 2018-01-23.
  */
 
 public class SettingTabFragment extends Fragment implements TabFragmentStatusListener {
-
 
     @BindView(R.id.fragTabSettingForTrainee_tvAccountEmail)     TextView tvEmail;
     @BindView(R.id.fragTabSettingForTrainee_tvProfileInfo)      TextView tvPersonInfo;
@@ -108,7 +100,7 @@ public class SettingTabFragment extends Fragment implements TabFragmentStatusLis
 
     @OnClick(R.id.fragTabSettingsForTrainee_vbtnFaqs)
     public void onFaqClick(){
-        startActivity(new Intent(getActivity(), TraineeFaqActivityV2.class));
+        startActivity(new Intent(getActivity(), TraineeFaqActivity.class));
     }
 
     @OnClick(R.id.fragTabSettingForTrainee_vbtnAccount)

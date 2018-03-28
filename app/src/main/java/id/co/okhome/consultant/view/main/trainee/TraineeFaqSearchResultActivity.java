@@ -20,6 +20,7 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.FaqModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
+import id.co.okhome.consultant.view.viewholder.BlankHolder;
 import id.co.okhome.consultant.view.viewholder.FaqVHolder;
 
 /**
@@ -34,7 +35,6 @@ public class TraineeFaqSearchResultActivity extends OkHomeParentActivity {
     @BindView(R.id.actTraineeFAQ_vProgress)     ProgressBar progressBar;
     @BindView(R.id.actTraineeFAQ_rcv)           RecyclerView rcv;
 
-    private List<String> faqItems;
     private JoRecyclerAdapter adapter;
 
     @Override
@@ -48,15 +48,31 @@ public class TraineeFaqSearchResultActivity extends OkHomeParentActivity {
     }
 
     private void init() {
+        initFaqParams();
+        initRecyclerView();
+    }
+
+    private void initFaqParams(){
         searchLayout.setVisibility(View.GONE);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             tvTitle.setText(String.format("FAQ : %s", extras.getString("FAQ_SEARCH_TITLE")));
             getFaqById(extras.getString("FAQ_SEARCH_IDS"));
+
         } else {
             tvNoResults.setVisibility(View.VISIBLE);
         }
+    }
+
+    //init recycler view and adapter
+    private void initRecyclerView(){
+        adapter = new JoRecyclerAdapter(new JoRecyclerAdapter.Params()
+                .setRecyclerView(rcv)
+                .setItemViewHolderCls(FaqVHolder.class)
+                .setFooterViewHolderCls(BlankHolder.class)
+        );
+        adapter.addFooterItem("");
     }
 
     private void getFaqById(final String faqId) {
@@ -65,27 +81,7 @@ public class TraineeFaqSearchResultActivity extends OkHomeParentActivity {
 
             @Override
             public void onSuccess(final List<FaqModel> faqs) {
-                FaqVHolder.ItemClickListener faqClickListener
-                        = new FaqVHolder.ItemClickListener() {
-                    @Override
-                    public void onItemClick(int pos, String value, String tag) {
-                        Intent intent = new Intent(getBaseContext(), TraineeFaqSingleActivity.class);
-                        intent.putExtra("FAQ_ID", faqs.get(pos).id);
-                        startActivity(intent);
-                    }
-                };
-
-                faqItems = new ArrayList<>();
-                for (FaqModel faq : faqs) {
-                    faqItems.add(faq.subject);
-                }
-                JoRecyclerAdapter.Params params = new JoRecyclerAdapter.Params();
-                params.setRecyclerView(rcv)
-                        .addParam(FaqVHolder.TAG_ITEM_ACT, getBaseContext())
-                        .addParam(FaqVHolder.TAG_ITEM_CLICK, faqClickListener)
-                        .setItemViewHolderCls(FaqVHolder.class);
-                adapter = new JoRecyclerAdapter(params);
-                adapter.setListItems(faqItems);
+                adapter.setListItems(faqs);
             }
 
             @Override

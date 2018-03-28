@@ -1,24 +1,22 @@
 package id.co.okhome.consultant.view.main.trainee;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
-
+import com.mrjodev.jorecyclermanager.JoRecyclerAdapter;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.adapter.NewsListAdapter;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.NewsModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
+import id.co.okhome.consultant.view.viewholder.BlankHolder;
+import id.co.okhome.consultant.view.viewholder.NewsVHolder;
 
 /**
  * Created by frizurd on 15/03/2018.
@@ -26,10 +24,10 @@ import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 
 public class TraineeNewsActivity extends OkHomeParentActivity {
 
-    @BindView(R.id.actTraineeNews_list)         ListView listView;
+    @BindView(R.id.actTraineeNews_rcv)          RecyclerView rcv;
     @BindView(R.id.actTraineeNews_vProgress)    ProgressBar progressBar;
 
-    private NewsListAdapter newsAdapter;
+    private JoRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +35,16 @@ public class TraineeNewsActivity extends OkHomeParentActivity {
         setContentView(R.layout.activity_trainee_news);
         OkhomeUtil.setWhiteSystembar(this);
         ButterKnife.bind(this);
+        init();
+    }
+
+    private void init() {
+        adapter = new JoRecyclerAdapter(new JoRecyclerAdapter.Params()
+                .setRecyclerView(rcv)
+                .setItemViewHolderCls(NewsVHolder.class)
+                .setFooterViewHolderCls(BlankHolder.class)
+        );
+        adapter.addFooterItem("");
         getAllNews();
     }
 
@@ -46,17 +54,7 @@ public class TraineeNewsActivity extends OkHomeParentActivity {
 
             @Override
             public void onSuccess(final List<NewsModel> news) {
-                newsAdapter = new NewsListAdapter(TraineeNewsActivity.this, news);
-                listView.setAdapter(newsAdapter);
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                        Intent intent = new Intent(getBaseContext(), TraineeNewsSingleActivity.class);
-                        intent.putExtra("NEWS_TITLE", news.get(pos).subject);
-                        intent.putExtra("NEWS_CONTENTS", news.get(pos).contents);
-                        startActivity(intent);
-                    }
-                });
+                adapter.setListItems(news);
             }
 
             @Override

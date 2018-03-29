@@ -8,17 +8,13 @@ import android.widget.TextView;
 import com.mrjodev.jorecyclermanager.JoViewHolder;
 import com.mrjodev.jorecyclermanager.annotations.LayoutMatcher;
 
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.lib.ViewHolderUtil;
-import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.model.JobExperienceModel;
-import id.co.okhome.consultant.model.NewsModel;
 import id.co.okhome.consultant.view.common.dialog.CommonAlertDialog;
 
 /**
@@ -53,6 +49,7 @@ public class JobExperienceVHolder extends JoViewHolder<JobExperienceModel> imple
 
     @Override
     public void onClick(View v) {
+
         new CommonAlertDialog(getContext())
                 .setSubTitle("Removing job experience")
                 .setTitle("Are you sure?")
@@ -60,8 +57,11 @@ public class JobExperienceVHolder extends JoViewHolder<JobExperienceModel> imple
                     @Override
                     public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
                         if(actionCode == ACTIONCODE_OK){
-                            getAdapter().getListItems().remove(getPos());
-//                            getAdapter().notifyItemRemoved(getPos());
+                            int pos = getPos();
+                            int absPos = getAbsPos();
+
+                            getAdapter().removeItem(getPos());
+                            getAdapter().notifyItemRemoved(getPos());
 //                            getAdapter().notifyDataSetChanged();
                         }
                         dialog.dismiss();

@@ -11,7 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.model.TrainingModel;
-import id.co.okhome.consultant.view.main.trainee.TraineeTrainingActivity;
+import id.co.okhome.consultant.view.traininginfo.TraineeTrainingActivity;
 
 /**
  * Created by josongmin on 2016-06-28.

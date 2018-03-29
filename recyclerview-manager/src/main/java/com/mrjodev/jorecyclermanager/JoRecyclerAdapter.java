@@ -152,22 +152,26 @@ public class JoRecyclerAdapter<ITEM, HEADER, FOOTER> extends RecyclerView.Adapte
         return listItems;
     }
 
+    public void removeItem(int pos){
+        listItems.remove(pos);
+
+        calcItemsSize();
+    }
+
     //리스트 세팅
     public void setListItems(List<ITEM> listItems) {
         this.listItems = listItems;
-        this.itemSize = listItems.size();
 
-        toggleEmptyView();
         calcItemsSize();
+        toggleEmptyView();
     }
 
 
     public void addListItems(List<ITEM> listAddItems){
         this.listItems.addAll(listAddItems);
-        this.itemSize = listItems.size();
 
-        toggleEmptyView();
         calcItemsSize();
+        toggleEmptyView();
     }
 
     private void toggleEmptyView(){
@@ -223,6 +227,7 @@ public class JoRecyclerAdapter<ITEM, HEADER, FOOTER> extends RecyclerView.Adapte
 
     //전체 개수합계
     private void calcItemsSize(){
+        this.itemSize = listItems.size();
         this.totalSize = itemSize + headerSize + footerSize + quickHeaderViewSize + footerLoadingViewSize;
     }
 

@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.view.main.trainee;
+package id.co.okhome.consultant.view.traininginfo;
 
 import android.os.Bundle;
 

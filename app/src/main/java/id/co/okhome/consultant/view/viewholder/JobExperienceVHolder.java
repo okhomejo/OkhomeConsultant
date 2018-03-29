@@ -61,6 +61,8 @@ public class JobExperienceVHolder extends JoViewHolder<JobExperienceModel> imple
                     public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
                         if(actionCode == ACTIONCODE_OK){
                             getAdapter().getListItems().remove(getPos());
+//                            getAdapter().notifyItemRemoved(getPos());
+//                            getAdapter().notifyDataSetChanged();
                         }
                         dialog.dismiss();
                     }

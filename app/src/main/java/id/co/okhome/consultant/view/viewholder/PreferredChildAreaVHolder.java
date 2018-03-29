@@ -104,7 +104,6 @@ public class PreferredChildAreaVHolder extends JoViewHolder<WorkingRegionModel> 
                 checkImage.setImageResource(R.drawable.ic_check_not_deep);
             }
         }
-
         getView().setOnClickListener(this);
     }
 

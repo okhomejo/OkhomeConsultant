@@ -72,7 +72,7 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
         if (!chosenRegions.isEmpty()) {
             finalRegions.addAll(chosenRegions);
         }
-        getAllRegions();
+        getAndSaveAllRegions();
     }
 
     private void initAdapter() {
@@ -86,7 +86,7 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
         adapter.addFooterItem("");
     }
 
-    private void getAllRegions() {
+    private void getAndSaveAllRegions() {
         final ProgressDialog p = ProgressDialog.show(this, null, "Loading regions...");
         OkhomeRestApi.getCommonClient().getAllWorkingRegion().enqueue(new RetrofitCallback<List<WorkingRegionModel>>() {
 
@@ -114,7 +114,7 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
 
     public void callChildRegionDialog(final WorkingRegionModel region) {
 
-        if( childDialog != null && childDialog.isShowing() ) return;
+        if(childDialog != null && childDialog.isShowing()) return;
 
         final List<WorkingRegionModel> childRegionList = new ArrayList<>();
         for (WorkingRegionModel childRegion : allRegions) {

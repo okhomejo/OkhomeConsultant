@@ -28,15 +28,14 @@ import id.co.okhome.consultant.view.viewholder.PreferredChildAreaVHolder;
 
 public class AreaListDialog extends DialogParent {
 
+    @BindView(R.id.dialogAreaList_btnConfirm)    Button btnConfirm;
     @BindView(R.id.dialogAreaList_tvTitle)       TextView tvTitle;
     @BindView(R.id.dialogAreaList_rcv)           RecyclerView rcv;
-    @BindView(R.id.dialogAreaList_btnConfirm)    Button btnConfirm;
 
-    private Context context;
-    private List<WorkingRegionModel> listItems, allRegions;
-    private Set<Integer> chosenRegions;
     private String title;
-
+    private Context context;
+    private Set<Integer> chosenRegions;
+    private List<WorkingRegionModel> listItems, allRegions;
     private JoRecyclerAdapter adapter;
 
     public AreaListDialog(Context context) {

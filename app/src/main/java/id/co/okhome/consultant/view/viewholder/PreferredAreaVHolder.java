@@ -4,12 +4,15 @@ import android.view.View;
 import android.widget.TextView;
 import com.mrjodev.jorecyclermanager.JoViewHolder;
 import com.mrjodev.jorecyclermanager.annotations.LayoutMatcher;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.model.WorkingRegionModel;
+import id.co.okhome.consultant.view.common.dialog.AreaListDialog;
 import id.co.okhome.consultant.view.userinfo.trainee.UpdateConsultantAreaActivity;
 
 /**
@@ -68,5 +71,18 @@ public class PreferredAreaVHolder extends JoViewHolder<WorkingRegionModel> imple
     public void onClick(View v) {
         UpdateConsultantAreaActivity areaActivity = (UpdateConsultantAreaActivity) getContext();
         areaActivity.callChildRegionDialog(getModel());
+
+//        final List<WorkingRegionModel> childRegionList = new ArrayList<>();
+//        for (WorkingRegionModel childRegion : allRegions) {
+//            if (getModel().id == childRegion.parentId) {
+//                childRegionList.add(childRegion);
+//            }
+//        }
+//        final AreaListDialog areaDialog = new AreaListDialog(getContext());
+//        areaDialog.setTitle(getModel().address)
+//                .setListItems(childRegionList)
+//                .setAllRegionItems(allRegions)
+//                .setChosenRegions(chosenRegions)
+//                .show();
     }
 }

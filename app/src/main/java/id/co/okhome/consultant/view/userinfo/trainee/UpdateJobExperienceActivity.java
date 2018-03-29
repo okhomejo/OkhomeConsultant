@@ -73,8 +73,8 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
         } else {
             jobExperiences = new ArrayList<>();
         }
-        adapter.setListItems(jobExperiences);
 
+        adapter.setListItems(jobExperiences);
         checkIfListEmpty();
     }
 
@@ -148,8 +148,6 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
         if(actionCode == ACTIONCODE_OK){
             JobExperienceModel newJobExp = (JobExperienceModel) mapResult.get(JobExperienceDialog.RESULT_POSITION);
             jobExperiences.add(newJobExp);
-            adapter.notifyItemInserted(jobExperiences.size() - 1);
-            checkIfListEmpty();
         }
     }
 }

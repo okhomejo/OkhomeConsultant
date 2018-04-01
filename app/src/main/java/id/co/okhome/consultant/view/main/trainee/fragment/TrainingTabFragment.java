@@ -10,14 +10,16 @@ import android.view.ViewGroup;
 
 import com.mrjodev.jorecyclermanager.JoRecyclerAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
-import id.co.okhome.consultant.model.TrainingModel;
+import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
+import id.co.okhome.consultant.model.training.TrainingModel;
+import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.viewholder.BlankHolder;
 import id.co.okhome.consultant.view.viewholder.TrainingForTraineeVHolder;
 
@@ -27,11 +29,8 @@ import id.co.okhome.consultant.view.viewholder.TrainingForTraineeVHolder;
 
 public class TrainingTabFragment extends Fragment implements TabFragmentStatusListener {
 
-    @BindView(R.id.fragTabTrainingForTrainee_rcv)
-    RecyclerView rcv;
-
-    @BindView(R.id.fragTabTrainingForTrainee_vProgress)
-    View vLoading;
+    @BindView(R.id.fragTabTrainingForTrainee_rcv)       RecyclerView rcv;
+    @BindView(R.id.fragTabTrainingForTrainee_vProgress) View vLoading;
 
     JoRecyclerAdapter adapter;
 
@@ -74,18 +73,20 @@ public class TrainingTabFragment extends Fragment implements TabFragmentStatusLi
         adapter.addFooterItem("");
     }
 
-    //get data and set adapter with data
     private void loadList(){
         vLoading.setVisibility(View.VISIBLE);
+        OkhomeRestApi.getTrainingForTraineeClient().getTrainingList(ConsultantLoggedIn.id()).enqueue(new RetrofitCallback<List<TrainingModel>>() {
+            @Override
+            public void onSuccess(List<TrainingModel> trainings) {
+                adapter.setListItems(trainings);
+            }
 
-        List<TrainingModel> list = new ArrayList<>();
-        for(int i = 0; i < 8; i ++){
-            TrainingModel m = new TrainingModel();
-            list.add(m);
-        }
-        adapter.setListItems(list);
-
-        vLoading.setVisibility(View.GONE);
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                vLoading.setVisibility(View.GONE);
+            }
+        });
 
     }
 }

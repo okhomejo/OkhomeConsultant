@@ -6,7 +6,6 @@
     android:layout_height="match_parent">
     <View android:id="@+id/itemChat_vTopPadding" android:layout_width="10dp" android:layout_height="8dp" />
 
-
     <TextView
         android:visibility="gone"
         android:id="@+id/itemChat_tvTime"
@@ -21,7 +20,6 @@
 
 
     <FrameLayout
-        android:layout_marginLeft="10dp"
         android:layout_alignBottom="@+id/itemChat_vgContents"
         android:id="@+id/itemChat_vgUserPhoto"
         android:layout_width="40dp"
@@ -29,6 +27,7 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/fragmentIntro1_ivUserPhoto"
+            android:src="@drawable/img_model5"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

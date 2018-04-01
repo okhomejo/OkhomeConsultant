@@ -3,6 +3,7 @@ package id.co.okhome.consultant.view.viewholder;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.mrjodev.jorecyclermanager.JoViewHolder;
 import com.mrjodev.jorecyclermanager.annotations.LayoutMatcher;
@@ -10,7 +11,8 @@ import com.mrjodev.jorecyclermanager.annotations.LayoutMatcher;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.model.TrainingModel;
+import id.co.okhome.consultant.model.training.TrainingAttendanceForTraineeModel;
+import id.co.okhome.consultant.model.training.TrainingModel;
 import id.co.okhome.consultant.view.traininginfo.TraineeTrainingActivity;
 
 /**
@@ -20,15 +22,13 @@ import id.co.okhome.consultant.view.traininginfo.TraineeTrainingActivity;
 @LayoutMatcher(layoutId = R.layout.item_training_f_trainee_v2)
 public class TrainingForTraineeVHolder extends JoViewHolder<TrainingModel> {
 
-    @BindView(R.id.itemTraininigForTrainee_vgFailed)
-    ViewGroup vgFailed;
+    @BindView(R.id.itemTraininigForTrainee_vgFailed)            ViewGroup vgFailed;
+    @BindView(R.id.itemTraininigForTrainee_vgSuccess)           ViewGroup vgSuccess;
+    @BindView(R.id.itemTraininigForTrainee_vgSchedule)          ViewGroup vgSchedule;
 
-    @BindView(R.id.itemTraininigForTrainee_vgSuccess)
-    ViewGroup vgSuccess;
-
-    @BindView(R.id.itemTraininigForTrainee_vgSchedule)
-    ViewGroup vgSchedule;
-
+    @BindView(R.id.itemTrainingForTrainee_tvDesc)               TextView tvDesc;
+    @BindView(R.id.itemTrainingForTrainee_tvSubject)            TextView tvSubject;
+    @BindView(R.id.itemTrainingForTrainee_tvWhen)               TextView tvWhen;
 
     public TrainingForTraineeVHolder(View itemView) {
         super(itemView);
@@ -40,14 +40,39 @@ public class TrainingForTraineeVHolder extends JoViewHolder<TrainingModel> {
     }
 
     @Override
-    public void onBind(TrainingModel m, int pos, int absPos) {
-        super.onBind(m, pos, absPos);
+    public void onBind(TrainingModel training, int pos, int absPos) {
+        super.onBind(training, pos, absPos);
+        TrainingAttendanceForTraineeModel attendance = training.trainingAttendanceForTrainee;
+
         vgSchedule.setVisibility(View.GONE);
         vgFailed.setVisibility(View.GONE);
         vgSuccess.setVisibility(View.GONE);
 
-        if(pos < 3){
-            if(pos == 1){
+        tvDesc.setText(training.desc);
+        tvSubject.setText(training.subject);
+
+
+        //트레이닝 일정 뷰 처리
+        if(attendance == null){
+            tvWhen.setText("Training schedule is not ready");
+        }else{
+
+            if(attendance.joinYN != null){
+                tvWhen.setText("Training on " + attendance.trainingWhen);
+            }else{
+                if(attendance.joinYN.equals("Y")){
+                    tvWhen.setText("Training on progress");
+                }else{
+                    tvWhen.setText("You missed the training");
+                }
+            }
+        }
+
+        //합격, 불합격 처리
+        if(attendance != null){
+            if(attendance.passYN == null){
+                vgSchedule.setVisibility(View.VISIBLE);
+            }else if(attendance.passYN.equals("Y")){
                 vgSuccess.setVisibility(View.VISIBLE);
             }else{
                 vgFailed.setVisibility(View.VISIBLE);
@@ -60,7 +85,7 @@ public class TrainingForTraineeVHolder extends JoViewHolder<TrainingModel> {
         getView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getContext().startActivity(new Intent(getContext(), TraineeTrainingActivity.class));
+                getContext().startActivity(new Intent(getContext(), TraineeTrainingActivity.class).putExtra("trainingId", getModel().trainingId+""));
             }
         });
 

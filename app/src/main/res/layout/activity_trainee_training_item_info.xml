@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context="id.co.okhome.consultant.view.main.trainee.TraineeFaqActivity">
+
+    <RelativeLayout
+        android:id="@+id/actTrainingInfo_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:id="@+id/actTrainingInfo_vbtnX"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_leftarrow" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/actTrainingInfo_tvTitle"
+            style="@style/FontOpenSansLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/actTrainingInfo_vbtnX"
+            android:text="Test-OJT #1"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+
+    </RelativeLayout>
+
+    <!-- bottom-->
+    <RelativeLayout
+        android:layout_below="@+id/actTrainingInfo_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:id="@+id/actTrainingInfo_svItem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_marginLeft="22dp" android:layout_marginRight="22dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- 트레이닝 아이템 -->
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_marginTop="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:text="Training result"
+                            android:textColor="@color/colorLightBlueGray"
+                            android:textSize="14sp" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical" >
+                            <!-- sample datas -->
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginTop="-3dp"
+                                    android:text="Evaluation : Attitude"
+                                    android:textColor="@color/colorOkhome"
+                                    android:textSize="21sp" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/actTrainingInfo_vbtnManual"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="6dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="You may not pass if you get more than 2L.\nYour score is evaluated by the trainer, Dee."
+                                    android:textColor="@color/colorBlueGray"
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/actTrainingInfo_vgTrainingTypeBItems"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="7dp"
+                            android:paddingTop="7dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <!-- item -->
+
+                            <include android:layout_width="match_parent" android:layout_height="wrap_content"
+                                layout="@layout/item_trainingpage_item_child"/>
+
+                            <include android:layout_width="match_parent" android:layout_height="wrap_content"
+                                layout="@layout/item_trainingpage_item_child"/>
+
+                            <include android:layout_width="match_parent" android:layout_height="wrap_content"
+                                layout="@layout/item_trainingpage_item_child"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_marginTop="36dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:text="Comment from trainer Dee"
+                            android:textColor="@color/colorLightBlueGray"
+                            android:textSize="14sp" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+
+                    </LinearLayout>
+
+                    <!-- chat box -->
+                    <RelativeLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/itemChat_tvTime"
+                            android:textColor="#55000000"
+                            android:layout_marginLeft="7dp"
+                            android:layout_alignBottom="@+id/itemChat_vgContents"
+                            android:layout_toRightOf="@+id/itemChat_vgContents"
+                            android:textSize="10sp"
+                            android:text="오전 10:00"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+
+                        <FrameLayout
+                            android:layout_alignBottom="@+id/itemChat_vgContents"
+                            android:id="@+id/itemChat_vgUserPhoto"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/fragmentIntro1_ivUserPhoto"
+                                android:src="@drawable/img_model5"
+                                android:layout_gravity="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                />
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_toRightOf="@+id/itemChat_vgUserPhoto"
+                            android:layout_below="@+id/itemChat_vTopPadding"
+                            android:id="@+id/itemChat_vgContents"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="12dp"
+                            android:background="@drawable/bg_chatbox_friend"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <!--텍스트 박스 -->
+                            <LinearLayout
+                                android:id="@+id/itemChat_vgTextContent"
+                                android:paddingLeft="14dp" android:paddingRight="14dp" android:paddingTop="12dp" android:paddingBottom="12dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    style="@style/FontOpenSansLight"
+                                    android:maxWidth="200dp"
+                                    android:textSize="16sp"
+                                    android:textColor="#3c3e45"
+                                    android:text="You are a good man. But Your attitude is suck."
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" android:id="@+id/itemChat_tvChat"/>
+
+                            </LinearLayout>
+                        </LinearLayout>s
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp" />
+            </LinearLayout>
+
+
+        </ScrollView>
+
+        <ProgressBar
+            android:layout_centerInParent="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp" android:id="@+id/actTrainingItemInfo_vLoading"/>
+
+    </RelativeLayout>
+
+
+    <View
+        android:layout_marginRight="160dp"
+        android:layout_below="@+id/actTrainingInfo_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#000000" />
+
+
+
+</RelativeLayout>

@@ -1,5 +1,4 @@
-package id.co.okhome.consultant.rest_apicall.retrofit_restapi.v1;
-
+package id.co.okhome.consultant.rest_apicall.retrofit_restapi;
 
 import java.util.List;
 import java.util.Map;
@@ -12,8 +11,11 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface CommonClient {
+/**
+ * Created by jo on 2018-03-31.
+ */
 
+public interface CommonClient {
     @GET("version/{os}") //map은 id, value로 구성됨.
     Call<Map> getVersion(@Path("os") String os);
 
@@ -42,5 +44,3 @@ public interface CommonClient {
     @GET("faq/q/id/{faqIdString}")
     Call<List<FaqModel>> getFaqById(@Path("faqIdString") String faqId);
 }
-
-

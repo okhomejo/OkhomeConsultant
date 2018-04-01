@@ -4,10 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import id.co.okhome.consultant.lib.retrofit.RetrofitFactory;
-import id.co.okhome.consultant.rest_apicall.retrofit_restapi.v2.AccountClient;
-import id.co.okhome.consultant.rest_apicall.retrofit_restapi.v2.ProfileClient;
-import id.co.okhome.consultant.rest_apicall.retrofit_restapi.v2.ValidationClient;
-import id.co.okhome.consultant.rest_apicall.retrofit_restapi.v1.CommonClient;
 
 
 /**
@@ -45,6 +41,10 @@ public class OkhomeRestApi {
 
     public final static ValidationClient getValidationClient(){
         return OkhomeRestApi.getInstance(ValidationClient.class);
+    }
+
+    public final static TrainingForTraineeClient getTrainingForTraineeClient(){
+        return OkhomeRestApi.getInstance(TrainingForTraineeClient.class);
     }
 
 }

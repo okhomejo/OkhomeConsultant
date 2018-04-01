@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.rest_apicall.retrofit_restapi.v2;
+package id.co.okhome.consultant.rest_apicall.retrofit_restapi;
 
 
 import java.util.Map;

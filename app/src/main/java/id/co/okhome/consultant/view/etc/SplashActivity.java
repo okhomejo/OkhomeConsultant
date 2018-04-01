@@ -14,6 +14,7 @@ import id.co.okhome.consultant.lib.JoSharedPreference;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
+import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.view.account.AuthActivity;
 
@@ -53,11 +54,16 @@ public class SplashActivity extends OkHomeParentActivity {
             DelayedWorkRepeator.with("2").setJob(new DelayedWorkRepeator.Job() {
                 @Override
                 public void work() {
-                    startActivity(new Intent(SplashActivity.this, AuthActivity.class));
-                    finish();
+                    gotoAuthActivity();
                 }
             }).setDelay(1800).work();
         }
+    }
+
+    private void gotoAuthActivity(){
+        JoSharedPreference.with().push(OkhomeRegistryKey.PASSWORD_LAST_LOGIN, null);
+        startActivity(new Intent(SplashActivity.this, AuthActivity.class));
+        finish();
     }
 
     //login
@@ -66,6 +72,14 @@ public class SplashActivity extends OkHomeParentActivity {
             @Override
             public void onSuccess(AccountModel account) {
                 ConsultantLoggedIn.doCommonWorkAfterAcquiringAccount(account, new ConsultantLoggedIn.CommonLoginSuccessImpl(SplashActivity.this, false));
+            }
+
+            @Override
+            public void onJodevError(ErrorModel jodevErrorModel) {
+                super.onJodevError(jodevErrorModel);
+
+
+                gotoAuthActivity();
             }
         });
     }

@@ -27,13 +27,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".view.main.trainee.TraineeMainActivity"></activity>
-        <activity android:name=".view.main.trainee.ConsultantMainActivity"></activity>
+        <activity android:name=".view.main.trainee.TraineeMainActivity" />
+        <activity android:name=".view.main.trainee.ConsultantMainActivity" />
         <activity android:name=".view.main.trainee.TraineeNewsActivity" />
         <activity android:name=".view.main.trainee.TraineeNewsSingleActivity" />
         <activity android:name=".view.main.trainee.TraineeFaqActivity" />
-
         <activity android:name=".view.main.trainee.TraineeFaqSingleActivity" />
         <activity android:name=".view.main.trainee.TraineeFaqSearchResultActivity" />
         <activity android:name=".view.common.account.AccountSettingsActivity" />
@@ -64,7 +62,7 @@
         <activity
             android:name=".view.etc.TestActivity"
             android:label="@string/title_activity_test"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity android:name=".view.userinfo.trainee.UpdateExtraUserDocumentActivity" />
         <activity android:name=".view.userinfo.trainee.TraineeScreeningMornitorActivity" />
         <activity android:name=".view.userinfo.trainee.UpdateConsultantEducationActivity" />
@@ -72,7 +70,8 @@
         <activity android:name=".view.userinfo.trainee.UpdateJobExperienceActivity" />
         <activity android:name=".view.etc.AboutOkhomeActivity" />
         <activity android:name=".view.userinfo.AccountActivity" />
-        <activity android:name=".view.main.trainee.TraineeTrainingActivity"></activity>
+        <activity android:name=".view.traininginfo.TraineeTrainingActivity" />
+        <activity android:name=".view.traininginfo.TraineeTrainingItemInfoActivity"></activity>
     </application>
 
 </manifest>

@@ -57,12 +57,8 @@ public class JobExperienceVHolder extends JoViewHolder<JobExperienceModel> imple
                     @Override
                     public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
                         if(actionCode == ACTIONCODE_OK){
-                            int pos = getPos();
-                            int absPos = getAbsPos();
-
                             getAdapter().removeItem(getPos());
                             getAdapter().notifyItemRemoved(getPos());
-//                            getAdapter().notifyDataSetChanged();
                         }
                         dialog.dismiss();
                     }

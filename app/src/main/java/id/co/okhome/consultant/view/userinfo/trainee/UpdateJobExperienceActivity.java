@@ -93,7 +93,6 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
         } else {
             placeHolderText.setVisibility(View.VISIBLE);
         }
-        adapter.notifyDataSetChanged();
     }
 
     private void updateProfile() {
@@ -148,6 +147,9 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
         if(actionCode == ACTIONCODE_OK){
             JobExperienceModel newJobExp = (JobExperienceModel) mapResult.get(JobExperienceDialog.RESULT_POSITION);
             jobExperiences.add(newJobExp);
+
+            adapter.notifyDataSetChanged();
+//            adapter.notifyItemInserted(jobExperiences.size());
         }
     }
 }

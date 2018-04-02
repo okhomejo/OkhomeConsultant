@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:weightSum="10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -20,7 +20,7 @@
                 android:layout_width="10dp"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/itemTrainingPageItemChild_tvName"
+                android:id="@+id/itemTrainingPageItemChild_tvItem"
                 style="@style/FontOpenSansLight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -30,22 +30,55 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:gravity="right"
+        <FrameLayout
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/itemTrainingPageItem_tvStatus"
-                style="@style/FontOpenSansSemibold"
+            <FrameLayout
+                android:layout_gravity="right"
+                android:id="@+id/itemTrainingPageItem_vgScoreLMH"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="L"
-                android:textColor="@color/colorBlueGray"
-                android:textSize="20sp" />
-        </LinearLayout>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:visibility="gone"
+                    android:layout_gravity="right"
+                    android:id="@+id/itemTrainingPageItemChild_tvStatusLMH"
+                    style="@style/FontOpenSansSemibold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="L"
+                    android:textColor="@color/colorBlueGray"
+                    android:textSize="20sp" />
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_gravity="right"
+                android:id="@+id/itemTrainingPageItem_vgPassOrNot"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/itemTrainingPageItemChild_ivSuccess"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_success_green2"
+                    android:layout_width="22dp"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/itemTrainingPageItemChild_ivFail"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_failed_red"
+                    android:layout_width="22dp"
+                    android:layout_height="wrap_content" />
+
+            </FrameLayout>
+
+        </FrameLayout>
 
     </LinearLayout>
 </RelativeLayout>

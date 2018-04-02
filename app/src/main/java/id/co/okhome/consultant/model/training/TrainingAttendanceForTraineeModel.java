@@ -12,6 +12,9 @@ public class TrainingAttendanceForTraineeModel {
             joinYN,
             passYN,
             trainingWhen,
-            trainingProgress
+            trainingProgress,
+            placeName,
+            placeGpsLat,
+            placeGptLng
                     ;
 }

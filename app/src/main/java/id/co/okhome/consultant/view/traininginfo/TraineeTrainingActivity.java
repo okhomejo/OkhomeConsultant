@@ -1,16 +1,26 @@
 package id.co.okhome.consultant.view.traininginfo;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
@@ -18,19 +28,27 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.joviewrepeator.JoRepeatorAdapter;
 import id.co.okhome.consultant.lib.joviewrepeator.JoViewRepeator;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
+import id.co.okhome.consultant.model.training.TrainingAttendanceForTraineeModel;
 import id.co.okhome.consultant.model.training.TrainingItemModel;
 import id.co.okhome.consultant.model.training.TrainingModel;
+import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 
 public class TraineeTrainingActivity extends OkHomeParentActivity {
 
     @BindView(R.id.actTrainingInfo_vLoading)                View vLoading;
     @BindView(R.id.actTrainingInfo_svItem)                  ScrollView svItem;
+    @BindView(R.id.actTrainingInfo_tvTrainingWhere)         TextView tvTrainingWhere;
+    @BindView(R.id.actTrainingInfo_tvTrainingWhen)          TextView tvTrainingWhen;
+    @BindView(R.id.actTrainingInfo_tvTrainerName)           TextView tvTrainerName;
+    @BindView(R.id.actTrainingInfo_tvTrainerInfo)           TextView tvTrainerInfo;
+    @BindView(R.id.actTrainingInfo_tvTrainingInfo)          TextView tvTrainingInfo;
+    @BindView(R.id.actTrainingInfo_ivTrainerPhoto)          ImageView ivProfileImage;
+
+    @BindView(R.id.actTrainingInfo_vgTrainerInfo)           ViewGroup vgTrainerInfo;
     @BindView(R.id.actTrainingInfo_vgTrainingTypeB)         ViewGroup vgTrainingTypeB;
     @BindView(R.id.actTrainingInfo_vgTrainingTypeC)         ViewGroup vgTrainingTypeC;
     @BindView(R.id.actTrainingInfo_vgTrainingTypeBItems)    ViewGroup vgTrainingTypeBItems;
-    @BindView(R.id.actTrainingInfo_vgTrainingTypeCItems)    ViewGroup vgTrainingTypeCItems;
-
 
     JoViewRepeator<TrainingItemModel> trainingItemTypeBRepeator = null;
     JoViewRepeator<TrainingItemModel> trainingItemTypeCRepeator = null;
@@ -70,11 +88,55 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
     }
 
     //view <-> model async
-    private void adaptTrainingViewAndData(TrainingModel training){
-        //init datas.
+    private void adaptTrainingViewAndData(final TrainingModel training){
+        //init data.
+        final TrainingAttendanceForTraineeModel attendance = training.trainingAttendanceForTrainee;
+        tvTrainingInfo.setText(training.desc);
 
-        //adapt trainng items
+        if (attendance != null) {
+            DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss.S");
+            DateTime dt = formatter.parseDateTime(attendance.trainingWhen);
+            tvTrainingWhen.setText(String.format("Training on %s", dt.toString("dd MMM yy, hh:mm")));
+            tvTrainingWhere.setText(attendance.placeName);
+            tvTrainingWhere.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Uri gmmIntentUri = Uri.parse(
+                            String.format("geo:%s,%s?q=%s",
+                                    attendance.placeGpsLat,
+                                    attendance.placeGptLng,
+                                    attendance.placeName
+                            )
+                    );
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");
+                    startActivity(mapIntent);
+                }
+            });
+            getTrainerAccountInfo(attendance.trainerId);
+        }
+        //adapt training items
         adaptTrainingItems(training.type, training.listTrainingItemModel);
+    }
+
+    private void adaptTrainerAccountViewAndData(AccountModel trainer) {
+        Glide.with(TraineeTrainingActivity.this).load(trainer.profile.photoUrl).thumbnail(0.5f).into(ivProfileImage);
+        tvTrainerName.setText(trainer.profile.name);
+
+        String accountType = "", gender = "";
+        if (trainer.type.equals("T")) {
+            accountType = "Trainee";
+        } else if (trainer.type.equals("C")) {
+            accountType = "Consultant";
+        }
+        if (trainer.profile.gender != null) {
+            if (trainer.profile.gender.equals("M")) {
+                gender = "Male";
+            } else if (trainer.profile.gender.equals("F")) {
+                gender = "Female";
+            }
+        }
+        tvTrainerInfo.setText(String.format("%s, %s", accountType, gender));
     }
 
     //adapt typeB trainings
@@ -90,9 +152,7 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
             trainingItemTypeCRepeator.setList(listTrainingItem);
             trainingItemTypeCRepeator.notifyDataSetChanged();
         }
-
     }
-
 
     //pull training detail info
     private void getTrainingInfo(){
@@ -101,7 +161,9 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
         OkhomeRestApi.getTrainingForTraineeClient().getTrainingDetail(ConsultantLoggedIn.id(), trainingId).enqueue(new RetrofitCallback<TrainingModel>() {
             @Override
             public void onSuccess(TrainingModel training) {
-                svItem.setVisibility(View.VISIBLE);
+                if (training.trainingAttendanceForTrainee == null) {
+                    svItem.setVisibility(View.VISIBLE);
+                }
                 adaptTrainingViewAndData(training);
             }
 
@@ -113,6 +175,36 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
         });
     }
 
+    //pull training detail info
+    private void getTrainerAccountInfo(int trainerId){
+        vLoading.setVisibility(View.VISIBLE);
+
+        OkhomeRestApi.getAccountClient().getInfo(trainerId).enqueue(new RetrofitCallback<AccountModel>() {
+            @Override
+            public void onSuccess(AccountModel trainer) {
+                svItem.setVisibility(View.VISIBLE);
+                adaptTrainerAccountViewAndData(trainer);
+            }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                vLoading.setVisibility(View.GONE);
+            }
+        });
+    }
+
+//    @OnClick(R.id.actTrainingInfo_vbtnTrainingWhere)
+//    public void onTrainingWhereClick() {
+//        String map = "http://maps.google.co.in/maps?q=" + tvTrainingWhere.getText().toString();
+//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
+//        startActivity(intent);
+//    }
+
+    @OnClick(R.id.actTrainingInfo_vbtnX)
+    public void onBackButtonClicked() {
+        finish();
+    }
 
     //training item adapter
     class TraineeTrainingItemTypeAdapter extends JoRepeatorAdapter<TrainingItemModel> {
@@ -130,16 +222,16 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
             ButterKnife.bind(this, v);
             tvName.setText(trainingItem.subject);
 
-
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     startActivity(new Intent(TraineeTrainingActivity.this, TraineeTrainingItemInfoActivity.class)
-                            .putExtra("trainingId", trainingItem.id));
+                            .putExtra("type", type)
+                            .putExtra("itemId", trainingItem.id)
+                            .putExtra("trainingId", trainingItem.trainingId)
+                    );
                 }
             });
         }
-
-
     }
 }

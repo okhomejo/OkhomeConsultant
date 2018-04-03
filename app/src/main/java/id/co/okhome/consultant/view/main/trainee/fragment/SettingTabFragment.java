@@ -43,13 +43,12 @@ public class SettingTabFragment extends Fragment implements TabFragmentStatusLis
 
     private void init() {
         AccountModel account = ConsultantLoggedIn.get();
-        String accountType = "";
+        String accountType = "", gender = "";
         if (account.type.equals("T")) {
             accountType = "Trainee";
         } else if (account.type.equals("C")) {
             accountType = "Consultant";
         }
-        String gender = "";
         if (account.profile.gender.equals("M")) {
             gender = "Male";
         } else if (account.profile.gender.equals("F")) {

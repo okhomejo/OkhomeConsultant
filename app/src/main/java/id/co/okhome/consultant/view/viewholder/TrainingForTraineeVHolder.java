@@ -8,6 +8,10 @@ import android.widget.TextView;
 import com.mrjodev.jorecyclermanager.JoViewHolder;
 import com.mrjodev.jorecyclermanager.annotations.LayoutMatcher;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
@@ -58,7 +62,11 @@ public class TrainingForTraineeVHolder extends JoViewHolder<TrainingModel> {
         }else{
 
             if(attendance.joinYN != null){
-                tvWhen.setText("Training on " + attendance.trainingWhen);
+                DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss.S");
+                DateTime dt = formatter.parseDateTime(attendance.trainingWhen);
+                tvWhen.setText("Training on " + dt.toString("dd MMM yy, hh:mm"));
+
+                // 5 Aug 18, 15:00
             }else{
                 if(attendance.joinYN.equals("Y")){
                     tvWhen.setText("Training on progress");

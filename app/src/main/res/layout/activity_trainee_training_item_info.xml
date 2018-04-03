@@ -39,10 +39,9 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/actTrainingInfo_vbtnX"
-            android:text="Test-OJT #1"
+            android:text=""
             android:textColor="#000000"
             android:textSize="20dp" />
-
 
     </RelativeLayout>
 
@@ -103,6 +102,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <TextView
+                                    android:id="@+id/actTrainingInfo_tvEvalTitle"
                                     style="@style/FontOpenSansLight"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -133,7 +133,17 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
-                                    android:text="You may not pass if you get more than 2L.\nYour score is evaluated by the trainer, Dee."
+                                    android:text="You may not pass if you get more than 2L."
+                                    android:textColor="@color/colorBlueGray"
+                                    android:textSize="15sp" />
+
+                                <TextView
+                                    android:id="@+id/actTrainingInfo_tvEvalTrainerName"
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="Your score is evaluated by the trainer."
                                     android:textColor="@color/colorBlueGray"
                                     android:textSize="15sp" />
                             </LinearLayout>
@@ -165,20 +175,23 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/actTrainingInfo_vgComment"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
                     <LinearLayout
                         android:layout_marginTop="36dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical">
                         <TextView
+                            android:id="@+id/actTrainingInfo_tvCommentTrainer"
                             style="@style/FontOpenSansLight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="40dp"
-                            android:text="Comment from trainer Dee"
+                            android:text="Comment from trainer"
                             android:textColor="@color/colorLightBlueGray"
                             android:textSize="14sp" />
                         <View
@@ -247,19 +260,16 @@
                                     android:layout_height="wrap_content" android:id="@+id/itemChat_tvChat"/>
 
                             </LinearLayout>
-                        </LinearLayout>s
-
+                        </LinearLayout>
 
                     </RelativeLayout>
 
                 </LinearLayout>
 
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="70dp" />
             </LinearLayout>
-
 
         </ScrollView>
 
@@ -270,14 +280,11 @@
 
     </RelativeLayout>
 
-
     <View
         android:layout_marginRight="160dp"
         android:layout_below="@+id/actTrainingInfo_vgTop"
         android:layout_width="match_parent"
         android:layout_height="2px"
         android:background="#000000" />
-
-
 
 </RelativeLayout>

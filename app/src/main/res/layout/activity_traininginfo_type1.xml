@@ -129,8 +129,7 @@
                                     style="@style/FontOpenSansLight"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="Training on 16 Jan 2018, 10:00 AM"
+                                    android:text="Training schedule is not ready"
                                     android:textColor="#aa000000"
                                     android:textSize="15sp" />
                             </LinearLayout>
@@ -222,7 +221,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="40dp"
-                            android:text="Trainor information"
+                            android:text="Trainer information"
                             android:textColor="@color/colorLightBlueGray"
                             android:textSize="14sp" />
 
@@ -233,10 +232,12 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/actTrainingInfo_vgTrainerInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="visible">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -335,8 +336,6 @@
 
                     </LinearLayout>
                 </LinearLayout>
-
-
 
                 <!-- 트레이닝 디테일-->
                 <LinearLayout
@@ -565,7 +564,6 @@
                     android:layout_height="70dp" />
             </LinearLayout>
 
-
         </ScrollView>
 
         <ProgressBar
@@ -575,14 +573,11 @@
 
     </RelativeLayout>
 
-
     <View
         android:layout_marginRight="160dp"
         android:layout_below="@+id/actTrainingInfo_vgTop"
         android:layout_width="match_parent"
         android:layout_height="2px"
         android:background="#000000" />
-
-
 
 </RelativeLayout>

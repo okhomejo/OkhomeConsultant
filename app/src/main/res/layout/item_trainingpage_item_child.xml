@@ -14,7 +14,7 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:layout_marginTop="7dp"
-                android:layout_marginRight="12dp"
+                android:layout_marginRight="14dp"
                 android:src="@drawable/ic_minus"
                 android:adjustViewBounds="true"
                 android:layout_width="10dp"

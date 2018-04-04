@@ -62,7 +62,7 @@ public class TrainingForTraineeVHolder extends JoViewHolder<TrainingModel> {
         }else{
 
             if(attendance.joinYN != null){
-                DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss.S");
+                DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
                 DateTime dt = formatter.parseDateTime(attendance.trainingWhen);
                 tvWhen.setText("Training on " + dt.toString("dd MMM yy, hh:mm"));
 

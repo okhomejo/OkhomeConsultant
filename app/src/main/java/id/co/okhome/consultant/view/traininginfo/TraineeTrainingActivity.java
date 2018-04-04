@@ -16,7 +16,6 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,7 +57,7 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_traininginfo_type1);
+        setContentView(R.layout.activity_traininginfo);
         ButterKnife.bind(this);
         OkhomeUtil.setWhiteSystembar(this);
 
@@ -94,7 +93,7 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
         tvTrainingInfo.setText(training.desc);
 
         if (attendance != null) {
-            DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss.S");
+            DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
             DateTime dt = formatter.parseDateTime(attendance.trainingWhen);
             tvTrainingWhen.setText(String.format("Training on %s", dt.toString("dd MMM yy, hh:mm")));
             tvTrainingWhere.setText(attendance.placeName);

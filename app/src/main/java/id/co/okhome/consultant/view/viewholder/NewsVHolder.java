@@ -39,7 +39,7 @@ public class NewsVHolder extends JoViewHolder<NewsModel> implements View.OnClick
 
         tvTitle.setText(m.subject);
 
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss.S");
         DateTime dt = formatter.parseDateTime(m.insertDateTime);
         tvDate.setText(dt.toString(DateTimeFormat.mediumDate()));
 

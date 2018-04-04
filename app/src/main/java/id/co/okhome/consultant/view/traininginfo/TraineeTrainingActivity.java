@@ -194,13 +194,6 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
         });
     }
 
-//    @OnClick(R.id.actTrainingInfo_vbtnTrainingWhere)
-//    public void onTrainingWhereClick() {
-//        String map = "http://maps.google.co.in/maps?q=" + tvTrainingWhere.getText().toString();
-//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
-//        startActivity(intent);
-//    }
-
     @OnClick(R.id.actTrainingInfo_vbtnX)
     public void onBackButtonClicked() {
         finish();

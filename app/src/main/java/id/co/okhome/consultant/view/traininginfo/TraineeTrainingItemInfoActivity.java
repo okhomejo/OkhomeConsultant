@@ -1,6 +1,7 @@
 package id.co.okhome.consultant.view.traininginfo;
 
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -9,6 +10,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.mrjodev.jorecyclermanager.JoRecyclerAdapter;
 
 import java.util.List;
 import java.util.Objects;
@@ -28,6 +30,8 @@ import id.co.okhome.consultant.model.training.TrainingItemModel;
 import id.co.okhome.consultant.model.training.TrainingModel;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
+import id.co.okhome.consultant.view.viewholder.BlankHolder;
+import id.co.okhome.consultant.view.viewholder.NewsVHolder;
 
 public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
 
@@ -38,11 +42,13 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
     @BindView(R.id.actTrainingInfo_tvTitle)                 TextView tvTitle;
     @BindView(R.id.actTrainingInfo_vgTrainingTypeBItems)    ViewGroup vgTrainingTypeB;
     @BindView(R.id.actTrainingInfo_vgTrainingTypeCItems)    ViewGroup vgTrainingTypeC;
+    @BindView(R.id.actTrainingInfo_rcv)                     RecyclerView rcv;
     @BindView(R.id.actTrainingInfo_vgComment)               LinearLayout vgComment;
     @BindView(R.id.actTrainingInfo_svItem)                  ScrollView svItem;
     @BindView(R.id.fragmentIntro1_ivUserPhoto)              ImageView ivUserPhoto;
     @BindView(R.id.itemChat_tvChat)                         TextView tvComment;
 
+    private JoRecyclerAdapter adapter;
     private String trainingId = null, itemId = null, listType = null;
     JoViewRepeator<TrainingItemChildModel> trainingItemTypeBRepeater = null;
     JoViewRepeator<TrainingItemChildModel> trainingItemTypeCRepeater = null;
@@ -70,6 +76,13 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
     }
 
     private void init(){
+        adapter = new JoRecyclerAdapter(new JoRecyclerAdapter.Params()
+                .setRecyclerView(rcv)
+                .setItemViewHolderCls(NewsVHolder.class)
+                .setFooterViewHolderCls(BlankHolder.class)
+        );
+        adapter.addFooterItem("");
+
         trainingItemTypeBRepeater = new JoViewRepeator<TrainingItemChildModel>(this)
                 .setContainer(vgTrainingTypeB)
                 .setItemLayoutId(R.layout.item_trainingpage_item_child)

@@ -171,6 +171,30 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:id="@+id/actTrainingInfo_vgTrainingTypeCItems"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="7dp"
+                            android:paddingTop="7dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <!-- item -->
+
+                            <include android:layout_width="match_parent" android:layout_height="wrap_content"
+                                layout="@layout/item_trainingpage_item_child" android:visibility="gone"/>
+
+                            <include android:layout_width="match_parent" android:layout_height="wrap_content"
+                                layout="@layout/item_trainingpage_item_child" android:visibility="gone"/>
+
+                            <include android:layout_width="match_parent" android:layout_height="wrap_content"
+                                layout="@layout/item_trainingpage_item_child" android:visibility="gone"/>
+
+                            <include android:layout_width="match_parent" android:layout_height="wrap_content"
+                                layout="@layout/item_trainingpage_item_child" android:visibility="gone"/>
+
+                        </LinearLayout>
+
                     </LinearLayout>
                 </LinearLayout>
 

@@ -19,6 +19,7 @@ import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.joviewrepeator.JoRepeatorAdapter;
 import id.co.okhome.consultant.lib.joviewrepeator.JoViewRepeator;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
@@ -35,21 +36,23 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
     @BindView(R.id.actTrainingInfo_tvCommentTrainer)        TextView tvCommentTrainer;
     @BindView(R.id.actTrainingInfo_tvEvalTrainerName)       TextView tvEvalTrainerName;
     @BindView(R.id.actTrainingInfo_tvTitle)                 TextView tvTitle;
-    @BindView(R.id.actTrainingInfo_vgComment)               LinearLayout vgComment;
     @BindView(R.id.actTrainingInfo_vgTrainingTypeBItems)    ViewGroup vgTrainingTypeB;
+    @BindView(R.id.actTrainingInfo_vgTrainingTypeCItems)    ViewGroup vgTrainingTypeC;
+    @BindView(R.id.actTrainingInfo_vgComment)               LinearLayout vgComment;
     @BindView(R.id.actTrainingInfo_svItem)                  ScrollView svItem;
     @BindView(R.id.fragmentIntro1_ivUserPhoto)              ImageView ivUserPhoto;
     @BindView(R.id.itemChat_tvChat)                         TextView tvComment;
 
     private String trainingId = null, itemId = null, listType = null;
-    JoViewRepeator<TrainingItemChildModel> trainingItemTypeRepeater = null;
+    JoViewRepeator<TrainingItemChildModel> trainingItemTypeBRepeater = null;
+    JoViewRepeator<TrainingItemChildModel> trainingItemTypeCRepeater = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainee_training_item_info);
-
         ButterKnife.bind(this);
+        OkhomeUtil.setWhiteSystembar(this);
 
         listType    = getIntent().getStringExtra("type");
         trainingId  = String.valueOf(getIntent().getLongExtra("trainingId", 0));
@@ -67,10 +70,15 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
     }
 
     private void init(){
-        trainingItemTypeRepeater = new JoViewRepeator<TrainingItemChildModel>(this)
+        trainingItemTypeBRepeater = new JoViewRepeator<TrainingItemChildModel>(this)
                 .setContainer(vgTrainingTypeB)
                 .setItemLayoutId(R.layout.item_trainingpage_item_child)
-                .setCallBack(new TraineeTrainingItemInfoActivity.TraineeTrainingChildItemTypeAdapter(listType));
+                .setCallBack(new TraineeTrainingItemInfoActivity.TraineeTrainingChildItemTypeAdapter("B"));
+
+        trainingItemTypeCRepeater = new JoViewRepeator<TrainingItemChildModel>(this)
+                .setContainer(vgTrainingTypeC)
+                .setItemLayoutId(R.layout.item_trainingpage_item_child)
+                .setCallBack(new TraineeTrainingItemInfoActivity.TraineeTrainingChildItemTypeAdapter("C"));
     }
 
     //pull training detail info
@@ -84,7 +92,11 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
                     if (Objects.equals(String.valueOf(item.id), itemId)) {
                         tvTitle.setText(String.format("%s : %s", training.subject, item.subject));
                         adaptTrainingViewAndData(item);
-                        getTrainerAccountInfo(training.trainingAttendanceForTrainee.trainerId);
+                        if (training.trainingAttendanceForTrainee != null) {
+                            getTrainerAccountInfo(training.trainingAttendanceForTrainee.trainerId);
+                        } else {
+                            svItem.setVisibility(View.VISIBLE);
+                        }
                         break;
                     }
                 }
@@ -131,10 +143,18 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
         tvEvalTrainerName.setText(String.format("Your score is evaluated by trainer %s.", trainer.profile.name));
     }
 
-    private void adaptTrainingItems(List<TrainingItemChildModel> listTrainingItem){
-        vgTrainingTypeB.setVisibility(View.VISIBLE);
-        trainingItemTypeRepeater.setList(listTrainingItem);
-        trainingItemTypeRepeater.notifyDataSetChanged();
+    private void adaptTrainingItems(List<TrainingItemChildModel> listTrainingItem) {
+        vgTrainingTypeB.setVisibility(View.GONE);
+        vgTrainingTypeC.setVisibility(View.GONE);
+        if (listType.equals("B")) {
+            vgTrainingTypeB.setVisibility(View.VISIBLE);
+            trainingItemTypeBRepeater.setList(listTrainingItem);
+            trainingItemTypeBRepeater.notifyDataSetChanged();
+        } else if (listType.equals("C")) {
+            vgTrainingTypeC.setVisibility(View.VISIBLE);
+            trainingItemTypeCRepeater.setList(listTrainingItem);
+            trainingItemTypeCRepeater.notifyDataSetChanged();
+        }
     }
 
     @OnClick(R.id.actTrainingInfo_vbtnX)
@@ -171,8 +191,11 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
                     }
                 }
             } else if (type.equals("C")) {
-                tvStatus.setText(trainingItem.trainingResult.traininigResult);
-                tvStatus.setVisibility(View.VISIBLE);
+                v.setVisibility(View.VISIBLE);
+                if (trainingItem.trainingResult != null) {
+                    tvStatus.setText(trainingItem.trainingResult.traininigResult);
+                    tvStatus.setVisibility(View.VISIBLE);
+                }
             }
         }
     }

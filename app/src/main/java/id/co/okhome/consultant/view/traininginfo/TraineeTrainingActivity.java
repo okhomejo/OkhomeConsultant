@@ -49,6 +49,7 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
     @BindView(R.id.actTrainingInfo_vgTrainingTypeB)         ViewGroup vgTrainingTypeB;
     @BindView(R.id.actTrainingInfo_vgTrainingTypeC)         ViewGroup vgTrainingTypeC;
     @BindView(R.id.actTrainingInfo_vgTrainingTypeBItems)    ViewGroup vgTrainingTypeBItems;
+    @BindView(R.id.actTrainingInfo_vgTrainingTypeCItems)    ViewGroup vgTrainingTypeCItems;
 
     JoViewRepeator<TrainingItemModel> trainingItemTypeBRepeator = null;
     JoViewRepeator<TrainingItemModel> trainingItemTypeCRepeator = null;
@@ -82,7 +83,7 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
                 .setCallBack(new TraineeTrainingItemTypeAdapter("B"));
 
         trainingItemTypeCRepeator = new JoViewRepeator<TrainingItemModel>(this)
-                .setContainer(vgTrainingTypeBItems)
+                .setContainer(vgTrainingTypeCItems)
                 .setItemLayoutId(R.layout.item_trainingpage_item)
                 .setCallBack(new TraineeTrainingItemTypeAdapter("C"));
     }
@@ -94,7 +95,7 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
         tvTrainingInfo.setText(training.desc);
 
         if (attendance != null) {
-            DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss.S");
+            DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
             DateTime dt = formatter.parseDateTime(attendance.trainingWhen);
             tvTrainingWhen.setText(String.format("Training on %s", dt.toString("dd MMM yy, hh:mm")));
             tvTrainingWhere.setText(attendance.placeName);
@@ -182,13 +183,13 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
         OkhomeRestApi.getAccountClient().getInfo(trainerId).enqueue(new RetrofitCallback<AccountModel>() {
             @Override
             public void onSuccess(AccountModel trainer) {
-                svItem.setVisibility(View.VISIBLE);
                 adaptTrainerAccountViewAndData(trainer);
             }
 
             @Override
             public void onFinish() {
                 super.onFinish();
+                svItem.setVisibility(View.VISIBLE);
                 vLoading.setVisibility(View.GONE);
             }
         });

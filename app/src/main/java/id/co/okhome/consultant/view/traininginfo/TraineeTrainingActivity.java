@@ -16,7 +16,6 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,7 +58,7 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_traininginfo_type1);
+        setContentView(R.layout.activity_traininginfo);
         ButterKnife.bind(this);
         OkhomeUtil.setWhiteSystembar(this);
 

@@ -47,4 +47,9 @@ public class OkhomeRestApi {
         return OkhomeRestApi.getInstance(TrainingForTraineeClient.class);
     }
 
+    public final static TraineeClient getTraineeClient(){
+        return OkhomeRestApi.getInstance(TraineeClient.class);
+    }
+
+
 }

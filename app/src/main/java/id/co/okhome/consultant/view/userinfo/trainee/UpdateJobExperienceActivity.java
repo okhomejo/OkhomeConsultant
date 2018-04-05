@@ -146,10 +146,10 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
     public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
         if(actionCode == ACTIONCODE_OK){
             JobExperienceModel newJobExp = (JobExperienceModel) mapResult.get(JobExperienceDialog.RESULT_POSITION);
+            //adapter.addListItems();
             jobExperiences.add(newJobExp);
-
-            adapter.notifyDataSetChanged();
-//            adapter.notifyItemInserted(jobExperiences.size());
+            adapter.setListItems(jobExperiences);
+            adapter.notifyItemInserted(jobExperiences.size());
         }
     }
 }

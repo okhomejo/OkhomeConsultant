@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,6 +43,10 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     @BindView(R.id.actFillupUserInfo_ivBarAdditionalInfo)               ImageView ivBarAdditionalInfo;
     @BindView(R.id.actFillupUserInfo_ivBarKTP)                          ImageView ivBarKTP;
     @BindView(R.id.actFillupUserInfo_ivBarPreferenceArea)               ImageView ivBarPreferenceArea;
+    @BindView(R.id.actFillUpUserInfo_tvTitle)                           TextView tvTitle;
+    @BindView(R.id.actFillUpUserInfo_tvExtraInfo)                       TextView tvExtraInfo;
+
+    private boolean accountApproved = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +54,22 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
         setContentView(R.layout.activity_fillup_userinfo);
 
         ButterKnife.bind(this);
+        initViewsAndData();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         reload();
+    }
+
+    private void initViewsAndData() {
+        if (ConsultantLoggedIn.get().trainee.approveYN.equals("Y")) {
+            accountApproved = true;
+            tvTitle.setText("Profile information");
+            tvExtraInfo.setVisibility(View.GONE);
+            OkhomeUtil.setWhiteSystembar(this);
+        }
     }
 
     //check exception. if no error, go to next page.
@@ -193,7 +208,6 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
         //step 6. Job experience
         try{
             OkhomeException.chkException(OkhomeUtil.isEmpty(profile.pastCareers), "");
-
             ivBarJob.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
         }catch(OkhomeException e){
             ivBarJob.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
@@ -211,7 +225,6 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
                 ;
                 chkProgress();
             }
-
 
             @Override
             public void onFinish() {
@@ -319,7 +332,11 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
     @OnClick(R.id.actFillUpUserInfo_vgConfirm)
     public void onClickConfirm(){
-        confirm();
+        if (accountApproved) {
+            finish();
+        } else {
+            confirm();
+        }
     }
 
     @OnClick(R.id.actFillUpUserInfo_vbtnX)

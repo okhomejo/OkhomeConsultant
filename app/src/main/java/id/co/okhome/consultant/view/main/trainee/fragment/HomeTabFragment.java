@@ -1,11 +1,28 @@
 package id.co.okhome.consultant.view.main.trainee.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -14,6 +31,7 @@ import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.TraineePageHomeModel;
+import id.co.okhome.consultant.model.training.TrainingModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 
 /**
@@ -22,14 +40,26 @@ import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 
 public class HomeTabFragment extends Fragment implements TabFragmentStatusListener {
 
-    @BindView(R.id.fragTabHomeForTrainee_vLoading)      View vLoading;
+    @BindView(R.id.fragTabHomeForTrainee_vLoading)              View vLoading;
+    @BindView(R.id.fragTabHomeForTrainee_svItem)                ScrollView svItem;
+
+    @BindView(R.id.fragTabHomeForTrainee_tvName)                TextView tvName;
+    @BindView(R.id.fragTabHomeForTrainee_tvSubName)             TextView tvSubName;
+    @BindView(R.id.fragTabHomeForTrainee_ivPhoto)               ImageView ivPhoto;
+
+    @BindView(R.id.fragTabHomeForTrainee_tvTrainingTitle)       TextView tvTrainingTitle;
+    @BindView(R.id.fragTabHomeForTrainee_tvTrainingDesc)        TextView tvTrainingDesc;
+    @BindView(R.id.fragTabHomeForTrainee_tvTrainingTime)        TextView tvTrainingTime;
+    @BindView(R.id.fragTabHomeForTrainee_tvAdvancedAmt)         TextView tvAdvancedAmt;
+    @BindView(R.id.fragTabHomeForTrainee_tvBasicAmt)            TextView tvBasicAmt;
+    @BindView(R.id.fragTabHomeForTrainee_vgAdvancedTraining)    ViewGroup vgAdvancedTraining;
+    @BindView(R.id.fragTabHomeForTrainee_vgBasicTraining)       ViewGroup vgBasicTraining;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_tab_home_f_trainee, null);
     }
-
 
     @Override
     public void onResume() {
@@ -41,7 +71,7 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
     public void onStart() {
         super.onStart();
         ButterKnife.bind(this, getView());
-
+        svItem.setVisibility(View.GONE);
     }
 
     @Override
@@ -55,19 +85,94 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
     }
 
     //match view and data
-    private void adaptViews(TraineePageHomeModel traineePageHome){
-        //
+    private void adaptViews(TraineePageHomeModel traineePageHome) {
+        // Update user information
+        tvName.setText(traineePageHome.name);
+        String accountType = "", gender = "";
+        if (traineePageHome.type.equals("T")) {
+            accountType = "Trainee";
+        } else if (traineePageHome.type.equals("C")) {
+            accountType = "Consultant";
+        }
+        if (traineePageHome.gender.equals("M")) {
+            gender = "Male";
+        } else if (traineePageHome.gender.equals("F")) {
+            gender = "Female";
+        }
+        tvSubName.setText(String.format("%s, %s, %s", accountType, traineePageHome.birthdate, gender));
+        Glide.with(this).load(traineePageHome.photoUrl).thumbnail(0.5f).into(ivPhoto);
 
+        // Update next job training
+        adaptNextJobTraining(traineePageHome.trainingEarliest);
+
+        // Update training progress
+        int bProgressCnt = traineePageHome.basicTrainingProgressCount,
+                bCnt = traineePageHome.basicTrainingCount,
+                aProgressCnt = traineePageHome.ojtTrainingProgressCount,
+                aCnt = traineePageHome.ojtTrainingCount,
+                activeBasic = -1, activeAdvanced = -1;
+
+        tvBasicAmt.setText(String.format(Locale.ENGLISH, "%d/%d", bProgressCnt, bCnt));
+        tvAdvancedAmt.setText(String.format(Locale.ENGLISH, "%d/%d", aProgressCnt, aCnt));
+
+        if (traineePageHome.onGoingTrainingType.equals("BASIC")) {
+            activeBasic = traineePageHome.onGoingTrainingPos;
+        } else if (traineePageHome.onGoingTrainingType.equals("ADVANCED")) {
+            activeAdvanced = traineePageHome.onGoingTrainingPos;
+        }
+        adaptTrainingProgressBar(bProgressCnt, bCnt, activeBasic, vgBasicTraining);
+        adaptTrainingProgressBar(aProgressCnt, aCnt, activeAdvanced, vgAdvancedTraining);
     }
 
+    private void adaptNextJobTraining(TrainingModel trainingEarliest) {
+        tvTrainingTitle.setText(trainingEarliest.subject);
+        tvTrainingDesc.setText(trainingEarliest.desc);
 
-    //get trainnee home info
-    private void getTraineeHomeInfo(){
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+        DateTime dt = formatter.parseDateTime(trainingEarliest.trainingAttendanceForTrainee.trainingWhen);
+        tvTrainingTime.setText(dt.toString("dd MMM yy, hh:mm"));
+    }
+
+    private void adaptTrainingProgressBar(int finishedAmt, int maxAmt, int active, ViewGroup row) {
+        int counter = finishedAmt;
+        for (int i = 0; i <= maxAmt; i++) {
+            View bar = new View(getContext());
+            if (counter > 0) {
+                bar.setBackgroundColor(Color.parseColor("#16acf2"));
+                if (i == active) {
+                    blinkAnimation(bar);
+                }
+                counter--;
+            } else {
+                bar.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.graphbg_traning_off));
+            }
+
+            LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+                    0, LinearLayout.LayoutParams.MATCH_PARENT, 1
+            );
+            if (i != (maxAmt-1)) {
+                param.setMarginEnd(8);
+            }
+            bar.setLayoutParams(param);
+            row.addView(bar);
+        }
+    }
+
+    private void blinkAnimation(View v) {
+        Animation anim = new AlphaAnimation(0.2f, 1.0f);
+        anim.setDuration(600);
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        v.startAnimation(anim);
+    }
+
+    //get trainee home info
+    private void getTraineeHomeInfo() {
         vLoading.setVisibility(View.VISIBLE);
         OkhomeRestApi.getTraineeClient().getTraineePageHome(ConsultantLoggedIn.id()).enqueue(new RetrofitCallback<TraineePageHomeModel>() {
             @Override
             public void onSuccess(TraineePageHomeModel traineePageHome) {
-
                 adaptViews(traineePageHome);
             }
 
@@ -75,11 +180,8 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
             public void onFinish() {
                 super.onFinish();
                 vLoading.setVisibility(View.GONE);
+                svItem.setVisibility(View.VISIBLE);
             }
         });
-
     }
-
-
-
 }

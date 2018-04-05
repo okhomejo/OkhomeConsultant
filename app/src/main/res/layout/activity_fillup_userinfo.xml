@@ -27,10 +27,10 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/actFillUpUserInfo_tvTitle"
             style="@style/FontOpenSansRegular"
             android:textColor="@color/colorGray"
             android:layout_centerInParent="true"
-            android:id="@+id/actPoint_tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:text="Register information"
             android:textSize="16.5sp"
@@ -251,6 +251,7 @@
 
             <TextView
                 style="@style/FontOpenSansLight"
+                android:id="@+id/actFillUpUserInfo_tvExtraInfo"
                 android:textColor="@color/colorGray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:textSize="13sp"
@@ -258,7 +259,7 @@
 
             <TextView
                 style="@style/FontOpenSansLight"
-                android:id="@+id/actSignUp_tvbtnTerm"
+                android:id="@+id/actFillUpUserInfo_tvbtnTerm"
                 android:textColor="@color/colorOkhome"
                 android:gravity="center"
                 android:layout_width="wrap_content"

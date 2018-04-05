@@ -180,27 +180,6 @@
                             android:orientation="vertical">
                             <!-- item -->
 
-                            <!--<android.support.v7.widget.RecyclerView-->
-                                <!--android:scrollbars="vertical"-->
-                                <!--android:id="@+id/actTrainingInfo_rcv"-->
-                                <!--android:layout_width="match_parent"-->
-                                <!--android:layout_height="match_parent"-->
-                                <!--android:listSelector="@android:color/transparent"-->
-                                <!--android:cacheColorHint="@android:color/transparent"-->
-                                <!--android:divider="#00000000"/>-->
-
-                            <include android:layout_width="match_parent" android:layout_height="wrap_content"
-                                layout="@layout/item_trainingpage_item_child" android:visibility="gone"/>
-
-                            <include android:layout_width="match_parent" android:layout_height="wrap_content"
-                                layout="@layout/item_trainingpage_item_child" android:visibility="gone"/>
-
-                            <include android:layout_width="match_parent" android:layout_height="wrap_content"
-                                layout="@layout/item_trainingpage_item_child" android:visibility="gone"/>
-
-                            <include android:layout_width="match_parent" android:layout_height="wrap_content"
-                                layout="@layout/item_trainingpage_item_child" android:visibility="gone"/>
-
                         </LinearLayout>
 
                     </LinearLayout>

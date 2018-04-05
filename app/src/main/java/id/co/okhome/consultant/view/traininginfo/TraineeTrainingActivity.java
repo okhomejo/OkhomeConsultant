@@ -94,6 +94,19 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
         tvTrainingInfo.setText(training.desc);
 
         if (attendance != null) {
+            Glide.with(TraineeTrainingActivity.this).load(attendance.trainerPhotoUrl).thumbnail(0.5f).into(ivProfileImage);
+            tvTrainerName.setText(attendance.trainerName);
+
+            String gender = "Unknown";
+            if (attendance.trainerGender != null) {
+                if (attendance.trainerGender.equals("M")) {
+                    gender = "Male";
+                } else if (attendance.trainerGender.equals("F")) {
+                    gender = "Female";
+                }
+            }
+            tvTrainerInfo.setText(String.format("Consultant, %s", gender));
+
             DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
             DateTime dt = formatter.parseDateTime(attendance.trainingWhen);
             tvTrainingWhen.setText(String.format("Training on %s", dt.toString("dd MMM yy, hh:mm")));
@@ -113,30 +126,9 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
                     startActivity(mapIntent);
                 }
             });
-            getTrainerAccountInfo(attendance.trainerId);
         }
         //adapt training items
         adaptTrainingItems(training.type, training.listTrainingItemModel);
-    }
-
-    private void adaptTrainerAccountViewAndData(AccountModel trainer) {
-        Glide.with(TraineeTrainingActivity.this).load(trainer.profile.photoUrl).thumbnail(0.5f).into(ivProfileImage);
-        tvTrainerName.setText(trainer.profile.name);
-
-        String accountType = "", gender = "";
-        if (trainer.type.equals("T")) {
-            accountType = "Trainee";
-        } else if (trainer.type.equals("C")) {
-            accountType = "Consultant";
-        }
-        if (trainer.profile.gender != null) {
-            if (trainer.profile.gender.equals("M")) {
-                gender = "Male";
-            } else if (trainer.profile.gender.equals("F")) {
-                gender = "Female";
-            }
-        }
-        tvTrainerInfo.setText(String.format("%s, %s", accountType, gender));
     }
 
     //adapt typeB trainings
@@ -161,28 +153,7 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
         OkhomeRestApi.getTrainingForTraineeClient().getTrainingDetail(ConsultantLoggedIn.id(), trainingId).enqueue(new RetrofitCallback<TrainingModel>() {
             @Override
             public void onSuccess(TrainingModel training) {
-                if (training.trainingAttendanceForTrainee == null) {
-                    svItem.setVisibility(View.VISIBLE);
-                }
                 adaptTrainingViewAndData(training);
-            }
-
-            @Override
-            public void onFinish() {
-                super.onFinish();
-                vLoading.setVisibility(View.GONE);
-            }
-        });
-    }
-
-    //pull training detail info
-    private void getTrainerAccountInfo(int trainerId){
-        vLoading.setVisibility(View.VISIBLE);
-
-        OkhomeRestApi.getAccountClient().getInfo(trainerId).enqueue(new RetrofitCallback<AccountModel>() {
-            @Override
-            public void onSuccess(AccountModel trainer) {
-                adaptTrainerAccountViewAndData(trainer);
             }
 
             @Override

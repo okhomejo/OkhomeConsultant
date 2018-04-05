@@ -8,6 +8,7 @@ import com.twinkle94.monthyearpicker.picker.YearMonthPickerDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,11 +46,11 @@ public class JobExperienceDialog extends DialogParent {
         YearMonthPickerDialog yearMonthPickerDialog = new YearMonthPickerDialog(activity, new YearMonthPickerDialog.OnDateSetListener() {
             @Override
             public void onYearMonthSet(int year, int month) {
-                Calendar calendar = Calendar.getInstance();
+                Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
                 calendar.set(Calendar.YEAR, year);
                 calendar.set(Calendar.MONTH, month);
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
 
                 tv.setText(dateFormat.format(calendar.getTime()));
                 if(!tvFromDate.getText().toString().matches("") && tvToDate.getText().toString().matches("")) {

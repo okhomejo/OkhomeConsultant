@@ -27,9 +27,10 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.view.common.dialog.CommonInputDialog;
 import id.co.okhome.consultant.view.common.dialog.CommonListDialog;
+import id.co.okhome.consultant.view.common.dialog.NikInputDialog;
 import id.co.okhome.consultant.view.viewholder.StringHolder;
 
-public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
+public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity implements DialogParent.CommonDialogListener  {
 
     @BindView(R.id.actUpdateUserExtraDoc_tvNIK)         TextView tvNIK;
     @BindView(R.id.actUpdateUserExtraDoc_tvMarried)     TextView tvMarried;
@@ -68,10 +69,12 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
                     if (TextUtils.isEmpty(profile.childrenCnt)) {
                         married = "Married";
                     } else {
-                        if (profile.childrenCnt.equals("4")) {
-                            married = "Married, 4+";
+                        if (profile.childrenCnt.equals("1")) {
+                            married = "Married, 1 child";
+                        } if (profile.childrenCnt.equals("4")) {
+                            married = "Married, 4+ children";
                         } else {
-                            married = "Married, " + profile.childrenCnt;
+                            married = "Married, " + profile.childrenCnt + " children";
                         }
                     }
                 } else if (profile.marriedYN.equals("N")) {
@@ -157,29 +160,24 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
         }
     }
 
+    @Override
+    public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
+        if(actionCode == ACTIONCODE_OK){
+            String validNik = (String) mapResult.get(NikInputDialog.RESULT_NIK);
+            tvNIK.setText(validNik);
+        }
+    }
+
     //-- onclick methods ---------------------------------
     @OnClick(R.id.actUpdateUserExtraDoc_tvNIK)
     public void onClickNIK(){
-        final InputMethodManager imm = (InputMethodManager)   getSystemService(Context.INPUT_METHOD_SERVICE);
-
-        CommonInputDialog inputDialog = new CommonInputDialog(this)
-                .setTitle("NIK")
-                .setSubTitle("Input your NIK Number.")
-                .setComment("NIK must be 16 numbers")
-                .setDefaultText(tvNIK.getText().toString())
-                .setCommonDialogListener(new DialogParent.CommonDialogListener() {
-                    @Override
-                    public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
-                        if(actionCode == ACTIONCODE_OK){
-                            String text = (String)mapResult.get(CommonInputDialog.TAG_INPUT_TEXT);
-                            tvNIK.setText(text);
-                        }
-                        dialog.dismiss();
-                    }
-                })
-                .setHint("NIK");
-        inputDialog.show();
-        inputDialog.getEtInput().setMaxEms(16);
+        NikInputDialog nikDialog;
+        if (tvNIK.getText().length() != 0) {
+            nikDialog = new NikInputDialog(this, this, tvNIK.getText().toString());
+        } else {
+            nikDialog = new NikInputDialog(this, this);
+        }
+        nikDialog.show();
     }
 
     @OnClick(R.id.actUpdateUserExtraDoc_vgMarried)
@@ -207,7 +205,16 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
                                         @Override
                                         public void onItemClick(Dialog dialog, int pos, String value, String tag) {
                                             dialog.dismiss();
-                                            tvMarried.setText(String.format("Married, %s", value));
+
+                                            String married;
+                                            if (tag.equals("1")) {
+                                                married = "1 child";
+                                            } else if (tag.equals("4")) {
+                                                married = "4+ children";
+                                            } else {
+                                                married = value + " children";
+                                            }
+                                            tvMarried.setText(String.format("Married, %s", married));
                                             profile.childrenCnt = tag;
                                         }
                                     })
@@ -273,5 +280,4 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity {
     public void onCloseActivity() {
         finish();
     }
-
 }

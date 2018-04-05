@@ -25,6 +25,7 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.joviewrepeator.JoRepeatorAdapter;
 import id.co.okhome.consultant.lib.joviewrepeator.JoViewRepeator;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
+import id.co.okhome.consultant.model.training.TrainingAttendanceForTraineeModel;
 import id.co.okhome.consultant.model.training.TrainingItemChildModel;
 import id.co.okhome.consultant.model.training.TrainingItemModel;
 import id.co.okhome.consultant.model.training.TrainingModel;
@@ -42,13 +43,12 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
     @BindView(R.id.actTrainingInfo_tvTitle)                 TextView tvTitle;
     @BindView(R.id.actTrainingInfo_vgTrainingTypeBItems)    ViewGroup vgTrainingTypeB;
     @BindView(R.id.actTrainingInfo_vgTrainingTypeCItems)    ViewGroup vgTrainingTypeC;
-    @BindView(R.id.actTrainingInfo_rcv)                     RecyclerView rcv;
     @BindView(R.id.actTrainingInfo_vgComment)               LinearLayout vgComment;
     @BindView(R.id.actTrainingInfo_svItem)                  ScrollView svItem;
+
     @BindView(R.id.fragmentIntro1_ivUserPhoto)              ImageView ivUserPhoto;
     @BindView(R.id.itemChat_tvChat)                         TextView tvComment;
 
-    private JoRecyclerAdapter adapter;
     private String trainingId = null, itemId = null, listType = null;
     JoViewRepeator<TrainingItemChildModel> trainingItemTypeBRepeater = null;
     JoViewRepeator<TrainingItemChildModel> trainingItemTypeCRepeater = null;
@@ -76,13 +76,6 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
     }
 
     private void init(){
-        adapter = new JoRecyclerAdapter(new JoRecyclerAdapter.Params()
-                .setRecyclerView(rcv)
-                .setItemViewHolderCls(NewsVHolder.class)
-                .setFooterViewHolderCls(BlankHolder.class)
-        );
-        adapter.addFooterItem("");
-
         trainingItemTypeBRepeater = new JoViewRepeator<TrainingItemChildModel>(this)
                 .setContainer(vgTrainingTypeB)
                 .setItemLayoutId(R.layout.item_trainingpage_item_child)
@@ -101,59 +94,40 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
         OkhomeRestApi.getTrainingForTraineeClient().getTrainingDetail(ConsultantLoggedIn.id(), trainingId).enqueue(new RetrofitCallback<TrainingModel>() {
             @Override
             public void onSuccess(TrainingModel training) {
-                for (TrainingItemModel item : training.listTrainingItemModel) {
-                    if (Objects.equals(String.valueOf(item.id), itemId)) {
-                        tvTitle.setText(String.format("%s : %s", training.subject, item.subject));
-                        adaptTrainingViewAndData(item);
-                        if (training.trainingAttendanceForTrainee != null) {
-                            getTrainerAccountInfo(training.trainingAttendanceForTrainee.trainerId);
-                        } else {
-                            svItem.setVisibility(View.VISIBLE);
-                        }
-                        break;
-                    }
-                }
+                adaptTrainingViewAndData(training);
             }
 
             @Override
             public void onFinish() {
                 super.onFinish();
-                vLoading.setVisibility(View.GONE);
-            }
-        });
-    }
-
-    private void adaptTrainingViewAndData(TrainingItemModel item){
-        tvEvalTitle.setText(String.format("Evaluation : %s", item.subject));
-        if (item.trainingResult != null) {
-            tvComment.setText(item.trainingResult.trainerComment);
-            vgComment.setVisibility(View.VISIBLE);
-        }
-        adaptTrainingItems(item.listTrainingItemChild);
-    }
-
-    private void getTrainerAccountInfo(int trainerId){
-        vLoading.setVisibility(View.VISIBLE);
-
-        OkhomeRestApi.getAccountClient().getInfo(trainerId).enqueue(new RetrofitCallback<AccountModel>() {
-            @Override
-            public void onSuccess(AccountModel trainer) {
                 svItem.setVisibility(View.VISIBLE);
-                adaptTrainerAccountView(trainer);
-            }
-
-            @Override
-            public void onFinish() {
-                super.onFinish();
                 vLoading.setVisibility(View.GONE);
             }
         });
     }
 
-    private void adaptTrainerAccountView(AccountModel trainer) {
-        Glide.with(this).load(trainer.profile.photoUrl).thumbnail(0.5f).into(ivUserPhoto);
-        tvCommentTrainer.setText(String.format("Comment from trainer %s", trainer.profile.name));
-        tvEvalTrainerName.setText(String.format("Your score is evaluated by trainer %s.", trainer.profile.name));
+    private void adaptTrainingViewAndData(TrainingModel training){
+
+        TrainingAttendanceForTraineeModel attendance = training.trainingAttendanceForTrainee;
+        Glide.with(this).load(attendance.trainerPhotoUrl).thumbnail(0.5f).into(ivUserPhoto);
+        tvCommentTrainer.setText(String.format("Comment from trainer %s", attendance.trainerName));
+        tvEvalTrainerName.setText(String.format("Your score is evaluated by trainer %s.", attendance.trainerName));
+
+        for (TrainingItemModel item : training.listTrainingItemModel) {
+            if (Objects.equals(String.valueOf(item.id), itemId)) {
+                tvTitle.setText(String.format("%s : %s", training.subject, item.subject));
+
+                tvEvalTitle.setText(String.format("Evaluation : %s", item.subject));
+
+                if (item.trainingResult != null) {
+                    tvComment.setText(item.trainingResult.trainerComment);
+                    vgComment.setVisibility(View.VISIBLE);
+                }
+                adaptTrainingItems(item.listTrainingItemChild);
+
+                break;
+            }
+        }
     }
 
     private void adaptTrainingItems(List<TrainingItemChildModel> listTrainingItem) {

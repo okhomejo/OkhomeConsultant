@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:padding="40dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/dialogNikInput_tvTitle"
+            style="@style/FontOpenSansLight"  android:textColor="@color/colorGray"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NIK"
+            android:textSize="36sp" android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/dialogNikInput_tvSubTitle"
+            android:layout_marginTop="2dp"
+            style="@style/FontOpenSansLight"  android:textColor="@color/colorBlueGray"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Input your NIK number."
+            android:textSize="15sp" android:layout_centerVertical="true" />
+
+
+        <LinearLayout
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="50dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:weightSum="4"
+            android:layout_height="wrap_content">
+
+            <EditText
+                style="@style/FontOpenSansLight"
+                android:textCursorDrawable="@drawable/cursor_appcolor"
+                android:layout_marginTop="4dp"
+                android:singleLine="true"
+                android:inputType="number"
+                android:maxLength="4"
+                android:gravity="center"
+                android:id="@+id/dialogNikInput_etInput1"
+                android:paddingTop="12dp" android:paddingBottom="12dp"
+                android:textSize="17sp"
+                android:textColor="#dd000000"
+                android:textColorHint="#33000000"
+                android:background="@drawable/bg_common_edittext"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="1dp" />
+
+            <EditText
+                style="@style/FontOpenSansLight"
+                android:textCursorDrawable="@drawable/cursor_appcolor"
+                android:layout_marginTop="4dp"
+                android:singleLine="true"
+                android:inputType="number"
+                android:maxLength="4"
+                android:gravity="center"
+                android:id="@+id/dialogNikInput_etInput2"
+                android:paddingTop="12dp" android:paddingBottom="12dp"
+                android:textSize="17sp"
+                android:textColor="#dd000000"
+                android:textColorHint="#33000000"
+                android:background="@drawable/bg_common_edittext"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="1dp" />
+
+            <EditText
+                style="@style/FontOpenSansLight"
+                android:textCursorDrawable="@drawable/cursor_appcolor"
+                android:layout_marginTop="4dp"
+                android:singleLine="true"
+                android:inputType="number"
+                android:maxLength="4"
+                android:gravity="center"
+                android:id="@+id/dialogNikInput_etInput3"
+                android:paddingTop="12dp" android:paddingBottom="12dp"
+                android:textSize="17sp"
+                android:textColor="#dd000000"
+                android:textColorHint="#33000000"
+                android:background="@drawable/bg_common_edittext"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="1dp" />
+
+            <EditText
+                style="@style/FontOpenSansLight"
+                android:textCursorDrawable="@drawable/cursor_appcolor"
+                android:layout_marginTop="4dp"
+                android:singleLine="true"
+                android:inputType="number"
+                android:maxLength="4"
+                android:gravity="center"
+                android:id="@+id/dialogNikInput_etInput4"
+                android:paddingTop="12dp" android:paddingBottom="12dp"
+                android:textSize="17sp"
+                android:textColor="#dd000000"
+                android:textColorHint="#33000000"
+                android:background="@drawable/bg_common_edittext"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/dialogNikInput_tvComment"
+            style="@style/FontOpenSansLight"  android:textColor="@color/colorLightBlueGray"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NIK must be 16 numbers"
+            android:textSize="13sp" android:layout_centerVertical="true" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:weightSum="10"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <LinearLayout
+            android:id="@+id/dialogNikInput_vbtnX"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:background="@color/colorLightBlueGray"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:adjustViewBounds="true"
+                android:layout_width="17dp"
+                android:layout_height="wrap_content" android:src="@drawable/ic_close_bold_white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/dialogNikInput_vbtnOk"
+            android:focusable="true"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:background="@color/colorOkhome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:adjustViewBounds="true"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_check_type2"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

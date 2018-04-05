@@ -9,6 +9,9 @@ public class TrainingAttendanceForTraineeModel {
             trainerId;
 
     public String
+            trainerName,
+            trainerPhotoUrl,
+            trainerGender,
             joinYN,
             passYN,
             trainingWhen,

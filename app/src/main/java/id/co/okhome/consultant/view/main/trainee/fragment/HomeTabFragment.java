@@ -166,7 +166,7 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
                             blinkAnimation(bar);
                         }
                     }
-                }, 1000 * (viewList.indexOf(bar))+1);
+                }, 600 * (viewList.indexOf(bar))+1);
                 counter--;
             } else {
                 break;

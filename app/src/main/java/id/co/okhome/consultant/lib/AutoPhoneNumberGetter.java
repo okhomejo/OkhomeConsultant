@@ -25,7 +25,7 @@ public class AutoPhoneNumberGetter {
     private String verifiedPhoneNumber;
     private PhoneNumCallback callback;
 
-    @Deprecated()
+    @Deprecated
     public AutoPhoneNumberGetter(Context context, GoogleApiClient mGoogleApiClient, PhoneNumCallback callback) {
         this.context = context;
         this.mGoogleApiClient = mGoogleApiClient;

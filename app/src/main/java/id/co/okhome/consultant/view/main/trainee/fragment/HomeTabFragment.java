@@ -110,10 +110,10 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
 
         // Update training progress
         int bProgressCnt = traineePageHome.basicTrainingProgressCount,
-                bCnt = traineePageHome.basicTrainingCount,
-                aProgressCnt = traineePageHome.ojtTrainingProgressCount,
-                aCnt = traineePageHome.ojtTrainingCount,
-                activeBasic = -1, activeAdvanced = -1;
+            bCnt         = traineePageHome.basicTrainingCount,
+            aProgressCnt = traineePageHome.ojtTrainingProgressCount,
+            aCnt         = traineePageHome.ojtTrainingCount,
+            activeBasic  = -1, activeAdvanced = -1;
 
         tvBasicAmt.setText(String.format(Locale.ENGLISH, "%d/%d", bProgressCnt, bCnt));
         tvAdvancedAmt.setText(String.format(Locale.ENGLISH, "%d/%d", aProgressCnt, aCnt));

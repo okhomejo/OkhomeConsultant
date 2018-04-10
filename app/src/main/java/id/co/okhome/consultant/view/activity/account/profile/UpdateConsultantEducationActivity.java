@@ -279,7 +279,7 @@ public class UpdateConsultantEducationActivity extends OkHomeParentActivity {
 
     @OnClick(R.id.actUpdateEducation_vgSeeSample)
     public void onClickSeeSample(){
-//        new ShowPhotoDialog(this, R.drawable.).show();
+//        new ShowPhotoDialog_old(this, R.drawable.).show();
     }
 
     @OnClick(R.id.actUpdateEducation_vbtnOk)

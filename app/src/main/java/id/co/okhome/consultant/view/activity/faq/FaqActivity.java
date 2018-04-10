@@ -275,4 +275,5 @@ public class FaqActivity extends OkHomeParentActivity {
     public void onFadeBgClick() {
         onClickSearchFaq();
     }
+
 }

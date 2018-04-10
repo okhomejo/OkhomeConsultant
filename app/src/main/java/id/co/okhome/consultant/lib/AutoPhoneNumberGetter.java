@@ -25,6 +25,7 @@ public class AutoPhoneNumberGetter {
     private String verifiedPhoneNumber;
     private PhoneNumCallback callback;
 
+    @Deprecated
     public AutoPhoneNumberGetter(Context context, GoogleApiClient mGoogleApiClient, PhoneNumCallback callback) {
         this.context = context;
         this.mGoogleApiClient = mGoogleApiClient;
@@ -33,6 +34,7 @@ public class AutoPhoneNumberGetter {
         requestPhoneNumber();
     }
 
+    @Deprecated
     public void requestPhoneNumber() {
         HintRequest hintRequest = new HintRequest.Builder()
                 .setPhoneNumberIdentifierSupported(true)

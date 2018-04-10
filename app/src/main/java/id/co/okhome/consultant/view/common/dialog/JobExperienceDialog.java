@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.exception.OkhomeException;
+import id.co.okhome.consultant.lib.DatePickerDialog;
 import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
@@ -42,8 +43,8 @@ public class JobExperienceDialog extends DialogParent {
         this.commonDialogListener = commonDialogListener;
     }
 
-    public void callYearMonthPicker(final TextView tv) {
-        YearMonthPickerDialog yearMonthPickerDialog = new YearMonthPickerDialog(activity, new YearMonthPickerDialog.OnDateSetListener() {
+    public void callYearMonthPicker(final TextView tv, String fromTo) {
+        DatePickerDialog yearMonthPickerDialog = new DatePickerDialog(activity, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onYearMonthSet(int year, int month) {
                 Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
@@ -57,7 +58,7 @@ public class JobExperienceDialog extends DialogParent {
                     onEditEndDate();
                 }
             }
-        }, R.style.MonthYearDialogPicker);
+        }, R.style.MonthYearDialogPicker, fromTo);
 
         yearMonthPickerDialog.show();
     }
@@ -110,11 +111,11 @@ public class JobExperienceDialog extends DialogParent {
 
     @OnClick(R.id.dialogWorkExp_tvFromDate)
     public void onEditStartDate() {
-        callYearMonthPicker(tvFromDate);
+        callYearMonthPicker(tvFromDate, "From");
     }
 
     @OnClick(R.id.dialogWorkExp_tvToDate)
     public void onEditEndDate() {
-        callYearMonthPicker(tvToDate);
+        callYearMonthPicker(tvToDate, "To");
     }
 }

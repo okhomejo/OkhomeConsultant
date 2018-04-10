@@ -12,6 +12,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -21,6 +22,8 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -106,10 +109,10 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
 
         // Update training progress
         int bProgressCnt = traineePageHome.basicTrainingProgressCount,
-                bCnt = traineePageHome.basicTrainingCount,
-                aProgressCnt = traineePageHome.ojtTrainingProgressCount,
-                aCnt = traineePageHome.ojtTrainingCount,
-                activeBasic = -1, activeAdvanced = -1;
+            bCnt         = traineePageHome.basicTrainingCount,
+            aProgressCnt = traineePageHome.ojtTrainingProgressCount,
+            aCnt         = traineePageHome.ojtTrainingCount,
+            activeBasic  = -1, activeAdvanced = -1;
 
         tvBasicAmt.setText(String.format(Locale.ENGLISH, "%d/%d", bProgressCnt, bCnt));
         tvAdvancedAmt.setText(String.format(Locale.ENGLISH, "%d/%d", aProgressCnt, aCnt));
@@ -132,33 +135,46 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
         tvTrainingTime.setText(dt.toString("dd MMM yy, hh:mm"));
     }
 
-    private void adaptTrainingProgressBar(int finishedAmt, int maxAmt, int active, ViewGroup row) {
-        int counter = finishedAmt;
+    private void adaptTrainingProgressBar(int finishedAmt, int maxAmt, final int active, ViewGroup row) {
+        row.removeAllViews();
+        final List<View> viewList = new ArrayList<>();
+        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+                0, LinearLayout.LayoutParams.MATCH_PARENT, 1
+        );
         for (int i = 0; i <= maxAmt; i++) {
             View bar = new View(getContext());
-            if (counter > 0) {
-                bar.setBackgroundColor(Color.parseColor("#16acf2"));
-                if (i == active) {
-                    blinkAnimation(bar);
-                }
-                counter--;
-            } else {
-                bar.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.graphbg_traning_off));
-            }
+            bar.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.graphbg_traning_off));
+            viewList.add(bar);
 
-            LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
-                    0, LinearLayout.LayoutParams.MATCH_PARENT, 1
-            );
             if (i != (maxAmt-1)) {
-                param.setMarginEnd(8);
+                param.setMarginEnd(5);
             }
             bar.setLayoutParams(param);
             row.addView(bar);
         }
+
+        int counter = finishedAmt;
+        for (final View bar : viewList) {
+            if (counter > 0) {
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bar.setBackgroundColor(Color.parseColor("#16acf2"));
+                        if (viewList.indexOf(bar) == active) {
+                            blinkAnimation(bar);
+                        }
+                    }
+                }, 600 * (viewList.indexOf(bar))+1);
+                counter--;
+            } else {
+                break;
+            }
+        }
     }
 
     private void blinkAnimation(View v) {
-        Animation anim = new AlphaAnimation(0.2f, 1.0f);
+        Animation anim = new AlphaAnimation(0.2f, 1f);
         anim.setDuration(600);
         anim.setStartOffset(20);
         anim.setRepeatMode(Animation.REVERSE);

@@ -33,19 +33,11 @@ public class PhoneNumberGetter  implements GoogleApiClient.ConnectionCallbacks, 
     private static Map<Activity, PhoneNumberGetter> mapInstance = new HashMap<>();
     private final static int REQ_HINT = 6;
 
-    /**Note To Fritz
-     * I usually declare member variable without 'm'. but it doesn't follow android naming convention.
-     * I don't care that whatever naming convention you follow.
-     * */
-    Activity activity;
-    GoogleApiClient googleApiClient;
-    PhoneVerificationDialog verifyDialog = null;
-    PhoneVerificationCallback phoneVerificationCallback;
-    /**
-     * Note To Fritz 5564/5689
-     * It is a instance builder.
-     * To use it easier, I prefer use this pattern.
-     * */
+    private Activity activity;
+    private GoogleApiClient googleApiClient;
+    private PhoneVerificationDialog verifyDialog = null;
+    private PhoneVerificationCallback phoneVerificationCallback;
+
     public static PhoneNumberGetter with(Activity activity){
         PhoneNumberGetter phoneNumberGetter = mapInstance.get(activity);
         if(phoneNumberGetter == null){
@@ -53,7 +45,6 @@ public class PhoneNumberGetter  implements GoogleApiClient.ConnectionCallbacks, 
             phoneNumberGetter.init();
             mapInstance.put(activity, phoneNumberGetter);
         }
-
         return phoneNumberGetter;
     }
 
@@ -81,15 +72,14 @@ public class PhoneNumberGetter  implements GoogleApiClient.ConnectionCallbacks, 
     /**it called by activity's onActivityResult*/
     public void onActivityResult(int requestCode, int resultCode, final Intent data) {
         if (requestCode == REQ_HINT) {
-            if(resultCode == RESULT_OK){
+            if (resultCode == RESULT_OK) {
                 Credential credential = data.getParcelableExtra(Credential.EXTRA_KEY);
                 String phoneNumber = credential.getId();
                 onGettingPhoneNumber(phoneNumber);
-            }else if(resultCode == 1001){
+            } else if (resultCode == 1001) {
                 onGettingPhoneNumberFailed("User don't want use it");
-            }
-            else{
-//                onGettingPhoneNumberFailed("error occues in onActivityResult");
+            } else {
+                onGettingPhoneNumberFailed("error occurs in onActivityResult");
             }
         }
     }
@@ -97,7 +87,7 @@ public class PhoneNumberGetter  implements GoogleApiClient.ConnectionCallbacks, 
     /**it must be called when activity finish*/
     public void destroy(){
         googleApiClient = null;
-        verifyDialog = null;
+        verifyDialog    = null;
         mapInstance.remove(activity);
     }
 
@@ -112,7 +102,6 @@ public class PhoneNumberGetter  implements GoogleApiClient.ConnectionCallbacks, 
         initGoogleApiClient();
         initPhoneVerificationDialog();
     }
-
 
     //--------private methods -------------------
     //init google api client
@@ -157,12 +146,11 @@ public class PhoneNumberGetter  implements GoogleApiClient.ConnectionCallbacks, 
     public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
         if(actionCode == ACTIONCODE_OK){
 
-            String phone = (String)mapResult.get(PhoneVerificationDialog.RESULT_PHONE);
-            String veriCode = (String)mapResult.get(PhoneVerificationDialog.RESULT_VERI_CODE);
+            String phone    = (String) mapResult.get(PhoneVerificationDialog.RESULT_PHONE);
+            String veriCode = (String) mapResult.get(PhoneVerificationDialog.RESULT_VERI_CODE);
 
             onVerificationSuccess(phone, veriCode);
         }
-
     }
 
     // on activity result which is called by this class.
@@ -184,5 +172,4 @@ public class PhoneNumberGetter  implements GoogleApiClient.ConnectionCallbacks, 
     public interface PhoneVerificationCallback{
         void onVerificationSuccess(String phone, String code);
     }
-
 }

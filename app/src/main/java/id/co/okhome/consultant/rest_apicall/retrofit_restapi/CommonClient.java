@@ -41,7 +41,6 @@ public interface CommonClient {
     @GET("faq/hotkey/{hotkey}")
     Call<List<FaqModel>> getFaqByHotkey(@Path("hotkey") String hotkey);
 
-
     @GET("faq/keywords")
     Call<Map<Integer, List<String>>> getAllFaqsKeywords(@Query("category") String category);
 

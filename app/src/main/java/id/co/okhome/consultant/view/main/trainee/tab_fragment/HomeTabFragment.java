@@ -43,24 +43,27 @@ import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 
 public class HomeTabFragment extends Fragment implements TabFragmentStatusListener {
 
-    @BindView(R.id.fragTabHomeForTrainee_vLoading)              View vLoading;
-    @BindView(R.id.fragTabHomeForTrainee_svItem)                ScrollView svItem;
+    @BindView(R.id.fragTabHomeForTrainee_vLoading)                  View vLoading;
+    @BindView(R.id.fragTabHomeForTrainee_svItem)                    ScrollView svItem;
 
-    @BindView(R.id.fragTabHomeForTrainee_tvName)                TextView tvName;
-    @BindView(R.id.fragTabHomeForTrainee_tvSubName)             TextView tvSubName;
-    @BindView(R.id.fragTabHomeForTrainee_ivPhoto)               ImageView ivPhoto;
+    @BindView(R.id.fragTabHomeForTrainee_tvName)                    TextView tvName;
+    @BindView(R.id.fragTabHomeForTrainee_tvSubName)                 TextView tvSubName;
+    @BindView(R.id.fragTabHomeForTrainee_ivPhoto)                   ImageView ivPhoto;
 
-    @BindView(R.id.fragTabHomeForTrainee_tvTrainingTitle)       TextView tvTrainingTitle;
-    @BindView(R.id.fragTabHomeForTrainee_tvTrainingDesc)        TextView tvTrainingDesc;
-    @BindView(R.id.fragTabHomeForTrainee_tvTrainingTime)        TextView tvTrainingTime;
-    @BindView(R.id.fragTabHomeForTrainee_tvAdvancedAmt)         TextView tvAdvancedAmt;
-    @BindView(R.id.fragTabHomeForTrainee_tvBasicAmt)            TextView tvBasicAmt;
-    @BindView(R.id.fragTabHomeForTrainee_vgAdvancedTraining)    ViewGroup vgAdvancedTraining;
-    @BindView(R.id.fragTabHomeForTrainee_vgBasicTraining)       ViewGroup vgBasicTraining;
+    @BindView(R.id.fragTabHomeForTrainee_tvTrainingTitle)           TextView tvTrainingTitle;
+    @BindView(R.id.fragTabHomeForTrainee_tvTrainingDesc)            TextView tvTrainingDesc;
+    @BindView(R.id.fragTabHomeForTrainee_tvTrainingTime)            TextView tvTrainingTime;
+    @BindView(R.id.fragTabHomeForTrainee_tvAdvancedAmt)             TextView tvAdvancedAmt;
+    @BindView(R.id.fragTabHomeForTrainee_tvBasicAmt)                TextView tvBasicAmt;
+
+    @BindView(R.id.fragTabHomeForTrainee_vgTrainingProgressGraph)   ViewGroup vgTrainingProgressGraph;
+
+    private HomeTabTrainingProgressManager progressManager;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        progressManager = new HomeTabTrainingProgressManager();
         return inflater.inflate(R.layout.fragment_tab_home_f_trainee, null);
     }
 
@@ -75,6 +78,7 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
         super.onStart();
         ButterKnife.bind(this, getView());
         svItem.setVisibility(View.GONE);
+        progressManager.start();
     }
 
     @Override
@@ -91,6 +95,7 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
     public void onPause() {
         super.onPause();
         OkhomeUtil.Log(this.getClass().toString() + " onPause ");
+        progressManager.pause();
     }
 
     //match view and data
@@ -115,22 +120,7 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
         adaptNextJobTraining(traineePageHome.trainingEarliest);
 
         // Update training progress
-        int bProgressCnt = traineePageHome.basicTrainingProgressCount,
-            bCnt         = traineePageHome.basicTrainingCount,
-            aProgressCnt = traineePageHome.ojtTrainingProgressCount,
-            aCnt         = traineePageHome.ojtTrainingCount,
-            activeBasic  = -1, activeAdvanced = -1;
-
-        tvBasicAmt.setText(String.format(Locale.ENGLISH, "%d/%d", bProgressCnt, bCnt));
-        tvAdvancedAmt.setText(String.format(Locale.ENGLISH, "%d/%d", aProgressCnt, aCnt));
-
-        if (traineePageHome.onGoingTrainingType.equals("BASIC")) {
-            activeBasic = traineePageHome.onGoingTrainingPos;
-        } else if (traineePageHome.onGoingTrainingType.equals("ADVANCED")) {
-            activeAdvanced = traineePageHome.onGoingTrainingPos;
-        }
-        adaptTrainingProgressBar(bProgressCnt, bCnt, activeBasic, vgBasicTraining);
-        adaptTrainingProgressBar(aProgressCnt, aCnt, activeAdvanced, vgAdvancedTraining);
+        progressManager.initDataAndViews(traineePageHome, vgTrainingProgressGraph);
     }
 
     private void adaptNextJobTraining(TrainingModel trainingEarliest) {
@@ -140,54 +130,6 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
         DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
         DateTime dt = formatter.parseDateTime(trainingEarliest.trainingAttendanceForTrainee.trainingWhen);
         tvTrainingTime.setText(dt.toString("dd/MM/yyyy, hh:mm"));
-    }
-
-    private void adaptTrainingProgressBar(int finishedAmt, int maxAmt, final int active, ViewGroup row) {
-        row.removeAllViews();
-        final List<View> viewList = new ArrayList<>();
-        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
-                0, LinearLayout.LayoutParams.MATCH_PARENT, 1
-        );
-        for (int i = 0; i <= maxAmt; i++) {
-            View bar = new View(getContext());
-            bar.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.graphbg_traning_off));
-            viewList.add(bar);
-
-            if (i != (maxAmt-1)) {
-                param.setMarginEnd(5);
-            }
-            bar.setLayoutParams(param);
-            row.addView(bar);
-        }
-
-        int counter = finishedAmt;
-        for (final View bar : viewList) {
-            if (counter > 0) {
-                final Handler handler = new Handler();
-
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        bar.setBackgroundColor(Color.parseColor("#16acf2"));
-                        if (viewList.indexOf(bar) == active) {
-                            blinkAnimation(bar);
-                        }
-                    }
-                }, 600 * (viewList.indexOf(bar))+1);
-                counter--;
-            } else {
-                break;
-            }
-        }
-    }
-
-    private void blinkAnimation(View v) {
-        Animation anim = new AlphaAnimation(0.2f, 1f);
-        anim.setDuration(600);
-        anim.setStartOffset(20);
-        anim.setRepeatMode(Animation.REVERSE);
-        anim.setRepeatCount(Animation.INFINITE);
-        v.startAnimation(anim);
     }
 
     //get trainee home info
@@ -208,4 +150,115 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
         });
     }
 
+    public class HomeTabTrainingProgressManager {
+
+        private View activeBar;
+        private boolean animationActive = false, progressDisplayed = false;
+
+        public void start() {
+            if (activeBar != null) {
+                blinkAnimation(activeBar);
+            }
+        }
+
+        public void pause() {
+            stopAnimation(activeBar);
+        }
+
+        public void initDataAndViews(TraineePageHomeModel traineePageHome, ViewGroup view) {
+            // Update training progress
+            if (!progressDisplayed) {
+                int bProgressCnt = traineePageHome.basicTrainingProgressCount,
+                        bCnt = traineePageHome.basicTrainingCount,
+                        aProgressCnt = traineePageHome.ojtTrainingProgressCount,
+                        aCnt = traineePageHome.ojtTrainingCount,
+                        activeBasic = -1, activeAdvanced = -1;
+
+                tvBasicAmt.setText(String.format(Locale.ENGLISH, "%d/%d", bProgressCnt, bCnt));
+                tvAdvancedAmt.setText(String.format(Locale.ENGLISH, "%d/%d", aProgressCnt, aCnt));
+
+                if (traineePageHome.onGoingTrainingType.equals("BASIC")) {
+                    activeBasic = traineePageHome.onGoingTrainingPos;
+                } else if (traineePageHome.onGoingTrainingType.equals("ADVANCED")) {
+                    activeAdvanced = traineePageHome.onGoingTrainingPos;
+                }
+
+                adaptTrainingProgressBar(
+                        bProgressCnt,
+                        bCnt,
+                        activeBasic,
+                        (ViewGroup) view.findViewById(R.id.fragTabHomeForTrainee_vgBasicTraining)
+                );
+                adaptTrainingProgressBar(
+                        aProgressCnt,
+                        aCnt,
+                        activeAdvanced,
+                        (ViewGroup) view.findViewById(R.id.fragTabHomeForTrainee_vgAdvancedTraining)
+                );
+                progressDisplayed = true;
+            }
+        }
+
+        private void adaptTrainingProgressBar(int finishedAmt, int maxAmt, final int active, ViewGroup row) {
+            row.removeAllViews();
+            final List<View> viewList = new ArrayList<>();
+            LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+                    0, LinearLayout.LayoutParams.MATCH_PARENT, 1
+            );
+            for (int i = 0; i <= maxAmt; i++) {
+                View bar = new View(getContext());
+//                bar.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.graphbg_traning_off));
+                viewList.add(bar);
+
+                if (i != (maxAmt-1)) {
+                    param.setMarginEnd(5);
+                }
+                bar.setLayoutParams(param);
+                row.addView(bar);
+            }
+
+            int counter = finishedAmt;
+            for (final View bar : viewList) {
+                if (counter > 0) {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bar.setScaleX(0);
+                            bar.setPivotX(0);
+                            bar.setBackgroundColor(Color.parseColor("#16acf2"));
+                            bar.animate().scaleX(1.0f).setDuration(600).start();
+
+                            if (viewList.indexOf(bar) == active) {
+                                activeBar = bar;
+                                blinkAnimation(activeBar);
+                            }
+                        }
+                    }, 600 * (viewList.indexOf(bar))+1);
+                    counter--;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        private void blinkAnimation(final View v) {
+            if (!animationActive) {
+                Animation anim = new AlphaAnimation(0.2f, 1f);
+                anim.setDuration(600);
+                anim.setStartOffset(20);
+                anim.setRepeatMode(Animation.REVERSE);
+                anim.setRepeatCount(Animation.INFINITE);
+                v.startAnimation(anim);
+                animationActive = true;
+            }
+        }
+
+        private void stopAnimation(final View v) {
+            if (animationActive) {
+                v.clearAnimation();
+                animationActive = false;
+            }
+        }
+    }
 }

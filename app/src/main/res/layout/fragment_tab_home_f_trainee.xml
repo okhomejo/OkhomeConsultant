@@ -254,42 +254,8 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:orientation="horizontal"
+                                            android:background="@drawable/graphbg_traning_off"
                                             android:weightSum="6">
-
-                                            <!--<View-->
-                                            <!--android:layout_width="0dp"-->
-                                            <!--android:layout_height="match_parent"-->
-                                            <!--android:layout_marginLeft="2dp"-->
-                                            <!--android:layout_weight="1"-->
-                                            <!--android:background="@drawable/graphbg_traning_off" />-->
-
-                                            <!--<View-->
-                                            <!--android:layout_width="0dp"-->
-                                            <!--android:layout_height="match_parent"-->
-                                            <!--android:layout_marginLeft="2dp"-->
-                                            <!--android:layout_weight="1"-->
-                                            <!--android:background="@drawable/graphbg_traning_off" />-->
-
-                                            <!--<View-->
-                                            <!--android:layout_width="0dp"-->
-                                            <!--android:layout_height="match_parent"-->
-                                            <!--android:layout_marginLeft="2dp"-->
-                                            <!--android:layout_weight="1"-->
-                                            <!--android:background="@drawable/graphbg_traning_off" />-->
-
-                                            <!--<View-->
-                                            <!--android:layout_width="0dp"-->
-                                            <!--android:layout_height="match_parent"-->
-                                            <!--android:layout_marginLeft="2dp"-->
-                                            <!--android:layout_weight="1"-->
-                                            <!--android:background="@drawable/graphbg_traning_off" />-->
-
-                                            <!--<View-->
-                                            <!--android:layout_width="0dp"-->
-                                            <!--android:layout_height="match_parent"-->
-                                            <!--android:layout_marginLeft="2dp"-->
-                                            <!--android:layout_weight="1"-->
-                                            <!--android:background="@drawable/graphbg_traning_off" />-->
 
                                             <!--<View-->
                                             <!--android:layout_width="0dp"-->
@@ -358,42 +324,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:orientation="horizontal"
+                                                android:background="@drawable/graphbg_traning_off"
                                                 android:weightSum="6">
-
-                                                <!--<View-->
-                                                <!--android:layout_width="0dp"-->
-                                                <!--android:layout_height="match_parent"-->
-                                                <!--android:layout_marginLeft="2dp"-->
-                                                <!--android:layout_weight="1"-->
-                                                <!--android:background="@drawable/graphbg_traning_off" />-->
-
-                                                <!--<View-->
-                                                <!--android:layout_width="0dp"-->
-                                                <!--android:layout_height="match_parent"-->
-                                                <!--android:layout_marginLeft="2dp"-->
-                                                <!--android:layout_weight="1"-->
-                                                <!--android:background="@drawable/graphbg_traning_off" />-->
-
-                                                <!--<View-->
-                                                <!--android:layout_width="0dp"-->
-                                                <!--android:layout_height="match_parent"-->
-                                                <!--android:layout_marginLeft="2dp"-->
-                                                <!--android:layout_weight="1"-->
-                                                <!--android:background="@drawable/graphbg_traning_off" />-->
-
-                                                <!--<View-->
-                                                <!--android:layout_width="0dp"-->
-                                                <!--android:layout_height="match_parent"-->
-                                                <!--android:layout_marginLeft="2dp"-->
-                                                <!--android:layout_weight="1"-->
-                                                <!--android:background="@drawable/graphbg_traning_off" />-->
-
-                                                <!--<View-->
-                                                <!--android:layout_width="0dp"-->
-                                                <!--android:layout_height="match_parent"-->
-                                                <!--android:layout_marginLeft="2dp"-->
-                                                <!--android:layout_weight="1"-->
-                                                <!--android:background="@drawable/graphbg_traning_off" />-->
 
                                                 <!--<View-->
                                                 <!--android:layout_width="0dp"-->

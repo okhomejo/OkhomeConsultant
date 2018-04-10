@@ -226,7 +226,7 @@
                                                 android:layout_centerVertical="true"
                                                 android:text="Basic Training"
                                                 android:textColor="@color/colorBlueBlack"
-                                                android:textSize="18sp" />
+                                                android:textSize="17sp" />
 
                                         </LinearLayout>
 
@@ -325,7 +325,7 @@
                                                 android:layout_centerVertical="true"
                                                 android:text="Advanced Training"
                                                 android:textColor="@color/colorBlueBlack"
-                                                android:textSize="18sp" />
+                                                android:textSize="17sp" />
 
                                         </LinearLayout>
 
@@ -488,7 +488,7 @@
                                         android:layout_centerVertical="true"
                                         android:text="General Cleaning"
                                         android:textColor="@color/colorDeepGray"
-                                        android:textSize="18sp" />
+                                        android:textSize="19sp" />
 
                                     <TextView
                                         android:id="@+id/fragTabHomeForTrainee_tvTrainingDesc"
@@ -499,7 +499,7 @@
                                         android:layout_centerVertical="true"
                                         android:text="Our cleaning is very professional"
                                         android:textColor="@color/colorBlueGray"
-                                        android:textSize="14sp" />
+                                        android:textSize="15sp" />
 
                                     <LinearLayout
                                         android:id="@+id/itemTraininigForTrainee_vgSchedule"
@@ -523,7 +523,7 @@
                                             android:layout_centerVertical="true"
                                             android:text="Training on 16 Jan 2018, 10:00 AM"
                                             android:textColor="#aa000000"
-                                            android:textSize="13sp" />
+                                            android:textSize="14sp" />
                                     </LinearLayout>
 
                                 </LinearLayout>

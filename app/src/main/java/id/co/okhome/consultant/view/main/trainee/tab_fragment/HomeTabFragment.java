@@ -207,4 +207,5 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
             }
         });
     }
+
 }

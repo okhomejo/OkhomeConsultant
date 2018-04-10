@@ -1,5 +1,6 @@
 package id.co.okhome.consultant.view.activity.traininginfo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -23,11 +25,14 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.joviewrepeator.JoRepeatorAdapter;
 import id.co.okhome.consultant.lib.joviewrepeator.JoViewRepeator;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
+import id.co.okhome.consultant.model.FaqModel;
 import id.co.okhome.consultant.model.training.TrainingAttendanceForTraineeModel;
 import id.co.okhome.consultant.model.training.TrainingItemChildModel;
 import id.co.okhome.consultant.model.training.TrainingItemModel;
 import id.co.okhome.consultant.model.training.TrainingModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
+import id.co.okhome.consultant.view.activity.faq.FaqSearchResultActivity;
+import id.co.okhome.consultant.view.activity.faq.FaqSingleActivity;
 
 public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
 
@@ -36,6 +41,7 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
     @BindView(R.id.actTrainingInfo_tvCommentTrainer)        TextView tvCommentTrainer;
     @BindView(R.id.actTrainingInfo_tvEvalTrainerName)       TextView tvEvalTrainerName;
     @BindView(R.id.actTrainingInfo_tvTitle)                 TextView tvTitle;
+    @BindView(R.id.actTrainingInfo_vbtnManual)              ViewGroup vbtnManual;
     @BindView(R.id.actTrainingInfo_vgTrainingTypeBItems)    ViewGroup vgTrainingTypeB;
     @BindView(R.id.actTrainingInfo_vgTrainingTypeCItems)    ViewGroup vgTrainingTypeC;
     @BindView(R.id.actTrainingInfo_vgComment)               LinearLayout vgComment;
@@ -101,12 +107,22 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
         });
     }
 
-    private void adaptTrainingViewAndData(TrainingModel training){
+    private void adaptTrainingViewAndData(final TrainingModel training){
 
         TrainingAttendanceForTraineeModel attendance = training.trainingAttendanceForTrainee;
         Glide.with(this).load(attendance.trainerPhotoUrl).thumbnail(0.5f).into(ivUserPhoto);
         tvCommentTrainer.setText(String.format("Comment from trainer %s", attendance.trainerName));
         tvEvalTrainerName.setText(String.format("Your score is evaluated by trainer %s.", attendance.trainerName));
+
+        if (training.faqHotkey != null) {
+            vbtnManual.setVisibility(View.VISIBLE);
+            vbtnManual.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getFaqByHotKey(training.faqHotkey);
+                }
+            });
+        }
 
         for (TrainingItemModel item : training.listTrainingItemModel) {
             if (Objects.equals(String.valueOf(item.id), itemId)) {
@@ -139,6 +155,35 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
         }
     }
 
+    // fetch faq detail info
+    private void getFaqByHotKey(final String faqKey){
+        vLoading.setVisibility(View.VISIBLE);
+        OkhomeRestApi.getCommonClient().getFaqByHotkey(faqKey).enqueue(new RetrofitCallback<List<FaqModel>>() {
+            @Override
+            public void onSuccess(List<FaqModel> faqModels) {
+                openFaqResults(faqModels, faqKey);
+            }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                vLoading.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void openFaqResults(List<FaqModel> faqModels, String faqKey) {
+        if (faqModels.size() > 1) {
+            Intent faqActivity = new Intent(this, FaqSearchResultActivity.class);
+            faqActivity.putExtra("FAQ_HOT_KEY", faqKey);
+            startActivity(faqActivity);
+        } else {
+            Intent singleFaq = new Intent(this, FaqSingleActivity.class);
+            singleFaq.putExtra("FAQ_ID", faqModels.get(0).id);
+            startActivity(singleFaq);
+        }
+    }
+
     @OnClick(R.id.actTrainingInfo_vbtnX)
     public void onBackButtonClicked() {
         finish();
@@ -154,11 +199,8 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
         @BindView(R.id.itemTrainingPageItemChild_vgSuccecss)    View vSuccess;
         @BindView(R.id.itemTrainingPageItemChild_vgFailed)      View vFailed;
         @BindView(R.id.itemTrainingPageItemChild_vgRightResult) View vRightResult;
-//
-//        @BindView(R.id.itemTrainingPageItemChild_ivSuccess)     ImageView ivSuccess;
-//        @BindView(R.id.itemTrainingPageItemChild_ivFail)        ImageView ivFail;
 
-        String type;
+        private String type;
 
         public TraineeTrainingChildItemTypeAdapter(String type) {
             this.type = type;
@@ -169,7 +211,7 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
             ButterKnife.bind(this, v);
             tvTitle.setText(trainingItem.contents);
 
-            tvNo.setText(pos + 1 + "");
+            tvNo.setText(String.format(Locale.ENGLISH, "%d", pos + 1));
             vRightResult.setVisibility(View.GONE);
             vSuccess.setVisibility(View.GONE);
             vFailed.setVisibility(View.GONE);

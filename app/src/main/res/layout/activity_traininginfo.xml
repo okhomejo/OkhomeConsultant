@@ -174,7 +174,8 @@
                                 android:gravity="center_vertical"
                                 android:layout_marginTop="7dp"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:visibility="gone">
 
                                 <ImageView
                                     android:layout_marginRight="14dp"

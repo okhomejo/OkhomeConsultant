@@ -3,6 +3,7 @@ package id.co.okhome.consultant.view.dialog;
 import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
@@ -197,5 +198,39 @@ public class NikInputDialog extends DialogParent {
     @OnClick(R.id.dialogNikInput_vbtnOk)
     public void onSubmit() {
         checkValidInput();
+    }
+
+
+    class SeparatedEditTextWatcher implements TextWatcher {
+
+        private View etPrev, etNext, etCur;
+        private int maxLength;
+
+        public SeparatedEditTextWatcher(int maxLength, View etCur, View etPrev, View  etNext) {
+            this.maxLength = maxLength;
+            this.etPrev = etPrev;
+            this.etNext = etNext;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            if (etInput3.getText().length() < 1) {
+                etInput2.requestFocus();
+                etInput2.setSelection(etInput2.length());
+            } else if (etInput3.getText().length() > 3) {
+                etInput4.requestFocus();
+                etInput4.setSelection(0);
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
     }
 }

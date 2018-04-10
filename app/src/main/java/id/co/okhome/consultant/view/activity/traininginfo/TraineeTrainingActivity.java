@@ -27,10 +27,13 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.joviewrepeator.JoRepeatorAdapter;
 import id.co.okhome.consultant.lib.joviewrepeator.JoViewRepeator;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
+import id.co.okhome.consultant.model.FaqModel;
 import id.co.okhome.consultant.model.training.TrainingAttendanceForTraineeModel;
 import id.co.okhome.consultant.model.training.TrainingItemModel;
 import id.co.okhome.consultant.model.training.TrainingModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
+import id.co.okhome.consultant.view.activity.faq.FaqSearchResultActivity;
+import id.co.okhome.consultant.view.activity.faq.FaqSingleActivity;
 
 public class TraineeTrainingActivity extends OkHomeParentActivity {
 
@@ -43,6 +46,7 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
     @BindView(R.id.actTrainingInfo_tvTrainingInfo)          TextView tvTrainingInfo;
     @BindView(R.id.actTrainingInfo_ivTrainerPhoto)          ImageView ivProfileImage;
 
+    @BindView(R.id.actTrainingInfo_vbtnManual)              ViewGroup vbtnManual;
     @BindView(R.id.actTrainingInfo_vgTrainerInfo)           ViewGroup vgTrainerInfo;
     @BindView(R.id.actTrainingInfo_vgTrainingTypeB)         ViewGroup vgTrainingTypeB;
     @BindView(R.id.actTrainingInfo_vgTrainingTypeC)         ViewGroup vgTrainingTypeC;
@@ -126,6 +130,15 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
                 }
             });
         }
+        if (training.faqHotkey != null) {
+            vbtnManual.setVisibility(View.VISIBLE);
+            vbtnManual.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getFaqByHotKey(training.faqHotkey);
+                }
+            });
+        }
         //adapt training items
         adaptTrainingItems(training.type, training.listTrainingItemModel);
     }
@@ -162,6 +175,35 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
                 vLoading.setVisibility(View.GONE);
             }
         });
+    }
+
+    //pull faq detail info
+    private void getFaqByHotKey(final String faqKey){
+        vLoading.setVisibility(View.VISIBLE);
+        OkhomeRestApi.getCommonClient().getFaqByHotkey(faqKey).enqueue(new RetrofitCallback<List<FaqModel>>() {
+            @Override
+            public void onSuccess(List<FaqModel> faqModels) {
+                openFaqResults(faqModels, faqKey);
+            }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                vLoading.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void openFaqResults(List<FaqModel> faqModels, String faqKey) {
+        if (faqModels.size() > 1) {
+            Intent faqActivity = new Intent(this, FaqSearchResultActivity.class);
+            faqActivity.putExtra("FAQ_HOT_KEY", faqKey);
+            startActivity(faqActivity);
+        } else {
+            Intent singleFaq = new Intent(this, FaqSingleActivity.class);
+            singleFaq.putExtra("FAQ_ID", faqModels.get(0).id);
+            startActivity(singleFaq);
+        }
     }
 
     @OnClick(R.id.actTrainingInfo_vbtnX)

@@ -80,7 +80,6 @@ public class FaqActivity extends OkHomeParentActivity {
     }
 
     private void initFaqParams(){
-
         String faqCategory = getIntent().getStringExtra("FAQ_CATEGORY");
         int faqId = getIntent().getIntExtra("FAQ_ID", 0);
         String faqTitle = getIntent().getStringExtra("FAQ_TITLE");
@@ -111,13 +110,10 @@ public class FaqActivity extends OkHomeParentActivity {
                     .setFooterViewHolderCls(BlankVHolder.class)
             );
         }
-
-
         adapter.addFooterItem("");
     }
 
     private void getAllFaq(final int faqId, final String faqCategory) {
-
         progressBar.setVisibility(View.VISIBLE);
         OkhomeRestApi.getCommonClient().getAllFaqs(faqId, faqCategory).enqueue(new RetrofitCallback<List<FaqModel>>() {
 
@@ -135,7 +131,6 @@ public class FaqActivity extends OkHomeParentActivity {
     }
 
     private void initAllFaqKeywords(String category) {
-
         final String cachingKey = "CACHING_FAQ_KEYWORD:" + category;
         faqKeywords = SimpleCachingManager.getData(cachingKey);
 

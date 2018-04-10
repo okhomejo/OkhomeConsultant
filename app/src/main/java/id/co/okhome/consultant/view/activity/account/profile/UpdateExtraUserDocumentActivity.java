@@ -154,6 +154,8 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity implem
                     retrofitCallback
             );
         }
+
+//        dd/mm/year, Jun 18:00
     }
 
     @Override

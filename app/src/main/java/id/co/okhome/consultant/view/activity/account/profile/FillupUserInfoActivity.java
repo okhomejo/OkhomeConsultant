@@ -5,10 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,16 +20,14 @@ import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
+import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.lib.jobrowser.callback.ApiResultCallback;
 import id.co.okhome.consultant.lib.jobrowser.model.ApiResult;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.rest_apicall.raw_restapi.ImageUploadCall;
-import id.co.okhome.consultant.view.dialog.CommonListDialog;
-import id.co.okhome.consultant.view.dialog.ShowPhotoDialog;
-import id.co.okhome.consultant.view.activity.etc.photochooser.ImageChooserActivity;
-import id.co.okhome.consultant.view.viewholder.StringHolder;
+import id.co.okhome.consultant.view.dialog.PhotoDialog;
 
 public class FillupUserInfoActivity extends OkHomeParentActivity {
 
@@ -46,6 +45,8 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     @BindView(R.id.actFillUpUserInfo_tvExtraInfo)                       TextView tvExtraInfo;
 
     private boolean accountApproved = false;
+    PhotoDialog ktpPhotoDialog = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -282,35 +283,55 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == REQ_GET_PHOTO_FOR_KTP && resultCode == RESULT_OK){
-            String imgPath = data.getStringExtra(ImageChooserActivity.RESULT_IMAGE_PATH);
-            onKtpPhotoChoosed(imgPath);
+        if(ktpPhotoDialog != null){
+            ktpPhotoDialog.onActivityResult(requestCode, resultCode, data);
         }
     }
 
     //--------on click
     @OnClick({R.id.actFillUpUserInfo_vbtnKTP, R.id.actFillUpUserInfo_tvKTP})
     public void onClickKTP(View v){
-        if(TextUtils.isEmpty(ConsultantLoggedIn.get().profile.ktpPhotoUrl)){
-            startActivityForResult(new Intent(this, ImageChooserActivity.class), REQ_GET_PHOTO_FOR_KTP);
-        }else{
-            new CommonListDialog(this)
-                    .setTitle("Choose")
-                    .setColumnCount(1)
-                    .setArrItems("Change KTP photo", "See current KTP photo")
-                    .setItemClickListener(new StringHolder.ItemClickListener() {
+        if(ktpPhotoDialog == null){
+            ktpPhotoDialog = new PhotoDialog(FillupUserInfoActivity.this,
+                    "Change KTP photo",
+                    ConsultantLoggedIn.get().profile.ktpPhotoUrl,
+                    new DialogParent.CommonDialogListener() {
                         @Override
-                        public void onItemClick(Dialog dialog, int pos, String value, String tag) {
-                            dialog.dismiss();
-
-                            if(pos == 0){
-                                startActivityForResult(new Intent(FillupUserInfoActivity.this, ImageChooserActivity.class), REQ_GET_PHOTO_FOR_KTP);
-                            }else{
-                                new ShowPhotoDialog(FillupUserInfoActivity.this, ConsultantLoggedIn.get().profile.ktpPhotoUrl).show();
+                        public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
+                            ;
+                            if(actionCode == ACTIONCODE_OK){
+                                String imgPath = (String)mapResult.get("imgPath");
+                                onKtpPhotoChoosed(imgPath);
                             }
                         }
-                    }).show();
+                    });
         }
+
+        ktpPhotoDialog.show();
+
+//        if(TextUtils.isEmpty(ConsultantLoggedIn.get().profile.ktpPhotoUrl)){
+//            startActivityForResult(new Intent(this, ImageChooserActivity.class), REQ_GET_PHOTO_FOR_KTP);
+//        }else{
+//            if(ktpPhotoDialog == null){
+//                ktpPhotoDialog = new PhotoDialog(FillupUserInfoActivity.this,
+//                        "Change KTP photo",
+//                        ConsultantLoggedIn.get().profile.ktpPhotoUrl,
+//                        new DialogParent.CommonDialogListener() {
+//                            @Override
+//                            public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
+//                                ;
+//                                if(actionCode == ACTIONCODE_OK){
+//                                    String imgPath = (String)mapResult.get("imgPath");
+//                                    onKtpPhotoChoosed(imgPath);
+//                                }
+//                            }
+//                        });
+//            }
+//
+//            ktpPhotoDialog.show();
+//
+//
+//        }
     }
 
     @OnClick({R.id.actFillUpUserInfo_vbtnBasicInformation})

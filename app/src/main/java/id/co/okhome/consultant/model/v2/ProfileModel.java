@@ -11,6 +11,7 @@ public class ProfileModel {
             , smpPhotoUrl
             , smaPhotoUrl
             , univPhotoUrl
+            , skckPhotoUrl
             , nik
             , gender
             , marriedYN

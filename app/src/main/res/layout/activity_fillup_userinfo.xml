@@ -200,6 +200,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/actFillUpUserInfo_vbtnSKCK"
+                    android:gravity="center_vertical"
+                    android:layout_width="270dp"
+                    android:layout_height="53dp">
+                    <LinearLayout
+                        android:layout_marginRight="15dp"
+                        android:layout_width="26dp"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/actFillupUserInfo_ivBarSKCK"
+                            android:background="@color/colorLightBlueGray2"
+                            android:layout_width="5dp"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/actFillUpUserInfo_tvSKCK"
+                        android:textColor="#4e5766"
+                        style="@style/FontOpenSansLight"
+                        android:lines="1"
+                        android:text="SKCK"
+                        android:textSize="17.5sp"
+                        android:gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/actFillUpUserInfo_vbtnPreferenceArea"
                     android:gravity="center_vertical"

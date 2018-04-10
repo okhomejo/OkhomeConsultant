@@ -290,6 +290,7 @@
                             android:layout_centerVertical="true" />
 
                         <LinearLayout
+                            android:layout_marginTop="9dp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="10dp"
                             android:gravity="center_vertical|right"

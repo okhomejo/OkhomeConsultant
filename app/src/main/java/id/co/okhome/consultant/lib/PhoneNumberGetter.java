@@ -20,7 +20,7 @@ import java.util.Map;
 
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
-import id.co.okhome.consultant.view.common.dialog.PhoneVerificationDialog;
+import id.co.okhome.consultant.view.dialog.PhoneVerificationDialog;
 
 import static android.app.Activity.RESULT_OK;
 

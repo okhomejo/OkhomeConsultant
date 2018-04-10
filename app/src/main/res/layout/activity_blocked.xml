@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="id.co.okhome.consultant.view.etc.BlockedActivity">
+    tools:context=".view.activity.account.BlockedActivity">
 
     <LinearLayout
         android:gravity="center_vertical"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="id.co.okhome.consultant.view.account.AuthActivity">
+    tools:context="id.co.okhome.consultant.view.activity.account.AuthActivity">
 
 
     <FrameLayout

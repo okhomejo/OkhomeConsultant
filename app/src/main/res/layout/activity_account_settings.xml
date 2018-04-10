@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
-    tools:context="id.co.okhome.consultant.view.account.AccountSettingsActivity">
+    tools:context="id.co.okhome.consultant.view.activity.account.AccountSettingsActivity">
 
     <RelativeLayout
         android:layout_marginRight="20dp"

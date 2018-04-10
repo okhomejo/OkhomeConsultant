@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.model.JobExperienceModel;
-import id.co.okhome.consultant.view.common.dialog.CommonAlertDialog;
+import id.co.okhome.consultant.view.dialog.CommonAlertDialog;
 
 /**
  * Created by frizurd on 27/03/2018.

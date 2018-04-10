@@ -14,10 +14,10 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
-import id.co.okhome.consultant.view.etc.BlockedActivity;
-import id.co.okhome.consultant.view.main.consultant.ConsultantMainActivity;
-import id.co.okhome.consultant.view.main.trainee.TraineeMainActivity;
-import id.co.okhome.consultant.view.userinfo.trainee.FillupUserInfoActivity;
+import id.co.okhome.consultant.view.activity.account.BlockedActivity;
+import id.co.okhome.consultant.view.activity.main.ConsultantMainActivity;
+import id.co.okhome.consultant.view.activity.main.TraineeMainActivity;
+import id.co.okhome.consultant.view.activity.account.profile.FillupUserInfoActivity;
 
 /**
  * Created by jo on 2018-01-28.

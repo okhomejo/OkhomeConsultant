@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="id.co.okhome.consultant.view.faq.FaqActivity">
+    tools:context=".view.activity.faq.FaqActivity">
 
     <RelativeLayout
         android:id="@+id/actCleaningInfo_vgTop"

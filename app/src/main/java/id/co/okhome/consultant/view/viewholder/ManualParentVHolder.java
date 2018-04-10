@@ -11,8 +11,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.model.FaqModel;
-import id.co.okhome.consultant.view.faq.FaqActivity;
-import id.co.okhome.consultant.view.faq.FaqSingleActivity;
+import id.co.okhome.consultant.view.activity.faq.FaqActivity;
+import id.co.okhome.consultant.view.activity.faq.FaqSingleActivity;
 
 /**
  * Created by josongmin on 2016-06-28.

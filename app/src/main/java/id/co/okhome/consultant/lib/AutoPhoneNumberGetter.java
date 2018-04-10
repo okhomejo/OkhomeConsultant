@@ -10,7 +10,7 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.credentials.HintRequest;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import id.co.okhome.consultant.view.common.dialog.PhoneVerificationDialog;
+import id.co.okhome.consultant.view.dialog.PhoneVerificationDialog;
 
 /**
  * Created by frizurd on 05/02/2018.

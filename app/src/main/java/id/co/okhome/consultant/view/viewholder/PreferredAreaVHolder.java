@@ -5,15 +5,13 @@ import android.widget.TextView;
 import com.mrjodev.jorecyclermanager.JoViewHolder;
 import com.mrjodev.jorecyclermanager.annotations.LayoutMatcher;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.model.WorkingRegionModel;
-import id.co.okhome.consultant.view.common.dialog.AreaListDialog;
-import id.co.okhome.consultant.view.userinfo.trainee.UpdateConsultantAreaActivity;
+import id.co.okhome.consultant.view.activity.account.profile.UpdateConsultantAreaActivity;
 
 /**
  * Created by frizurd on 28/03/2018.

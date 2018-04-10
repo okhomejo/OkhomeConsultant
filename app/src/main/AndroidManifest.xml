@@ -27,16 +27,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.main.trainee.TraineeMainActivity" />
-        <activity android:name=".view.main.consultant.ConsultantMainActivity" />
-        <activity android:name=".view.news.NewsActivity" />
-        <activity android:name=".view.news.NewsSingleActivity" />
-        <activity android:name=".view.faq.FaqActivity" />
-        <activity android:name=".view.faq.FaqSingleActivity" />
-        <activity android:name=".view.faq.FaqSearchResultActivity" />
-        <activity android:name=".view.account.AccountSettingsActivity" />
+        <activity android:name=".view.activity.main.TraineeMainActivity" />
+        <activity android:name=".view.activity.main.ConsultantMainActivity" />
+        <activity android:name=".view.activity.news.NewsActivity" />
+        <activity android:name=".view.activity.news.NewsSingleActivity" />
+        <activity android:name=".view.activity.faq.FaqActivity" />
+        <activity android:name=".view.activity.faq.FaqSingleActivity" />
+        <activity android:name=".view.activity.faq.FaqSearchResultActivity" />
+        <activity android:name=".view.activity.account.AccountSettingsActivity" />
         <activity
-            android:name=".view.etc.SplashActivity"
+            android:name=".view.activity.splash.SplashActivity"
             android:label="OKHOME Consultants">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,37 +44,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.etc.BlockedActivity" />
-        <activity android:name=".view.account.AuthActivity" />
-        <activity android:name=".view.photochooser.CropImageActivity" />
-        <activity android:name=".view.photochooser.ImageChooserActivity" />
-        <activity android:name=".view.account.SignupActivity" />
-        <activity android:name=".view.account.SigninActivity" />
-        <activity android:name=".view.account.reset.ForgotLoginActivity" />
-        <activity android:name=".view.userinfo.trainee.FillupUserInfoActivity" />
-        <activity android:name=".view.userinfo.trainee.UpdateUserDocumentActivity" />
-        <activity android:name=".view.etc.LocationActivity" />
+        <activity android:name=".view.activity.account.BlockedActivity" />
+        <activity android:name=".view.activity.account.AuthActivity" />
+        <activity android:name=".view.activity.etc.photochooser.CropImageActivity" />
+        <activity android:name=".view.activity.etc.photochooser.ImageChooserActivity" />
+        <activity android:name=".view.activity.account.SignupActivity" />
+        <activity android:name=".view.activity.account.SigninActivity" />
+        <activity android:name=".view.activity.account.ForgotLoginActivity" />
+        <activity android:name=".view.activity.account.profile.FillupUserInfoActivity" />
+        <activity android:name=".view.activity.account.profile.UpdateUserDocumentActivity" />
+        <activity android:name=".view.activity.account.profile.LocationActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBotNQOUVtAnpV7UzhoDZ4AfCWFa_q_4iw" />
 
         <activity
-            android:name=".view.etc.TestActivity"
+            android:name=".view.activity.etc.TestActivity"
             android:label="@string/title_activity_test"
             android:theme="@style/AppTheme" />
-        <activity android:name=".view.userinfo.trainee.UpdateExtraUserDocumentActivity" />
-        <activity android:name=".view.userinfo.trainee.TraineeScreeningMornitorActivity" />
-        <activity android:name=".view.userinfo.trainee.UpdateConsultantEducationActivity" />
-        <activity android:name=".view.userinfo.trainee.UpdateConsultantAreaActivity" />
-        <activity android:name=".view.userinfo.trainee.UpdateJobExperienceActivity" />
-        <activity android:name=".view.etc.AboutOkhomeActivity" />
-        <activity android:name=".view.userinfo.AccountActivity" />
-        <activity android:name=".view.traininginfo.TraineeTrainingActivity" />
-        <activity android:name=".view.traininginfo.TraineeTrainingItemInfoActivity" />
-        <activity android:name=".view.cleaning.CleaningDetailActivity" />
-        <activity android:name=".view.salary.ConsultantSalaryListActivity" />
-        <activity android:name=".view.cleaning_review.CleaningReviewListActivity"></activity>
+        <activity android:name=".view.activity.account.profile.UpdateExtraUserDocumentActivity" />
+        <activity android:name=".view.activity.account.profile.TraineeScreeningMornitorActivity" />
+        <activity android:name=".view.activity.account.profile.UpdateConsultantEducationActivity" />
+        <activity android:name=".view.activity.account.profile.UpdateConsultantAreaActivity" />
+        <activity android:name=".view.activity.account.profile.UpdateJobExperienceActivity" />
+        <activity android:name=".view.activity.etc.AboutOkhomeActivity" />
+        <activity android:name=".view.activity.account.profile.AccountActivity" />
+        <activity android:name=".view.activity.traininginfo.TraineeTrainingActivity" />
+        <activity android:name=".view.activity.traininginfo.TraineeTrainingItemInfoActivity" />
+        <activity android:name=".view.activity.cleaning.CleaningDetailActivity" />
+        <activity android:name=".view.activity.salary.ConsultantSalaryListActivity" />
+        <activity android:name=".view.activity.cleaning_review.CleaningReviewListActivity"></activity>
     </application>
 
 </manifest>

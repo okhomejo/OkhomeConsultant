@@ -15,7 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.model.NewsModel;
-import id.co.okhome.consultant.view.news.NewsActivity;
+import id.co.okhome.consultant.view.activity.news.NewsActivity;
 
 /**
  * Created by frizurd on 27/03/2018.

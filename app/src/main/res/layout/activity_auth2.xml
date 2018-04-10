@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="#29313a"
     android:padding="40dp"
-    tools:context="id.co.okhome.consultant.view.account.AuthActivity">
+    tools:context="id.co.okhome.consultant.view.activity.account.AuthActivity">
 
 
     <LinearLayout

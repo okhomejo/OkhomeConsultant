@@ -2,7 +2,6 @@ package id.co.okhome.consultant.view.viewholder;
 
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.model.WorkingRegionModel;
-import id.co.okhome.consultant.view.userinfo.trainee.UpdateConsultantAreaActivity;
+import id.co.okhome.consultant.view.activity.account.profile.UpdateConsultantAreaActivity;
 
 /**
  * Created by frizurd on 28/03/2018.

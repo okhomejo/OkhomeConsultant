@@ -5,10 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    tools:context="id.co.okhome.consultant.view.main.trainee.TraineeMainActivity">
+    tools:context="id.co.okhome.consultant.view.activity.main.TraineeMainActivity">
 
     <RelativeLayout
-        android:layout_marginRight="20dp"
         android:id="@+id/actMain_vgTop"
         android:layout_width="match_parent"
         android:layout_height="76dp">

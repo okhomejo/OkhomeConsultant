@@ -27,6 +27,8 @@ public class OkhomeException extends Exception {
         this.message = message;
         this.obj = obj;
 
+        int i = 0;
+        i++;
         if(obj == null)
             return;
 

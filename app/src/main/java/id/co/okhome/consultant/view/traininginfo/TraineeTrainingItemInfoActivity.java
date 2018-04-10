@@ -1,7 +1,6 @@
 package id.co.okhome.consultant.view.traininginfo;
 
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,7 +9,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.mrjodev.jorecyclermanager.JoRecyclerAdapter;
 
 import java.util.List;
 import java.util.Objects;
@@ -29,10 +27,7 @@ import id.co.okhome.consultant.model.training.TrainingAttendanceForTraineeModel;
 import id.co.okhome.consultant.model.training.TrainingItemChildModel;
 import id.co.okhome.consultant.model.training.TrainingItemModel;
 import id.co.okhome.consultant.model.training.TrainingModel;
-import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
-import id.co.okhome.consultant.view.viewholder.BlankHolder;
-import id.co.okhome.consultant.view.viewholder.NewsVHolder;
 
 public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
 
@@ -152,10 +147,16 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
     //training item adapter
     class TraineeTrainingChildItemTypeAdapter extends JoRepeatorAdapter<TrainingItemChildModel> {
 
+        @BindView(R.id.itemTrainingPageItemChild_tvNo)          TextView tvNo;
         @BindView(R.id.itemTrainingPageItemChild_tvItem)        TextView tvTitle;
         @BindView(R.id.itemTrainingPageItemChild_tvStatusLMH)   TextView tvStatus;
-        @BindView(R.id.itemTrainingPageItemChild_ivSuccess)     ImageView ivSuccess;
-        @BindView(R.id.itemTrainingPageItemChild_ivFail)        ImageView ivFail;
+
+        @BindView(R.id.itemTrainingPageItemChild_vgSuccecss)    View vSuccess;
+        @BindView(R.id.itemTrainingPageItemChild_vgFailed)      View vFailed;
+        @BindView(R.id.itemTrainingPageItemChild_vgRightResult) View vRightResult;
+//
+//        @BindView(R.id.itemTrainingPageItemChild_ivSuccess)     ImageView ivSuccess;
+//        @BindView(R.id.itemTrainingPageItemChild_ivFail)        ImageView ivFail;
 
         String type;
 
@@ -164,24 +165,33 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
         }
 
         @Override
-        public void onBind(View v, final TrainingItemChildModel trainingItem) {
+        public void onBind(View v, final int pos, final TrainingItemChildModel trainingItem) {
             ButterKnife.bind(this, v);
             tvTitle.setText(trainingItem.contents);
+
+            tvNo.setText(pos + 1 + "");
+            vRightResult.setVisibility(View.GONE);
+            vSuccess.setVisibility(View.GONE);
+            vFailed.setVisibility(View.GONE);
 
             if (type.equals("B")) {
                 if (trainingItem.trainingResult != null) {
                     String result = trainingItem.trainingResult.traininigResult;
                     if (result.equals("S")) {
-                        ivSuccess.setVisibility(View.VISIBLE);
+                        vSuccess.setVisibility(View.VISIBLE);
                     } else if (result.equals("F")) {
-                        ivFail.setVisibility(View.VISIBLE);
+                        vFailed.setVisibility(View.VISIBLE);
                     }
+
+                    vRightResult.setVisibility(View.VISIBLE);
                 }
             } else if (type.equals("C")) {
                 v.setVisibility(View.VISIBLE);
                 if (trainingItem.trainingResult != null) {
                     tvStatus.setText(trainingItem.trainingResult.traininigResult);
                     tvStatus.setVisibility(View.VISIBLE);
+
+                    vRightResult.setVisibility(View.VISIBLE);
                 }
             }
         }

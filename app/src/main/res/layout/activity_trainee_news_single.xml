@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="id.co.okhome.consultant.view.main.trainee.TraineeNewsSingleActivity">
+    tools:context="id.co.okhome.consultant.view.news.NewsSingleActivity">
 
     <RelativeLayout
         android:layout_marginRight="20dp"

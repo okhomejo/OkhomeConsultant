@@ -6,14 +6,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -27,7 +22,6 @@ import id.co.okhome.consultant.config.OkhomeRegistryKey;
 import id.co.okhome.consultant.exception.OkhomeException;
 import id.co.okhome.consultant.lib.JoSharedPreference;
 import id.co.okhome.consultant.lib.PhoneNumberGetter;
-import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;

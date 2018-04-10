@@ -29,6 +29,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.joda.time.DateTime;
@@ -58,6 +59,33 @@ import id.co.okhome.consultant.exception.OkhomeException;
  */
 
 public class OkhomeUtil {
+
+    public final static Bundle makeBundle(Object ... params){
+        Bundle b = new Bundle();
+        for(int i = 0; i < params.length; i +=2){
+            String key = (String)params[i];
+            Object o = params[i+1];
+
+            if(o instanceof Integer){
+                b.putInt(key, (int)o);
+            }
+            else if(o instanceof String){
+                b.putString(key, (String)o);
+            }
+        }
+
+        return b;
+    }
+
+    public final static void initTopPadding(View vTarget){
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)vTarget.getLayoutParams();
+            layoutParams.topMargin = layoutParams.topMargin - OkhomeUtil.getPixelByDp(vTarget.getContext(), 3);
+            vTarget.setLayoutParams(layoutParams);
+        }
+    }
+
 
     public static final boolean isEmptyString(String str){
         if(str == null){

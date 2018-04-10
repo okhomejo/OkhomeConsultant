@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="24dp"
+        android:paddingLeft="28dp"
+        android:background="@drawable/bg_leftline_bold_gray"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:paddingTop="1dp" android:paddingBottom="1dp"
+            android:layout_marginLeft="1.5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="-2dp"
+                    android:text="OKC_1231"
+                    android:textColor="@color/colorOkhome"
+                    android:textSize="19sp" />
+
+                <TextView
+                    android:layout_marginTop="2dp"
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Cleaning on 16 Jan 18, 10:00 ~ 15:00 (5 hours)"
+                    android:textColor="#7f8a9e"
+                    android:textSize="13sp" />
+                <LinearLayout
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_marginRight="3dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_star_on"
+                        android:layout_width="14dp"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:layout_marginRight="3dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_star_on"
+                        android:layout_width="14dp"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:layout_marginRight="3dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_star_on"
+                        android:layout_width="14dp"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:layout_marginRight="3dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_star_on"
+                        android:layout_width="14dp"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:layout_marginRight="3dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_star_off"
+                        android:layout_width="14dp"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:layout_marginLeft="5dp" android:layout_marginRight="5dp"
+                        android:layout_width="3dp"
+                        android:layout_height="3dp" android:background="@drawable/circle_gray"/>
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="4.5"
+                        android:textColor="@color/colorBlueGray"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="14dp"
+                    android:text="this consultant was fantastic but she missed empty the trash can"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="16sp" />
+
+
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:alpha="0.4"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="13dp"
+                        android:src="@drawable/ic_sharp"
+                        android:layout_height="wrap_content" android:adjustViewBounds="true" />
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Service is very good"
+                        android:textColor="#bb7f8a9e"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <!--<LinearLayout-->
+                    <!--android:layout_marginTop="8dp"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+                    <!--<LinearLayout-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:paddingTop="11dp" android:paddingBottom="11dp"-->
+                        <!--android:paddingRight="12dp" android:paddingLeft="12dp"-->
+                        <!--android:background="@drawable/common_square_stroke_gray"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content">-->
+                        <!--<TextView-->
+                            <!--style="@style/FontOpenSansLight"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_centerVertical="true"-->
+                            <!--android:text="Great service and Attitude!"-->
+                            <!--android:textColor="@color/colorBlueGray"-->
+                            <!--android:textSize="14.5sp" />-->
+
+                    <!--</LinearLayout>-->
+
+                <!--</LinearLayout>-->
+                <!---->
+                <!--&lt;!&ndash; tags &ndash;&gt;-->
+                <!--<LinearLayout-->
+                    <!--android:layout_marginTop="8dp"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+                    <!--<LinearLayout-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:paddingTop="11dp" android:paddingBottom="11dp"-->
+                        <!--android:paddingRight="12dp" android:paddingLeft="12dp"-->
+                        <!--android:background="@color/colorBlueGray"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content">-->
+                        <!--<TextView-->
+                            <!--style="@style/FontOpenSansLight"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_centerVertical="true"-->
+                            <!--android:text="Great service and Attitude!"-->
+                            <!--android:textColor="#ffffff"-->
+                            <!--android:textSize="14.5sp" />-->
+
+                    <!--</LinearLayout>-->
+
+                <!--</LinearLayout>-->
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

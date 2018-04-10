@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="26dp"
+            android:paddingLeft="25dp"
+            android:background="@drawable/bg_leftline_bold_gray"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:paddingTop="3dp" android:paddingBottom="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/itemTrainingForTrainee_tvSubject"
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="-3dp"
+                    android:text="Rp 45.000"
+                    android:textColor="@color/colorOkhome"
+                    android:textSize="22sp" />
+
+                <LinearLayout
+                    android:layout_marginTop="3dp"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Cleaning on 16 Jan 2018"
+                        android:textColor="@color/colorBlueGray"
+                        android:textSize="14sp" />
+
+
+
+                    <ImageView
+                        android:layout_marginLeft="5dp" android:layout_marginRight="5dp"
+                        android:layout_width="3dp"
+                        android:layout_height="3dp" android:background="@drawable/circle_gray"/>
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="OKNO_10213123"
+                        android:textColor="@color/colorBlueGray"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+
+                <!-- footer -->
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- schedule -->
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:id="@+id/itemTraininigForTrainee_vgSchedule"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!--<View-->
+                            <!--android:layout_marginRight="14dp"-->
+                            <!--android:layout_width="20dp"-->
+                            <!--android:layout_height="1px" android:background="#000000"/>-->
+
+                        <LinearLayout
+                            android:id="@+id/itemConsultantSalary_vgPaymentComplete"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_marginRight="10dp"
+                                android:id="@+id/itemTrainingPageItemChild_vgSuccecss"
+                                android:gravity="center"
+                                android:background="@color/colorGreen"
+                                android:layout_width="21dp"
+                                android:layout_height="21dp">
+                                <ImageView
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/ic_check_white"
+                                    android:layout_width="9dp"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/itemTrainingForTrainee_tvWhen"
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="Payment complete on 18 Jun 19"
+                                android:textColor="#aa000000"
+                                android:textSize="13sp" />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/itemConsultantSalary_vgPaymentNotyet"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_marginRight="10dp"
+                                android:gravity="center"
+                                android:background="@color/colorLightBlueGray3"
+                                android:layout_width="21dp"
+                                android:layout_height="21dp">
+                                <ImageView
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/ic_check_white"
+                                    android:layout_width="9dp"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="Payment will complete on 18 Jun 19"
+                                android:textColor="#aa000000"
+                                android:textSize="13sp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <!-- passed -->
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

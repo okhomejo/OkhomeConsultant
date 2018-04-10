@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="16dp"
+    android:paddingLeft="20dp" android:paddingRight="20dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:paddingTop="2dp" android:paddingBottom="2dp"
+            android:layout_marginLeft="1.5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_toLeftOf="@+id/itemManualParentItem_vRightArrow"
+                android:layout_centerVertical="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/itemManualParentItem_tvTitle"
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Vacuum Cleaner"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_marginTop="1dp"
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Updated on 16 Jan 2018"
+                    android:textColor="#66000000"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/itemManualParentItem_vRightArrow"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:background="@color/colorDeepPurple"
+                android:layout_width="33dp"
+                android:layout_height="33dp">
+
+                <ImageView
+                    android:src="@drawable/ic_right_simplearrow_left_white"
+                    android:adjustViewBounds="true"
+                    android:layout_width="14dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <View
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#22000000"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

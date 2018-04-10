@@ -3,7 +3,6 @@ package id.co.okhome.consultant.view.common.dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import java.util.Objects;
 
@@ -20,13 +19,8 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
-import id.co.okhome.consultant.model.JobExperienceModel;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
-import id.co.okhome.consultant.view.common.account.AccountSettingsActivity;
-
-import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListener.ACTIONCODE_NO;
-import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListener.ACTIONCODE_OK;
 
 /**
  * Created by frizurd on 16/03/2018.

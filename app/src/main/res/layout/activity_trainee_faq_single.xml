@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
-    tools:context="id.co.okhome.consultant.view.main.trainee.TraineeFaqSingleActivity">
+    tools:context="id.co.okhome.consultant.view.faq.FaqSingleActivity">
 
     <RelativeLayout
         android:id="@+id/actTraineeFaqSingle_vgTop"

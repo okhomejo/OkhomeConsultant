@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context="id.co.okhome.consultant.view.faq.FaqActivity">
+
+    <RelativeLayout
+        android:id="@+id/actCleaningInfo_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:id="@+id/actCleaningInfo_vbtnX"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_leftarrow" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/actCleaningInfo_tvTitle"
+            style="@style/FontOpenSansLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/actCleaningInfo_vbtnX"
+            android:text="Cleaning info"
+            android:textColor="#000000"
+            android:textSize="22dp" />
+
+
+    </RelativeLayout>
+
+    <!-- bottom-->
+    <RelativeLayout
+        android:layout_below="@+id/actCleaningInfo_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:id="@+id/actCleaningInfo_svItem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_above="@+id/fragTabPickingCleaning_vgBottom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="17dp" android:layout_marginRight="17dp"
+                    android:orientation="vertical"
+                    android:background="#55000000"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp">
+
+                    <FrameLayout
+                        android:background="#ffffff"
+                        android:layout_margin="1px"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_margin="3dp"
+                            android:scaleType="centerCrop"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" android:src="@drawable/sample_map"/>
+
+
+                        <LinearLayout
+                            android:layout_gravity="bottom"
+                            android:orientation="vertical"
+                            android:paddingBottom="9dp"
+                            android:paddingTop="9dp" android:paddingLeft="12dp" android:paddingRight="12dp"
+                            android:background="#99000000"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_marginRight="10dp"
+                                    android:src="@drawable/ic_pushlogo_white"
+                                    android:adjustViewBounds="true"
+                                    android:layout_width="13dp"
+                                    android:layout_height="wrap_content" />
+
+                                <TextView
+                                    android:singleLine="true"
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="09 Jan 18, 16:00, 5 hours"
+                                    android:textColor="#ffffff"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </FrameLayout>
+
+                </LinearLayout>
+
+
+                <!-- contents -->
+                <LinearLayout
+                    android:layout_marginLeft="17dp" android:layout_marginRight="17dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <!-- 기타 -->
+                    <LinearLayout
+                        android:layout_marginTop="34dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:text="SPECIFICATION"
+                            android:textColor="@color/colorLightBlueGray"
+                            android:textSize="15sp" />
+                        <View
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+                    </LinearLayout>
+
+                    <!-- item -->
+                    <LinearLayout
+                        android:layout_marginTop="12dp"
+                        android:paddingLeft="25dp"
+                        android:background="@drawable/bg_leftline_bold_gray"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_marginTop="4dp"
+                                android:layout_marginRight="18dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_tab_price2"
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="JL Senopati, 185, Jakarta central, Jakarta DKI"
+                                    android:textColor="@color/colorBlueBlack"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_marginTop="4dp"
+                                android:layout_marginRight="18dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_wallet"
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="Rp 28,000"
+                                    android:textColor="@color/colorBlueBlack"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_marginTop="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_marginTop="4dp"
+                                android:layout_marginRight="18dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_person2"
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="2 Person"
+                                    android:textColor="@color/colorBlueBlack"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_marginTop="4dp"
+                                android:layout_marginRight="18dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_home1"
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="Apartment, 3 Rooms, 3 Restrooms, 150~200sq"
+                                    android:textColor="@color/colorBlueBlack"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_marginTop="4dp"
+                                android:layout_marginRight="18dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_person2"
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="No pet"
+                                    android:textColor="@color/colorBlueBlack"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- 기타 -->
+                    <LinearLayout
+                        android:layout_marginTop="34dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:text="ORDER SPECIFICATION"
+                            android:textColor="@color/colorLightBlueGray"
+                            android:textSize="15sp" />
+                        <View
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+
+                    </LinearLayout>
+                    <!-- 청소 디테일 리스트 -->
+
+                    <LinearLayout
+                        android:layout_marginTop="12dp"
+                        android:paddingLeft="25dp"
+                        android:background="@drawable/bg_leftline_bold_gray"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:orientation="vertical">
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" android:orientation="vertical">
+
+                                    <TextView
+                                        style="@style/FontOpenSansLight"
+                                        android:id="@+id/itemExtraCleaningItem_tvName"
+                                        android:textSize="16.5sp"
+                                        android:textColor="@color/colorBlueBlack"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" android:text="General cleaning"/>
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center_vertical|right"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/FontOpenSansLight"
+                                    android:textSize="14.5sp"
+                                    android:textColor="@color/colorLightBlueGray"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" android:text="5 hours"/>
+                            </LinearLayout>
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:orientation="vertical">
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <View
+                                    android:layout_marginRight="6dp"
+                                    android:adjustViewBounds="true"
+                                    android:background="#000000"
+                                    android:layout_width="20dp"
+                                    android:layout_height="1px" />
+
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" android:orientation="vertical">
+
+                                    <TextView
+                                        style="@style/FontOpenSansLight"
+                                        android:textSize="14sp"
+                                        android:textColor="@color/colorLightBlueGray"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" android:text="(With tools)"/>
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </FrameLayout>
+
+                        <include layout="@layout/item_spc_cleaning" />
+                        <include layout="@layout/item_spc_cleaning" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="34dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:text="COMMENT FROM CUSTOMER"
+                            android:textColor="@color/colorLightBlueGray"
+                            android:textSize="15sp" />
+                        <View
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="12dp"
+                        android:paddingLeft="25dp"
+                        android:background="@drawable/bg_leftline_bold_gray"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="There are 4 cats. Be careful."
+                            android:textColor="@color/colorBlueBlack"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="34dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:text="COMMENT FROM OKHOME"
+                            android:textColor="@color/colorLightBlueGray"
+                            android:textSize="15sp" />
+                        <View
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="12dp"
+                        android:paddingLeft="25dp"
+                        android:background="@drawable/bg_leftline_bold_gray"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="Customer will not be at home so please bring the mailbox key from office and get the key from mailbox"
+                            android:textColor="@color/colorBlueBlack"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="34dp"
+                        android:paddingLeft="25dp"
+                        android:background="@drawable/bg_leftline_bold_appcolor"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:text="Please check the above information exactly before approving it."
+                            android:textColor="@color/colorOkhome"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="60dp" />
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <ProgressBar
+
+            android:layout_centerInParent="true"
+            android:layout_width="34dp"
+            android:layout_height="34dp" android:id="@+id/actCleaningInfo_vLoading"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_marginRight="160dp"
+        android:layout_below="@+id/actCleaningInfo_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#000000" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/actCleaningInfo_vgActions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_above="@+id/actMain_vgBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:alpha="0.1"
+                android:layout_width="match_parent"
+                android:layout_height="5dp" android:background="@drawable/bg_circle_shadow_flip2"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px" android:background="#36000000"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingBottom="10dp"
+            android:background="#ffffff"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp" android:paddingRight="10dp"
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="center"
+                android:background="@drawable/square_stroke_blueblack"
+                android:layout_weight="5"
+                android:layout_width="0dp"
+                android:layout_height="53dp">
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="DECLINE"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="16.5sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:background="@color/colorOkhomeLight"
+                android:layout_weight="5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/ic_tick_bold_white"
+                    android:adjustViewBounds="true"
+                    android:layout_width="16dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="ACCEPT"
+                    android:textColor="#ffffff"
+                    android:textSize="16.5sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

@@ -8,18 +8,18 @@
     tools:context="id.co.okhome.consultant.view.main.trainee.TraineeMainActivity">
 
     <RelativeLayout
-         android:layout_marginRight="20dp"
+        android:layout_marginRight="20dp"
         android:id="@+id/actMain_vgTop"
         android:layout_width="match_parent"
         android:layout_height="76dp">
 
         <!--<ImageView-->
-            <!--android:alpha="0.6"-->
-            <!--android:layout_marginLeft="20dp"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:adjustViewBounds="true"-->
-            <!--android:layout_width="14dp"-->
-            <!--android:layout_height="wrap_content" android:src="@drawable/ic_x" />-->
+        <!--android:alpha="0.6"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:adjustViewBounds="true"-->
+        <!--android:layout_width="14dp"-->
+        <!--android:layout_height="wrap_content" android:src="@drawable/ic_x" />-->
 
         <TextView
             android:layout_marginLeft="20dp"
@@ -38,44 +38,41 @@
     </RelativeLayout>
 
     <!--<RelativeLayout-->
-        <!--android:visibility="gone"-->
-        <!--android:paddingLeft="20dp" android:paddingRight="10dp"-->
-        <!--android:background="@color/colorOkhome"-->
-        <!--android:id="@+id/actMain_vgTop"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="58dp">-->
+    <!--android:visibility="gone"-->
+    <!--android:paddingLeft="20dp" android:paddingRight="10dp"-->
+    <!--android:background="@color/colorOkhome"-->
+    <!--android:id="@+id/actMain_vgTop"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="58dp">-->
 
-        <!--<LinearLayout-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content">-->
-            <!--<TextView-->
-                <!--style="@style/FontOpenSansRegular"-->
-                <!--android:textColor="#ffffff"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content" android:text="OKHOME"-->
-                <!--android:textSize="20.5dp" />-->
+    <!--<LinearLayout-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content">-->
+    <!--<TextView-->
+    <!--style="@style/FontOpenSansRegular"-->
+    <!--android:textColor="#ffffff"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" android:text="OKHOME"-->
+    <!--android:textSize="20.5dp" />-->
 
-        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
 
 
-        <!--<ImageView-->
-            <!--android:rotation="90"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:src="@drawable/ic_more_white"-->
-            <!--android:adjustViewBounds="true"-->
-            <!--android:layout_width="17dp"-->
-            <!--android:layout_height="wrap_content" />-->
+    <!--<ImageView-->
+    <!--android:rotation="90"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:src="@drawable/ic_more_white"-->
+    <!--android:adjustViewBounds="true"-->
+    <!--android:layout_width="17dp"-->
+    <!--android:layout_height="wrap_content" />-->
 
-        <!--<View-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="1px" android:background="#33000000"/>-->
+    <!--<View-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1px" android:background="#33000000"/>-->
     <!--</RelativeLayout>-->
-
-
-
 
     <RelativeLayout
         android:layout_below="@+id/actMain_vgTop"
@@ -101,7 +98,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <View
             android:alpha="0.1"
             android:layout_width="match_parent"
@@ -112,185 +108,382 @@
     </LinearLayout>
 
     <LinearLayout
-        android:paddingLeft="-3dp" android:paddingRight="-3dp"
-        android:background="#04efefef"
-        android:paddingBottom="2dp"
-        android:layout_alignParentBottom="true"
-        android:weightSum="5"
         android:id="@+id/actMain_vgBottom"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="63dp">
+        android:layout_height="wrap_content">
 
+        <!-- tab icons for trainer -->
         <LinearLayout
-            android:id="@+id/actMain_vgTabBtn1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
+            android:id="@+id/actMain_vgTabForTrainer"
+            android:paddingLeft="-3dp" android:paddingRight="-3dp"
+            android:background="#04efefef"
+            android:paddingBottom="2dp"
+            android:weightSum="5"
+            android:layout_width="match_parent"
+            android:layout_height="63dp">
 
             <LinearLayout
-                android:id="@+id/actMain_vgTabIcon"
-                android:alpha="0.7"
+                android:id="@+id/actMain_vgTabBtn1Trainer"
+                android:orientation="vertical"
                 android:gravity="center"
-                android:layout_width="40dp"
-                android:layout_height="35dp">
-                <ImageView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
 
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_home1"
-                    android:layout_width="27dp"
-                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:id="@+id/actMain_vgTabIcon"
+                    android:alpha="0.7"
+                    android:gravity="center"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp">
+                    <ImageView
+
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_internet"
+                        android:layout_width="27dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/actMain_tvTabText"
+                    style="@style/FontOpenSansLight"
+                    android:layout_marginTop="0dp"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="9dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="REQUEST"/>
 
             </LinearLayout>
-            <TextView
-                android:id="@+id/actMain_tvTabText"
-                style="@style/FontOpenSansLight"
-                android:layout_marginTop="0dp"
-                android:textColor="@color/colorBlueBlack"
-                android:textSize="9dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="HOME"/>
+
+            <LinearLayout
+                android:id="@+id/actMain_vgTabBtn2Trainer"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/actMain_vgTabIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
+                    android:alpha="0.2"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_marginTop="-1dp"
+                        android:id="@+id/actMain_ivTabBtn2"
+                        android:layout_width="26dp"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_calendar6" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/actMain_tvTabText"
+                    android:alpha="0.5"
+                    style="@style/FontOpenSansLight"
+                    android:layout_marginTop="0dp"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="9dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="JOBS"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/actMain_vgTabBtn3Trainer"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:id="@+id/actMain_vgTabIcon"
+                    android:alpha="0.2"
+                    android:gravity="center"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp">
+                    <ImageView
+                        android:id="@+id/actMain_ivTabBtn3"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_circle_star"
+                        android:layout_width="29dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/actMain_tvTabText"
+                    android:alpha="0.5"
+                    style="@style/FontOpenSansLight"
+                    android:layout_marginTop="0dp"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="9dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="PROGRESS"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/actMain_vgTabBtn4Trainer"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/actMain_vgTabIcon"
+                    android:alpha="0.2"
+                    android:gravity="center"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp">
+                    <ImageView
+                        android:id="@+id/actMain_ivTabBtn3"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_speach_bubble_right_gray"
+                        android:layout_width="27dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/actMain_tvTabText"
+                    android:alpha="0.5"
+                    style="@style/FontOpenSansLight"
+                    android:layout_marginTop="0dp"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="9dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="CHAT"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/actMain_vgTabBtn5Trainer"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/actMain_vgTabIcon"
+                    android:alpha="0.2"
+                    android:gravity="center"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp">
+                    <ImageView
+                        android:id="@+id/actMain_ivTabBtn5"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_tab_more"
+                        android:layout_width="25dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/actMain_tvTabText"
+                    android:alpha="0.5"
+                    style="@style/FontOpenSansLight"
+                    android:layout_marginTop="0dp"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="9dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="MORE"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
+        <!-- tab icons for trainee -->
         <LinearLayout
-            android:id="@+id/actMain_vgTabBtn2"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
+            android:id="@+id/actMain_vgTabForTrainee"
+            android:paddingLeft="-3dp" android:paddingRight="-3dp"
+            android:background="#04efefef"
+            android:paddingBottom="2dp"
+            android:weightSum="5"
+            android:layout_width="match_parent"
+            android:layout_height="63dp">
 
             <LinearLayout
-                android:id="@+id/actMain_vgTabIcon"
-                android:alpha="0.2"
+                android:id="@+id/actMain_vgTabBtn1"
+                android:orientation="vertical"
                 android:gravity="center"
-                android:layout_width="40dp"
-                android:layout_height="35dp">
-                <ImageView
-                    android:id="@+id/actMain_ivTabBtn2"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_circle_star"
-                    android:layout_width="28dp"
-                    android:layout_height="wrap_content" />
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/actMain_vgTabIcon"
+                    android:alpha="0.7"
+                    android:gravity="center"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp">
+                    <ImageView
+
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_home1"
+                        android:layout_width="27dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/actMain_tvTabText"
+                    style="@style/FontOpenSansLight"
+                    android:layout_marginTop="0dp"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="9dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="HOME"/>
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/actMain_tvTabText"
-                android:alpha="0.5"
-                style="@style/FontOpenSansLight"
-                android:layout_marginTop="0dp"
-                android:textColor="@color/colorBlueBlack"
-                android:textSize="9dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="TRAINING"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/actMain_vgTabBtn3"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-
             <LinearLayout
-                android:id="@+id/actMain_vgTabIcon"
-                android:alpha="0.2"
+                android:id="@+id/actMain_vgTabBtn2"
+                android:orientation="vertical"
                 android:gravity="center"
-                android:layout_width="40dp"
-                android:layout_height="35dp">
-                <ImageView
-                    android:id="@+id/actMain_ivTabBtn4"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_tab_price2"
-                    android:layout_width="26.5dp"
-                    android:layout_height="wrap_content" />
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
 
+                <LinearLayout
+                    android:id="@+id/actMain_vgTabIcon"
+                    android:alpha="0.2"
+                    android:gravity="center"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp">
+                    <ImageView
+                        android:id="@+id/actMain_ivTabBtn2"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_docu"
+                        android:layout_width="26dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/actMain_tvTabText"
+                    android:alpha="0.5"
+                    style="@style/FontOpenSansLight"
+                    android:layout_marginTop="0dp"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="9dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="TRAINING"/>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/actMain_tvTabText"
-                android:alpha="0.5"
-                style="@style/FontOpenSansLight"
-                android:layout_marginTop="0dp"
-                android:textColor="@color/colorBlueBlack"
-                android:textSize="9dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="MANUAL"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/actMain_vgTabBtn4"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-
             <LinearLayout
-                android:id="@+id/actMain_vgTabIcon"
-                android:alpha="0.2"
+                android:id="@+id/actMain_vgTabBtn3"
+                android:orientation="vertical"
                 android:gravity="center"
-                android:layout_width="40dp"
-                android:layout_height="35dp">
-                <ImageView
-                    android:id="@+id/actMain_ivTabBtn3"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_speach_bubble_right_gray"
-                    android:layout_width="27dp"
-                    android:layout_height="wrap_content" />
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/actMain_vgTabIcon"
+                    android:alpha="0.2"
+                    android:gravity="center"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp">
+                    <ImageView
+                        android:id="@+id/actMain_ivTabBtn4"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_tab_price2"
+                        android:layout_width="26.5dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/actMain_tvTabText"
+                    android:alpha="0.5"
+                    style="@style/FontOpenSansLight"
+                    android:layout_marginTop="0dp"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="9dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="MANUAL"/>
 
             </LinearLayout>
-
-
-            <TextView
-                android:id="@+id/actMain_tvTabText"
-                android:alpha="0.5"
-                style="@style/FontOpenSansLight"
-                android:layout_marginTop="0dp"
-                android:textColor="@color/colorBlueBlack"
-                android:textSize="9dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="CHAT"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/actMain_vgTabBtn5"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-
             <LinearLayout
-                android:id="@+id/actMain_vgTabIcon"
-                android:alpha="0.2"
+                android:id="@+id/actMain_vgTabBtn4"
+                android:orientation="vertical"
                 android:gravity="center"
-                android:layout_width="40dp"
-                android:layout_height="35dp">
-                <ImageView
-                    android:id="@+id/actMain_ivTabBtn5"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_tab_more"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content" />
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/actMain_vgTabIcon"
+                    android:alpha="0.2"
+                    android:gravity="center"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp">
+                    <ImageView
+                        android:id="@+id/actMain_ivTabBtn3"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_speach_bubble_right_gray"
+                        android:layout_width="27dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/actMain_tvTabText"
+                    android:alpha="0.5"
+                    style="@style/FontOpenSansLight"
+                    android:layout_marginTop="0dp"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="9dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="CHAT"/>
 
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/actMain_vgTabBtn5"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/actMain_tvTabText"
-                android:alpha="0.5"
-                style="@style/FontOpenSansLight"
-                android:layout_marginTop="0dp"
-                android:textColor="@color/colorBlueBlack"
-                android:textSize="9dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="MORE"/>
+                <LinearLayout
+                    android:id="@+id/actMain_vgTabIcon"
+                    android:alpha="0.2"
+                    android:gravity="center"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp">
+                    <ImageView
+                        android:id="@+id/actMain_ivTabBtn5"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_tab_more"
+                        android:layout_width="25dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/actMain_tvTabText"
+                    android:alpha="0.5"
+                    style="@style/FontOpenSansLight"
+                    android:layout_marginTop="0dp"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="9dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="MORE"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
+
+
 </RelativeLayout>

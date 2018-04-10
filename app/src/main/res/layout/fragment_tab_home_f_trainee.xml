@@ -38,8 +38,8 @@
                             <!-- sample datas -->
 
                             <FrameLayout
-                                android:layout_width="54dp"
-                                android:layout_height="54dp"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
                                 android:layout_marginRight="20dp">
 
                                 <de.hdodenhof.circleimageview.CircleImageView
@@ -100,7 +100,7 @@
                                                 android:layout_centerVertical="true"
                                                 android:text="Michel Bay"
                                                 android:textColor="@color/colorDeepGray"
-                                                android:textSize="22sp" />
+                                                android:textSize="24sp" />
 
                                         </LinearLayout>
                                     </RelativeLayout>
@@ -169,7 +169,7 @@
 
                     <!-- title -->
                     <LinearLayout
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="30dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical">
@@ -186,6 +186,7 @@
                     </LinearLayout>
                     <!-- graph -->
                     <LinearLayout
+                        android:id="@+id/fragTabHomeForTrainee_vgTrainingProgressGraph"
                         android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -200,8 +201,8 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="12dp"
-                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="8dp"
+                                android:layout_marginTop="4dp"
                                 android:orientation="vertical"
                                 android:paddingLeft="24dp">
 
@@ -225,7 +226,7 @@
                                                 android:layout_centerVertical="true"
                                                 android:text="Basic Training"
                                                 android:textColor="@color/colorBlueBlack"
-                                                android:textSize="16sp" />
+                                                android:textSize="18sp" />
 
                                         </LinearLayout>
 
@@ -245,7 +246,7 @@
                                     <!-- graph -->
                                     <FrameLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="8dp"
+                                        android:layout_height="9dp"
                                         android:layout_marginTop="6dp">
 
                                         <LinearLayout
@@ -306,7 +307,7 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="9dp"
+                                    android:layout_marginTop="12dp"
                                     android:orientation="vertical">
 
                                     <RelativeLayout
@@ -324,7 +325,7 @@
                                                 android:layout_centerVertical="true"
                                                 android:text="Advanced Training"
                                                 android:textColor="@color/colorBlueBlack"
-                                                android:textSize="16sp" />
+                                                android:textSize="18sp" />
 
                                         </LinearLayout>
 
@@ -344,7 +345,7 @@
                                     <!-- graph -->
                                     <FrameLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="8dp"
+                                        android:layout_height="9dp"
                                         android:layout_marginTop="6dp">
 
                                         <LinearLayout
@@ -472,7 +473,7 @@
                                 android:gravity="center_vertical">
 
                                 <LinearLayout
-                                    android:paddingTop="2dp" android:paddingBottom="5dp"
+                                    android:paddingTop="2dp" android:paddingBottom="9dp"
                                     android:paddingLeft="24dp"
                                     android:background="@drawable/bg_item_training"
                                     android:layout_width="match_parent"
@@ -500,16 +501,31 @@
                                         android:textColor="@color/colorBlueGray"
                                         android:textSize="14sp" />
 
-                                    <TextView
-                                        android:id="@+id/fragTabHomeForTrainee_tvTrainingTime"
-                                        style="@style/FontOpenSansLight"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerVertical="true"
-                                        android:layout_marginTop="12dp"
-                                        android:text="16 Jan 2018, 10:00 AM"
-                                        android:textColor="#66000000"
-                                        android:textSize="12sp" />
+                                    <LinearLayout
+                                        android:id="@+id/itemTraininigForTrainee_vgSchedule"
+                                        android:gravity="center_vertical"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <ImageView
+                                            android:layout_marginRight="10dp"
+                                            android:adjustViewBounds="true"
+                                            android:src="@drawable/ic_clock_mini"
+                                            android:layout_width="14dp"
+                                            android:layout_height="wrap_content" />
+
+                                        <TextView
+                                            android:id="@+id/fragTabHomeForTrainee_tvTrainingTime"
+                                            style="@style/FontOpenSansLight"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:text="Training on 16 Jan 2018, 10:00 AM"
+                                            android:textColor="#aa000000"
+                                            android:textSize="13sp" />
+                                    </LinearLayout>
+
                                 </LinearLayout>
 
                             </LinearLayout>
@@ -535,35 +551,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="5dp"
-                    android:layout_height="5dp"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginTop="15dp"
-                    android:background="#000000">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="2px"
-                        android:background="#ffffff" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="5dp"
-                    android:layout_height="5dp"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginTop="6dp"
-                    android:background="#000000">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="2px"
-                        android:background="#ffffff" />
-
-                </LinearLayout>
 
             </LinearLayout>
 

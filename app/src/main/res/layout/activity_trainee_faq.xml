@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="id.co.okhome.consultant.view.main.trainee.TraineeFaqActivity">
+    tools:context="id.co.okhome.consultant.view.faq.FaqActivity">
 
     <RelativeLayout
         android:id="@+id/actTraineeFAQ_vgTop"
@@ -78,7 +78,7 @@
 
             <ImageView
                 android:id="@+id/actTraineeFAQ_ivSearchIcon"
-                android:layout_width="18dp"
+                android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@drawable/ic_search" />
@@ -126,6 +126,7 @@
     </RelativeLayout>
 
     <View
+        android:layout_marginRight="20dp"
         android:layout_below="@+id/actTraineeFAQ_vgTop"
         android:layout_width="match_parent"
         android:layout_height="2px"

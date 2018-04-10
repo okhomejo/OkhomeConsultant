@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="id.co.okhome.consultant.view.main.trainee.TraineeFaqActivity">
+    tools:context="id.co.okhome.consultant.view.faq.FaqActivity">
 
     <RelativeLayout
         android:id="@+id/actTrainingInfo_vgTop"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/actTrainingInfo_vbtnX"
-            android:text=""
+            android:text="Detail"
             android:textColor="#000000"
             android:textSize="20dp" />
 
@@ -66,6 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:visibility="gone"
                         android:layout_marginTop="30dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -75,7 +76,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="40dp"
-                            android:text="Training result"
+                            android:text="Training information"
                             android:textColor="@color/colorLightBlueGray"
                             android:textSize="14sp" />
                         <View
@@ -88,8 +89,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="30dp"
                         android:orientation="vertical">
+
 
                         <LinearLayout
                             android:orientation="horizontal"
@@ -134,7 +136,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
                                     android:text="You may not pass if you get more than 2L."
-                                    android:textColor="@color/colorBlueGray"
+                                    android:textColor="@color/colorBlueBlack"
                                     android:textSize="15sp" />
 
                                 <TextView
@@ -145,15 +147,65 @@
                                     android:layout_centerVertical="true"
                                     android:text="Your score is evaluated by the trainer."
                                     android:textColor="@color/colorBlueGray"
-                                    android:textSize="15sp" />
+                                    android:textSize="13sp" />
                             </LinearLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_marginRight="14dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_menubtn"
+                                android:layout_width="16dp"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="Check the manual"
+                                    android:textColor="@color/colorBlueBlack"
+                                    android:textSize="16sp" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1px" android:background="@color/colorBlueBlack" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="40dp"
+                                android:text="Training result"
+                                android:textColor="@color/colorLightBlueGray"
+                                android:textSize="14sp" />
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:id="@+id/actTrainingInfo_vgTrainingTypeBItems"
-                            android:layout_marginLeft="4dp"
-                            android:paddingTop="7dp"
+                            android:paddingTop="2dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
@@ -292,7 +344,7 @@
     </RelativeLayout>
 
     <View
-        android:layout_marginRight="160dp"
+        android:layout_marginRight="80dp"
         android:layout_below="@+id/actTrainingInfo_vgTop"
         android:layout_width="match_parent"
         android:layout_height="2px"

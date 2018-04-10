@@ -28,13 +28,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.main.trainee.TraineeMainActivity" />
-        <activity android:name=".view.main.trainee.ConsultantMainActivity" />
-        <activity android:name=".view.main.trainee.TraineeNewsActivity" />
-        <activity android:name=".view.main.trainee.TraineeNewsSingleActivity" />
-        <activity android:name=".view.main.trainee.TraineeFaqActivity" />
-        <activity android:name=".view.main.trainee.TraineeFaqSingleActivity" />
-        <activity android:name=".view.main.trainee.TraineeFaqSearchResultActivity" />
-        <activity android:name=".view.common.account.AccountSettingsActivity" />
+        <activity android:name=".view.main.consultant.ConsultantMainActivity" />
+        <activity android:name=".view.news.NewsActivity" />
+        <activity android:name=".view.news.NewsSingleActivity" />
+        <activity android:name=".view.faq.FaqActivity" />
+        <activity android:name=".view.faq.FaqSingleActivity" />
+        <activity android:name=".view.faq.FaqSearchResultActivity" />
+        <activity android:name=".view.account.AccountSettingsActivity" />
         <activity
             android:name=".view.etc.SplashActivity"
             android:label="OKHOME Consultants">
@@ -71,7 +71,10 @@
         <activity android:name=".view.etc.AboutOkhomeActivity" />
         <activity android:name=".view.userinfo.AccountActivity" />
         <activity android:name=".view.traininginfo.TraineeTrainingActivity" />
-        <activity android:name=".view.traininginfo.TraineeTrainingItemInfoActivity"></activity>
+        <activity android:name=".view.traininginfo.TraineeTrainingItemInfoActivity" />
+        <activity android:name=".view.cleaning.CleaningDetailActivity" />
+        <activity android:name=".view.salary.ConsultantSalaryListActivity" />
+        <activity android:name=".view.cleaning_review.CleaningReviewListActivity"></activity>
     </application>
 
 </manifest>

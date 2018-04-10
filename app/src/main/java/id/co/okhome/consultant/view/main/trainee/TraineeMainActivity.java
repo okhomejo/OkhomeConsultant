@@ -1,15 +1,12 @@
 package id.co.okhome.consultant.view.main.trainee;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,11 +19,11 @@ import id.co.okhome.consultant.lib.ViewHolderUtil;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.fragment_pager.FragmentTabAdapter;
-import id.co.okhome.consultant.view.main.trainee.fragment.ChatTabFragment;
-import id.co.okhome.consultant.view.main.trainee.fragment.HomeTabFragment;
-import id.co.okhome.consultant.view.main.trainee.fragment.ManualTabFragment;
-import id.co.okhome.consultant.view.main.trainee.fragment.SettingTabFragment;
-import id.co.okhome.consultant.view.main.trainee.fragment.TrainingTabFragment;
+import id.co.okhome.consultant.view.main.trainee.tab_fragment.ChatTabFragment;
+import id.co.okhome.consultant.view.main.trainee.tab_fragment.HomeTabFragment;
+import id.co.okhome.consultant.view.main.trainee.tab_fragment.ManualTabFragment;
+import id.co.okhome.consultant.view.main.trainee.tab_fragment.SettingTabFragment;
+import id.co.okhome.consultant.view.main.trainee.tab_fragment.TrainingTabFragment;
 
 public class TraineeMainActivity extends OkHomeParentActivity {
 
@@ -40,48 +37,24 @@ public class TraineeMainActivity extends OkHomeParentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ButterKnife.bind(this);
 
-//        OkhomeUtil.setSystemBarColor(this, Color.parseColor("#000000"));
-//                ContextCompat.getColor(this, R.color.colorOkhome));
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-            View decor = getWindow().getDecorView();
-            decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            OkhomeUtil.setSystemBarColor(this, Color.parseColor("#ffffff"));
-
-            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)tvTitle.getLayoutParams();
-            layoutParams.topMargin = layoutParams.topMargin - OkhomeUtil.getPixelByDp(this, 3);
-            tvTitle.setLayoutParams(layoutParams);
-        }
-
+        OkhomeUtil.setWhiteSystembar(this);
         init();
 //        TelephonyManager tMgr = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
 //        String mPhoneNumber = tMgr.getLine1Number();
-
-
     }
 
     private void init(){
         OkhomeUtil.setWhiteSystembar(this);
-        initTopPadding();
+        OkhomeUtil.initTopPadding(tvTitle);
         tabAdapter = new MainTabAdapter(this, vpMain, getSupportFragmentManager());
         tabAdapter.setViewPager(vpMain);
         vpMain.addOnPageChangeListener(tabAdapter);
+
+        ButterKnife.findById(this, R.id.actMain_vgTabForTrainer).setVisibility(View.GONE);
     }
 
-    //init top pading
-    private void initTopPadding(){
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)tvTitle.getLayoutParams();
-            layoutParams.topMargin = layoutParams.topMargin - OkhomeUtil.getPixelByDp(this, 3);
-            tvTitle.setLayoutParams(layoutParams);
-        }
-    }
 
     public class MainTabAdapter extends FragmentTabAdapter implements ViewPager.OnPageChangeListener{
 
@@ -101,8 +74,8 @@ public class TraineeMainActivity extends OkHomeParentActivity {
 
             listTitle.add("Welcome");
             listTitle.add("Training");
-            listTitle.add("Messages");
             listTitle.add("Manual");
+            listTitle.add("Messages");
             listTitle.add("More");
 
             for(int i = 0; i < listTab.size(); i ++){

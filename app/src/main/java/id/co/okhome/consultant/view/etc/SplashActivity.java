@@ -46,7 +46,7 @@ public class SplashActivity extends OkHomeParentActivity {
                 public void work() {
                     autologin(emailLastLogin, passwordLastLogin);
                 }
-            }).setDelay(1200).work();
+            }).setDelay(1400).work();
 
         }else{
 
@@ -56,7 +56,7 @@ public class SplashActivity extends OkHomeParentActivity {
                 public void work() {
                     gotoAuthActivity();
                 }
-            }).setDelay(1800).work();
+            }).setDelay(2000).work();
         }
     }
 

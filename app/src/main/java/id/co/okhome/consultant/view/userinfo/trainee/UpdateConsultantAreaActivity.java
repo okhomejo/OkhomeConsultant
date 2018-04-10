@@ -27,7 +27,7 @@ import id.co.okhome.consultant.model.WorkingRegionModel;
 import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.common.dialog.AreaListDialog;
-import id.co.okhome.consultant.view.viewholder.BlankHolder;
+import id.co.okhome.consultant.view.viewholder.BlankVHolder;
 import id.co.okhome.consultant.view.viewholder.PreferredAreaVHolder;
 
 /**
@@ -81,7 +81,7 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
                 .addParam("allRegions", allRegions)
                 .addParam("chosenRegions", chosenRegions)
                 .setItemViewHolderCls(PreferredAreaVHolder.class)
-                .setFooterViewHolderCls(BlankHolder.class)
+                .setFooterViewHolderCls(BlankVHolder.class)
         );
         adapter.addFooterItem("");
     }

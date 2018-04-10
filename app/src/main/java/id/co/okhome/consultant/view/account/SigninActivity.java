@@ -1,12 +1,8 @@
 package id.co.okhome.consultant.view.account;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.EditText;
 
 import butterknife.BindView;
@@ -24,8 +20,6 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.view.account.reset.ForgotLoginActivity;
-import id.co.okhome.consultant.view.common.dialog.BottomOptionDialog;
-import id.co.okhome.consultant.view.viewholder.StringHolder;
 
 public class SigninActivity extends OkHomeParentActivity {
 
@@ -91,7 +85,7 @@ public class SigninActivity extends OkHomeParentActivity {
             @Override
             public void onJodevError(ErrorModel jodevErrorModel) {
                 super.onJodevError(jodevErrorModel);
-                ToastUtil.showToast(jodevErrorModel.obj.toString());
+                ToastUtil.showToast(jodevErrorModel.message);
             }
         });
     }

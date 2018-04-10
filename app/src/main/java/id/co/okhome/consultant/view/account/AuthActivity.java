@@ -15,7 +15,6 @@ public class AuthActivity extends OkHomeParentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
-
         ButterKnife.bind(this);
 
 

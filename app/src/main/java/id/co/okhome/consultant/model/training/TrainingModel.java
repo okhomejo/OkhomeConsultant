@@ -5,7 +5,7 @@ import java.util.List;
 public class TrainingModel {
 
     public int trainingId;
-    public String type, subject, desc;
+    public String type, subject, desc, faqHotkey;
 
     public TrainingAttendanceForTraineeModel trainingAttendanceForTrainee = null;
     public TrainingCommonResultModel trainingResult = null;

@@ -3,16 +3,19 @@ package id.co.okhome.consultant.view.viewholder;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
+
 import com.mrjodev.jorecyclermanager.JoViewHolder;
 import com.mrjodev.jorecyclermanager.annotations.LayoutMatcher;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.model.NewsModel;
-import id.co.okhome.consultant.view.main.trainee.TraineeNewsSingleActivity;
+import id.co.okhome.consultant.view.news.NewsActivity;
 
 /**
  * Created by frizurd on 27/03/2018.
@@ -49,7 +52,7 @@ public class NewsVHolder extends JoViewHolder<NewsModel> implements View.OnClick
     @Override
     public void onClick(View v) {
         NewsModel news = getModel();
-        getContext().startActivity(new Intent(getContext(), TraineeNewsSingleActivity.class)
+        getContext().startActivity(new Intent(getContext(), NewsActivity.class)
                 .putExtra("NEWS_TITLE", news.subject)
                 .putExtra("NEWS_CONTENTS", news.contents)
         );

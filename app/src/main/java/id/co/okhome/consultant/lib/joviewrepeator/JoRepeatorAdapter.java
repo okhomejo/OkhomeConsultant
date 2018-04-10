@@ -18,5 +18,6 @@ public abstract class JoRepeatorAdapter<E> {
 
     public View getHeaderView(){return null;}
     public View getFooterView(){return null;}
-    public abstract void onBind(View v, E model);
+    public abstract void onBind(View v, int pos, E model);
+
 }

@@ -31,6 +31,7 @@ public class JoViewRepeator<E> {
     Map<View, E> mapViewModel = new HashMap<>();
     Map<E, View> mapModelView = new HashMap<>();
     Map<Integer, View> mapPosView = new HashMap<>();
+    Map<E, Integer> mapPos = new HashMap<>();
 
     //
     boolean enableSquare = false;
@@ -108,7 +109,7 @@ public class JoViewRepeator<E> {
         View vItem = mapModelView.get(model);
 
         if(callBack != null){
-            callBack.onBind(vItem, model);
+            callBack.onBind(vItem, mapPos.get(model), model);
         }
     }
 
@@ -117,7 +118,7 @@ public class JoViewRepeator<E> {
         E model  = mapViewModel.get(vItem);
 
         if(callBack != null){
-            callBack.onBind(vItem, model);
+            callBack.onBind(vItem, pos, model);
         }
     }
 
@@ -146,6 +147,8 @@ public class JoViewRepeator<E> {
 
         for(int i = 0; i < size; i++){
             E model = list.get(i);
+            mapPos.put(model, i);
+
             if(i % spanSize == 0){
                 Log.d("JO", "NewVertical");
                 vgHorizontal = makeHorizontalViewContainer();
@@ -159,6 +162,7 @@ public class JoViewRepeator<E> {
 
             mapViewModel.put(vItem, model);
             mapModelView.put(model, vItem);
+
             mapPosView.put(i, vItem);
 
             //컨테이너에 넣는다
@@ -223,7 +227,7 @@ public class JoViewRepeator<E> {
         View vItem = LayoutInflater.from(context).inflate(itemLayoutId, null);
 
         if(callBack != null){
-            callBack.onBind(vItem, model);
+            callBack.onBind(vItem, mapPos.get(model), model);
         }
         return vItem;
     }

@@ -30,7 +30,6 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.training.TrainingAttendanceForTraineeModel;
 import id.co.okhome.consultant.model.training.TrainingItemModel;
 import id.co.okhome.consultant.model.training.TrainingModel;
-import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 
 public class TraineeTrainingActivity extends OkHomeParentActivity {
@@ -182,7 +181,7 @@ public class TraineeTrainingActivity extends OkHomeParentActivity {
         }
 
         @Override
-        public void onBind(View v, final TrainingItemModel trainingItem) {
+        public void onBind(View v, final int pos, final TrainingItemModel trainingItem) {
             ButterKnife.bind(this, v);
             tvName.setText(trainingItem.subject);
 

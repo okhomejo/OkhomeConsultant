@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_marginTop="28dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+        <TextView
+            style="@style/FontOpenSansRegular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="34dp"
+            android:text="REVIEW SUMMARY"
+            android:textColor="@color/colorLightBlueGray"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="12dp"
+        android:paddingLeft="28dp"
+        android:background="@drawable/bg_leftline_bold_gray"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <include layout="@layout/item_cleaning_review_summary_star_graph" />
+            <include layout="@layout/item_cleaning_review_summary_star_graph" />
+            <include layout="@layout/item_cleaning_review_summary_star_graph" />
+            <include layout="@layout/item_cleaning_review_summary_star_graph" />
+            <include layout="@layout/item_cleaning_review_summary_star_graph" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -13,7 +13,7 @@ public abstract class FragmentTabAdapter extends FragmentPagerAdapter implements
 
     FragmentManager fm;
     ViewPager viewPager;
-
+    TabFragmentStatusListener lastFragment = null;
     public FragmentTabAdapter(FragmentManager fm) {
         super(fm);
         this.fm = fm;
@@ -22,18 +22,25 @@ public abstract class FragmentTabAdapter extends FragmentPagerAdapter implements
     /**연결*/
 
     private void notifyCurrentItemChange(int position){
+
         for(int i = 0; i < fm.getFragments().size(); i++){
             Fragment f = fm.getFragments().get(i);
             if(position == i){
                 if(f instanceof TabFragmentStatusListener){
                     ((TabFragmentStatusListener) f).onSelect();
+                    lastFragment = (TabFragmentStatusListener)f;
                 }
             }else{
-                if(f instanceof TabFragmentStatusListener){
-                    ((TabFragmentStatusListener) f).onDeselect();
+
+                if(lastFragment != null &&  f == lastFragment){
+                    if(f instanceof TabFragmentStatusListener){
+                        ((TabFragmentStatusListener) f).onDeselect();
+                    }
                 }
             }
         }
+
+
     }
 
 
@@ -72,5 +79,11 @@ public abstract class FragmentTabAdapter extends FragmentPagerAdapter implements
 
         viewPager.addOnPageChangeListener(this);
         viewPager.setAdapter(this);
+    }
+
+    public void init(ViewPager vp){
+        vp.setAdapter(this);
+        vp.addOnPageChangeListener(this);
+        onPageSelected(0);
     }
 }

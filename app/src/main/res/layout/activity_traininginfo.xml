@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="id.co.okhome.consultant.view.main.trainee.TraineeFaqActivity">
+    tools:context="id.co.okhome.consultant.view.faq.FaqActivity">
 
     <RelativeLayout
         android:id="@+id/actTrainingInfo_vgTop"
@@ -41,7 +41,7 @@
             android:layout_toEndOf="@+id/actTrainingInfo_vbtnX"
             android:text="Training info"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="22dp" />
 
 
     </RelativeLayout>
@@ -67,6 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:visibility="gone"
                         android:layout_marginTop="30dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -75,7 +76,7 @@
                             style="@style/FontOpenSansLight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="40dp"
+                            android:layout_marginRight="34dp"
                             android:text="Training summary"
                             android:textColor="@color/colorLightBlueGray"
                             android:textSize="14sp" />
@@ -89,7 +90,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="28dp"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -107,7 +108,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginTop="-3dp"
                                 android:text="General Cleaning"
-                                android:textColor="@color/colorDeepGray"
+                                android:textColor="@color/colorOkhome"
                                 android:textSize="21sp" />
 
 
@@ -118,7 +119,7 @@
                                 android:layout_height="wrap_content">
 
                                 <ImageView
-                                    android:layout_marginRight="14dp"
+                                    android:layout_marginRight="16dp"
                                     android:adjustViewBounds="true"
                                     android:src="@drawable/ic_clock_mini"
                                     android:layout_width="14dp"
@@ -131,12 +132,12 @@
                                     android:layout_height="wrap_content"
                                     android:text="Training schedule is not ready"
                                     android:textColor="#aa000000"
-                                    android:textSize="15sp" />
+                                    android:textSize="16sp" />
                             </LinearLayout>
 
                             <LinearLayout
                                 android:gravity="center_vertical"
-                                android:layout_marginTop="6dp"
+                                android:layout_marginTop="7dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
@@ -144,7 +145,7 @@
                                     android:layout_marginRight="14dp"
                                     android:adjustViewBounds="true"
                                     android:src="@drawable/ic_map_location"
-                                    android:layout_width="14dp"
+                                    android:layout_width="16dp"
                                     android:layout_height="wrap_content" />
 
                                 <LinearLayout
@@ -160,7 +161,7 @@
                                         android:layout_centerVertical="true"
                                         android:text="Rasuna office park LR-16"
                                         android:textColor="@color/colorBlueBlack"
-                                        android:textSize="15sp" />
+                                        android:textSize="16sp" />
                                     <View
                                         android:layout_width="match_parent"
                                         android:layout_height="1px" android:background="@color/colorBlueBlack" />
@@ -171,7 +172,7 @@
                             <LinearLayout
                                 android:id="@+id/actTrainingInfo_vbtnManual"
                                 android:gravity="center_vertical"
-                                android:layout_marginTop="6dp"
+                                android:layout_marginTop="7dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
@@ -179,7 +180,7 @@
                                     android:layout_marginRight="14dp"
                                     android:adjustViewBounds="true"
                                     android:src="@drawable/ic_menubtn"
-                                    android:layout_width="14dp"
+                                    android:layout_width="16dp"
                                     android:layout_height="wrap_content" />
 
                                 <LinearLayout
@@ -193,7 +194,7 @@
                                         android:layout_centerVertical="true"
                                         android:text="Check the manual"
                                         android:textColor="@color/colorBlueBlack"
-                                        android:textSize="15sp" />
+                                        android:textSize="16sp" />
                                     <View
                                         android:layout_width="match_parent"
                                         android:layout_height="1px" android:background="@color/colorBlueBlack" />
@@ -208,7 +209,7 @@
 
                 <!-- 트레이너이템-->
                 <LinearLayout
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="34dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -220,14 +221,11 @@
                             style="@style/FontOpenSansLight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="40dp"
-                            android:text="Trainer information"
+                            android:layout_marginRight="34dp"
+                            android:text="TRAINER INFORMATION"
                             android:textColor="@color/colorLightBlueGray"
-                            android:textSize="14sp" />
+                            android:textSize="15sp" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
 
                     </LinearLayout>
 
@@ -337,7 +335,7 @@
 
                 <!-- 트레이닝 디테일-->
                 <LinearLayout
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="34dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -349,21 +347,21 @@
                             style="@style/FontOpenSansLight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="40dp"
-                            android:text="Training details"
+                            android:layout_marginRight="34dp"
+                            android:text="TRAINING DETAILS"
                             android:textColor="@color/colorLightBlueGray"
-                            android:textSize="14sp" />
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+                            android:textSize="15sp" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:orientation="vertical">
+                        android:paddingLeft="25dp"
+                        android:background="@drawable/bg_leftline_bold_gray"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
                         <TextView
                             android:id="@+id/actTrainingInfo_tvTrainingInfo"
                             style="@style/FontOpenSansLight"
@@ -380,7 +378,7 @@
                 <!-- 세부 평가 내역 -->
                 <LinearLayout
                     android:id="@+id/actTrainingInfo_vgTrainingTypeB"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="34dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -393,13 +391,10 @@
                             style="@style/FontOpenSansLight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="40dp"
-                            android:text="Training sections"
+                            android:layout_marginRight="34dp"
+                            android:text="TRAINING SECTIONS"
                             android:textColor="@color/colorLightBlueGray"
-                            android:textSize="14sp" />
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+                            android:textSize="15sp" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -407,9 +402,9 @@
                         android:weightSum="10"
                         android:paddingLeft="10dp"
                         android:gravity="center_vertical"
-                        android:background="@color/colorBlueBlack"
+                        android:background="@color/colorOkhomeLight"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp">
+                        android:layout_height="42dp">
 
                         <LinearLayout
                             android:gravity="center_vertical"
@@ -445,6 +440,9 @@
                         </LinearLayout>
 
                     </LinearLayout>
+
+
+
                     <LinearLayout
                         android:id="@+id/actTrainingInfo_vgTrainingTypeBItems"
                         android:layout_marginLeft="4dp"
@@ -470,7 +468,7 @@
                 <!-- 세부 평가 내역 -->
                 <LinearLayout
                     android:id="@+id/actTrainingInfo_vgTrainingTypeC"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="34dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -483,13 +481,10 @@
                             style="@style/FontOpenSansLight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="40dp"
-                            android:text="Training sections"
+                            android:layout_marginRight="34dp"
+                            android:text="TRAINING SECTIONS"
                             android:textColor="@color/colorLightBlueGray"
-                            android:textSize="14sp" />
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+                            android:textSize="15sp" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -497,9 +492,9 @@
                         android:weightSum="10"
                         android:paddingLeft="10dp"
                         android:gravity="center_vertical"
-                        android:background="@color/colorBlueBlack"
+                        android:background="@color/colorOkhomeLight"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp">
+                        android:layout_height="42dp">
 
                         <LinearLayout
                             android:gravity="center_vertical"

@@ -15,11 +15,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.model.WorkingRegionModel;
 import id.co.okhome.consultant.view.userinfo.trainee.UpdateConsultantAreaActivity;
-import id.co.okhome.consultant.view.viewholder.BlankHolder;
+import id.co.okhome.consultant.view.viewholder.BlankVHolder;
 import id.co.okhome.consultant.view.viewholder.PreferredChildAreaVHolder;
 
 /**
@@ -83,7 +82,7 @@ public class AreaListDialog extends DialogParent {
                 .addParam("allRegions", allRegions)
                 .addParam("chosenRegions", chosenRegions)
                 .setItemViewHolderCls(PreferredChildAreaVHolder.class)
-                .setFooterViewHolderCls(BlankHolder.class)
+                .setFooterViewHolderCls(BlankVHolder.class)
         );
         adapter.addFooterItem("");
         adapter.setListItems(listItems);

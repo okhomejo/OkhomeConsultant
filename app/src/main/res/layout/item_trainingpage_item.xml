@@ -14,12 +14,18 @@
             android:layout_weight="8"
             android:layout_width="0dp"
             android:layout_height="wrap_content">
-            <ImageView
-                android:layout_marginRight="16dp"
-                android:src="@drawable/ic_minus"
-                android:adjustViewBounds="true"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content" />
+            <!--<ImageView-->
+                <!--android:layout_marginRight="16dp"-->
+                <!--android:src="@drawable/ic_minus"-->
+                <!--android:adjustViewBounds="true"-->
+                <!--android:layout_width="10dp"-->
+                <!--android:layout_height="wrap_content" />-->
+
+            <View
+                android:layout_marginRight="18dp"
+                android:layout_width="16dp"
+                android:layout_height="2px" android:background="#000000"/>
+
             <TextView
                 android:id="@+id/itemTrainingPageItem_tvName"
                 style="@style/FontOpenSansLight"
@@ -28,7 +34,7 @@
                 android:layout_centerVertical="true"
                 android:text="Kitchen"
                 android:textColor="@color/colorBlueBlack"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout

@@ -6,7 +6,7 @@ import java.util.List;
 public class TrainingItemModel implements Serializable{
     public long id;
     public long trainingId;
-    public String subject;
+    public String subject, faqHotkey;
     public TrainingCommonResultModel trainingResult = null;
 
     public List<TrainingItemChildModel> listTrainingItemChild = null;

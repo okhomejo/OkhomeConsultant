@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/actTrainingInfo_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:id="@+id/actTrainingInfo_vbtnX"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_leftarrow" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/actTrainingInfo_tvTitle"
+            style="@style/FontOpenSansLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/actTrainingInfo_vbtnX"
+            android:text="Salary history"
+            android:textColor="#000000"
+            android:textSize="28dp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="-14dp"
+        android:gravity="center_vertical"
+        android:weightSum="10"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <LinearLayout
+            android:layout_weight="5"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/actConsultantSalary_tvTab1"
+                android:layout_gravity="center_vertical"
+                style="@style/FontOpenSansLight"
+                android:textColor="@color/colorBlueBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Completed Payment"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="5"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/actConsultantSalary_tvTab2"
+                android:layout_gravity="center_vertical"
+                style="@style/FontOpenSansLight"
+                android:textColor="@color/colorBlueBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deposit Waiting"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp" android:background="#13313238"/>
+        <LinearLayout
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <View
+                android:layout_marginLeft="20dp" android:layout_marginRight="20dp"
+                android:id="@+id/actConsultantSalary_vTabLine1"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" android:background="@color/colorOkhome"/>
+
+            <View
+                android:layout_marginLeft="20dp" android:layout_marginRight="20dp"
+                android:id="@+id/actConsultantSalary_vTabLine2"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" android:background="@color/colorOkhome"/>
+        </LinearLayout>
+    </FrameLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/actConsultantSalary_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </android.support.v4.view.ViewPager>
+</LinearLayout>

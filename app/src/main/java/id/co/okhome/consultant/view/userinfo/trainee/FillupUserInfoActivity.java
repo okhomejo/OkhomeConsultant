@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,6 +53,8 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
         setContentView(R.layout.activity_fillup_userinfo);
 
         ButterKnife.bind(this);
+        OkhomeUtil.setWhiteSystembar(this);
+
         initViewsAndData();
     }
 
@@ -64,12 +65,19 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     }
 
     private void initViewsAndData() {
-        if (ConsultantLoggedIn.get().trainee.approveYN.equals("Y")) {
-            accountApproved = true;
+
+        if(ConsultantLoggedIn.get().type.equals("C")){
             tvTitle.setText("Profile information");
-            tvExtraInfo.setVisibility(View.GONE);
-            OkhomeUtil.setWhiteSystembar(this);
+            accountApproved = true;
+
+        }else{
+            if (ConsultantLoggedIn.get().trainee.approveYN.equals("Y")) {
+                accountApproved = true;
+                tvTitle.setText("Profile information");
+            }
         }
+
+
     }
 
     //check exception. if no error, go to next page.

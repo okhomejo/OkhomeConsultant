@@ -31,7 +31,7 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.JobExperienceModel;
 import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.view.common.dialog.JobExperienceDialog;
-import id.co.okhome.consultant.view.viewholder.BlankHolder;
+import id.co.okhome.consultant.view.viewholder.BlankVHolder;
 import id.co.okhome.consultant.view.viewholder.JobExperienceVHolder;
 
 /**
@@ -82,7 +82,7 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
         adapter = new JoRecyclerAdapter(new JoRecyclerAdapter.Params()
                 .setRecyclerView(rcv)
                 .setItemViewHolderCls(JobExperienceVHolder.class)
-                .setFooterViewHolderCls(BlankHolder.class)
+                .setFooterViewHolderCls(BlankVHolder.class)
         );
         adapter.addFooterItem("");
     }

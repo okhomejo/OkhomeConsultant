@@ -2,6 +2,7 @@ package id.co.okhome.consultant.view.main.trainee.tab_fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -12,7 +13,6 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -30,6 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.TraineePageHomeModel;
@@ -83,7 +84,13 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
 
     @Override
     public void onDeselect() {
+        OkhomeUtil.Log(this.getClass().toString() + " onDeselect ");
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        OkhomeUtil.Log(this.getClass().toString() + " onPause ");
     }
 
     //match view and data
@@ -132,7 +139,7 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
 
         DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
         DateTime dt = formatter.parseDateTime(trainingEarliest.trainingAttendanceForTrainee.trainingWhen);
-        tvTrainingTime.setText(dt.toString("dd MMM yy, hh:mm"));
+        tvTrainingTime.setText(dt.toString("dd/MM/yyyy, hh:mm"));
     }
 
     private void adaptTrainingProgressBar(int finishedAmt, int maxAmt, final int active, ViewGroup row) {
@@ -157,6 +164,7 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
         for (final View bar : viewList) {
             if (counter > 0) {
                 final Handler handler = new Handler();
+
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {

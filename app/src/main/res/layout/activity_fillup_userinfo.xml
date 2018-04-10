@@ -8,44 +8,90 @@
     android:background="#ffffff"
     tools:context="id.co.okhome.consultant.view.account.AuthActivity">
 
+
     <RelativeLayout
+        android:layout_marginRight="40dp"
         android:id="@+id/actFillUpUserInfo_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="55dp">
-        <LinearLayout
-            android:layout_marginRight="6dp"
-            android:id="@+id/actFillUpUserInfo_vbtnX"
-            android:gravity="center"
-            android:layout_width="50dp"
-            android:layout_height="match_parent">
+        android:layout_height="76dp">
 
+        <!--<ImageView-->
+        <!--android:alpha="0.6"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:adjustViewBounds="true"-->
+        <!--android:layout_width="14dp"-->
+        <!--android:layout_height="wrap_content" android:src="@drawable/ic_x" />-->
+
+        <LinearLayout
+            android:id="@+id/actFillUpUserInfo_vbtnX"
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
             <ImageView
-                android:alpha="0.6"
                 android:adjustViewBounds="true"
-                android:layout_width="15dp"
-                android:layout_height="wrap_content" android:src="@drawable/ic_x" />
+                android:src="@drawable/ic_leftarrow"
+                android:layout_width="18dp"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <TextView
+            android:layout_toRightOf="@+id/actFillUpUserInfo_vbtnX"
+            style="@style/FontOpenSansLight"
+            android:textColor="#000000"
             android:id="@+id/actFillUpUserInfo_tvTitle"
-            style="@style/FontOpenSansRegular"
-            android:textColor="@color/colorGray"
-            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:text="Register information"
-            android:textSize="16.5sp"
+            android:textSize="23dp"
             android:layout_centerVertical="true" />
 
         <View
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="1px" android:background="#33000000"/>
+            android:layout_height="2px" android:background="#000000"/>
     </RelativeLayout>
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/actFillUpUserInfo_vgTop"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="55dp">-->
+        <!--<LinearLayout-->
+            <!--android:layout_marginRight="6dp"-->
+            <!--android:id="@+id/actFillUpUserInfo_vbtnX"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="match_parent">-->
+
+            <!--<ImageView-->
+                <!--android:alpha="0.6"-->
+                <!--android:adjustViewBounds="true"-->
+                <!--android:layout_width="15dp"-->
+                <!--android:layout_height="wrap_content" android:src="@drawable/ic_x" />-->
+        <!--</LinearLayout>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/actFillUpUserInfo_tvTitle"-->
+            <!--style="@style/FontOpenSansRegular"-->
+            <!--android:textColor="@color/colorGray"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" android:text="Register information"-->
+            <!--android:textSize="17.5sp"-->
+            <!--android:layout_centerVertical="true" />-->
+
+        <!--<View-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1px" android:background="#33000000"/>-->
+    <!--</RelativeLayout>-->
 
     <!-- bottom-->
     <LinearLayout
         android:paddingBottom="10dp"
-        android:paddingLeft="30dp"
+        android:paddingLeft="24dp"
         android:layout_below="@+id/actFillUpUserInfo_vgTop"
         android:layout_centerInParent="true"
         android:orientation="vertical"
@@ -85,7 +131,7 @@
                         style="@style/FontOpenSansLight"
                         android:text="Basic Informations"
                         android:lines="1"
-                        android:textSize="16.5sp"
+                        android:textSize="17.5sp"
                         android:gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
@@ -117,7 +163,7 @@
                             style="@style/FontOpenSansLight"
                             android:text="Additional Informations"
                             android:lines="1"
-                            android:textSize="16.5sp"
+                            android:textSize="17.5sp"
                             android:gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -149,7 +195,7 @@
                         style="@style/FontOpenSansLight"
                         android:lines="1"
                         android:text="KTP"
-                        android:textSize="16.5sp"
+                        android:textSize="17.5sp"
                         android:gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
@@ -177,7 +223,7 @@
                         style="@style/FontOpenSansLight"
                         android:text="Preferred area for cleaning"
                         android:lines="1"
-                        android:textSize="16.5sp"
+                        android:textSize="17.5sp"
                         android:gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
@@ -204,7 +250,7 @@
                         android:text="Education"
                         style="@style/FontOpenSansLight"
                         android:lines="1"
-                        android:textSize="16.5sp"
+                        android:textSize="17.5sp"
                         android:gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
@@ -234,7 +280,7 @@
                         style="@style/FontOpenSansLight"
                         android:text="Job Experience"
                         android:lines="1"
-                        android:textSize="16.5sp"
+                        android:textSize="17.5sp"
                         android:gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />

@@ -36,11 +36,17 @@ public interface CommonClient {
     Call<FaqModel> getFaq(@Path("faqId") int faqId);
 
     @GET("faq")
-    Call<List<FaqModel>> getAllFaqs(@Query("parentFaqId") int faqId);
+    Call<List<FaqModel>> getAllFaqs(@Query("parentFaqId") int faqId, @Query("category") String category);
+
+    @GET("faq/hotkey/{hotkey}")
+    Call<List<FaqModel>> getFaqByHotkey(@Path("hotkey") String hotkey);
+
 
     @GET("faq/keywords")
-    Call<Map<Integer, List<String>>> getAllFaqsKeywords();
+    Call<Map<Integer, List<String>>> getAllFaqsKeywords(@Query("category") String category);
 
     @GET("faq/q/id/{faqIdString}")
     Call<List<FaqModel>> getFaqById(@Path("faqIdString") String faqId);
+
+
 }

@@ -1,38 +1,20 @@
 package id.co.okhome.consultant.view.common.dialog;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.config.OkhomeRegistryKey;
 import id.co.okhome.consultant.exception.OkhomeException;
-import id.co.okhome.consultant.lib.JoSharedPreference;
 import id.co.okhome.consultant.lib.ToastUtil;
-import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
-import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
-import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
-import id.co.okhome.consultant.model.JobExperienceModel;
-import id.co.okhome.consultant.model.v2.AccountModel;
-import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
-import id.co.okhome.consultant.view.common.account.AccountSettingsActivity;
 
-import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListener.ACTIONCODE_NO;
 import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListener.ACTIONCODE_OK;
 
 /**
@@ -80,15 +62,20 @@ public class NikInputDialog extends DialogParent {
     }
 
     private void restoreOldNik(String oldNik) {
-        String input1 = oldNik.substring(0,4);
-        String input2 = oldNik.substring(4,8);
-        String input3 = oldNik.substring(8,12);
-        String input4 = oldNik.substring(12,16);
+        if(oldNik == null){
+            ;
+        }else{
+            String input1 = oldNik.substring(0,4);
+            String input2 = oldNik.substring(4,8);
+            String input3 = oldNik.substring(8,12);
+            String input4 = oldNik.substring(12,16);
 
-        etInput1.setText(input1);
-        etInput2.setText(input2);
-        etInput3.setText(input3);
-        etInput4.setText(input4);
+            etInput1.setText(input1);
+            etInput2.setText(input2);
+            etInput3.setText(input3);
+            etInput4.setText(input4);
+        }
+
     }
 
     private void checkValidInput() {

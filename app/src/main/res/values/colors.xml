@@ -5,8 +5,15 @@
     <color name="colorAccent">@color/colorOkhome</color>
 
 
+    <color name="colorDeepPurple">#484d9e</color>
     <color name="colorOkhomeDeep">#0386c3</color>
     <color name="colorOkhome">#0095da</color>
+    <color name="colorOkhomeLight">#5bbfec</color>
+    <color name="colorOkhomeLight2">#359de5</color>
+
+    <color name="colorRed">#dd3838</color>
+    <color name="colorGreen">#84d033</color>
+
     <color name="colorBlueGray">#656f81</color>
     <color name="colorBlueGrayDeep">#4e5766</color>
     <color name="colorLightBlueGray">#cc7f8a9e</color>

@@ -14,6 +14,7 @@ public class ProfileModel {
             , skckPhotoUrl
             , nik
             , gender
+            , birthdate
             , marriedYN
             , childrenCnt
             , religion

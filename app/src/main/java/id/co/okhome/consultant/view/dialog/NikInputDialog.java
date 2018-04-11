@@ -63,9 +63,9 @@ public class NikInputDialog extends DialogParent {
     }
 
     private void restoreOldNik(String oldNik) {
-        if(oldNik == null){
+        if (oldNik == null) {
             ;
-        }else{
+        } else {
             String input1 = oldNik.substring(0,4);
             String input2 = oldNik.substring(4,8);
             String input3 = oldNik.substring(8,12);
@@ -76,7 +76,6 @@ public class NikInputDialog extends DialogParent {
             etInput3.setText(input3);
             etInput4.setText(input4);
         }
-
     }
 
     private void checkValidInput() {
@@ -96,93 +95,10 @@ public class NikInputDialog extends DialogParent {
     }
 
     private void initKeyListeners() {
-        etInput1.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (etInput1.getText().length() > 3) {
-                    etInput2.requestFocus();
-                    etInput2.setSelection(0);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        etInput2.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (etInput2.getText().length() < 1) {
-                    etInput1.requestFocus();
-                    etInput1.setSelection(etInput1.length());
-                } else if (etInput2.getText().length() > 3) {
-                    etInput3.requestFocus();
-                    etInput3.setSelection(0);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        etInput3.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (etInput3.getText().length() < 1) {
-                    etInput2.requestFocus();
-                    etInput2.setSelection(etInput2.length());
-                } else if (etInput3.getText().length() > 3) {
-                    etInput4.requestFocus();
-                    etInput4.setSelection(0);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        etInput4.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (etInput4.getText().length() < 1) {
-                    etInput3.requestFocus();
-                    etInput3.setSelection(etInput3.length());
-                } else if (etInput4.getText().length() > 3) {
-                    btnOk.requestFocus();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
+        etInput1.addTextChangedListener(new SeparatedEditTextWatcher(etInput1, null, etInput2));
+        etInput2.addTextChangedListener(new SeparatedEditTextWatcher(etInput2, etInput1, etInput3));
+        etInput3.addTextChangedListener(new SeparatedEditTextWatcher(etInput3, etInput2, etInput4));
+        etInput4.addTextChangedListener(new SeparatedEditTextWatcher(etInput4, etInput3, null));
     }
 
     private void onNIKDone(String validNik) {
@@ -203,34 +119,33 @@ public class NikInputDialog extends DialogParent {
 
     class SeparatedEditTextWatcher implements TextWatcher {
 
-        private View etPrev, etNext, etCur;
-        private int maxLength;
+        private EditText etPrev, etNext, etCur;
 
-        public SeparatedEditTextWatcher(int maxLength, View etCur, View etPrev, View  etNext) {
-            this.maxLength = maxLength;
-            this.etPrev = etPrev;
-            this.etNext = etNext;
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+        public SeparatedEditTextWatcher(EditText etCur, EditText etPrev, EditText etNext) {
+            this.etPrev    = etPrev;
+            this.etCur     = etCur;
+            this.etNext    = etNext;
         }
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            if (etInput3.getText().length() < 1) {
-                etInput2.requestFocus();
-                etInput2.setSelection(etInput2.length());
-            } else if (etInput3.getText().length() > 3) {
-                etInput4.requestFocus();
-                etInput4.setSelection(0);
+
+            if (etCur.getText().length() < 1 && etPrev != null) {
+
+                etPrev.requestFocus();
+                etPrev.setSelection(etPrev.length());
+
+            } else if (etCur.getText().length() > 3 && etNext != null) {
+
+                etNext.requestFocus();
+                etNext.setSelection(0);
             }
         }
 
         @Override
-        public void afterTextChanged(Editable editable) {
+        public void afterTextChanged(Editable editable) { }
 
-        }
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
     }
 }

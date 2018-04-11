@@ -1,5 +1,6 @@
 package id.co.okhome.consultant.view.activity.account.profile;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -7,11 +8,24 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
+import org.joda.time.DateTime;
+import org.joda.time.Years;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +52,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
 
     @BindView(R.id.actUpdateUserDocument_tvName)        TextView tvName;
     @BindView(R.id.actUpdateUserDocument_tvPhone)       TextView tvPhone;
+    @BindView(R.id.actUpdateUserDocument_tvBirthDate)   TextView tvBirthDate;
     @BindView(R.id.actUpdateUserDocument_tvAddress)     TextView tvAddress;
     @BindView(R.id.actUpdateUserDocument_tvGender)      TextView tvGender;
     @BindView(R.id.actUpdateUserDocument_llName)        LinearLayout vgName;
@@ -81,6 +96,12 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
                     .dontAnimate()
                     .into(ivPhoto);
 
+            DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd");
+            DateTime birthDate = dtf.parseDateTime(profile.birthdate);
+            tvBirthDate.setText(String.format(Locale.ENGLISH, "%d-%d-%d",
+                    birthDate.getDayOfMonth(), birthDate.getMonthOfYear(), birthDate.getYear())
+            );
+
             if (!TextUtils.isEmpty(profile.gender)) {
                 String consultantGender = "";
                 if (profile.gender.equals("M")) {
@@ -100,6 +121,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
         final String phone          = profile.phone;
         final String gender         = profile.gender;
         final String address        = profile.address;
+        final String birthdate      = profile.birthdate;
 
         boolean photoEmpty = true;
         if (!OkhomeUtil.isEmpty(profile.photoUrl) || !OkhomeUtil.isEmpty(photoFilePath)) {
@@ -112,6 +134,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
             OkhomeException.chkException(OkhomeUtil.isEmpty(phone), "Please verify your phone number");
             OkhomeException.chkException(OkhomeUtil.isEmpty(gender), "Please state your gender");
             OkhomeException.chkException(OkhomeUtil.isEmpty(address), "Please state your address");
+            OkhomeException.chkException(OkhomeUtil.isEmpty(birthdate), "Please select your birth date");
 
         } catch (OkhomeException e) {
             ToastUtil.showToast(e.getMessage());
@@ -149,6 +172,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
                                         "name", name,
                                         "gender", gender,
                                         "address", address,
+                                        "birthdate", birthdate,
                                         "photo_url", apiResult.object),
                                 retrofitCallback
                         );
@@ -163,7 +187,8 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
                     OkhomeUtil.makeMap(
                             "name", name,
                             "gender", gender,
-                            "address", address),
+                            "address", address,
+                            "birthdate", birthdate),
                     retrofitCallback
             );
         }
@@ -199,6 +224,20 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
                 .into(ivPhoto);
         photoFilePath = imgPath;
     }
+
+    private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
+            selectedMonth += 1;
+            tvBirthDate.setText(String.format("%s-%s-%s", selectedDay, selectedMonth, selectedYear));
+
+            DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd");
+            DateTime birthday = DateTime.parse(
+                    String.format(Locale.ENGLISH, "%d-%d-%d", selectedYear, selectedMonth, selectedDay)
+            );
+            profile.birthdate = birthday.toString(dtf);
+        }
+    };
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -265,6 +304,27 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
                     }
                 })
                 .show();
+    }
+
+    @OnClick(R.id.actUpdateUserDocument_vgbtnBirthDate)
+    public void onClickBirthDay() {
+        Calendar cal = Calendar.getInstance(TimeZone.getDefault());
+        if (profile.birthdate != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            try {
+                cal.setTime(sdf.parse(profile.birthdate));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        DatePickerDialog datePicker = new DatePickerDialog(this,
+                datePickerListener,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH));
+        datePicker.setCancelable(true);
+        datePicker.setTitle("Select your birthday");
+        datePicker.show();
     }
 
     @OnClick(R.id.actUpdateUserDocument_vgbtnGender)

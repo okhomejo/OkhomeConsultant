@@ -62,7 +62,7 @@ public class PhotoDialog extends DialogParent{
     public void onShow() {
         ;
         if(TextUtils.isEmpty(imgPath)){
-            activity.startActivityForResult(new Intent(activity, ImageChooserActivity.class), 10101);
+            activity.startActivityForResult(new Intent(activity, ImageChooserActivity.class), 10102);
             dismiss();
         }
     }
@@ -76,12 +76,22 @@ public class PhotoDialog extends DialogParent{
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == 10101 && resultCode == RESULT_OK){
-            String imgPath = data.getStringExtra(ImageChooserActivity.RESULT_IMAGE_PATH);
-            choosedImagePath = imgPath;
-            onPhotoChoosed(imgPath);
+        if(resultCode == RESULT_OK) {
+            if(requestCode == 10102 || requestCode == 10101) {
+                String imgPath = data.getStringExtra(ImageChooserActivity.RESULT_IMAGE_PATH);
+                choosedImagePath = imgPath;
+                onPhotoChoosed(imgPath);
+                if(requestCode == 10102) {
+                    dialogListener.onCommonDialogWorkDone(this, CommonDialogListener.ACTIONCODE_OK, OkhomeUtil.makeMap("imgPath", choosedImagePath));
+                    dismiss();
+                }
+            }
         }
-
+//        if(requestCode == 10101 && resultCode == RESULT_OK){
+//            String imgPath = data.getStringExtra(ImageChooserActivity.RESULT_IMAGE_PATH);
+//            choosedImagePath = imgPath;
+//            onPhotoChoosed(imgPath);
+//        }
     }
 
     @OnClick({R.id.dialogShowPhoto_ivPhoto, R.id.dialogShowPhoto_vbtnChangePhoto})
@@ -101,11 +111,6 @@ public class PhotoDialog extends DialogParent{
         }else{
             dialogListener.onCommonDialogWorkDone(this, CommonDialogListener.ACTIONCODE_OK, OkhomeUtil.makeMap("imgPath", choosedImagePath));
         }
-
         dismiss();
     }
-
-
-
-
 }

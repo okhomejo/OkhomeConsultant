@@ -16,7 +16,7 @@ import com.twinkle94.monthyearpicker.custom_number_picker.NumberPickerWithColor;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class DatePickerDialog implements Dialog.OnClickListener {
+public class CustomDatePickerDialog implements Dialog.OnClickListener {
 
     private static final int MIN_YEAR = 1970;
     private static final int MAX_YEAR = 2099;
@@ -30,7 +30,7 @@ public class DatePickerDialog implements Dialog.OnClickListener {
             };
 
     private final String mFromTo;
-    private DatePickerDialog.OnDateSetListener mOnDateSetListener;
+    private CustomDatePickerDialog.OnDateSetListener mOnDateSetListener;
     private final Context mContext;
     private AlertDialog.Builder mDialogBuilder;
     private AlertDialog mDialog;
@@ -40,15 +40,15 @@ public class DatePickerDialog implements Dialog.OnClickListener {
     private int mYear;
     private int mMonth;
 
-    public DatePickerDialog(Context context, DatePickerDialog.OnDateSetListener onDateSetListener) {
+    public CustomDatePickerDialog(Context context, CustomDatePickerDialog.OnDateSetListener onDateSetListener) {
         this(context, onDateSetListener, -1, -1, "From");
     }
 
-    public DatePickerDialog(Context context, DatePickerDialog.OnDateSetListener onDateSetListener, int theme, String fromTo) {
+    public CustomDatePickerDialog(Context context, CustomDatePickerDialog.OnDateSetListener onDateSetListener, int theme, String fromTo) {
         this(context, onDateSetListener, theme, -1, fromTo);
     }
 
-    public DatePickerDialog(Context context, DatePickerDialog.OnDateSetListener onDateSetListener, int theme, int titleTextColor, String fromTo) {
+    public CustomDatePickerDialog(Context context, CustomDatePickerDialog.OnDateSetListener onDateSetListener, int theme, int titleTextColor, String fromTo) {
         mContext = context;
         mOnDateSetListener = onDateSetListener;
         mTheme = theme;

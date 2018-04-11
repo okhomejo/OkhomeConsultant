@@ -28,7 +28,6 @@ public class SimpleCachingManager {
                 setData(key, o, false);
             }
         }
-
         return (T)o;
     }
 

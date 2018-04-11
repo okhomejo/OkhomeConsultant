@@ -57,12 +57,10 @@ public class FaqSearchResultActivity extends OkHomeParentActivity {
         searchLayout.setVisibility(View.GONE);
 
         if (getIntent().getExtras() != null) {
-            String faqHotKey   = getIntent().getStringExtra("FAQ_HOT_KEY");
-            if (faqHotKey != null) {
-                getFaqByHotKey(faqHotKey);
+            getFaqById(getIntent().getStringExtra("FAQ_SEARCH_IDS"));
+            if (getIntent().getStringExtra("FAQ_SEARCH_TITLE") == null) {
                 tvTitle.setText("Faq");
             } else {
-                getFaqById(getIntent().getStringExtra("FAQ_SEARCH_IDS"));
                 tvTitle.setText(String.format("FAQ : %s", getIntent().getStringExtra("FAQ_SEARCH_TITLE")));
             }
         } else {
@@ -86,23 +84,6 @@ public class FaqSearchResultActivity extends OkHomeParentActivity {
 
             @Override
             public void onSuccess(final List<FaqModel> faqs) {
-                adapter.setListItems(faqs);
-            }
-
-            @Override
-            public void onFinish() {
-                super.onFinish();
-                progressBar.setVisibility(View.GONE);
-            }
-        });
-    }
-
-    //pull training detail info
-    private void getFaqByHotKey(final String faqKey){
-        progressBar.setVisibility(View.VISIBLE);
-        OkhomeRestApi.getCommonClient().getFaqByHotkey(faqKey).enqueue(new RetrofitCallback<List<FaqModel>>() {
-            @Override
-            public void onSuccess(List<FaqModel> faqs) {
                 adapter.setListItems(faqs);
             }
 

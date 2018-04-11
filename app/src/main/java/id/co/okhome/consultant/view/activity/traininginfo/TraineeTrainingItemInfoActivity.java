@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -161,7 +162,7 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
         OkhomeRestApi.getCommonClient().getFaqByHotkey(faqKey).enqueue(new RetrofitCallback<List<FaqModel>>() {
             @Override
             public void onSuccess(List<FaqModel> faqModels) {
-                openFaqResults(faqModels, faqKey);
+                openFaqResults(faqModels);
             }
 
             @Override
@@ -172,11 +173,17 @@ public class TraineeTrainingItemInfoActivity extends OkHomeParentActivity {
         });
     }
 
-    private void openFaqResults(List<FaqModel> faqModels, String faqKey) {
+    private void openFaqResults(List<FaqModel> faqModels) {
         if (faqModels.size() > 1) {
-            Intent faqActivity = new Intent(this, FaqSearchResultActivity.class);
-            faqActivity.putExtra("FAQ_HOT_KEY", faqKey);
-            startActivity(faqActivity);
+            List<String> faqIds = new ArrayList<>();
+            for (FaqModel faq : faqModels) {
+                faqIds.add(String.valueOf(faq.id));
+            }
+            if (!faqIds.isEmpty()) {
+                Intent intent = new Intent(getBaseContext(), FaqSearchResultActivity.class);
+                intent.putExtra("FAQ_SEARCH_IDS",   android.text.TextUtils.join(",", faqIds));
+                startActivity(intent);
+            }
         } else {
             Intent singleFaq = new Intent(this, FaqSingleActivity.class);
             singleFaq.putExtra("FAQ_ID", faqModels.get(0).id);

@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.model;
+package id.co.okhome.consultant.model.page;
 
 
 import id.co.okhome.consultant.model.training.TrainingModel;

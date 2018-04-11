@@ -50,6 +50,7 @@ public abstract class RetrofitCallback<T> implements Callback<T>{
             else if(obj instanceof ErrorModel){
                 onError((ErrorModel)obj);
             }else{
+
                 onSuccess((T)obj);
             }
         }

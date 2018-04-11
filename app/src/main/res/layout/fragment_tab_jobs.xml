@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -35,13 +36,14 @@
                     android:textColor="@color/colorLightBlueGray"
                     android:textSize="15sp" />
                 <TextView
+                    android:id="@+id/fragTabJobs_vbtnSeeNextCleaning"
                     android:layout_gravity="right"
                     android:paddingLeft="20dp"
                     android:background="#ffffff"
                     style="@style/FontOpenSansRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SEE 6 MORE JOBS"
+                    android:text="SEE 6 MORE"
                     android:textColor="@color/colorOkhomeLight"
                     android:textSize="15sp" />
 
@@ -130,15 +132,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical">
+                <View
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
 
                 <TextView
+                    android:id="@+id/fragTabJobs_vbtnSeePreviousCleaning"
                     android:background="#ffffff"
                     style="@style/FontOpenSansLight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="20dp"
-                    android:text="YOU HAVE DONE 6 TIMES CLEANINGS"
+                    android:text="PREVIOUS CLEANINGS"
                     android:textColor="@color/colorLightBlueGray"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_gravity="right"
+                    android:paddingLeft="20dp"
+                    android:background="#ffffff"
+                    style="@style/FontOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SEE 4 MORE"
+                    android:textColor="@color/colorOkhomeLight"
                     android:textSize="15sp" />
 
             </FrameLayout>

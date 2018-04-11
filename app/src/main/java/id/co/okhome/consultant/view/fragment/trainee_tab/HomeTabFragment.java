@@ -32,7 +32,7 @@ import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
-import id.co.okhome.consultant.model.TraineePageHomeModel;
+import id.co.okhome.consultant.model.page.TraineePageHomeModel;
 import id.co.okhome.consultant.model.training.TrainingModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 

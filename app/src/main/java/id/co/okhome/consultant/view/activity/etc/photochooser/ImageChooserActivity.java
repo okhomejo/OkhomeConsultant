@@ -23,17 +23,17 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 
 
 public class ImageChooserActivity extends OkHomeParentActivity {
-	
+
 	private Uri outputFileUri = null;
-	
+
 	public static final String RESULT_IMAGE_PATH = "resultImagePath";
 
 	public static final int REQ_GET_IMAGE = 50050;
 	private static final int REQ_PICK_IMAGE = 10050;
 	private static final int REQ_CROP_IMAGE = 10100;
-	
 
-	
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -74,15 +74,15 @@ public class ImageChooserActivity extends OkHomeParentActivity {
 
 //		File fileSaved = new File(getCacheDir());
 
-	
+
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MMddHHmmss");
 		String timestamp = dateFormat.format(new Date(System.currentTimeMillis()));
 		File cropFile = new File(getCacheDir(),  "temp_" + timestamp + ".jpg");
-	
+
 		outputFileUri = Uri.fromFile(cropFile);
 		outputFileUri = Uri.fromFile(new File("/sdcard/tmp"));
 
-	
+
 		// Camera.
 		final List<Intent> cameraIntents = new ArrayList<Intent>();
 		final Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -112,7 +112,7 @@ public class ImageChooserActivity extends OkHomeParentActivity {
 			Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
 			getIntent.setType("image/*");
 
-			Intent pickIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+			Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 			pickIntent.setType("image/*");
 
 			Intent chooserIntent = Intent.createChooser(pickIntent, "Select Image");
@@ -135,20 +135,20 @@ public class ImageChooserActivity extends OkHomeParentActivity {
 
 
 	private void openImageIntent() {
-		
+
 		final List<Intent> cameraIntents = createCameraIntents();
-	
+
 		// Filesystem.
 		final Intent galleryIntent = new Intent();
 		galleryIntent.setType("image/*");
 		galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-	
+
 		// Chooser of filesystem options.
 		final Intent chooserIntent = Intent.createChooser(galleryIntent, null);
-	
+
 		// Add the camera options.
 		chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, cameraIntents.toArray(new Parcelable[]{}));
-	
+
 		startActivityForResult(chooserIntent, REQ_PICK_IMAGE);
 	}
 
@@ -157,7 +157,7 @@ public class ImageChooserActivity extends OkHomeParentActivity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		
+
 		if (requestCode == REQ_PICK_IMAGE && resultCode == RESULT_OK) {
 
 			final boolean isCamera;
@@ -197,20 +197,20 @@ public class ImageChooserActivity extends OkHomeParentActivity {
 			setResult(RESULT_OK, resultIntent);
 			finish();
 		}
-		
+
 		else if (resultCode == RESULT_CANCELED) {
 			setResult(RESULT_CANCELED);
 			finish();
 		}
-		
+
 	}
-	
+
 	public static void recursiveDeleteTempDirectory(File fileOrDirectory) {
-	    if (fileOrDirectory.isDirectory()) {
-	    	for (File child : fileOrDirectory.listFiles())
-	    		recursiveDeleteTempDirectory(child);
-	    }
-	    fileOrDirectory.delete();
+		if (fileOrDirectory.isDirectory()) {
+			for (File child : fileOrDirectory.listFiles())
+				recursiveDeleteTempDirectory(child);
+		}
+		fileOrDirectory.delete();
 	}
-	
+
 }

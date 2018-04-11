@@ -32,7 +32,7 @@ import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 
-public class CropImageActivity extends OkHomeParentActivity implements OnClickListener{
+public class CropImageActivity extends OkHomeParentActivity implements OnClickListener {
 
 	CropImageView mCropImageView;
 	ImageView iv;
@@ -49,6 +49,7 @@ public class CropImageActivity extends OkHomeParentActivity implements OnClickLi
 		setContentView(R.layout.activity_cropimage);
 
 		OkhomeUtil.setSystemBarColor(this, Color.BLACK);
+
 
 		vgButtonSet = (ViewGroup)findViewById(R.id.actCropImage_llBox);
 		vgButtonsetForCutting = (ViewGroup)findViewById(R.id.actCropImage_llBoxForCutting);

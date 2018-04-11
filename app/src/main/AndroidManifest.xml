@@ -74,7 +74,9 @@
         <activity android:name=".view.activity.traininginfo.TraineeTrainingItemInfoActivity" />
         <activity android:name=".view.activity.cleaning.CleaningDetailActivity" />
         <activity android:name=".view.activity.salary.ConsultantSalaryListActivity" />
-        <activity android:name=".view.activity.cleaning_review.CleaningReviewListActivity"></activity>
+        <activity android:name=".view.activity.cleaning_review.CleaningReviewListActivity" />
+        <activity android:name=".view.activity.cleaning.NextCleaningsActivity" />
+        <activity android:name=".view.activity.cleaning.PreviousCleaningsActivity"></activity>
     </application>
 
 </manifest>

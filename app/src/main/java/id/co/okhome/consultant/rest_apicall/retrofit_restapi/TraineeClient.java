@@ -1,6 +1,6 @@
 package id.co.okhome.consultant.rest_apicall.retrofit_restapi;
 
-import id.co.okhome.consultant.model.TraineePageHomeModel;
+import id.co.okhome.consultant.model.page.TraineePageHomeModel;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

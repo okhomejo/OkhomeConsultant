@@ -41,7 +41,7 @@
             android:gravity="center"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
-            android:text="90도 회전"
+            android:text="ROTATE"
             android:textColor="#ffffff"
             android:textSize="15sp" />
 
@@ -55,7 +55,7 @@
             android:gravity="center"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
-            android:text="자르기"
+            android:text="CUT"
             android:textColor="#ffffff"
             android:textSize="15sp" />
 
@@ -69,7 +69,7 @@
             android:gravity="center"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
-            android:text="확인"
+            android:text="OK"
             android:textColor="#ffffff"
             android:textSize="15sp" />
 
@@ -82,7 +82,7 @@
             android:gravity="center"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
-            android:text="닫기"
+            android:text="CANCEL"
             android:textColor="#ffffff"
             android:textSize="15sp" />
     </LinearLayout>
@@ -106,7 +106,7 @@
             android:gravity="center"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
-            android:text="자르기"
+            android:text="CUTTING"
             android:textColor="#ffffff"
             android:textSize="15sp" />
 
@@ -119,7 +119,7 @@
             android:gravity="center"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
-            android:text="취소"
+            android:text="CANCEL"
             android:textColor="#ffffff"
             android:textSize="15sp" />
 

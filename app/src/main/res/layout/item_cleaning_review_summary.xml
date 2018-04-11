@@ -23,7 +23,7 @@
 
     <LinearLayout
         android:layout_marginTop="12dp"
-        android:paddingLeft="28dp"
+        android:paddingLeft="24dp"
         android:background="@drawable/bg_leftline_bold_gray"
         android:orientation="vertical"
         android:layout_width="match_parent"

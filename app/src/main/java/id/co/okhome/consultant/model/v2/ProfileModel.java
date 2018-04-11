@@ -22,5 +22,6 @@ public class ProfileModel {
             , likeDogYN
             , workingRegions
             , pastCareers
+            , confirmYN
             ;
 }

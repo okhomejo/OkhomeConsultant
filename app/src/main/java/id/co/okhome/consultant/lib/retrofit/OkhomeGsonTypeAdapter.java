@@ -57,7 +57,12 @@ public class OkhomeGsonTypeAdapter implements TypeAdapterFactory {
                     String size = jsonObject.get("size").getAsString();
                     String message = jsonObject.get("message").getAsString();
 
-                    return (T) new ErrorModel(code, message, obj);
+                    if(size != null){
+                        return (T) new ErrorModel(code, message, Integer.parseInt(size));
+                    }else{
+                        return (T) new ErrorModel(code, message, obj);
+                    }
+
 
                 }
 

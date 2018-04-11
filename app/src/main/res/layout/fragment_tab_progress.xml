@@ -86,6 +86,17 @@
                                 android:text="Rp 749.000 is paid"
                                 android:textColor="@color/colorOkhome"
                                 android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/fragTabHomeForTrainee_tvBalance"
+                                style="@style/FontOpenSansRegular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="2dp"
+                                android:text="Rp 59.000 is your current balance"
+                                android:textColor="@color/colorGreen"
+                                android:textSize="14sp" />
                         </LinearLayout>
 
                     </LinearLayout>

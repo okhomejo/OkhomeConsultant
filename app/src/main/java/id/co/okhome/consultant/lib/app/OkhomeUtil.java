@@ -99,6 +99,10 @@ public class OkhomeUtil {
         return false;
     }
 
+    public static final void Log(Object page, Object msg){
+        Log.d(OkhomeConstant.LOGTAG, page.getClass().toString() + " : " +  msg.toString());
+    }
+
     public static final void Log(Object msg){
         Log.d(OkhomeConstant.LOGTAG, msg.toString());
     }

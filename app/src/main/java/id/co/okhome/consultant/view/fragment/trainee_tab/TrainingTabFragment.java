@@ -15,7 +15,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.RecyclerViewPositionManager;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.training.TrainingModel;
@@ -34,18 +36,27 @@ public class TrainingTabFragment extends Fragment implements TabFragmentStatusLi
 
     JoRecyclerAdapter adapter;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        OkhomeUtil.Log("onCreate");
+    }
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_tab_training_f_trainee, null);
+        OkhomeUtil.Log("onCreateView");
+        View v = inflater.inflate(R.layout.fragment_tab_training_f_trainee, null);
+        ButterKnife.bind(this, v);
+        init();
+        return v;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        ButterKnife.bind(this, getView());
-
-        init();
+        OkhomeUtil.Log("onStart");
 
         loadList();
     }
@@ -58,6 +69,18 @@ public class TrainingTabFragment extends Fragment implements TabFragmentStatusLi
     @Override
     public void onDeselect() {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RecyclerViewPositionManager.clear(rcv);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        RecyclerViewPositionManager.save(rcv);
     }
 
     private void init(){
@@ -79,6 +102,7 @@ public class TrainingTabFragment extends Fragment implements TabFragmentStatusLi
             @Override
             public void onSuccess(List<TrainingModel> trainings) {
                 adapter.setListItems(trainings);
+                RecyclerViewPositionManager.restore(rcv);
             }
 
             @Override
@@ -87,6 +111,9 @@ public class TrainingTabFragment extends Fragment implements TabFragmentStatusLi
                 vLoading.setVisibility(View.GONE);
             }
         });
-
     }
+
+
+
+
 }

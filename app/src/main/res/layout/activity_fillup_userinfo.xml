@@ -8,7 +8,6 @@
     android:background="#ffffff"
     tools:context="id.co.okhome.consultant.view.activity.account.AuthActivity">
 
-
     <RelativeLayout
         android:layout_marginRight="40dp"
         android:id="@+id/actFillUpUserInfo_vgTop"
@@ -54,52 +53,19 @@
             android:layout_height="2px" android:background="#000000"/>
     </RelativeLayout>
 
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/actFillUpUserInfo_vgTop"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="55dp">-->
-        <!--<LinearLayout-->
-            <!--android:layout_marginRight="6dp"-->
-            <!--android:id="@+id/actFillUpUserInfo_vbtnX"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="match_parent">-->
-
-            <!--<ImageView-->
-                <!--android:alpha="0.6"-->
-                <!--android:adjustViewBounds="true"-->
-                <!--android:layout_width="15dp"-->
-                <!--android:layout_height="wrap_content" android:src="@drawable/ic_x" />-->
-        <!--</LinearLayout>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/actFillUpUserInfo_tvTitle"-->
-            <!--style="@style/FontOpenSansRegular"-->
-            <!--android:textColor="@color/colorGray"-->
-            <!--android:layout_centerInParent="true"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" android:text="Register information"-->
-            <!--android:textSize="17.5sp"-->
-            <!--android:layout_centerVertical="true" />-->
-
-        <!--<View-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="1px" android:background="#33000000"/>-->
-    <!--</RelativeLayout>-->
-
-    <!-- bottom-->
     <LinearLayout
         android:paddingBottom="10dp"
-        android:paddingLeft="24dp"
         android:layout_below="@+id/actFillUpUserInfo_vgTop"
         android:layout_centerInParent="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+
         <LinearLayout
-            android:layout_marginTop="30dp"
+            android:paddingLeft="24dp"
+            android:layout_marginTop="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -113,8 +79,9 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:layout_width="270dp"
-                    android:layout_height="53dp">
+                    android:layout_height="51dp">
                     <LinearLayout
+                        android:paddingTop="0dp" android:paddingBottom="0dp"
                         android:layout_marginRight="15dp"
                         android:layout_width="26dp"
                         android:layout_height="match_parent">
@@ -145,8 +112,9 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:layout_width="270dp"
-                        android:layout_height="53dp">
+                        android:layout_height="51dp">
                         <LinearLayout
+                            android:paddingTop="0dp" android:paddingBottom="0dp"
                             android:layout_marginRight="15dp"
                             android:layout_width="26dp"
                             android:layout_height="match_parent">
@@ -176,8 +144,9 @@
                     android:id="@+id/actFillUpUserInfo_vbtnKTP"
                     android:gravity="center_vertical"
                     android:layout_width="270dp"
-                    android:layout_height="53dp">
+                    android:layout_height="51dp">
                     <LinearLayout
+                        android:paddingTop="0dp" android:paddingBottom="0dp"
                         android:layout_marginRight="15dp"
                         android:layout_width="26dp"
                         android:layout_height="match_parent">
@@ -205,8 +174,9 @@
                     android:id="@+id/actFillUpUserInfo_vbtnSKCK"
                     android:gravity="center_vertical"
                     android:layout_width="270dp"
-                    android:layout_height="53dp">
+                    android:layout_height="51dp">
                     <LinearLayout
+                        android:paddingTop="0dp" android:paddingBottom="0dp"
                         android:layout_marginRight="15dp"
                         android:layout_width="26dp"
                         android:layout_height="match_parent">
@@ -235,8 +205,9 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:layout_width="270dp"
-                    android:layout_height="53dp">
+                    android:layout_height="51dp">
                     <LinearLayout
+                        android:paddingTop="0dp" android:paddingBottom="0dp"
                         android:layout_marginRight="15dp"
                         android:layout_width="26dp"
                         android:layout_height="match_parent">
@@ -262,8 +233,9 @@
                     android:id="@+id/actFillUpUserInfo_vbtnEducation"
                     android:gravity="center_vertical"
                     android:layout_width="270dp"
-                    android:layout_height="53dp">
+                    android:layout_height="51dp">
                     <LinearLayout
+                        android:paddingTop="0dp" android:paddingBottom="0dp"
                         android:layout_marginRight="15dp"
                         android:layout_width="26dp"
                         android:layout_height="match_parent">
@@ -292,8 +264,9 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:layout_width="270dp"
-                    android:layout_height="53dp">
+                    android:layout_height="51dp">
                     <LinearLayout
+                        android:paddingTop="0dp" android:paddingBottom="0dp"
                         android:layout_marginRight="15dp"
                         android:layout_width="26dp"
                         android:layout_height="match_parent">
@@ -320,7 +293,8 @@
 
         <!--term -->
         <LinearLayout
-            android:layout_marginTop="24dp"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="20dp"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -330,7 +304,7 @@
                 android:id="@+id/actFillUpUserInfo_tvExtraInfo"
                 android:textColor="@color/colorGray"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:textSize="13sp"
+                android:layout_height="wrap_content" android:textSize="14sp"
                 android:text="Click on the menus above to complete all of the information."/>
 
             <TextView
@@ -339,9 +313,33 @@
                 android:textColor="@color/colorOkhome"
                 android:gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:textSize="13sp"
-                android:text="View terms &amp; conditions"/>
+                android:layout_height="wrap_content" android:textSize="14sp"
+                android:text="View terms of privacy"/>
+            <LinearLayout
+                android:layout_marginTop="7dp"
+                android:paddingLeft="10dp" android:paddingRight="10dp"
+                android:id="@+id/actFillupUserInfo_vgProfileNotUpdatedYet"
+                android:gravity="center_vertical"
+                android:background="#ff3333"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp">
 
+                <ImageView
+                    android:layout_marginRight="8dp"
+                    android:adjustViewBounds="true"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content" android:src="@drawable/ic_check_type2" />
+                <TextView
+                    android:textColor="#ffffff"
+                    style="@style/FontOpenSansLight"
+                    android:text="Your profile will be updated after admin's approval"
+                    android:lines="1"
+                    android:textSize="14sp"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,7 +45,8 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     @BindView(R.id.actFillupUserInfo_ivBarPreferenceArea)               ImageView ivBarPreferenceArea;
     @BindView(R.id.actFillUpUserInfo_tvTitle)                           TextView tvTitle;
     @BindView(R.id.actFillUpUserInfo_tvExtraInfo)                       TextView tvExtraInfo;
-
+    @BindView(R.id.actFillupUserInfo_vgProfileNotUpdatedYet)
+    ViewGroup vgProfileNot;
     private boolean accountApproved = false;
     private PhotoDialog ktpPhotoDialog = null;
     private PhotoDialog skckPhotoDialog = null;
@@ -238,7 +240,11 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
         }catch(OkhomeException e){
             ivBarJob.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
         }
-
+        if(profile.confirmYN.equals("Y")){
+            vgProfileNot.setVisibility(View.GONE);
+        }else{
+            vgProfileNot.setVisibility(View.VISIBLE);
+        }
     }
 
     //get progress of registering info from server

@@ -147,5 +147,4 @@ public class TraineeMainActivity extends OkHomeParentActivity {
 
     }
 
-
 }

@@ -46,7 +46,7 @@
                         android:layout_height="wrap_content"
                         android:text="Jhon"
                         android:textColor="@color/colorOkhome"
-                        android:textSize="17sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:layout_marginTop="1dp"
@@ -55,7 +55,7 @@
                         android:layout_height="wrap_content"
                         android:text="Hello Nice to meet ya!"
                         android:textColor="#5b5e6a"
-                        android:textSize="14sp" />
+                        android:textSize="15sp" />
 
                 </LinearLayout>
                 <LinearLayout

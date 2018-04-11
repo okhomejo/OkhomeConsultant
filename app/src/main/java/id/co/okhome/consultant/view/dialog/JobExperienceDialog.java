@@ -50,8 +50,8 @@ public class JobExperienceDialog extends DialogParent {
                 calendar.set(Calendar.MONTH, month);
 
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
-
                 tv.setText(dateFormat.format(calendar.getTime()));
+
                 if(!tvFromDate.getText().toString().matches("") && tvToDate.getText().toString().matches("")) {
                     onEditEndDate();
                 }

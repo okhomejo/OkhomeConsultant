@@ -8,7 +8,6 @@ import android.database.MatrixCursor;
 import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -134,13 +133,13 @@ public class FaqActivity extends OkHomeParentActivity {
         final String cachingKey = "CACHING_FAQ_KEYWORD:" + category;
         faqKeywords = SimpleCachingManager.getData(cachingKey);
 
-        //if there is a data, It does't need to go more
+        // if there is a data, It does't need to go more
         if(faqKeywords != null){
             searchFunction();
             return;
         }
 
-        //faqKeywords = result;
+        // faqKeywords = result;
         final ProgressDialog p = ProgressDialog.show(this, null, "Loading keywords...");
         OkhomeRestApi.getCommonClient().getAllFaqsKeywords(category).enqueue(new RetrofitCallback<Map<Integer, List<String>>>() {
             @Override

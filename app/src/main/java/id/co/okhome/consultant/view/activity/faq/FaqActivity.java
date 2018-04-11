@@ -8,6 +8,7 @@ import android.database.MatrixCursor;
 import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -80,16 +81,15 @@ public class FaqActivity extends OkHomeParentActivity {
     }
 
     private void initFaqParams(){
-        String faqCategory = getIntent().getStringExtra("FAQ_CATEGORY");
-        int faqId = getIntent().getIntExtra("FAQ_ID", 0);
-        String faqTitle = getIntent().getStringExtra("FAQ_TITLE");
+        int faqId           = getIntent().getIntExtra("FAQ_ID", 0);
+        String faqCategory  = getIntent().getStringExtra("FAQ_CATEGORY");
+        String faqTitle     = getIntent().getStringExtra("FAQ_TITLE");
 
-        if(faqTitle != null){
+        if (faqTitle != null) {
             tvTitle.setText(faqTitle);
-        }else{
+        } else {
             tvTitle.setText("Faq");
         }
-
         getAllFaq(faqId, faqCategory);
         initAllFaqKeywords(faqCategory);
     }
@@ -97,13 +97,13 @@ public class FaqActivity extends OkHomeParentActivity {
     //init recycler view and adapter
     private void initRecyclerView(){
         String faqCategory = getIntent().getStringExtra("FAQ_CATEGORY");
-        if(faqCategory.equals(FaqModel.CATEGORY_MANUAL_TRAINEE)){
+        if (faqCategory.equals(FaqModel.CATEGORY_MANUAL_TRAINEE)){
             adapter = new JoRecyclerAdapter(new JoRecyclerAdapter.Params()
                     .setRecyclerView(rcv)
                     .setItemViewHolderCls(ManualParentVHolder.class)
                     .setFooterViewHolderCls(BlankVHolder.class)
             );
-        }else{
+        } else {
             adapter = new JoRecyclerAdapter(new JoRecyclerAdapter.Params()
                     .setRecyclerView(rcv)
                     .setItemViewHolderCls(FaqVHolder.class)
@@ -153,7 +153,6 @@ public class FaqActivity extends OkHomeParentActivity {
             @Override
             public void onFinish() {
                 super.onFinish();
-
                 p.dismiss();
             }
         });
@@ -261,6 +260,15 @@ public class FaqActivity extends OkHomeParentActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (tvSearch.getVisibility() == View.VISIBLE) {
+            checkIfSearchHidden();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     @OnClick(R.id.actTraineeFAQ_vbtnSearch)
     public void onClickSearchFaq() {
         checkIfSearchHidden();
@@ -275,5 +283,4 @@ public class FaqActivity extends OkHomeParentActivity {
     public void onFadeBgClick() {
         onClickSearchFaq();
     }
-
 }

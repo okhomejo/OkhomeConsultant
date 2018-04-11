@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.twinkle94.monthyearpicker.picker.YearMonthPickerDialog;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -15,7 +13,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.exception.OkhomeException;
-import id.co.okhome.consultant.lib.DatePickerDialog;
+import id.co.okhome.consultant.lib.CustomDatePickerDialog;
 import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
@@ -44,7 +42,7 @@ public class JobExperienceDialog extends DialogParent {
     }
 
     public void callYearMonthPicker(final TextView tv, String fromTo) {
-        DatePickerDialog yearMonthPickerDialog = new DatePickerDialog(activity, new DatePickerDialog.OnDateSetListener() {
+        CustomDatePickerDialog yearMonthPickerDialog = new CustomDatePickerDialog(activity, new CustomDatePickerDialog.OnDateSetListener() {
             @Override
             public void onYearMonthSet(int year, int month) {
                 Calendar calendar = Calendar.getInstance(Locale.ENGLISH);

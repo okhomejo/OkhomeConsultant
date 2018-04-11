@@ -40,13 +40,14 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     @BindView(R.id.actFillupUserInfo_ivBarBasicInfo)                    ImageView ivBarBasicInfo;
     @BindView(R.id.actFillupUserInfo_ivBarAdditionalInfo)               ImageView ivBarAdditionalInfo;
     @BindView(R.id.actFillupUserInfo_ivBarKTP)                          ImageView ivBarKTP;
+    @BindView(R.id.actFillupUserInfo_ivBarSKCK)                         ImageView ivBarSKCK;
     @BindView(R.id.actFillupUserInfo_ivBarPreferenceArea)               ImageView ivBarPreferenceArea;
     @BindView(R.id.actFillUpUserInfo_tvTitle)                           TextView tvTitle;
     @BindView(R.id.actFillUpUserInfo_tvExtraInfo)                       TextView tvExtraInfo;
 
     private boolean accountApproved = false;
-    PhotoDialog ktpPhotoDialog = null;
-
+    private PhotoDialog ktpPhotoDialog = null;
+    private PhotoDialog skckPhotoDialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +78,6 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
                 tvTitle.setText("Profile information");
             }
         }
-
-
     }
 
     //check exception. if no error, go to next page.
@@ -122,6 +121,15 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
         //Section4 data entry completion check
         try{
+            OkhomeException.chkException(profile.skckPhotoUrl == null, "");
+
+        }catch(OkhomeException e){
+            ToastUtil.showToast("Data entry(SKCK Information) must be completed.");
+            return;
+        }
+
+        //Section5 data entry completion check
+        try{
             OkhomeException.chkException(profile.workingRegions == null, "");
 
         }catch(OkhomeException e){
@@ -129,7 +137,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
             return;
         }
 
-        //Section5 data entry completion check
+        //Section6 data entry completion check
         try{
             OkhomeException.chkException(OkhomeUtil.isEmpty(profile.sdPhotoUrl)
                     && OkhomeUtil.isEmpty(profile.smaPhotoUrl)
@@ -141,7 +149,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
             return;
         }
 
-        //Section6 data entry completion check
+        //Section7 data entry completion check
         try{
             OkhomeException.chkException(OkhomeUtil.isEmpty(profile.pastCareers), "");
 
@@ -193,7 +201,16 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
             ivBarKTP.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
         }
 
-        //step 4. Preferred area for cleaning
+        //step 4. SKCK photo
+        try{
+            OkhomeException.chkException(profile.skckPhotoUrl == null, "");
+
+            ivBarSKCK.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
+        }catch(OkhomeException e){
+            ivBarSKCK.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
+        }
+
+        //step 5. Preferred area for cleaning
         try{
             OkhomeException.chkException(profile.workingRegions == null, "");
 
@@ -202,7 +219,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
             ivBarPreferenceArea.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
         }
 
-        //step 5. Education information
+        //step 6. Education information
         try{
             OkhomeException.chkException(OkhomeUtil.isEmpty(profile.sdPhotoUrl)
                     && OkhomeUtil.isEmpty(profile.smaPhotoUrl)
@@ -214,7 +231,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
             ivBarEdu.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
         }
 
-        //step 6. Job experience
+        //step 7. Job experience
         try{
             OkhomeException.chkException(OkhomeUtil.isEmpty(profile.pastCareers), "");
             ivBarJob.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
@@ -279,10 +296,31 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
         });
     }
 
+    private void onSkckPhotoChoosed(final String imgPath){
+
+        final ProgressDialog p = ProgressDialog.show(this, "", "Upload SKCK");
+        new ImageUploadCall(imgPath).asyncWork(new ApiResultCallback<String>() {
+            @Override
+            public void onFinish(ApiResult<String> apiResult) {
+                p.dismiss();
+                if(apiResult.resultCode == 200){
+                    //update photo url
+                    updatePhoto("skck_photo_url", apiResult.object);
+                }else{
+                    //failed
+                    ToastUtil.showToast(apiResult.result);
+                }
+            }
+        });
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if(skckPhotoDialog != null){
+            skckPhotoDialog.onActivityResult(requestCode, resultCode, data);
+        }
         if(ktpPhotoDialog != null){
             ktpPhotoDialog.onActivityResult(requestCode, resultCode, data);
         }
@@ -300,13 +338,12 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
                         public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
                             ;
                             if(actionCode == ACTIONCODE_OK){
-                                String imgPath = (String)mapResult.get("imgPath");
+                                String imgPath = (String) mapResult.get("imgPath");
                                 onKtpPhotoChoosed(imgPath);
                             }
                         }
                     });
         }
-
         ktpPhotoDialog.show();
 
 //        if(TextUtils.isEmpty(ConsultantLoggedIn.get().profile.ktpPhotoUrl)){
@@ -332,6 +369,26 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 //
 //
 //        }
+    }
+
+    @OnClick({R.id.actFillUpUserInfo_vbtnSKCK})
+    public void onClickSKCK(View v){
+        if(skckPhotoDialog == null){
+            skckPhotoDialog = new PhotoDialog(FillupUserInfoActivity.this,
+                    "Change SKCK photo",
+                    ConsultantLoggedIn.get().profile.skckPhotoUrl,
+                    new DialogParent.CommonDialogListener() {
+                        @Override
+                        public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
+                            ;
+                            if(actionCode == ACTIONCODE_OK){
+                                String imgPath = (String) mapResult.get("imgPath");
+                                onSkckPhotoChoosed(imgPath);
+                            }
+                        }
+                    });
+        }
+        skckPhotoDialog.show();
     }
 
     @OnClick({R.id.actFillUpUserInfo_vbtnBasicInformation})

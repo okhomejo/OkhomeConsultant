@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import org.joda.time.DateTime;
+import org.joda.time.Years;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -83,7 +88,6 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
     @Override
     public void onSelect() {
         View v = null;
-
     }
 
     @Override
@@ -102,7 +106,7 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
     private void adaptViews(TraineePageHomeModel traineePageHome) {
         // Update user information
         tvName.setText(traineePageHome.name);
-        String accountType = "", gender = "";
+        String accountType = "", gender = "", birthday = "";
         if (traineePageHome.type.equals("T")) {
             accountType = "Trainee";
         } else if (traineePageHome.type.equals("C")) {
@@ -113,7 +117,16 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
         } else if (traineePageHome.gender.equals("F")) {
             gender = "Female";
         }
-        tvSubName.setText(String.format("%s, %s, %s", accountType, traineePageHome.birthdate, gender));
+        if (!TextUtils.isEmpty(traineePageHome.birthdate)) {
+            DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd");
+            DateTime birthDate = dtf.parseDateTime(traineePageHome.birthdate);
+            DateTime today = DateTime.now();
+
+            Years age = Years.yearsBetween(birthDate, today);
+            birthday = String.valueOf(age.getYears());
+        }
+
+        tvSubName.setText(String.format("%s, %s, %s", accountType, birthday, gender));
         Glide.with(this).load(traineePageHome.photoUrl).thumbnail(0.5f).into(ivPhoto);
 
         // Update next job training

@@ -4,12 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+
+import org.joda.time.DateTime;
+import org.joda.time.Years;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -43,7 +55,7 @@ public class SettingTabFragment extends Fragment implements TabFragmentStatusLis
 
     private void init() {
         AccountModel account = ConsultantLoggedIn.get();
-        String accountType = "", gender = "";
+        String accountType = "", gender = "", age = "";
         if (account.type.equals("T")) {
             accountType = "Trainee";
         } else if (account.type.equals("C")) {
@@ -54,9 +66,15 @@ public class SettingTabFragment extends Fragment implements TabFragmentStatusLis
         } else if (account.profile.gender.equals("F")) {
             gender = "Female";
         }
-        String personInfo = account.profile.name + ", " + accountType + ", " + gender;
+        DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd");
+        DateTime birthDate = dtf.parseDateTime(account.profile.birthdate);
+        DateTime today = DateTime.now();
+
+        Years jodaAge = Years.yearsBetween(birthDate, today);
+        age = String.valueOf(jodaAge.getYears());
+
+        tvPersonInfo.setText(String.format("%s, %s, %s, %s", account.profile.name, accountType, age, gender));
         tvEmail.setText(account.email);
-        tvPersonInfo.setText(personInfo);
         Glide.with(this).load(account.profile.photoUrl).thumbnail(0.5f).into(ivProfileImage);
     }
 

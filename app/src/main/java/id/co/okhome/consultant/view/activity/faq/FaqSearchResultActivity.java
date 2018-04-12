@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.RecyclerViewPositionManager;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
@@ -46,6 +47,18 @@ public class FaqSearchResultActivity extends OkHomeParentActivity {
 
         ButterKnife.bind(this);
         init();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RecyclerViewPositionManager.clear(rcv);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        RecyclerViewPositionManager.save(rcv);
     }
 
     private void init() {
@@ -85,6 +98,7 @@ public class FaqSearchResultActivity extends OkHomeParentActivity {
             @Override
             public void onSuccess(final List<FaqModel> faqs) {
                 adapter.setListItems(faqs);
+                RecyclerViewPositionManager.restore(rcv);
             }
 
             @Override

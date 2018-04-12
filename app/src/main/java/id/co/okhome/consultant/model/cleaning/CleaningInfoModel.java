@@ -4,7 +4,7 @@ import java.util.List;
 
 public class CleaningInfoModel {
     public int id;
-    public String address, homeType, homeSize;
+    public String title, address, homeType, homeSize;
     public String petType; // CAT,DOG | CAT | NONE
     public int roomCnt, restroomCnt;
     public double lat, lng;

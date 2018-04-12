@@ -15,6 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.RecyclerViewPositionManager;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.FaqModel;
@@ -63,6 +64,18 @@ public class ManualTabFragment extends Fragment implements TabFragmentStatusList
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RecyclerViewPositionManager.clear(rcv);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        RecyclerViewPositionManager.save(rcv);
+    }
+
     private void init(){
         adapter = new JoRecyclerAdapter(
                 new JoRecyclerAdapter.Params()
@@ -84,7 +97,7 @@ public class ManualTabFragment extends Fragment implements TabFragmentStatusList
             @Override
             public void onSuccess(List<FaqModel> faqs) {
                 adapter.setListItems(faqs);
-                adapter.notifyDataSetChanged();
+                RecyclerViewPositionManager.restore(rcv);
             }
 
             @Override

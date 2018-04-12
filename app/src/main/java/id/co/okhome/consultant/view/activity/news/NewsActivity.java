@@ -10,6 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.RecyclerViewPositionManager;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
@@ -38,6 +39,18 @@ public class NewsActivity extends OkHomeParentActivity {
         init();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RecyclerViewPositionManager.clear(rcv);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        RecyclerViewPositionManager.save(rcv);
+    }
+
     private void init() {
         adapter = new JoRecyclerAdapter(new JoRecyclerAdapter.Params()
                 .setRecyclerView(rcv)
@@ -55,6 +68,7 @@ public class NewsActivity extends OkHomeParentActivity {
             @Override
             public void onSuccess(final List<NewsModel> news) {
                 adapter.setListItems(news);
+                RecyclerViewPositionManager.restore(rcv);
             }
 
             @Override

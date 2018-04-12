@@ -8,6 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
@@ -19,8 +26,7 @@ import id.co.okhome.consultant.view.activity.cleaning.PreviousCleaningsActivity;
  * Created by jo on 2018-04-07.
  */
 
-public class JobHistoryTabFragment extends Fragment implements TabFragmentStatusListener {
-
+public class JobHistoryTabFragment extends Fragment implements TabFragmentStatusListener, OnMapReadyCallback {
 
     @Nullable
     @Override
@@ -32,6 +38,7 @@ public class JobHistoryTabFragment extends Fragment implements TabFragmentStatus
     public void onStart() {
         super.onStart();
         ButterKnife.bind(this, getView());
+        init();
     }
 
     @Override
@@ -49,16 +56,48 @@ public class JobHistoryTabFragment extends Fragment implements TabFragmentStatus
 
     }
 
-    @OnClick(R.id.fragTabJobs_vbtnSeeNextCleaning)
-    public void onClickSeeNext(View v){
-        startActivity(new Intent(getContext(), NextCleaningsActivity.class));
+    private void init() {
+        MapFragment mapFragment = (MapFragment) getActivity().getFragmentManager()
+                .findFragmentById(R.id.fragTabJobs_map);
+        mapFragment.getMapAsync(this);
+    }
 
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(0, 0))
+                .title("Marker"));
+    }
+
+
+//    private void getPreviousCleaningTasks() {
+//        OkhomeRestApi.getCleaningTaskClient().getPrevCleaningTasks(ConsultantLoggedIn.id()).enqueue(new RetrofitCallback<List<CleaningInfoModel>>() {
+//            @Override
+//            public void onSuccess(List<CleaningInfoModel> cleaningList) {
+//                adaptViews(cleaningList);
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                super.onFinish();
+//            }
+//        });
+//    }
+//
+//    private void adaptViews(List<CleaningInfoModel> cleaningList) {
+//        for (CleaningInfoModel model : cleaningList) {
+//
+//        }
+//    }
+
+    @OnClick(R.id.fragTabJobs_vbtnSeeNextCleaning)
+    public void onClickSeeNext() {
+        startActivity(new Intent(getContext(), NextCleaningsActivity.class));
     }
 
     @OnClick(R.id.fragTabJobs_vbtnSeePreviousCleaning)
-    public void onClickPreviousNext(View v){
+    public void onClickPreviousNext() {
         startActivity(new Intent(getContext(), PreviousCleaningsActivity.class));
-
     }
-
 }

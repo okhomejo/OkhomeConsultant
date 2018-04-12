@@ -23,12 +23,19 @@ public class CleaningDetailActivity extends OkHomeParentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cleaning_info);
-        ButterKnife.bind(this);
-
         OkhomeUtil.setWhiteSystembar(this);
 
-        QuickReturnViewInitializor.init(svItem, vgActions);
+        ButterKnife.bind(this);
+        init();
+    }
 
+    private void init() {
+        boolean isAccepted = getIntent().getBooleanExtra("TASK_ACCEPTED", false);
+        if (isAccepted) {
+            vgActions.setVisibility(View.GONE);
+        } else {
+            QuickReturnViewInitializor.init(svItem, vgActions);
+        }
         vLoading.setVisibility(View.GONE);
     }
 }

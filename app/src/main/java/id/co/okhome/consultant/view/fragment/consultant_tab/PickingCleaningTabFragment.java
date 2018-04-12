@@ -20,7 +20,6 @@ import id.co.okhome.consultant.view.activity.cleaning.CleaningDetailActivity;
 
 public class PickingCleaningTabFragment extends Fragment implements TabFragmentStatusListener {
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

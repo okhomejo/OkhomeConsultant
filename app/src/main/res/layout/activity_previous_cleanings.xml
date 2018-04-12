@@ -1,9 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#ffffff"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="id.co.okhome.consultant.view.activity.cleaning.PreviousCleaningsActivity">
+    android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_marginEnd="20dp"
+        android:id="@+id/actPrevCleanings_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="76dp">
+
+        <LinearLayout
+            android:id="@+id/actPrevCleanings_vbtnX"
+            android:paddingStart="17dp"
+            android:paddingEnd="20dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <ImageView
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_leftarrow"
+                android:layout_width="18dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <TextView
+            android:layout_toEndOf="@+id/actPrevCleanings_vbtnX"
+            style="@style/FontOpenSansLight"
+            android:textColor="#000000"
+            android:id="@+id/actPrevCleanings_tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Previous cleaning Tasks"
+            android:textSize="20sp"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_marginEnd="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#000000"/>
+
+    <RelativeLayout
+        android:gravity="center|center_horizontal"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/actPrevCleanings_swipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:scrollbars="vertical"
+                android:id="@+id/actPrevCleanings_rcv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:listSelector="@android:color/transparent"
+                android:cacheColorHint="@android:color/transparent"
+                android:divider="#00000000"/>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <ProgressBar
+            android:id="@+id/actPrevCleanings_vProgress"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

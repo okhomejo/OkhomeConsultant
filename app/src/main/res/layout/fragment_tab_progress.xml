@@ -4,424 +4,454 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_marginLeft="20dp" android:layout_marginRight="20dp"
-            android:orientation="vertical"
+        <ProgressBar
+            android:id="@+id/fragTabProgress_vProgress"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
+        <ScrollView
+            android:id="@+id/fragTabProgress_svItem"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!-- 수입 -->
             <LinearLayout
-                android:layout_marginTop="26dp"
+                android:layout_marginLeft="20dp" android:layout_marginRight="20dp"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <!-- title -->
+                android:layout_height="match_parent">
+
+                <!-- 수입 -->
                 <LinearLayout
+                    android:layout_marginTop="26dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        style="@style/FontOpenSansLight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="40dp"
-                        android:text="THIS MONTH'S SALARY"
-                        android:textColor="@color/colorLightBlueGray"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/fragTabProgress_vgbtnSalary"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
+                    android:orientation="vertical">
+                    <!-- title -->
                     <LinearLayout
-                        android:layout_marginRight="45dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical">
 
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:text="THIS MONTH'S SALARY"
+                            android:textColor="@color/colorLightBlueGray"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/fragTabProgress_vgbtnSalary"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
                         <LinearLayout
-                            android:paddingTop="2dp" android:paddingBottom="5dp"
-                            android:paddingLeft="24dp"
-                            android:background="@drawable/bg_leftline_bold_gray"
+                            android:layout_marginRight="45dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/fragTabHomeForTrainee_tvTrainingTitle"
-                                style="@style/FontOpenSansLight"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:text="Rp 1.749.500"
-                                android:textColor="@color/colorDeepGray"
-                                android:textSize="30sp" />
-
-                            <TextView
-                                style="@style/FontOpenSansLight"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:text="Total revenue in June"
-                                android:textColor="@color/colorBlueGray"
-                                android:textSize="14sp" />
-
-
-                            <TextView
-                                android:id="@+id/fragTabHomeForTrainee_tvTrainingTime"
-                                style="@style/FontOpenSansLight"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginTop="2dp"
-                                android:text="Rp 749.000 is paid"
-                                android:textColor="@color/colorOkhome"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/fragTabHomeForTrainee_tvBalance"
-                                style="@style/FontOpenSansRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginTop="2dp"
-                                android:text="Rp 59.000 is your current balance"
-                                android:textColor="@color/colorGreen"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:layout_alignParentRight="true"
-                        android:background="@color/colorOkhomeLight"
-                        android:layout_width="33dp"
-                        android:layout_height="33dp">
-
-                        <ImageView
-                            android:src="@drawable/ic_right_simplearrow_left_white"
-                            android:adjustViewBounds="true"
-                            android:layout_width="14dp"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-            <!-- 수입 -->
-            <LinearLayout
-                android:layout_marginTop="30dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <!-- title -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        style="@style/FontOpenSansLight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="40dp"
-                        android:text="CUSTOMER'S REVIEW SCORE"
-                        android:textColor="@color/colorLightBlueGray"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_marginRight="45dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical">
-
-                        <LinearLayout
-                            android:id="@+id/fragTabProgress_vgbtnReview"
-                            android:orientation="vertical"
-                            android:paddingTop="2dp" android:paddingBottom="5dp"
-                            android:paddingLeft="24dp"
-                            android:background="@drawable/bg_leftline_bold_gray"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-                                <!-- cell -->
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        style="@style/FontOpenSansLight"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerVertical="true"
-                                        android:text="4.5"
-                                        android:textColor="@color/colorDeepGray"
-                                        android:textSize="30sp" />
-
-                                    <TextView
-                                        style="@style/FontOpenSansLight"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerVertical="true"
-                                        android:text="Latest 7 avarage"
-                                        android:textColor="@color/colorBlueGray"
-                                        android:textSize="14sp" />
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_marginLeft="22dp"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        style="@style/FontOpenSansLight"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerVertical="true"
-                                        android:text="4.5"
-                                        android:textColor="@color/colorDeepGray"
-                                        android:textSize="30sp" />
-
-                                    <TextView
-                                        style="@style/FontOpenSansLight"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerVertical="true"
-                                        android:text="Overall average"
-                                        android:textColor="@color/colorBlueGray"
-                                        android:textSize="14sp" />
-
-
-                                </LinearLayout>
-
-                            </LinearLayout>
+                            android:gravity="center_vertical">
 
                             <LinearLayout
-                                android:layout_marginTop="2dp"
+                                android:paddingTop="2dp" android:paddingBottom="5dp"
+                                android:paddingLeft="24dp"
+                                android:background="@drawable/bg_leftline_bold_gray"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/fragTabProgress_tvSalaryRevenue"
                                     style="@style/FontOpenSansLight"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
-                                    android:text="On average, Other consultants get 4.5 score"
+                                    android:text="Rp 1.749.500"
+                                    android:textColor="@color/colorDeepGray"
+                                    android:textSize="30sp" />
+
+                                <TextView
+                                    android:id="@+id/fragTabProgress_tvSalaryMonth"
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="Total revenue"
+                                    android:textColor="@color/colorBlueGray"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/fragTabProgress_tvSalaryPaid"
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginTop="2dp"
+                                    android:text="Rp 749.000 is paid"
                                     android:textColor="@color/colorOkhome"
                                     android:textSize="14sp" />
 
+                                <TextView
+                                    android:id="@+id/fragTabProgress_tvSalaryBalance"
+                                    style="@style/FontOpenSansRegular"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginTop="2dp"
+                                    android:text="Rp 59.000 is your current balance"
+                                    android:textColor="@color/colorGreen"
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/colorOkhomeLight"
+                            android:layout_width="33dp"
+                            android:layout_height="33dp">
 
-                    </LinearLayout>
+                            <ImageView
+                                android:src="@drawable/ic_right_simplearrow_left_white"
+                                android:adjustViewBounds="true"
+                                android:layout_width="14dp"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:layout_alignParentRight="true"
-                        android:background="@color/colorOkhomeLight"
-                        android:layout_width="33dp"
-                        android:layout_height="33dp">
+                    </RelativeLayout>
 
-                        <ImageView
-                            android:src="@drawable/ic_right_simplearrow_left_white"
-                            android:adjustViewBounds="true"
-                            android:layout_width="14dp"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-            <!-- 수입 -->
-            <LinearLayout
-                android:layout_marginTop="30dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <!-- title -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        style="@style/FontOpenSansLight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="40dp"
-                        android:text="HOW MANY TIMES YOU HAVE WORKED"
-                        android:textColor="@color/colorLightBlueGray"
-                        android:textSize="15sp" />
                 </LinearLayout>
 
-                <RelativeLayout
-                    android:layout_marginTop="10dp"
+                <!-- 수입 -->
+                <LinearLayout
+                    android:layout_marginTop="30dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <!-- title -->
                     <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_marginRight="45dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical">
 
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:text="CUSTOMER'S REVIEW SCORE"
+                            android:textColor="@color/colorLightBlueGray"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
                         <LinearLayout
                             android:orientation="vertical"
-                            android:paddingTop="2dp" android:paddingBottom="5dp"
-                            android:paddingLeft="24dp"
-                            android:background="@drawable/bg_leftline_bold_gray"
+                            android:layout_marginRight="45dp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
+
                             <LinearLayout
+                                android:id="@+id/fragTabProgress_vgbtnReview"
+                                android:orientation="vertical"
+                                android:paddingTop="2dp" android:paddingBottom="5dp"
+                                android:paddingLeft="24dp"
+                                android:background="@drawable/bg_leftline_bold_gray"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
-                                <!-- cell -->
                                 <LinearLayout
-                                    android:layout_width="90dp"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                    <!-- cell -->
                                     <LinearLayout
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content">
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/fragTabProgress_tvReviewLatest"
+                                            style="@style/FontOpenSansLight"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:text="4.5"
+                                            android:textColor="@color/colorDeepGray"
+                                            android:textSize="30sp" />
+
                                         <TextView
                                             style="@style/FontOpenSansLight"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_centerVertical="true"
-                                            android:text="51"
-                                            android:textColor="@color/colorDeepGray"
-                                            android:textSize="30sp" />
+                                            android:text="Latest 7 avarage"
+                                            android:textColor="@color/colorBlueGray"
+                                            android:textSize="14sp" />
+
 
                                     </LinearLayout>
 
-
-                                    <TextView
-                                        style="@style/FontOpenSansLight"
+                                    <LinearLayout
+                                        android:layout_marginLeft="22dp"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_centerVertical="true"
-                                        android:text="Overall"
-                                        android:textColor="@color/colorBlueGray"
-                                        android:textSize="14sp" />
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/fragTabProgress_tvReviewOverall"
+                                            style="@style/FontOpenSansLight"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:text="4.5"
+                                            android:textColor="@color/colorDeepGray"
+                                            android:textSize="30sp" />
+
+                                        <TextView
+                                            style="@style/FontOpenSansLight"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:text="Overall average"
+                                            android:textColor="@color/colorBlueGray"
+                                            android:textSize="14sp" />
+
+
+                                    </LinearLayout>
 
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:layout_width="90dp"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content">
-                                        <TextView
-                                            style="@style/FontOpenSansLight"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_centerVertical="true"
-                                            android:text="50"
-                                            android:textColor="@color/colorDeepGray"
-                                            android:textSize="30sp" />
-
-                                    </LinearLayout>
+                                    android:layout_marginTop="2dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
 
                                     <TextView
+                                        android:id="@+id/fragTabProgress_tvReviewOther"
                                         style="@style/FontOpenSansLight"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_centerVertical="true"
-                                        android:text="July"
-                                        android:textColor="@color/colorBlueGray"
-                                        android:textSize="14sp" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="90dp"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content">
-                                        <TextView
-                                            style="@style/FontOpenSansLight"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_centerVertical="true"
-                                            android:text="5"
-                                            android:textColor="@color/colorDeepGray"
-                                            android:textSize="30sp" />
-
-                                    </LinearLayout>
-
-
-                                    <TextView
-                                        style="@style/FontOpenSansLight"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerVertical="true"
-                                        android:text="Jun"
-                                        android:textColor="@color/colorBlueGray"
+                                        android:text="On average, Other consultants get 4.5 score"
+                                        android:textColor="@color/colorOkhome"
                                         android:textSize="14sp" />
 
                                 </LinearLayout>
 
                             </LinearLayout>
-                            <TextView
-                                android:layout_marginTop="2dp"
-                                style="@style/FontOpenSansLight"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:text="On average, Other consultants work 20 times a month."
-                                android:textColor="@color/colorOkhome"
-                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/colorOkhomeLight"
+                            android:layout_width="33dp"
+                            android:layout_height="33dp">
+
+                            <ImageView
+                                android:src="@drawable/ic_right_simplearrow_left_white"
+                                android:adjustViewBounds="true"
+                                android:layout_width="14dp"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <!-- 수입 -->
+                <LinearLayout
+                    android:id="@+id/fragTabProgress_vgWorked"
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+                    <!-- title -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:text="HOW MANY TIMES YOU HAVE WORKED"
+                            android:textColor="@color/colorLightBlueGray"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_marginRight="45dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:paddingTop="2dp" android:paddingBottom="5dp"
+                                android:paddingLeft="24dp"
+                                android:background="@drawable/bg_leftline_bold_gray"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                    <!-- cell -->
+                                    <LinearLayout
+                                        android:id="@+id/fragTabProgress_vgWorkedOverall"
+                                        android:layout_width="90dp"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:visibility="visible">
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content">
+                                            <TextView
+                                                android:id="@+id/fragTabProgress_tvWorkedOverall"
+                                                style="@style/FontOpenSansLight"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerVertical="true"
+                                                android:text="51"
+                                                android:textColor="@color/colorDeepGray"
+                                                android:textSize="30sp" />
+
+                                        </LinearLayout>
+
+
+                                        <TextView
+                                            android:id="@+id/fragTabProgress_tvWorkedOverallMonth"
+                                            style="@style/FontOpenSansLight"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:text="Overall"
+                                            android:textColor="@color/colorBlueGray"
+                                            android:textSize="14sp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/fragTabProgress_vgWorkedNext"
+                                        android:layout_width="90dp"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:visibility="gone">
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content">
+                                            <TextView
+                                                android:id="@+id/fragTabProgress_tvWorkedNext"
+                                                style="@style/FontOpenSansLight"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerVertical="true"
+                                                android:text="50"
+                                                android:textColor="@color/colorDeepGray"
+                                                android:textSize="30sp" />
+
+                                        </LinearLayout>
+
+
+                                        <TextView
+                                            android:id="@+id/fragTabProgress_tvWorkedNextMonth"
+                                            style="@style/FontOpenSansLight"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:text="July"
+                                            android:textColor="@color/colorBlueGray"
+                                            android:textSize="14sp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/fragTabProgress_vgWorkedLast"
+                                        android:layout_width="90dp"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:visibility="gone">
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content">
+                                            <TextView
+                                                android:id="@+id/fragTabProgress_tvWorkedLast"
+                                                style="@style/FontOpenSansLight"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerVertical="true"
+                                                android:text="5"
+                                                android:textColor="@color/colorDeepGray"
+                                                android:textSize="30sp" />
+
+                                        </LinearLayout>
+
+
+                                        <TextView
+                                            android:id="@+id/fragTabProgress_tvWorkedLastMonth"
+                                            style="@style/FontOpenSansLight"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:text="Jun"
+                                            android:textColor="@color/colorBlueGray"
+                                            android:textSize="14sp" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                                <TextView
+                                    android:id="@+id/fragTabProgress_tvWorkedAverage"
+                                    android:layout_marginTop="2dp"
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="On average, Other consultants work 20 times a month."
+                                    android:textColor="@color/colorOkhome"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+
                         </LinearLayout>
 
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
-
-                </RelativeLayout>
-
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
 
+    </RelativeLayout>
 
 </LinearLayout>

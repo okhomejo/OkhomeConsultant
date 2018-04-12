@@ -15,6 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.DelayedFinish;
 import id.co.okhome.consultant.lib.ViewHolderUtil;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
@@ -55,6 +56,10 @@ public class TraineeMainActivity extends OkHomeParentActivity {
         ButterKnife.findById(this, R.id.actMain_vgTabForTrainer).setVisibility(View.GONE);
     }
 
+    @Override
+    public void onBackPressed() {
+        DelayedFinish.delayedFinish(this, "App will close if pressed one more");
+    }
 
     public class MainTabAdapter extends FragmentTabAdapter implements ViewPager.OnPageChangeListener{
 

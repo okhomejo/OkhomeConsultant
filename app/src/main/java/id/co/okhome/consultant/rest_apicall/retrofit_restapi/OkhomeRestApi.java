@@ -51,5 +51,11 @@ public class OkhomeRestApi {
         return OkhomeRestApi.getInstance(TraineeClient.class);
     }
 
+    public final static ConsultantClient getConsultantClient(){
+        return OkhomeRestApi.getInstance(ConsultantClient.class);
+    }
 
+    public final static CleaningTaskClient getCleaningTaskClient(){
+        return OkhomeRestApi.getInstance(CleaningTaskClient.class);
+    }
 }

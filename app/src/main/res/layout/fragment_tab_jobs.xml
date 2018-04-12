@@ -70,11 +70,19 @@
                             android:layout_margin="1px"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
-                            <ImageView
+
+                            <fragment
+                                android:name="com.google.android.gms.maps.MapFragment"
+                                android:id="@+id/fragTabJobs_map"
                                 android:layout_margin="3dp"
-                                android:scaleType="centerCrop"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent" android:src="@drawable/sample_map"/>
+                                android:layout_height="match_parent"/>
+
+                            <!--<ImageView-->
+                                <!--android:layout_margin="3dp"-->
+                                <!--android:scaleType="centerCrop"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="match_parent" android:src="@drawable/sample_map"/>-->
 
 
                             <LinearLayout
@@ -138,7 +146,6 @@
                     android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
 
                 <TextView
-                    android:id="@+id/fragTabJobs_vbtnSeePreviousCleaning"
                     android:background="#ffffff"
                     style="@style/FontOpenSansLight"
                     android:layout_width="wrap_content"
@@ -149,6 +156,7 @@
                     android:textSize="15sp" />
 
                 <TextView
+                    android:id="@+id/fragTabJobs_vbtnSeePreviousCleaning"
                     android:layout_gravity="right"
                     android:paddingLeft="20dp"
                     android:background="#ffffff"

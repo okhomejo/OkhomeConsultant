@@ -3,7 +3,6 @@ package id.co.okhome.consultant.view.dialog;
 import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
@@ -125,6 +124,7 @@ public class NikInputDialog extends DialogParent {
             this.etPrev    = etPrev;
             this.etCur     = etCur;
             this.etNext    = etNext;
+
         }
 
         @Override

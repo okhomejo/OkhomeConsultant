@@ -41,7 +41,7 @@
                             android:layout_centerVertical="true"
                             android:text="Profile"
                             android:textColor="@color/colorBlueBlack"
-                            android:textSize="18sp" />
+                            android:textSize="19sp" />
 
                         <TextView
                             android:id="@+id/fragTabSettingsForConsultant_tvProfileInfo"
@@ -109,7 +109,7 @@
                         android:layout_centerVertical="true"
                         android:text="Account"
                         android:textColor="@color/colorBlueBlack"
-                        android:textSize="18sp" />
+                        android:textSize="19sp" />
 
                     <TextView
                         android:id="@+id/fragTabSettingsForConsultant_tvAccountEmail"
@@ -159,7 +159,7 @@
                         android:layout_centerVertical="true"
                         android:text="Manual"
                         android:textColor="@color/colorBlueBlack"
-                        android:textSize="18sp" />
+                        android:textSize="19sp" />
 
                     <TextView
                         style="@style/FontOpenSansLight"
@@ -208,7 +208,7 @@
                         android:layout_centerVertical="true"
                         android:text="News"
                         android:textColor="@color/colorBlueBlack"
-                        android:textSize="18sp" />
+                        android:textSize="19sp" />
 
                     <TextView
                         style="@style/FontOpenSansLight"
@@ -257,7 +257,7 @@
                         android:layout_centerVertical="true"
                         android:text="FAQ"
                         android:textColor="@color/colorBlueBlack"
-                        android:textSize="18sp" />
+                        android:textSize="19sp" />
 
                     <TextView
                         style="@style/FontOpenSansLight"
@@ -306,7 +306,7 @@
                         android:layout_centerVertical="true"
                         android:text="About"
                         android:textColor="@color/colorBlueBlack"
-                        android:textSize="18sp" />
+                        android:textSize="19sp" />
 
                     <TextView
                         style="@style/FontOpenSansLight"

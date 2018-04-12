@@ -45,8 +45,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     @BindView(R.id.actFillupUserInfo_ivBarPreferenceArea)               ImageView ivBarPreferenceArea;
     @BindView(R.id.actFillUpUserInfo_tvTitle)                           TextView tvTitle;
     @BindView(R.id.actFillUpUserInfo_tvExtraInfo)                       TextView tvExtraInfo;
-    @BindView(R.id.actFillupUserInfo_vgProfileNotUpdatedYet)
-    ViewGroup vgProfileNot;
+    @BindView(R.id.actFillupUserInfo_vgProfileNotUpdatedYet)            ViewGroup vgProfileNot;
     private boolean accountApproved = false;
     private PhotoDialog ktpPhotoDialog = null;
     private PhotoDialog skckPhotoDialog = null;
@@ -80,6 +79,8 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
                 tvTitle.setText("Profile information");
             }
         }
+
+        vgProfileNot.setVisibility(View.GONE);
     }
 
     //check exception. if no error, go to next page.
@@ -293,7 +294,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
                 p.dismiss();
                 if(apiResult.resultCode == 200){
                     //update photo url
-                    updatePhoto("ktp_photo_url", apiResult.object);
+                    updatePhoto("ktpPhotoUrl", apiResult.object);
                 }else{
                     //failed
                     ToastUtil.showToast(apiResult.result);
@@ -311,7 +312,9 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
                 p.dismiss();
                 if(apiResult.resultCode == 200){
                     //update photo url
-                    updatePhoto("skck_photo_url", apiResult.object);
+//                    updatePhoto("skck_photo_url", apiResult.object);
+                    updatePhoto("skckPhotoUrl", apiResult.object);
+
                 }else{
                     //failed
                     ToastUtil.showToast(apiResult.result);

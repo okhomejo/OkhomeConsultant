@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.FrameLayout;
 
 import com.mrjodev.jorecyclermanager.annotations.LayoutMatcher;
@@ -22,7 +23,7 @@ import java.util.Map;
  * Created by josongmin on 2016-03-23.
  */
 
-public class JoRecyclerAdapter<ITEM, HEADER, FOOTER> extends RecyclerView.Adapter{
+public class JoRecyclerAdapter<ITEM> extends RecyclerView.Adapter{
 
     private static final String LOGTAG = "JoDevRecyclerAdapter";
 
@@ -36,8 +37,8 @@ public class JoRecyclerAdapter<ITEM, HEADER, FOOTER> extends RecyclerView.Adapte
     private View vFooterLoading = null;
 
     private List<ITEM> listItems = new ArrayList<ITEM>();
-    private List<HEADER> listHeader = new ArrayList<HEADER>();
-    private List<FOOTER> listFooter = new ArrayList<FOOTER>();
+    private List<Object> listHeader = new ArrayList<>();
+    private List<Object> listFooter = new ArrayList<>();
 
     private int itemSize = 0, headerSize = 0, footerSize = 0, totalSize = 0, quickHeaderViewSize = 0, footerLoadingViewSize = 0;
     private Params params;
@@ -198,28 +199,28 @@ public class JoRecyclerAdapter<ITEM, HEADER, FOOTER> extends RecyclerView.Adapte
         //dd
     }
     /**헤더아이템 추가*/
-    public void addHeaderItem(HEADER header){
+    public void addHeaderItem(Object header){
         this.listHeader.add(header);
         this.headerSize = this.listHeader.size();
 
         calcItemsSize();
     }
 
-    public void addHeaderItemList(List<HEADER> listHeader){
+    public void addHeaderItemList(List<Object> listHeader){
         this.listHeader.addAll(listHeader);
         this.headerSize = this.listHeader.size();
         calcItemsSize();
     }
 
     /**푸터아이템 추가*/
-    public void addFooterItem(FOOTER footer){
+    public void addFooterItem(Object footer){
         this.listFooter.add(footer);
         this.footerSize = this.listFooter.size();
 
         calcItemsSize();
     }
 
-    public void addFooterItemList(List<FOOTER> listFooter){
+    public void addFooterItemList(List<Object> listFooter){
         this.listFooter.addAll(listFooter);
         this.footerSize = this.listFooter.size();
         calcItemsSize();
@@ -322,7 +323,7 @@ public class JoRecyclerAdapter<ITEM, HEADER, FOOTER> extends RecyclerView.Adapte
         }else if(position < headerSize + quickHeaderViewSize){ //헤더진입
             int headerPosition = position + quickHeaderViewSize;
             int itemPosition = position - quickHeaderViewSize;
-            JoViewHolder<HEADER> headerViewHolder = (JoViewHolder<HEADER>)holder;
+            JoViewHolder<Object> headerViewHolder = (JoViewHolder<Object>)holder;
             headerViewHolder.onBind(listHeader.get(itemPosition), headerPosition, position);
 
         }else if(position >= headerSize + quickHeaderViewSize && position < headerSize + quickHeaderViewSize + itemSize){
@@ -338,7 +339,7 @@ public class JoRecyclerAdapter<ITEM, HEADER, FOOTER> extends RecyclerView.Adapte
             }else{
                 int footerPosition = position - headerSize - itemSize- quickHeaderViewSize;
                 int itemPosition = position - headerSize - itemSize - quickHeaderViewSize;
-                JoViewHolder<FOOTER> footerViewHolder = (JoViewHolder<FOOTER>)holder;
+                JoViewHolder<Object> footerViewHolder = (JoViewHolder<Object>)holder;
                 footerViewHolder.onBind(listFooter.get(itemPosition), footerPosition, position);
             }
         }
@@ -369,11 +370,11 @@ public class JoRecyclerAdapter<ITEM, HEADER, FOOTER> extends RecyclerView.Adapte
 
 
 
-    public JoViewHolder<HEADER> onCreateHeaderViewHolder(){
+    public JoViewHolder<Object> onCreateHeaderViewHolder(){
         return null;
     }
     /**푸터 필요하면 오버라이딩*/
-    public JoViewHolder<FOOTER> onCreateFooterViewHolder(){
+    public JoViewHolder<Object> onCreateFooterViewHolder(){
         return null;
     }
     /**아이템 뷰홀더 생성*/
@@ -390,7 +391,7 @@ public class JoRecyclerAdapter<ITEM, HEADER, FOOTER> extends RecyclerView.Adapte
         public final static int GRID = 101013;
 
         public Context context;
-//        public int itemViewId, headerViewId, footerViewId;
+        //        public int itemViewId, headerViewId, footerViewId;
         public View vQuickHeader = null;
         public Class itemViewHolderCls, headerViewHolderCls, footerViewHolderCls;
         public RecyclerView recyclerView;
@@ -421,6 +422,18 @@ public class JoRecyclerAdapter<ITEM, HEADER, FOOTER> extends RecyclerView.Adapte
 
         public Params setEmptyView(View vEmpty){
             this.vEmpty = vEmpty;
+            return this;
+        }
+
+        public Params setEmptyView(int id){
+            ViewParent vParent = recyclerView.getParent();
+            while(vParent == null){
+                vParent = vParent.getParent();
+            }
+
+            View v = ((View)vParent).findViewById(id);
+            this.vEmpty = v;
+
             return this;
         }
 

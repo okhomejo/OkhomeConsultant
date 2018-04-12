@@ -2,6 +2,9 @@ package id.co.okhome.consultant.view.activity.cleaning;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -26,6 +29,7 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.cleaning.CleaningInfoModel;
 import id.co.okhome.consultant.model.page.ConsultantPageProgressModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
+import id.co.okhome.consultant.view.fragment.consultant_tab.NextCleaningTabFragment;
 import id.co.okhome.consultant.view.fragment.consultant_tab.PickingCleaningTabFragment;
 
 public class NextCleaningsActivity extends OkHomeParentActivity {
@@ -35,7 +39,7 @@ public class NextCleaningsActivity extends OkHomeParentActivity {
     @BindView(R.id.actNextCleanings_tabDots)       TabLayout tabDots;
     @BindView(R.id.actNextCleanings_vProgress)     ProgressBar progressBar;
 
-    private MainPagerAdapter pagerAdapter = null;
+    private TabsPagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +54,14 @@ public class NextCleaningsActivity extends OkHomeParentActivity {
     private void init() {
         vgContent.setVisibility(View.GONE);
 
-        pagerAdapter = new MainPagerAdapter();
-        viewPager.setAdapter(pagerAdapter);
-
-        tabDots.setupWithViewPager(viewPager, true);
+        pagerAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
         getNextCleaningTasks();
+
+        viewPager.setAdapter(pagerAdapter);
+
+//        tabDots.setupWithViewPager(viewPager, true);
+
     }
 
     private void getNextCleaningTasks() {
@@ -63,7 +69,7 @@ public class NextCleaningsActivity extends OkHomeParentActivity {
         OkhomeRestApi.getCleaningTaskClient().getNextCleaningTasks(ConsultantLoggedIn.id()).enqueue(new RetrofitCallback<List<CleaningInfoModel>>() {
             @Override
             public void onSuccess(List<CleaningInfoModel> taskList) {
-//                addTasksToViewPager(taskList);
+                addTasksToViewPager(taskList);
             }
 
             @Override
@@ -76,20 +82,11 @@ public class NextCleaningsActivity extends OkHomeParentActivity {
     }
 
     private void addTasksToViewPager(List<CleaningInfoModel> taskList) {
-        int counter = 0;
         for(CleaningInfoModel task : taskList) {
-
-//            PickingCleaningTabFragment taskFrame = new PickingCleaningTabFragment();
-
-            LayoutInflater inflater = getLayoutInflater();
-            RelativeLayout taskFrame = (RelativeLayout) inflater.inflate (R.layout.fragment_tab_picking_cleaning, null);
-            pagerAdapter.addView (taskFrame, counter);
-            counter++;
-
-//            int pageIndex = pagerAdapter.addView (newPage);
-//            pagerAdapter.setCurrentItem (pageIndex, true);
-
+            Fragment taskFragment = NextCleaningTabFragment.newInstance(task);
+            pagerAdapter.addFragment(taskFragment);
         }
+        pagerAdapter.notifyDataSetChanged();
     }
 
     @OnClick(R.id.actNextCleanings_vbtnX)
@@ -97,65 +94,26 @@ public class NextCleaningsActivity extends OkHomeParentActivity {
         finish();
     }
 
+    public class TabsPagerAdapter extends FragmentStatePagerAdapter {
 
-    public class MainPagerAdapter extends PagerAdapter {
+        private List<Fragment> fragments = new ArrayList<>();
 
-        private ArrayList<View> views = new ArrayList<>();
-
-        @Override
-        public int getItemPosition (Object object) {
-            int index = views.indexOf (object);
-            if (index == -1)
-                return POSITION_NONE;
-            else
-                return index;
+        public TabsPagerAdapter(FragmentManager fm) {
+            super(fm);
         }
 
         @Override
-        public Object instantiateItem (ViewGroup container, int position) {
-            View v = views.get (position);
-            container.addView (v);
-            return v;
+        public Fragment getItem(int position) {
+            return fragments.get(position);
         }
 
         @Override
-        public void destroyItem (ViewGroup container, int position, Object object) {
-            container.removeView (views.get (position));
+        public int getCount() {
+            return fragments.size();
         }
 
-        @Override
-        public int getCount () {
-            return views.size();
-        }
-
-        @Override
-        public boolean isViewFromObject (View view, Object object) {
-            return view == object;
-        }
-
-        public int addView (View v) {
-            return addView (v, views.size());
-        }
-
-        public int addView (View v, int position) {
-            views.add (position, v);
-            return position;
-        }
-
-        public int removeView (ViewPager pager, View v) {
-            return removeView (pager, views.indexOf (v));
-        }
-
-        public int removeView (ViewPager pager, int position) {
-            pager.setAdapter (null);
-            views.remove (position);
-            pager.setAdapter (this);
-
-            return position;
-        }
-
-        public View getView (int position) {
-            return views.get (position);
+        public void addFragment(Fragment fragment) {
+            fragments.add(fragment);
         }
     }
 }

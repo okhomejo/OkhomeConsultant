@@ -1,8 +1,9 @@
 package id.co.okhome.consultant.model.cleaning;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CleaningInfoModel {
+public class CleaningInfoModel implements Serializable {
     public int id;
     public String title, address, homeType, homeSize;
     public String petType; // CAT,DOG | CAT | NONE

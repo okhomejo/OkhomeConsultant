@@ -8,6 +8,10 @@ import android.widget.TextView;
 import com.mrjodev.jorecyclermanager.JoViewHolder;
 import com.mrjodev.jorecyclermanager.annotations.LayoutMatcher;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.util.Map;
 
 import butterknife.BindView;
@@ -42,7 +46,17 @@ public class JobExperienceVHolder extends JoViewHolder<JobExperienceModel> imple
         super.onBind(m, pos, absPos);
 
         numPosition.setText(m.position);
-        date.setText(m.workPeriod);
+
+        String startDate = m.workPeriod.substring(0,7);
+        String endDate   = m.workPeriod.substring(8,15);
+
+        DateTimeFormatter dtf1 = DateTimeFormat.forPattern("MMMM yyyy");
+        DateTimeFormatter dtf2 = DateTimeFormat.forPattern("yyyy-MM");
+
+        DateTime start  = dtf2.parseDateTime(startDate);
+        DateTime end    = dtf2.parseDateTime(endDate);
+
+        date.setText(String.format("%s, %s", start.toString(dtf1), end.toString(dtf1)));
 
         btnRemove.setOnClickListener(this);
     }

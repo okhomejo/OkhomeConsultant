@@ -4,8 +4,14 @@ import android.app.Activity;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -50,8 +56,8 @@ public class JobExperienceDialog extends DialogParent {
                 calendar.set(Calendar.MONTH, month);
 
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
-
                 tv.setText(dateFormat.format(calendar.getTime()));
+
                 if(!tvFromDate.getText().toString().matches("") && tvToDate.getText().toString().matches("")) {
                     onEditEndDate();
                 }
@@ -74,7 +80,15 @@ public class JobExperienceDialog extends DialogParent {
             ToastUtil.showToast(e.getMessage());
             return;
         }
-        newJobExp = new JobExperienceModel((fromDate + " - " + toDate), position);
+        DateTimeFormatter dtf1 = DateTimeFormat.forPattern("MMMM yyyy");
+        DateTimeFormatter dtf2 = DateTimeFormat.forPattern("yyyy-MM");
+
+        DateTime start  = dtf1.parseDateTime(fromDate);
+        DateTime end    = dtf1.parseDateTime(toDate);
+
+        newJobExp = new JobExperienceModel(
+                (start.toString(dtf2) + "," + end.toString(dtf2)), position
+        );
         onJobExperienceDone(newJobExp);
     }
 

@@ -18,7 +18,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.lib.RecyclerViewPositionManager;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
@@ -45,18 +44,6 @@ public class PreviousCleaningsActivity extends OkHomeParentActivity implements S
 
         ButterKnife.bind(this);
         init();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        RecyclerViewPositionManager.clear(rcv);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        RecyclerViewPositionManager.save(rcv);
     }
 
     private void init() {
@@ -90,7 +77,6 @@ public class PreviousCleaningsActivity extends OkHomeParentActivity implements S
             @Override
             public void onSuccess(List<CleaningInfoModel> result) {
                 adapter.setListItems(result);
-                RecyclerViewPositionManager.restore(rcv);
             }
 
             @Override

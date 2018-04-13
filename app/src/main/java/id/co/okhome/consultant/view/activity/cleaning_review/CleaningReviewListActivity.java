@@ -69,7 +69,8 @@ public class CleaningReviewListActivity extends OkHomeParentActivity {
     }
 
     private void setHeaderViewItem(CleaningReviewSummaryModel summaryModel){
-        adapter.addHeaderItem(summaryModel);
+        adapter.setHeader(summaryModel);
+        adapter.notifyDataSetChanged();
     }
 
     private void loadFirstList() {

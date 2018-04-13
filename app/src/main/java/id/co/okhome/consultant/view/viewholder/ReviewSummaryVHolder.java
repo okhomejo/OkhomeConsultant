@@ -1,7 +1,5 @@
 package id.co.okhome.consultant.view.viewholder;
 
-import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -9,16 +7,15 @@ import android.widget.TextView;
 import com.mrjodev.jorecyclermanager.JoViewHolder;
 import com.mrjodev.jorecyclermanager.annotations.LayoutMatcher;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.joviewrepeator.JoRepeatorAdapter;
 import id.co.okhome.consultant.lib.joviewrepeator.JoViewRepeator;
 import id.co.okhome.consultant.model.cleaning.CleaningReviewSummaryModel;
-import id.co.okhome.consultant.model.training.TrainingItemChildModel;
-import id.co.okhome.consultant.model.training.TrainingItemModel;
-import id.co.okhome.consultant.view.activity.traininginfo.TraineeTrainingActivity;
-import id.co.okhome.consultant.view.activity.traininginfo.TraineeTrainingItemInfoActivity;
 
 /**
  * Created by josongmin on 2016-06-28.
@@ -29,7 +26,7 @@ public class ReviewSummaryVHolder extends JoViewHolder<CleaningReviewSummaryMode
 
     @BindView(R.id.itemCleaningSummary_vgStars)     ViewGroup vgStars;
 
-    JoViewRepeator<Integer> starReviewRepeator = null;
+    JoViewRepeator<Integer> starReviewRepeater = null;
 
     public ReviewSummaryVHolder(View itemView) {
         super(itemView);
@@ -38,44 +35,34 @@ public class ReviewSummaryVHolder extends JoViewHolder<CleaningReviewSummaryMode
     @Override
     public void onViewCreated() {
         ButterKnife.bind(this, itemView);
-        starReviewRepeator = new JoViewRepeator<Integer>(getContext())
-                .setContainer(vgStars)
-                .setItemLayoutId(R.layout.item_cleaning_review_summary_star_graph);
     }
 
     @Override
     public void onBind(CleaningReviewSummaryModel m, int pos, int absPos) {
         super.onBind(m, pos, absPos);
 
+//        starReviewRepeater = new JoViewRepeator<Integer>(getContext())
+//                .setContainer(vgStars)
+//                .setItemLayoutId(R.layout.item_cleaning_review_summary_star_graph)
+//                .setCallBack(new StarRatingBarAdapter("C"));
+//
+//        starReviewRepeater.addItem(m.star1Cnt);
+//        starReviewRepeater.notifyDataSetChanged();
     }
 
-    class TraineeTrainingItemTypeAdapter extends JoRepeatorAdapter<TrainingItemModel> {
+    class StarRatingBarAdapter extends JoRepeatorAdapter<Integer> {
 
-        @BindView(R.id.itemTrainingPageItem_tvName)
-        TextView tvName;
+        @BindView(R.id.itemTrainingPageItem_tvName)     TextView tvName;
 
         String type;
 
-        public TraineeTrainingItemTypeAdapter(String type) {
+        public StarRatingBarAdapter(String type) {
             this.type = type;
         }
 
         @Override
-        public void onBind(View v, final int pos, final TrainingItemModel trainingItem) {
+        public void onBind(View v, int pos, Integer model) {
             ButterKnife.bind(this, v);
-            tvName.setText(trainingItem.subject);
-
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(TraineeTrainingActivity.this, TraineeTrainingItemInfoActivity.class)
-                            .putExtra("type", type)
-                            .putExtra("itemId", trainingItem.id)
-                            .putExtra("trainingId", trainingItem.trainingId)
-                    );
-                }
-            });
         }
     }
-
 }

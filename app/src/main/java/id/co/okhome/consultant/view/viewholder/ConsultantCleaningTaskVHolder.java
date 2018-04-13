@@ -10,13 +10,10 @@ import android.widget.TextView;
 import com.mrjodev.jorecyclermanager.JoViewHolder;
 import com.mrjodev.jorecyclermanager.annotations.LayoutMatcher;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.app.OkhomeDateTimeFormatUtil;
 import id.co.okhome.consultant.model.cleaning.CleaningInfoModel;
 import id.co.okhome.consultant.view.activity.cleaning.CleaningDetailActivity;
 
@@ -48,9 +45,7 @@ public class ConsultantCleaningTaskVHolder extends JoViewHolder<CleaningInfoMode
         tvTitle.setText(m.title);
         tvAddress.setText(m.address);
 
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
-        DateTime dt = formatter.parseDateTime(m.when);
-        tvDate.setText(String.format("Cleaning on %s", dt.toString("d MMM yyyy, hh:mm")));
+        tvDate.setText(String.format("Cleaning on %s", OkhomeDateTimeFormatUtil.printFullDateTime(m.when)));
 
         vgRating.removeAllViews();
         int counter = Math.round(m.score);

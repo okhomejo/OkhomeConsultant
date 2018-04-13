@@ -101,7 +101,7 @@
 
                                 <TextView
                                     android:id="@+id/fragTabProgress_tvSalaryBalance"
-                                    style="@style/FontOpenSansRegular"
+                                    style="@style/FontOpenSansLight"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"

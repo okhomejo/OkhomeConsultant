@@ -13,9 +13,7 @@ import android.widget.TextView;
 
 import org.joda.time.DateTime;
 
-import java.text.NumberFormat;
 import java.util.Iterator;
-import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -23,6 +21,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.page.ConsultantPageProgressModel;
@@ -109,9 +108,9 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
 
     private void adaptViews(ConsultantPageProgressModel progressModel) {
         // Adapt salary view group
-        tvSalaryRevenue.setText(String.format("Rp %s", formatPrice(progressModel.salaryThisMonthTotal)));
-        tvSalaryBalance.setText(String.format("Rp %s is paid", formatPrice(progressModel.balance)));
-        tvSalaryPaid.setText(String.format("Rp %s is your current balance", formatPrice(progressModel.salaryThisMonthPaid)));
+        tvSalaryRevenue.setText(String.format("Rp %s", OkhomeUtil.getPriceFormatValue(progressModel.salaryThisMonthTotal)));
+        tvSalaryBalance.setText(String.format("Rp %s is paid", OkhomeUtil.getPriceFormatValue(progressModel.balance)));
+        tvSalaryPaid.setText(String.format("Rp %s is your current balance", OkhomeUtil.getPriceFormatValue(progressModel.salaryThisMonthPaid)));
         tvSalaryMonth.setText(String.format("Total revenue in %s", DateTime.now().monthOfYear().getAsText()));
 
         // Adapt review view group
@@ -126,9 +125,6 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
         }
     }
 
-    private String formatPrice(int price) {
-        return NumberFormat.getNumberInstance(Locale.GERMAN).format(price);
-    }
 
     private void adaptAmountWorkedView(Map<String, Integer> myWorkCnt) {
         int counter = 0;

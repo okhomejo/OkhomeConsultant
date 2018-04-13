@@ -52,12 +52,13 @@ public class ConsultantSalaryListFragment extends Fragment implements TabFragmen
         }else{
             loadType = "waiting";
         }
+
         adapter = new JoRecyclerAdapter<>(new JoRecyclerAdapter.Params()
                 .setRecyclerView(rcv)
                 .addParam("TYPE", type)
                 .setFooterViewHolderCls(BlankVHolder.class)
                 .setItemViewHolderCls(ConsultantSalaryVHolder.class)
-                
+
                 .setEmptyView(R.id.layerEmpty_vContents)
                 .setBottomLoading(getActivity().getLayoutInflater().inflate(R.layout.layer_footer_loading, null), new FooterLoadingListener() {
                     @Override

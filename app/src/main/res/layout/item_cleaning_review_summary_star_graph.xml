@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="5dp"
         android:weightSum="10"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
         <LinearLayout
             android:layout_weight="8"
             android:weightSum="100" android:layout_marginLeft="20dp" android:background="#08000000"
-            android:layout_width="0dp" android:layout_height="13dp">
+            android:layout_width="0dp" android:layout_height="12dp">
             <View
                 android:layout_weight="50" android:background="@color/colorOkhome"
                 android:layout_width="0dp" android:layout_height="match_parent" />

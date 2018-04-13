@@ -75,12 +75,13 @@
                         android:layout_margin="1px"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-                        <ImageView
-                            android:layout_margin="3dp"
-                            android:scaleType="centerCrop"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" android:src="@drawable/sample_map"/>
 
+                        <fragment
+                            android:name="com.google.android.gms.maps.MapFragment"
+                            android:id="@+id/fragTabPickingCleaning_map"
+                            android:layout_margin="3dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
 
                         <LinearLayout
                             android:layout_gravity="bottom"

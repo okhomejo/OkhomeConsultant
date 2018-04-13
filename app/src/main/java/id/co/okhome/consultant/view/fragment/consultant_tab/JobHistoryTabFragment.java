@@ -67,7 +67,7 @@ public class JobHistoryTabFragment extends Fragment implements TabFragmentStatus
                 .findFragmentById(R.id.fragTabJobs_map);
         mapFragment.getMapAsync(this);
     }
-    
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         // Adjust map style

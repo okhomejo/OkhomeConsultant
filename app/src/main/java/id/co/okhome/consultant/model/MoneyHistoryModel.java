@@ -15,13 +15,14 @@ public class MoneyHistoryModel {
     public int rownum;
 
     public long id;
+    public int money;
     public int consultantId;
-    public String useType, extra, insertDateTime;
+    public String useType; //U(se)/G(et)
+    public String insertDateTime;
     public String finishYN; //예정이면 N 완료된거면 Y
+    public String payDateTime;
     public String tag;
     public Map<String, Object> cleaning;
     public Map<String, Object> penalty;
-
-
 
 }

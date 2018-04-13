@@ -23,7 +23,7 @@ public class RecyclerViewPositionManager{
         if(mapInstance.containsKey(rcv)){
             Parcelable savedRecyclerLayoutState = mapInstance.get(rcv);
             rcv.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
-            save(rcv);
+            clear(rcv);
         }
 
     }

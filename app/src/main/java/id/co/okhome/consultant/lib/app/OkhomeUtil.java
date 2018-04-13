@@ -60,6 +60,13 @@ import id.co.okhome.consultant.exception.OkhomeException;
 
 public class OkhomeUtil {
 
+    private static Locale locale = new Locale("id");
+
+    public static String getPriceFormatValue(int price) {
+        return NumberFormat.getNumberInstance(locale).format(price);
+    }
+
+
     public final static Bundle makeBundle(Object ... params){
         Bundle b = new Bundle();
         for(int i = 0; i < params.length; i +=2){

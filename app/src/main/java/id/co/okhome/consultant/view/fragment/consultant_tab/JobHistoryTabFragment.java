@@ -91,7 +91,6 @@ public class JobHistoryTabFragment extends Fragment implements TabFragmentStatus
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_blue))
         );
         googleMap.moveCamera(cameraUpdate);
-        googleMap.setPadding(0, 0, 0, 120);
     }
 
     @OnClick(R.id.fragTabJobs_vbtnSeeNextCleaning)

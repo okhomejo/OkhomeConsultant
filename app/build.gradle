@@ -16,7 +16,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
-        debug{
+        debug {
             ext.enableCrashlytics = false
 
         }
@@ -28,15 +28,15 @@ android {
         cruncherEnabled false
     }
 
-    dexOptions {
-        preDexLibraries true
-        maxProcessCount 8
-        // Instead of setting the heap size for the DEX process, increase Gradle's
-        // heap size to enable dex-in-process. To learm more, read the next section.
-         javaMaxHeapSize "4096m"
-    }
-    
-    
+//    dexOptions {
+//        preDexLibraries true
+//        maxProcessCount 8
+//        // Instead of setting the heap size for the DEX process, increase Gradle's
+//        // heap size to enable dex-in-process. To learm more, read the next section.
+//        javaMaxHeapSize "4096m"
+//    }
+
+
 }
 
 dependencies {
@@ -50,20 +50,20 @@ dependencies {
 
     //--
     implementation 'com.android.support:design:26.1.0'
-    compile project(':calligraphy')
-    compile project(':recyclerview-manager')
+    implementation project(':calligraphy')
+    implementation project(':recyclerview-manager')
     //--
-    compile 'joda-time:joda-time:2.9.4'
-    compile 'com.jakewharton:butterknife:8.7.0'
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.github.twinkle942910:monthyearpicker:0.0.1'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.squareup.okhttp3:okhttp:3.9.0'
-    compile group: 'commons-io', name: 'commons-io', version: '2.4'
-    compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'com.edmodo:cropper:1.0.1'
+    implementation 'joda-time:joda-time:2.9.4'
+    implementation 'com.jakewharton:butterknife:8.7.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.github.twinkle942910:monthyearpicker:0.0.1'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.4'
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'com.edmodo:cropper:1.0.1'
     //--
 
     testImplementation 'junit:junit:4.12'

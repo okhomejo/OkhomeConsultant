@@ -1,8 +1,11 @@
 package id.co.okhome.consultant.view.activity.cleaning;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -20,7 +23,6 @@ import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
-import id.co.okhome.consultant.model.MoneyHistoryModel;
 import id.co.okhome.consultant.model.cleaning.CleaningInfoModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.viewholder.BlankVHolder;
@@ -123,5 +125,33 @@ public class PreviousCleaningsActivity extends OkHomeParentActivity implements S
     @OnClick(R.id.actPrevCleanings_vbtnX)
     public void onBackButtonClicked() {
         finish();
+    }
+
+
+    class ReviewTagManager{
+
+        LayoutInflater layoutInflater;
+        public ReviewTagManager(LayoutInflater layoutInflater) {
+            this.layoutInflater = layoutInflater;
+        }
+
+        public void setRiviewTagsText(TextView tv, String... tags){
+            for(int i = 0; i < tags.length; i++){
+                tv.setText(i+"");
+            }
+
+            //set span with Bitmap
+
+        }
+
+        private Bitmap makeBitmapFromLayout(View v){
+            v.setDrawingCacheEnabled(true);
+            return v.getDrawingCache();
+        }
+
+        private View makeTagView(String tag){
+            //inflate view and adapt datas
+            return null;
+        }
     }
 }

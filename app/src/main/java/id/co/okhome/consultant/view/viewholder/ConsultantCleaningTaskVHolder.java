@@ -64,6 +64,7 @@ public class ConsultantCleaningTaskVHolder extends JoViewHolder<CleaningInfoMode
             counter--;
         }
 
+
         getView().setOnClickListener(this);
     }
 

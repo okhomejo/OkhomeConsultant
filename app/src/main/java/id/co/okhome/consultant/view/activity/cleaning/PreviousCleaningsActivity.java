@@ -3,11 +3,11 @@ package id.co.okhome.consultant.view.activity.cleaning;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mrjodev.jorecyclermanager.JoRecyclerAdapter;
+import com.mrjodev.jorecyclermanager.footerloading.FooterLoadingListener;
 
 import java.util.List;
 
@@ -20,6 +20,7 @@ import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
+import id.co.okhome.consultant.model.MoneyHistoryModel;
 import id.co.okhome.consultant.model.cleaning.CleaningInfoModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.viewholder.BlankVHolder;
@@ -58,7 +59,7 @@ public class PreviousCleaningsActivity extends OkHomeParentActivity implements S
 
     private void init() {
         initRecyclerView();
-        getPreviousCleaningTasks();
+        loadFirstList();
         swipeLayout.setOnRefreshListener(this);
     }
 
@@ -67,16 +68,26 @@ public class PreviousCleaningsActivity extends OkHomeParentActivity implements S
                 .setRecyclerView(rcv)
                 .setItemViewHolderCls(ConsultantCleaningTaskVHolder.class)
                 .setFooterViewHolderCls(BlankVHolder.class)
+
+                .setEmptyView(R.id.layerEmpty_vContents)
+                .setBottomLoading(getLayoutInflater().inflate(R.layout.layer_footer_loading, null), new FooterLoadingListener() {
+                    @Override
+                    public void onFooterLoading() {
+                        CleaningInfoModel cleaningInfoModel = (CleaningInfoModel) adapter.getLastItem();
+                        int rowNum = cleaningInfoModel.rownum;
+                        getListMore(rowNum);
+                    }
+                })
         );
-        adapter.addFooterItem("");
+        adapter.addFooterItem("A");
     }
 
-    private void getPreviousCleaningTasks() {
+    private void loadFirstList() {
         swipeLayout.setRefreshing(true);
-        OkhomeRestApi.getCleaningTaskClient().getPrevCleaningTasks(ConsultantLoggedIn.id()).enqueue(new RetrofitCallback<List<CleaningInfoModel>>() {
+        OkhomeRestApi.getCleaningTaskClient().getPrevCleaningTasks(ConsultantLoggedIn.id(), 0).enqueue(new RetrofitCallback<List<CleaningInfoModel>>() {
             @Override
-            public void onSuccess(List<CleaningInfoModel> cleaningList) {
-                adapter.setListItems(cleaningList);
+            public void onSuccess(List<CleaningInfoModel> result) {
+                adapter.setListItems(result);
                 RecyclerViewPositionManager.restore(rcv);
             }
 
@@ -89,9 +100,24 @@ public class PreviousCleaningsActivity extends OkHomeParentActivity implements S
         });
     }
 
+    private void getListMore(int lastRowNum){
+        OkhomeRestApi.getCleaningTaskClient().getPrevCleaningTasks(ConsultantLoggedIn.id(), lastRowNum).enqueue(new RetrofitCallback<List<CleaningInfoModel>>() {
+            @Override
+            public void onSuccess(List<CleaningInfoModel> result) {
+                if(result.size() > 0){
+                    adapter.addListItems(result);
+                    adapter.notifyDataSetChanged();
+                    adapter.notifyFooterLoadingComplete();
+                }else{
+                    adapter.setFooterNoMoreResult(true);
+                }
+            }
+        });
+    }
+
     @Override
     public void onRefresh() {
-        getPreviousCleaningTasks();
+        loadFirstList();
     }
 
     @OnClick(R.id.actPrevCleanings_vbtnX)

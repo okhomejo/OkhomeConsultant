@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class CleaningInfoModel implements Serializable {
+    public int rownum;
     public int id;
     public String title, address, homeType, homeSize;
     public String petType; // CAT,DOG | CAT | NONE

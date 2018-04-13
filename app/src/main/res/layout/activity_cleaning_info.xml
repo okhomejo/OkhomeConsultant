@@ -499,10 +499,7 @@
                         android:layout_width="10dp"
                         android:layout_height="60dp" />
 
-
                 </LinearLayout>
-
-
 
             </LinearLayout>
 

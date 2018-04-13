@@ -87,7 +87,6 @@ public class ConsultantMainActivity extends OkHomeParentActivity {
             for(int i = 0; i < listTab.size(); i ++){
                 setOnClick(listTab.get(i), i);
             }
-
         }
 
         @Override

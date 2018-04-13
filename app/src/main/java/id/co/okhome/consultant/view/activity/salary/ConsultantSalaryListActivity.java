@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
@@ -43,6 +44,11 @@ public class ConsultantSalaryListActivity extends OkHomeParentActivity {
     private void setTab(){
         salaryTabAdapter = new SalaryTabAdapter(getSupportFragmentManager());
         salaryTabAdapter.init(vp);
+    }
+
+    @OnClick(R.id.actTrainingInfo_vbtnX)
+    public void onButtonGoBack() {
+        finish();
     }
 
     //tab adapter

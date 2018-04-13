@@ -133,9 +133,9 @@ public class NextCleaningTabFragment extends Fragment implements TabFragmentStat
     }
 
     @OnClick(R.id.fragTabNextCleaning_vbtnSeeDetail)
-    public void onBtnSeeDetails(){
-        Intent intent = new Intent(getContext(), CleaningDetailActivity.class);
+    public void onBtnSeeDetails() {
+        Intent intent = new Intent(getActivity(), CleaningDetailActivity.class);
         intent.putExtra("TASK_ACCEPTED", true);
-        getContext().startActivity(intent);    }
-
+        getActivity().startActivity(intent);
+    }
 }

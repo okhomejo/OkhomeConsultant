@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <LinearLayout
             android:layout_marginLeft="20dp" android:layout_marginRight="20dp"
             android:orientation="vertical"
@@ -26,6 +25,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+
                 <TextView
                     android:background="#ffffff"
                     style="@style/FontOpenSansLight"
@@ -35,6 +35,7 @@
                     android:text="NEXT CLEANING"
                     android:textColor="@color/colorLightBlueGray"
                     android:textSize="15sp" />
+
                 <TextView
                     android:id="@+id/fragTabJobs_vbtnSeeNextCleaning"
                     android:layout_gravity="right"
@@ -79,11 +80,10 @@
                                 android:layout_height="match_parent"/>
 
                             <!--<ImageView-->
-                                <!--android:layout_margin="3dp"-->
-                                <!--android:scaleType="centerCrop"-->
-                                <!--android:layout_width="match_parent"-->
-                                <!--android:layout_height="match_parent" android:src="@drawable/sample_map"/>-->
-
+                            <!--android:layout_margin="3dp"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent" android:src="@drawable/sample_map"/>-->
 
                             <LinearLayout
                                 android:layout_gravity="bottom"
@@ -126,13 +126,12 @@
 
                             </LinearLayout>
 
-
                         </FrameLayout>
 
                     </LinearLayout>
 
-
                 </LinearLayout>
+
             </LinearLayout>
             <!-- item 2-->
             <FrameLayout
@@ -140,10 +139,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical">
+
                 <View
                     android:layout_gravity="center_vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+                    android:layout_height="1px"
+                    android:background="@color/colorLightBlueGray"/>
 
                 <TextView
                     android:background="#ffffff"
@@ -186,7 +187,6 @@
                         android:layout_marginLeft="1.5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         android:gravity="center_vertical">
 
                         <LinearLayout
@@ -266,13 +266,10 @@
                                 android:textColor="#66000000"
                                 android:textSize="12sp" />
                         </LinearLayout>
+
                     </LinearLayout>
 
-
                 </LinearLayout>
-
-
-
 
             </RelativeLayout>
 
@@ -322,6 +319,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
+
                                 <ImageView
                                     android:layout_marginRight="3dp"
                                     android:adjustViewBounds="true"
@@ -368,19 +366,17 @@
                                 android:text="Cleaning on 16 Jan 2018, 10:00 AM"
                                 android:textColor="#66000000"
                                 android:textSize="12sp" />
-                        </LinearLayout>
-                    </LinearLayout>
 
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-
-
-
             </RelativeLayout>
-
 
         </LinearLayout>
 
     </ScrollView>
+
 </LinearLayout>

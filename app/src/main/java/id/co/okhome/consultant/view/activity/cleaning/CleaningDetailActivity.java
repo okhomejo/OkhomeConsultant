@@ -9,6 +9,7 @@ import com.mrjodev.jorecyclermanager.QuickReturnViewInitializor;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
@@ -37,5 +38,10 @@ public class CleaningDetailActivity extends OkHomeParentActivity {
             QuickReturnViewInitializor.init(svItem, vgActions);
         }
         vLoading.setVisibility(View.GONE);
+    }
+
+    @OnClick(R.id.actCleaningInfo_vbtnX)
+    public void onButtonGoBack() {
+        finish();
     }
 }

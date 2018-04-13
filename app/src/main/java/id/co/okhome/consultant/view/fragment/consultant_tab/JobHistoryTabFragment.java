@@ -1,17 +1,23 @@
 package id.co.okhome.consultant.view.fragment.consultant_tab;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import butterknife.BindView;
@@ -61,35 +67,32 @@ public class JobHistoryTabFragment extends Fragment implements TabFragmentStatus
                 .findFragmentById(R.id.fragTabJobs_map);
         mapFragment.getMapAsync(this);
     }
-
-
+    
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        // Adjust map style
+        try {
+            boolean success = googleMap.setMapStyle(
+                    MapStyleOptions.loadRawResourceStyle(
+                            getContext(), R.raw.map_style_json));
+
+            if (!success) {
+                Log.e("Map error", "Style parsing failed.");
+            }
+        } catch (Resources.NotFoundException e) {
+            Log.e("Map error", "Can't find style. Error: ", e);
+        }
+
+        // Setup camera and pinpoint icon
+        LatLng taskLocation = new LatLng(-6.218478, 106.836644);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(taskLocation , 16);
         googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(0, 0))
-                .title("Marker"));
+                .position(taskLocation)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_blue))
+        );
+        googleMap.moveCamera(cameraUpdate);
+        googleMap.setPadding(0, 0, 0, 120);
     }
-
-
-//    private void getPreviousCleaningTasks() {
-//        OkhomeRestApi.getCleaningTaskClient().getPrevCleaningTasks(ConsultantLoggedIn.id()).enqueue(new RetrofitCallback<List<CleaningInfoModel>>() {
-//            @Override
-//            public void onSuccess(List<CleaningInfoModel> cleaningList) {
-//                adaptViews(cleaningList);
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//                super.onFinish();
-//            }
-//        });
-//    }
-//
-//    private void adaptViews(List<CleaningInfoModel> cleaningList) {
-//        for (CleaningInfoModel model : cleaningList) {
-//
-//        }
-//    }
 
     @OnClick(R.id.fragTabJobs_vbtnSeeNextCleaning)
     public void onClickSeeNext() {

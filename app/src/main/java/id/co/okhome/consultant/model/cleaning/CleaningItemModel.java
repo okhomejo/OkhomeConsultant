@@ -1,8 +1,9 @@
 package id.co.okhome.consultant.model.cleaning;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class CleaningItemModel {
+public class CleaningItemModel implements Serializable {
     public int id;
     public String name;
     public int price;

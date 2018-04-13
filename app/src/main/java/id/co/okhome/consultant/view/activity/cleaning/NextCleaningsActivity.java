@@ -38,6 +38,7 @@ public class NextCleaningsActivity extends OkHomeParentActivity {
     @BindView(R.id.actNextCleanings_viewPager)     ViewPager viewPager;
     @BindView(R.id.actNextCleanings_tabDots)       TabLayout tabDots;
     @BindView(R.id.actNextCleanings_vProgress)     ProgressBar progressBar;
+    @BindView(R.id.actNextCleanings_tvCurrentPage) TextView tvCurrentPage;
 
     private TabsPagerAdapter pagerAdapter;
 
@@ -55,13 +56,10 @@ public class NextCleaningsActivity extends OkHomeParentActivity {
         vgContent.setVisibility(View.GONE);
 
         pagerAdapter = new TabsPagerAdapter(getSupportFragmentManager());
-
         getNextCleaningTasks();
-
         viewPager.setAdapter(pagerAdapter);
-
-//        tabDots.setupWithViewPager(viewPager, true);
-
+        viewPager.addOnPageChangeListener(pagerAdapter);
+        tabDots.setupWithViewPager(viewPager, true);
     }
 
     private void getNextCleaningTasks() {
@@ -86,6 +84,7 @@ public class NextCleaningsActivity extends OkHomeParentActivity {
             Fragment taskFragment = NextCleaningTabFragment.newInstance(task);
             pagerAdapter.addFragment(taskFragment);
         }
+        tvCurrentPage.setText(String.format("%s / %s", 1, pagerAdapter.getCount()));
         pagerAdapter.notifyDataSetChanged();
     }
 
@@ -94,7 +93,7 @@ public class NextCleaningsActivity extends OkHomeParentActivity {
         finish();
     }
 
-    public class TabsPagerAdapter extends FragmentStatePagerAdapter {
+    public class TabsPagerAdapter extends FragmentStatePagerAdapter implements ViewPager.OnPageChangeListener {
 
         private List<Fragment> fragments = new ArrayList<>();
 
@@ -114,6 +113,23 @@ public class NextCleaningsActivity extends OkHomeParentActivity {
 
         public void addFragment(Fragment fragment) {
             fragments.add(fragment);
+        }
+
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+//            tvCurrentPage.setText(String.format("%s / %s", position+1, pagerAdapter.getCount()));
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+            if (ViewPager.SCROLL_STATE_IDLE == state) {
+                tvCurrentPage.setText(String.format("%s / %s", viewPager.getCurrentItem()+1, pagerAdapter.getCount()));
+            }
         }
     }
 }

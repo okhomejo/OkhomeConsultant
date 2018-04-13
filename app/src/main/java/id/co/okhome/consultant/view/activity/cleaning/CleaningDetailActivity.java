@@ -78,6 +78,7 @@ public class CleaningDetailActivity extends OkHomeParentActivity implements OnMa
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_blue))
         );
         googleMap.moveCamera(cameraUpdate);
+        googleMap.getUiSettings().setScrollGesturesEnabled(false);
     }
 
     @OnClick(R.id.actCleaningInfo_vbtnX)

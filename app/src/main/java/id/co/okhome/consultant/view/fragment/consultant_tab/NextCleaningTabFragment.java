@@ -31,6 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.app.OkhomeDateTimeFormatUtil;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.model.cleaning.CleaningInfoModel;
@@ -75,12 +76,11 @@ public class NextCleaningTabFragment extends Fragment implements TabFragmentStat
     }
 
     private void adaptViewsAndData() {
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
-        DateTime dt = formatter.parseDateTime(cleaningModel.when);
-        tvDate.setText(String.format("%s, %s hours", dt.toString("dd MMM yy, hh:mm"), Math.round(cleaningModel.displayingCleaningDuration)));
-
+        tvDate.setText(String.format("%s, %s hours",
+                OkhomeDateTimeFormatUtil.printFullDateTime(cleaningModel.when),
+                Math.round(cleaningModel.displayingCleaningDuration))
+        );
         tvAddress.setText(cleaningModel.address);
-
         tvPrice.setText("Rp --");
 
         tvHomeInfo.setText(String.format("%s, %s rooms, %s restrooms, %s",
@@ -130,6 +130,7 @@ public class NextCleaningTabFragment extends Fragment implements TabFragmentStat
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_blue))
         );
         googleMap.moveCamera(cameraUpdate);
+        googleMap.getUiSettings().setScrollGesturesEnabled(false);
     }
 
     @OnClick(R.id.fragTabNextCleaning_vbtnSeeDetail)

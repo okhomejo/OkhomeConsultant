@@ -25,6 +25,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/itemReview_tvTitle"
                     style="@style/FontOpenSansLight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -35,6 +36,7 @@
                     android:textSize="19sp" />
 
                 <TextView
+                    android:id="@+id/itemReview_tvDate"
                     android:layout_marginTop="2dp"
                     style="@style/FontOpenSansLight"
                     android:layout_width="wrap_content"
@@ -44,10 +46,12 @@
                     android:textColor="#7f8a9e"
                     android:textSize="13sp" />
                 <LinearLayout
+                    android:id="@+id/itemReview_vgStars"
                     android:layout_marginTop="4dp"
                     android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <ImageView
                         android:layout_marginRight="3dp"
                         android:adjustViewBounds="true"
@@ -88,6 +92,7 @@
                         android:layout_height="3dp" android:background="@drawable/circle_gray"/>
 
                     <TextView
+                        android:id="@+id/itemReview_tvTextRating"
                         style="@style/FontOpenSansLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -98,6 +103,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/itemReview_tvReviewText"
                     style="@style/FontOpenSansLight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -109,6 +115,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/itemReview_vgTag"
                     android:gravity="center_vertical"
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"

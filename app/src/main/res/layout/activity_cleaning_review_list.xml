@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#ffffff"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <RelativeLayout
         android:layout_marginRight="20dp"
-        android:id="@+id/actAccount_vgTop"
+        android:id="@+id/actCleaningReview_vgTop"
         android:layout_width="match_parent"
         android:layout_height="76dp">
 
-
         <LinearLayout
-            android:id="@+id/actAccount_vbtnX"
+            android:id="@+id/actCleaningReview_vbtnX"
             android:paddingLeft="17dp"
             android:paddingRight="20dp"
             android:layout_centerVertical="true"
@@ -29,10 +27,10 @@
 
         </LinearLayout>
         <TextView
-            android:layout_toRightOf="@+id/actAccount_vbtnX"
+            android:layout_toRightOf="@+id/actCleaningReview_vbtnX"
             style="@style/FontOpenSansLight"
             android:textColor="#000000"
-            android:id="@+id/actAccount_tvTitle"
+            android:id="@+id/actCleaningReview_tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:text="Reviews"
             android:textSize="33dp"
@@ -49,41 +47,48 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
+        <LinearLayout
+            android:paddingLeft="16dp" android:paddingRight="16dp"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <!--<include layout="@layout/item_cleaning_review_summary" />-->
 
+            <!--<LinearLayout-->
+                <!--android:layout_marginTop="36dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_vertical">-->
 
+                <!--<TextView-->
+                    <!--style="@style/FontOpenSansRegular"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginRight="34dp"-->
+                    <!--android:text="REVIEWS"-->
+                    <!--android:textColor="@color/colorLightBlueGray"-->
+                    <!--android:textSize="15sp" />-->
 
-            <LinearLayout
-                android:paddingLeft="16dp" android:paddingRight="16dp"
-                android:orientation="vertical"
+            <!--</LinearLayout>-->
+
+            <android.support.v7.widget.RecyclerView
+                android:scrollbars="vertical"
+                android:id="@+id/actCleaningReview_rcv"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:listSelector="@android:color/transparent"
+                android:cacheColorHint="@android:color/transparent"
+                android:divider="#00000000"/>
 
-                <include layout="@layout/item_cleaning_review_summary" />
+        </LinearLayout>
 
-                <LinearLayout
-                    android:layout_marginTop="36dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical">
-                    <TextView
-                        style="@style/FontOpenSansRegular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="34dp"
-                        android:text="REVIEWS"
-                        android:textColor="@color/colorLightBlueGray"
-                        android:textSize="15sp" />
+        <ProgressBar
+            android:id="@+id/actCleaningReview_vProgress"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
 
-                </LinearLayout>
-                <include layout="@layout/item_cleaning_review" />
-                <include layout="@layout/item_cleaning_review" />
-                <include layout="@layout/item_cleaning_review" />
-                <include layout="@layout/item_cleaning_review" />
-            </LinearLayout>
-        </ScrollView>
     </RelativeLayout>
 </LinearLayout>

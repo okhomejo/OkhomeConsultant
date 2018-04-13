@@ -191,6 +191,12 @@ public class JoRecyclerAdapter<ITEM> extends RecyclerView.Adapter{
         return listItems.get(listItems.size() - 1);
     }
 
+    /**it used for only one header*/
+    public void setHeader(Object header){
+        clearAllHeader();
+        addHeaderItem(header);
+    }
+
     public void clearAllHeader(){
         this.listHeader.removeAll(listHeader);
         this.headerSize = this.listHeader.size();
@@ -230,6 +236,14 @@ public class JoRecyclerAdapter<ITEM> extends RecyclerView.Adapter{
     private void calcItemsSize(){
         this.itemSize = listItems.size();
         this.totalSize = itemSize + headerSize + footerSize + quickHeaderViewSize + footerLoadingViewSize;
+    }
+
+    /**header change*/
+    public void notifyHeaderChanged(){
+        for(int i = 0; i < listHeader.size(); i ++){
+            notifyItemChanged(i);
+        }
+
     }
 
     @Override

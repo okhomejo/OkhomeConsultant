@@ -40,6 +40,8 @@ public class CleaningReviewVHolder extends JoViewHolder<CleaningReviewModel> {
     @BindView(R.id.itemReview_ivStar4)          ImageView ivStar4;
     @BindView(R.id.itemReview_ivStar5)          ImageView ivStar5;
 
+    private static View tagLayout;
+
     public CleaningReviewVHolder(View itemView) {
         super(itemView);
     }
@@ -52,16 +54,18 @@ public class CleaningReviewVHolder extends JoViewHolder<CleaningReviewModel> {
     @Override
     public void onBind(CleaningReviewModel m, int pos, int absPos) {
         super.onBind(m, pos, absPos);
+        int reviewScore = Math.round(m.score);
         tvTitle.setText(String.format("Review %s", m.id));
-        tvTextRating.setText(String.valueOf(m.score));
+        tvTextRating.setText(String.valueOf(reviewScore));
         tvReviewText.setText(m.review);
-        tvDate.setText(String.format("Cleaning on %s (%s hours)", OkhomeDateTimeFormatUtil.printFullDateTime(m.cleaningWhen), m.duration));
-        printStarDrawable(Math.round(m.score));
+        tvDate.setText(String.format("Cleaning on %s (%s hours)", OkhomeDateTimeFormatUtil.printFullDateTime(m.cleaningWhen), Math.round(m.duration)));
+        printStarDrawable(reviewScore);
         printTags(m.tags);
     }
 
-    private void printStarDrawable(int counter) {
-        for (int i = 1; i < 6; i++) {
+    private void printStarDrawable(int starCnt) {
+        int counter = starCnt;
+        for (int i = 1; i <= 5; i++) {
             switch (i) {
                 case 1:
                     ivStar1.setImageResource(R.drawable.ic_star_on);
@@ -91,8 +95,11 @@ public class CleaningReviewVHolder extends JoViewHolder<CleaningReviewModel> {
         for (int i = 0; i < tags.length; i++) {
             tvTags.append("#"+i);
         }
-        LayoutInflater li = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        LinearLayout tagLayout = (LinearLayout) li.inflate(R.layout.item_cleaning_review_tag, vgReview, false);
+
+        if(tagLayout == null){
+            LayoutInflater li = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            tagLayout = li.inflate(R.layout.item_cleaning_review_tag, vgReview, false);
+        }
         SpannableString ss = new SpannableString(tvTags.getText());
 
         int counter = 0;

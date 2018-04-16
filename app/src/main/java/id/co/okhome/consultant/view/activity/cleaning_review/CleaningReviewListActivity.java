@@ -1,6 +1,7 @@
 package id.co.okhome.consultant.view.activity.cleaning_review;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 
 import com.mrjodev.jorecyclermanager.JoRecyclerAdapter;
@@ -23,9 +24,10 @@ import id.co.okhome.consultant.view.viewholder.BlankVHolder;
 import id.co.okhome.consultant.view.viewholder.CleaningReviewVHolder;
 import id.co.okhome.consultant.view.viewholder.ReviewSummaryVHolder;
 
-public class CleaningReviewListActivity extends OkHomeParentActivity {
+public class CleaningReviewListActivity extends OkHomeParentActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.actCleaningReview_rcv)       RecyclerView rcv;
+    @BindView(R.id.actCleaningReview_swipe)     SwipeRefreshLayout swipeLayout;
 
     private JoRecyclerAdapter adapter;
 
@@ -42,6 +44,7 @@ public class CleaningReviewListActivity extends OkHomeParentActivity {
     private void init() {
         initRecyclerView();
         loadFirstList();
+        swipeLayout.setOnRefreshListener(this);
     }
 
     private void initRecyclerView() {
@@ -64,6 +67,7 @@ public class CleaningReviewListActivity extends OkHomeParentActivity {
     }
 
     private void loadFirstList() {
+        swipeLayout.setRefreshing(true);
         OkhomeRestApi.getCleaningReviewClient().getReviewPageModel(ConsultantLoggedIn.id()).enqueue(new RetrofitCallback<CleaningReviewPageModel>() {
             @Override
             public void onSuccess(CleaningReviewPageModel result) {
@@ -74,6 +78,7 @@ public class CleaningReviewListActivity extends OkHomeParentActivity {
             @Override
             public void onFinish() {
                 adapter.notifyDataSetChanged();
+                swipeLayout.setRefreshing(false);
                 super.onFinish();
             }
         });
@@ -97,5 +102,10 @@ public class CleaningReviewListActivity extends OkHomeParentActivity {
     @OnClick(R.id.actCleaningReview_vbtnX)
     public void onButtonGoBack() {
         finish();
+    }
+
+    @Override
+    public void onRefresh() {
+        loadFirstList();
     }
 }

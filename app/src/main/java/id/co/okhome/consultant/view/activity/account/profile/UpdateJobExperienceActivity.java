@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.exception.OkhomeException;
+import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
@@ -99,7 +100,7 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
         try {
             OkhomeException.chkException(jobs.size() < 1, "Please include at least one job before submitting");
         } catch (OkhomeException e) {
-            finish();
+            ToastUtil.showToast(e.getMessage());
             return;
         }
 
@@ -145,10 +146,10 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
     public void onCommonDialogWorkDone(Dialog dialog, int actionCode, Map<String, Object> mapResult) {
         if(actionCode == ACTIONCODE_OK){
             JobExperienceModel newJobExp = (JobExperienceModel) mapResult.get(JobExperienceDialog.RESULT_POSITION);
-            //adapter.addListItems();
             jobExperiences.add(newJobExp);
             adapter.setListItems(jobExperiences);
             adapter.notifyItemInserted(jobExperiences.size());
+            checkIfListEmpty();
         }
     }
 }

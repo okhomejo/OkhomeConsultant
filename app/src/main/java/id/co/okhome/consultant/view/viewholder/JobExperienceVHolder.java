@@ -24,7 +24,6 @@ import id.co.okhome.consultant.view.dialog.CommonAlertDialog;
 /**
  * Created by frizurd on 27/03/2018.
  */
-
 @LayoutMatcher(layoutId = R.layout.item_work_experience)
 public class JobExperienceVHolder extends JoViewHolder<JobExperienceModel> implements View.OnClickListener {
 

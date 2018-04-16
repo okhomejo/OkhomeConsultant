@@ -92,6 +92,7 @@ public class JobHistoryTabFragment extends Fragment implements TabFragmentStatus
         );
         googleMap.moveCamera(cameraUpdate);
         googleMap.getUiSettings().setScrollGesturesEnabled(false);
+        googleMap.getUiSettings().setZoomGesturesEnabled(false);
     }
 
     @OnClick(R.id.fragTabJobs_vbtnSeeNextCleaning)

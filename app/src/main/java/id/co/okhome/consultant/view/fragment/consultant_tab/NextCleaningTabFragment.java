@@ -131,6 +131,7 @@ public class NextCleaningTabFragment extends Fragment implements TabFragmentStat
         );
         googleMap.moveCamera(cameraUpdate);
         googleMap.getUiSettings().setScrollGesturesEnabled(false);
+        googleMap.getUiSettings().setZoomGesturesEnabled(false);
     }
 
     @OnClick(R.id.fragTabNextCleaning_vbtnSeeDetail)

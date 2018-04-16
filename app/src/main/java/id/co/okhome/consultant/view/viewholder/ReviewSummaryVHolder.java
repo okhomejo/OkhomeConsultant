@@ -2,6 +2,7 @@ package id.co.okhome.consultant.view.viewholder;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mrjodev.jorecyclermanager.JoViewHolder;
@@ -41,28 +42,43 @@ public class ReviewSummaryVHolder extends JoViewHolder<CleaningReviewSummaryMode
     public void onBind(CleaningReviewSummaryModel m, int pos, int absPos) {
         super.onBind(m, pos, absPos);
 
-//        starReviewRepeater = new JoViewRepeator<Integer>(getContext())
-//                .setContainer(vgStars)
-//                .setItemLayoutId(R.layout.item_cleaning_review_summary_star_graph)
-//                .setCallBack(new StarRatingBarAdapter("C"));
-//
-//        starReviewRepeater.addItem(m.star1Cnt);
-//        starReviewRepeater.notifyDataSetChanged();
+        starReviewRepeater = new JoViewRepeator<Integer>(getContext())
+                .setContainer(vgStars)
+                .setItemLayoutId(R.layout.item_cleaning_review_summary_star_graph)
+                .setCallBack(new StarRatingBarAdapter(m.totalReviewCount));
+
+        starReviewRepeater.addItem(m.star5Cnt);
+        starReviewRepeater.addItem(m.star4Cnt);
+        starReviewRepeater.addItem(m.star3Cnt);
+        starReviewRepeater.addItem(m.star2Cnt);
+        starReviewRepeater.addItem(m.star1Cnt);
+
+        starReviewRepeater.notifyDataSetChanged();
     }
 
     class StarRatingBarAdapter extends JoRepeatorAdapter<Integer> {
 
-        @BindView(R.id.itemTrainingPageItem_tvName)     TextView tvName;
+        @BindView(R.id.itemReviewSummary_vRatingBar)            View vRatingBar;
+        @BindView(R.id.itemReviewSummary_tvRating)              TextView tvRating;
+        @BindView(R.id.itemReviewSummary_tvTotalPercentage)     TextView tvTotalPercentage;
 
-        String type;
+        int totalReviewCount;
 
-        public StarRatingBarAdapter(String type) {
-            this.type = type;
+        public StarRatingBarAdapter(int count) {
+            this.totalReviewCount = count;
         }
 
         @Override
-        public void onBind(View v, int pos, Integer model) {
+        public void onBind(View v, int pos, Integer reviewCount) {
             ButterKnife.bind(this, v);
+            tvRating.setText(String.valueOf(5-pos));
+
+            float percentage = (float) reviewCount*100/totalReviewCount;
+            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT);
+            p.weight = percentage;
+
+            vRatingBar.setLayoutParams(p);
+            tvTotalPercentage.setText(String.format("%s%%", (double) Math.round((percentage) * 10) / 10));
         }
     }
 }

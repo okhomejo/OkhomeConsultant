@@ -4,7 +4,7 @@ import java.util.List;
 
 public class CleaningReviewPageModel {
 
-    public CleaningReviewSummaryModel summaryModel;
+    public CleaningReviewSummaryModel summary;
 
     public List<CleaningReviewModel> reviews = null;
 }

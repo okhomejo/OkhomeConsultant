@@ -73,7 +73,6 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
         } else {
             jobExperiences = new ArrayList<>();
         }
-
         adapter.setListItems(jobExperiences);
         checkIfListEmpty();
     }

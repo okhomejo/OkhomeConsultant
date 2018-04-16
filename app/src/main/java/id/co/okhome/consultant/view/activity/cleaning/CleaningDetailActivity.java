@@ -79,6 +79,7 @@ public class CleaningDetailActivity extends OkHomeParentActivity implements OnMa
         );
         googleMap.moveCamera(cameraUpdate);
         googleMap.getUiSettings().setScrollGesturesEnabled(false);
+        googleMap.getUiSettings().setZoomGesturesEnabled(false);
     }
 
     @OnClick(R.id.actCleaningInfo_vbtnX)

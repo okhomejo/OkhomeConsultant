@@ -12,7 +12,6 @@
         android:layout_marginTop="20dp"
         android:orientation="vertical">
 
-
         <!-- map -->
         <LinearLayout
             android:layout_marginLeft="16dp" android:layout_marginRight="16dp"
@@ -31,12 +30,12 @@
                     android:layout_margin="1px"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <ImageView
                         android:layout_margin="3dp"
                         android:scaleType="centerCrop"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" android:src="@drawable/sample_map"/>
-
 
                     <LinearLayout
                         android:layout_gravity="bottom"
@@ -71,12 +70,8 @@
                         </LinearLayout>
                     </LinearLayout>
                 </FrameLayout>
-
             </LinearLayout>
-
-
         </LinearLayout>
-
 
         <!-- contents -->
         <LinearLayout
@@ -152,7 +147,6 @@
                             android:textColor="@color/colorBlueBlack"
                             android:textSize="15.5sp" />
                     </LinearLayout>
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -181,11 +175,7 @@
                             android:textColor="@color/colorBlueBlack"
                             android:textSize="15.5sp" />
                     </LinearLayout>
-
-
-
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_marginTop="8dp"
@@ -243,9 +233,7 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
@@ -303,9 +291,6 @@
                     android:textSize="16.5sp" />
 
             </LinearLayout>
-
         </LinearLayout>
-
     </LinearLayout>
-
 </RelativeLayout>

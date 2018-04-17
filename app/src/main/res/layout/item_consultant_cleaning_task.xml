@@ -58,6 +58,45 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
+                        <ImageView
+                            android:id="@+id/itemCleaningTask_ivStar1"
+                            android:layout_marginRight="3dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ic_star_off"
+                            android:layout_width="14dp"
+                            android:layout_height="wrap_content" />
+
+                        <ImageView
+                            android:id="@+id/itemCleaningTask_ivStar2"
+                            android:layout_marginRight="3dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ic_star_off"
+                            android:layout_width="14dp"
+                            android:layout_height="wrap_content" />
+
+                        <ImageView
+                            android:id="@+id/itemCleaningTask_ivStar3"
+                            android:layout_marginRight="3dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ic_star_off"
+                            android:layout_width="14dp"
+                            android:layout_height="wrap_content" />
+
+                        <ImageView
+                            android:id="@+id/itemCleaningTask_ivStar4"
+                            android:layout_marginRight="3dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ic_star_off"
+                            android:layout_width="14dp"
+                            android:layout_height="wrap_content" />
+
+                        <ImageView
+                            android:id="@+id/itemCleaningTask_ivStar5"
+                            android:layout_marginRight="3dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ic_star_off"
+                            android:layout_width="14dp"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 

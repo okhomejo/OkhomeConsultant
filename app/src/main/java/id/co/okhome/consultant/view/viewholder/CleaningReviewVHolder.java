@@ -64,29 +64,42 @@ public class CleaningReviewVHolder extends JoViewHolder<CleaningReviewModel> {
     }
 
     private void printStarDrawable(int starCnt) {
-        int counter = starCnt;
-        for (int i = 1; i <= 5; i++) {
-            switch (i) {
-                case 1:
-                    ivStar1.setImageResource(R.drawable.ic_star_on);
-                    break;
-                case 2:
-                    ivStar2.setImageResource(R.drawable.ic_star_on);
-                    break;
-                case 3:
-                    ivStar3.setImageResource(R.drawable.ic_star_on);
-                    break;
-                case 4:
-                    ivStar4.setImageResource(R.drawable.ic_star_on);
-                    break;
-                case 5:
-                    ivStar5.setImageResource(R.drawable.ic_star_on);
-                    break;
-            }
-            counter--;
-            if (counter < 1) {
+        switch (starCnt) {
+            case 1:
+                ivStar1.setImageResource(R.drawable.ic_star_on);
+                ivStar2.setImageResource(R.drawable.ic_star_off);
+                ivStar3.setImageResource(R.drawable.ic_star_off);
+                ivStar4.setImageResource(R.drawable.ic_star_off);
+                ivStar5.setImageResource(R.drawable.ic_star_off);
                 break;
-            }
+            case 2:
+                ivStar1.setImageResource(R.drawable.ic_star_on);
+                ivStar2.setImageResource(R.drawable.ic_star_on);
+                ivStar3.setImageResource(R.drawable.ic_star_off);
+                ivStar4.setImageResource(R.drawable.ic_star_off);
+                ivStar5.setImageResource(R.drawable.ic_star_off);
+                break;
+            case 3:
+                ivStar1.setImageResource(R.drawable.ic_star_on);
+                ivStar2.setImageResource(R.drawable.ic_star_on);
+                ivStar3.setImageResource(R.drawable.ic_star_on);
+                ivStar4.setImageResource(R.drawable.ic_star_off);
+                ivStar5.setImageResource(R.drawable.ic_star_off);
+                break;
+            case 4:
+                ivStar1.setImageResource(R.drawable.ic_star_on);
+                ivStar2.setImageResource(R.drawable.ic_star_on);
+                ivStar3.setImageResource(R.drawable.ic_star_on);
+                ivStar4.setImageResource(R.drawable.ic_star_on);
+                ivStar5.setImageResource(R.drawable.ic_star_off);
+                break;
+            case 5:
+                ivStar1.setImageResource(R.drawable.ic_star_on);
+                ivStar2.setImageResource(R.drawable.ic_star_on);
+                ivStar3.setImageResource(R.drawable.ic_star_on);
+                ivStar4.setImageResource(R.drawable.ic_star_on);
+                ivStar5.setImageResource(R.drawable.ic_star_on);
+                break;
         }
     }
 

@@ -75,17 +75,19 @@ public class ConsultantSalaryVHolder extends JoViewHolder<MoneyHistoryModel> {
         else{
             vgCheckBox.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorLightBlueGray3));
 
-            //earning money
-            if(m.useType.equals("G")){
-                tvMoney.setTextColor(ContextCompat.getColor(getContext(), R.color.colorOkhome));
-                tvComment.setText("Will be deposited on " + OkhomeDateTimeFormatUtil.printFullDate(m.payDateTime));
-            }
-            //spending money
-            else{
-                tvMoney.setTextColor(Color.parseColor("#44000000"));
-                tvComment.setText("Will be withdrawn on "  + OkhomeDateTimeFormatUtil.printFullDate(m.payDateTime));
-            }
+            if (m.payDateTime != null) {
 
+                //earning money
+                if(m.useType.equals("G")){
+                    tvMoney.setTextColor(ContextCompat.getColor(getContext(), R.color.colorOkhome));
+                    tvComment.setText("Will be deposited on " + OkhomeDateTimeFormatUtil.printFullDate(m.payDateTime));
+                }
+                //spending money
+                else{
+                    tvMoney.setTextColor(Color.parseColor("#44000000"));
+                    tvComment.setText("Will be withdrawn on "  + OkhomeDateTimeFormatUtil.printFullDate(m.payDateTime));
+                }
+            }
         }
 
 

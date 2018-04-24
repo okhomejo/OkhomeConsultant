@@ -20,6 +20,7 @@ public class CleaningRequestPageItem extends JoViewPagerItem<String>{
     public View getView(LayoutInflater inflater) {
         View v = inflater.inflate(R.layout.page_cleaning_request, null);
         ButterKnife.bind(this, v);
+        int i = 0;
         return v;
     }
 

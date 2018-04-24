@@ -70,13 +70,13 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     private void initViewsAndData() {
 
         if(ConsultantLoggedIn.get().type.equals("C")){
-            tvTitle.setText("Profile information");
+            tvTitle.setText("PROFILE INFORMATION");
             accountApproved = true;
 
         }else{
             if (ConsultantLoggedIn.get().trainee.approveYN.equals("Y")) {
                 accountApproved = true;
-                tvTitle.setText("Profile information");
+                tvTitle.setText("PROFILE INFORMATION");
             }
         }
 

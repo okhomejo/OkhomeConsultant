@@ -13,7 +13,7 @@
         android:background="@color/colorOkhome"
         android:id="@+id/actLocation_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="58.4dp">
+        android:layout_height="66dp">
 
         <LinearLayout
             android:layout_marginRight="6dp"
@@ -36,7 +36,7 @@
             android:id="@+id/actPoint_tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:text="Change location"
-            android:textSize="19dp"
+            android:textSize="22sp"
             android:layout_centerVertical="true" />
 
     </LinearLayout>
@@ -56,7 +56,7 @@
             android:focusableInTouchMode="true" />
 
         <RelativeLayout
-            android:layout_height="48dp"
+            android:layout_height="51dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_centerVertical="true"
@@ -71,7 +71,7 @@
                 android:paddingRight="44dp"
                 android:background="@null"
                 style="@style/FontOpenSansLight"
-                android:textSize="14.5sp"
+                android:textSize="15.5sp"
                 android:hint="Your location"
                 android:textColor="@color/colorBlueGray"
                 android:singleLine="true"

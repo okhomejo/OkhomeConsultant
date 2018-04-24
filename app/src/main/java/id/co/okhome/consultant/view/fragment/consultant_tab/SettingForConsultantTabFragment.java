@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -21,10 +23,10 @@ import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.model.FaqModel;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.view.activity.account.AccountSettingsActivity;
+import id.co.okhome.consultant.view.activity.account.profile.FillupUserInfoActivity;
 import id.co.okhome.consultant.view.activity.etc.AboutOkhomeActivity;
 import id.co.okhome.consultant.view.activity.faq.FaqActivity;
 import id.co.okhome.consultant.view.activity.news.NewsActivity;
-import id.co.okhome.consultant.view.activity.account.profile.FillupUserInfoActivity;
 
 /**
  * Created by jo on 2018-04-07.
@@ -71,6 +73,10 @@ public class SettingForConsultantTabFragment extends Fragment implements TabFrag
 
     @Override
     public void onSelect() {
+    }
+
+    @Override
+    public void onSelectWithData(Map<String, Object> param) {
 
     }
 
@@ -88,7 +94,7 @@ public class SettingForConsultantTabFragment extends Fragment implements TabFrag
     @OnClick(R.id.fragTabSettingsForConsultant_vbtnManual)
     public void onClickManual(){
 //        FaqActivity.startFaqActivity(getActivity(), "Manual", "MANUAL_TRAINER", 0);
-        FaqActivity.startFaqActivity(getActivity(), "Manual", FaqModel.CATEGORY_MANUAL_TRAINEE, 0);
+        FaqActivity.startFaqActivity(getActivity(), "MANUAL", FaqModel.CATEGORY_MANUAL_TRAINEE, 0);
 //        startActivity(new Intent(getActivity(), FaqAc.class));
     }
 
@@ -109,7 +115,7 @@ public class SettingForConsultantTabFragment extends Fragment implements TabFrag
 
     @OnClick(R.id.fragTabSettingsForConsultant_vbtnFaqs)
     public void onFaqClick(){
-        FaqActivity.startFaqActivity(getActivity(), "Faq", "FAQ_TRAINER", 0);
+        FaqActivity.startFaqActivity(getActivity(), "FAQ", "FAQ_TRAINER", 0);
 //        startActivity(new Intent(getActivity(), FaqActivity.class).putExtra("FAQ_CATEGORY", "FAQ_TRAINEE"));
     }
 

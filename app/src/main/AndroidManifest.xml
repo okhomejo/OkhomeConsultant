@@ -55,6 +55,9 @@
         <activity android:name=".view.activity.account.profile.UpdateUserDocumentActivity" />
         <activity android:name=".view.activity.account.profile.LocationActivity" />
 
+        <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+            android:value="false"/>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBotNQOUVtAnpV7UzhoDZ4AfCWFa_q_4iw" />
@@ -84,6 +87,8 @@
         <activity android:name=".view.activity.cleaning_review.CleaningReviewListActivity" />
         <activity android:name=".view.activity.cleaning.NextCleaningsActivity" />
         <activity android:name=".view.activity.cleaning.PreviousCleaningsActivity"></activity>
+        <activity android:name=".view.activity.cleaning.CleaningListTabActivity"></activity>
+
     </application>
 
 </manifest>

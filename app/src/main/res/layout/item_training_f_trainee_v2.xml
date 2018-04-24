@@ -2,11 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:paddingTop="21dp"
-    android:paddingLeft="20dp" android:paddingRight="20dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="17dp" android:paddingRight="20dp"
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:paddingLeft="22dp"
+        android:background="@drawable/bg_leftline_bold_gray_3dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -156,6 +159,7 @@
 
 
         <View
+            android:visibility="gone"
             android:layout_marginTop="21dp"
             android:layout_width="match_parent"
             android:layout_height="1px" android:background="#33000000"/>

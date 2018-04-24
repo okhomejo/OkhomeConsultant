@@ -5,14 +5,10 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -27,10 +23,8 @@ import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.cleaning.CleaningInfoModel;
-import id.co.okhome.consultant.model.page.ConsultantPageProgressModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
-import id.co.okhome.consultant.view.fragment.consultant_tab.NextCleaningTabFragment;
-import id.co.okhome.consultant.view.fragment.consultant_tab.PickingCleaningTabFragment;
+import id.co.okhome.consultant.view.fragment.NextCleaningItemFragment;
 
 public class NextCleaningsActivity extends OkHomeParentActivity {
 
@@ -64,7 +58,7 @@ public class NextCleaningsActivity extends OkHomeParentActivity {
 
     private void getNextCleaningTasks() {
         progressBar.setVisibility(View.VISIBLE);
-        OkhomeRestApi.getCleaningTaskClient().getNextCleaningTasks(ConsultantLoggedIn.id()).enqueue(new RetrofitCallback<List<CleaningInfoModel>>() {
+        OkhomeRestApi.getCleaningTaskClient().getNextCleaningTasks(ConsultantLoggedIn.id(), 0).enqueue(new RetrofitCallback<List<CleaningInfoModel>>() {
             @Override
             public void onSuccess(List<CleaningInfoModel> taskList) {
                 addTasksToViewPager(taskList);
@@ -81,7 +75,7 @@ public class NextCleaningsActivity extends OkHomeParentActivity {
 
     private void addTasksToViewPager(List<CleaningInfoModel> taskList) {
         for(CleaningInfoModel task : taskList) {
-            Fragment taskFragment = NextCleaningTabFragment.newInstance(task);
+            Fragment taskFragment = NextCleaningItemFragment.newInstance(task);
             pagerAdapter.addFragment(taskFragment);
         }
         tvCurrentPage.setText(String.format("%s / %s", 1, pagerAdapter.getCount()));

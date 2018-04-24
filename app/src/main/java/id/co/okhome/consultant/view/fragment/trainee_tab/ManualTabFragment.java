@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.mrjodev.jorecyclermanager.JoRecyclerAdapter;
 
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,7 +22,7 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.FaqModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.viewholder.BlankVHolder;
-import id.co.okhome.consultant.view.viewholder.ManualParentVHolder;
+import id.co.okhome.consultant.view.viewholder.manual.ManualParentVHolder;
 
 /**
  * Created by jo on 2018-01-23.
@@ -56,9 +57,12 @@ public class ManualTabFragment extends Fragment implements TabFragmentStatusList
 
     @Override
     public void onSelect() {
-
     }
 
+    @Override
+    public void onSelectWithData(Map<String, Object> param) {
+
+    }
     @Override
     public void onDeselect() {
 

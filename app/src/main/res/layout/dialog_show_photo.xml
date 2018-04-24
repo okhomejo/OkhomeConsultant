@@ -53,7 +53,6 @@
                 </LinearLayout>
                 <ImageView
                     android:id="@+id/dialogShowPhoto_ivPhoto"
-                    android:layout_margin="4dp"
                     android:scaleType="centerCrop"
                     android:adjustViewBounds="true"
                     android:layout_width="match_parent"
@@ -93,7 +92,7 @@
             android:id="@+id/dialogShowPhoto_vbtnOk"
             android:layout_weight="5"
             android:gravity="center"
-            android:background="@color/colorOkhome"
+            android:background="@color/colorOkhomeLight2"
             android:layout_width="0dp"
             android:layout_height="match_parent">
 

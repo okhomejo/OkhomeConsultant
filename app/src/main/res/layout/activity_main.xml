@@ -8,9 +8,10 @@
     tools:context="id.co.okhome.consultant.view.activity.main.TraineeMainActivity">
 
     <RelativeLayout
+        android:paddingRight="17dp"
         android:id="@+id/actMain_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="76dp">
+        android:layout_height="@dimen/main_topbar_height">
 
         <!--<ImageView-->
         <!--android:alpha="0.6"-->
@@ -21,19 +22,85 @@
         <!--android:layout_height="wrap_content" android:src="@drawable/ic_x" />-->
 
         <TextView
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="21dp"
             style="@style/FontOpenSansLight"
-            android:textColor="#000000"
+            android:textColor="@color/colorPurpleBlack"
             android:id="@+id/actMain_tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:text="Welcome."
-            android:textSize="33dp"
+            android:textSize="27dp"
             android:layout_centerVertical="true" />
 
         <View
             android:layout_alignParentBottom="true"
-            android:layout_width="190dp"
-            android:layout_height="2px" android:background="#000000"/>
+            android:layout_width="200dp"
+            android:layout_height="2px" android:background="@color/colorPurpleBlack"/>
+
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/actMain_vgTabIcons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:layout_width="30dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/actMain_ivCleaningIcon"
+                    android:alpha="0.8"
+                    android:src="@drawable/ic_now_cleaning"
+                    android:adjustViewBounds="true"
+                    android:layout_width="27dp"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:id="@+id/actMain_vCleaningIconDot"
+                    android:layout_gravity="right"
+                    android:layout_width="4.5dp"
+                    android:layout_height="4.5dp" android:background="@drawable/circle_lightred"/>
+            </FrameLayout>
+
+
+
+        </LinearLayout>
+
+        <!-- tab icons-->
+        <LinearLayout
+
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/actMain_vgTabIcons"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <!-- request icon -->
+            <LinearLayout
+                android:id="@+id/actMain_vgTabRequestActions"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <!-- setting tab 1-->
+                <LinearLayout
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/actMain_vbtnRequestSetting"
+                    android:gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:alpha="0.8"
+                        android:src="@drawable/ic_setting5"
+                        android:adjustViewBounds="true"
+                        android:layout_width="24.5dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+        <!-- action buttons -->
+
+
     </RelativeLayout>
 
     <!--<RelativeLayout-->
@@ -90,6 +157,7 @@
     </RelativeLayout>
 
 
+
     <!-- bottom menu -->
     <LinearLayout
         android:orientation="vertical"
@@ -118,7 +186,7 @@
             android:id="@+id/actMain_vgTabForTrainer"
             android:paddingLeft="-3dp" android:paddingRight="-3dp"
             android:background="#04efefef"
-            android:paddingBottom="2dp"
+            android:paddingBottom="1dp"
             android:weightSum="5"
             android:layout_width="match_parent"
             android:layout_height="63dp">
@@ -304,7 +372,7 @@
             android:id="@+id/actMain_vgTabForTrainee"
             android:paddingLeft="-3dp" android:paddingRight="-3dp"
             android:background="#04efefef"
-            android:paddingBottom="2dp"
+            android:paddingBottom="1dp"
             android:weightSum="5"
             android:layout_width="match_parent"
             android:layout_height="63dp">

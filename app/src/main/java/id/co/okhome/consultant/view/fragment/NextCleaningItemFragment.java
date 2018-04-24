@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.view.fragment.consultant_tab;
+package id.co.okhome.consultant.view.fragment;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -9,13 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -23,21 +21,18 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.OkhomeDateTimeFormatUtil;
-import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.model.cleaning.CleaningInfoModel;
 import id.co.okhome.consultant.view.activity.cleaning.CleaningDetailActivity;
 
-public class NextCleaningTabFragment extends Fragment implements TabFragmentStatusListener, OnMapReadyCallback {
+public class NextCleaningItemFragment extends Fragment implements TabFragmentStatusListener, OnMapReadyCallback {
 
     @BindView(R.id.fragTabNextCleaning_tvAddress)       TextView tvAddress;
     @BindView(R.id.fragTabNextCleaning_tvDate)          TextView tvDate;
@@ -48,8 +43,8 @@ public class NextCleaningTabFragment extends Fragment implements TabFragmentStat
     private static final String TASK_KEY = "cleaning_model_key";
     private CleaningInfoModel cleaningModel;
 
-    public static NextCleaningTabFragment newInstance(CleaningInfoModel model) {
-        NextCleaningTabFragment fragment = new NextCleaningTabFragment();
+    public static NextCleaningItemFragment newInstance(CleaningInfoModel model) {
+        NextCleaningItemFragment fragment = new NextCleaningItemFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(TASK_KEY, model);
         fragment.setArguments(bundle);
@@ -60,7 +55,7 @@ public class NextCleaningTabFragment extends Fragment implements TabFragmentStat
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         cleaningModel = (CleaningInfoModel) getArguments().getSerializable(TASK_KEY);
-        return inflater.inflate(R.layout.fragment_tab_next_cleaning, null);
+        return inflater.inflate(R.layout.fragment_next_cleaning, null);
     }
 
     @Override
@@ -97,9 +92,13 @@ public class NextCleaningTabFragment extends Fragment implements TabFragmentStat
             mapFragment.getMapAsync(this);
         }
     }
-
     @Override
     public void onSelect() {
+    }
+
+    @Override
+    public void onSelectWithData(Map<String, Object> param) {
+
     }
 
     @Override

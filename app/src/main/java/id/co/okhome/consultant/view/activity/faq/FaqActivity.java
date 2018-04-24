@@ -37,8 +37,8 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.FaqModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.viewholder.BlankVHolder;
-import id.co.okhome.consultant.view.viewholder.FaqVHolder;
-import id.co.okhome.consultant.view.viewholder.ManualParentVHolder;
+import id.co.okhome.consultant.view.viewholder.faq.FaqVHolder;
+import id.co.okhome.consultant.view.viewholder.manual.ManualParentVHolder;
 
 /**
  * Created by frizurd on 16/03/2018.
@@ -100,7 +100,7 @@ public class FaqActivity extends OkHomeParentActivity {
         if (faqTitle != null) {
             tvTitle.setText(faqTitle);
         } else {
-            tvTitle.setText("Faq");
+            tvTitle.setText("FAQ");
         }
         getAllFaq(faqId, faqCategory);
         initAllFaqKeywords(faqCategory);

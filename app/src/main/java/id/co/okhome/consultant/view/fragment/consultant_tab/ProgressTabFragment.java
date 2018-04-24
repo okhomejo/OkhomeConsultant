@@ -81,9 +81,12 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
 
     @Override
     public void onSelect() {
-
     }
 
+    @Override
+    public void onSelectWithData(Map<String, Object> param) {
+
+    }
     @Override
     public void onDeselect() {
 

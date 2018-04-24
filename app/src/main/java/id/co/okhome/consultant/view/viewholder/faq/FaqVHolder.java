@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.view.viewholder;
+package id.co.okhome.consultant.view.viewholder.faq;
 
 import android.content.Intent;
 import android.view.View;
@@ -15,41 +15,43 @@ import id.co.okhome.consultant.view.activity.faq.FaqActivity;
 import id.co.okhome.consultant.view.activity.faq.FaqSingleActivity;
 
 /**
- * Created by josongmin on 2016-06-28.
+ * Created by frizurd on 26/03/2018.
  */
 
-@LayoutMatcher(layoutId = R.layout.item_manual_parentitem)
-public class ManualParentVHolder extends JoViewHolder<FaqModel> implements View.OnClickListener{
+@LayoutMatcher(layoutId = R.layout.item_faq_element)
+public class FaqVHolder extends JoViewHolder<FaqModel> implements View.OnClickListener {
 
-    @BindView(R.id.itemManualParentItem_tvTitle)
-    TextView tvTitle;
+    @BindView(R.id.itemFaqs_tvTitle)    TextView tvTitle;
 
-    public ManualParentVHolder(View itemView) {
+    public FaqVHolder(View itemView) {
         super(itemView);
     }
 
     @Override
     public void onViewCreated() {
-        ButterKnife.bind(this, itemView);
+        ButterKnife.bind(this, getView());
     }
 
     @Override
-    public void onBind(final FaqModel faq, int pos, int absPos) {
-        super.onBind(faq, pos, absPos);
+    public void onBind(FaqModel m, int pos, int absPos) {
+        super.onBind(m, pos, absPos);
+        tvTitle.setText(m.subject);
 
-        tvTitle.setText(faq.subject);
         getView().setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(View v) {
         FaqModel faq = getModel();
-        if(faq.childCount > 0){
-            FaqActivity.startFaqActivity(getContext(), faq.subject, faq.category, faq.id);
 
-        }else{
+        if (faq.childCount == 0) {
             getContext().startActivity(new Intent(getContext(), FaqSingleActivity.class)
                     .putExtra("FAQ_ID", faq.id));
+        } else {
+            getContext().startActivity(new Intent(getContext(), FaqActivity.class)
+                    .putExtra("FAQ_CATEGORY", faq.category)
+                    .putExtra("FAQ_ID", faq.id)
+                    .putExtra("FAQ_TITLE", faq.subject));
         }
     }
 }

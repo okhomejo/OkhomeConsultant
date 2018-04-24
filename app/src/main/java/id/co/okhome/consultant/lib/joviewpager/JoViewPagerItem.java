@@ -24,6 +24,10 @@ public abstract class JoViewPagerItem<T>{
         view = getView(LayoutInflater.from(context));
     }
 
+    public Context getContext() {
+        return context;
+    }
+
     public JoViewPagerController getPagerController() {
         return pagerController;
     }

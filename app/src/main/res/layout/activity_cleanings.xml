@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/actCleanings_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:id="@+id/actCleanings_vbtnX"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_leftarrow" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="50dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/actCleaningInfo_tvTitle"
+            style="@style/FontOpenSansLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CLEANINGS"
+            android:textColor="#000000"
+            android:textSize="19dp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/actCleanings_vgTop"
+        android:id="@+id/actCleanings_vgSubTop"
+        android:layout_marginTop="-20dp"
+        android:gravity="center_vertical"
+        android:weightSum="10"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <FrameLayout
+            android:orientation="vertical"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/actCleanings_tvTab1"
+                android:layout_gravity="center"
+                style="@style/FontOpenSansLight"
+                android:textColor="@color/colorBlueBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NEXT"
+                android:textSize="16sp" />
+            <View
+                android:layout_gravity="bottom|center_horizontal"
+                android:id="@+id/actCleanings_vTabLine1"
+                android:layout_width="40dp"
+                android:layout_height="1dp" android:background="@color/colorOkhomeLight2"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_weight="5"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/actCleanings_tvTab2"
+                android:layout_gravity="center"
+                style="@style/FontOpenSansLight"
+                android:textColor="@color/colorBlueBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PREV"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_gravity="bottom|center_horizontal"
+                android:id="@+id/actCleanings_vTabLine2"
+                android:layout_width="40dp"
+                android:layout_height="1dp" android:background="@color/colorOkhomeLight2"/>
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/actCleanings_vgTop"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="67dp"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentTop="true">-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/actCleanings_vbtnX"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:gravity="center"-->
+            <!--android:paddingLeft="17dp"-->
+            <!--android:paddingRight="20dp">-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="18dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:adjustViewBounds="true"-->
+                <!--android:src="@drawable/ic_leftarrow" />-->
+
+        <!--</LinearLayout>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/actCleanings_tvTitle"-->
+            <!--style="@style/FontOpenSansLight"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_toEndOf="@+id/actCleanings_vbtnX"-->
+            <!--android:text="Cleanings"-->
+            <!--android:textColor="#000000"-->
+            <!--android:textSize="24dp" />-->
+
+    <!--</RelativeLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_marginTop="-14dp"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:weightSum="10"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="56dp">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_weight="5"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/actCleanings_tvTab1"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--style="@style/FontOpenSansLight"-->
+                <!--android:textColor="@color/colorBlueBlack"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Next cleanings"-->
+                <!--android:textSize="17sp" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_weight="5"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent">-->
+            <!--<TextView-->
+                <!--android:id="@+id/actCleanings_tvTab2"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--style="@style/FontOpenSansLight"-->
+                <!--android:textColor="@color/colorBlueBlack"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Previous cleanings"-->
+                <!--android:textSize="17sp" />-->
+        <!--</LinearLayout>-->
+
+    <!--</LinearLayout>-->
+
+    <android.support.v4.view.ViewPager
+        android:layout_below="@+id/actCleanings_vgSubTop"
+        android:id="@+id/actCleanings_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:layout_below="@+id/actCleanings_vgSubTop"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#36000000"/>
+        <View
+            android:alpha="0.1"
+            android:layout_width="match_parent"
+            android:layout_height="5dp" android:background="@drawable/bg_circle_shadow"/>
+    </LinearLayout>
+</RelativeLayout>

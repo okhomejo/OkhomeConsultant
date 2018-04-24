@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
+        android:id="@+id/fragTabJobs_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+
+            <LinearLayout
+                android:gravity="center"
+                android:background="@drawable/square_stroke_blueblack"
+                android:layout_weight="5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="CLEANING"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="16.5sp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/square_stroke_blueblack"
+                android:layout_weight="5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_centerInParent="true"
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="TRAINING"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="16.5sp" />
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp" android:background="@color/colorOkhomeLight"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/colorLightBlueGray" />
+
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:paddingRight="20dp"
+                    android:text="NEXT CLEANING"
+                    android:textColor="@color/colorLightBlueGray"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/fragTabJobs_vbtnSeeNextCleaning"
+                    style="@style/FontOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:background="#ffffff"
+                    android:paddingLeft="20dp"
+                    android:text="SEE 6 MORE"
+                    android:textColor="@color/colorOkhomeLight"
+                    android:textSize="15sp" />
+
+            </FrameLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="190dp"
+                        android:background="#55000000"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1px"
+                            android:background="#ffffff">
+
+                            <fragment
+                                android:id="@+id/fragTabJobs_map"
+                                android:name="com.google.android.gms.maps.MapFragment"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="3dp" />
+
+                            <!--<ImageView-->
+                            <!--android:layout_margin="3dp"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent" android:src="@drawable/sample_map"/>-->
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="#99000000"
+                                    android:orientation="vertical"
+                                    android:paddingBottom="9dp"
+                                    android:paddingLeft="12dp"
+                                    android:paddingRight="12dp"
+                                    android:paddingTop="9dp">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_vertical">
+
+                                        <ImageView
+                                            android:layout_width="13dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginRight="10dp"
+                                            android:adjustViewBounds="true"
+                                            android:src="@drawable/ic_pushlogo_white" />
+
+                                        <TextView
+                                            style="@style/FontOpenSansLight"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:singleLine="true"
+                                            android:text="09 Jan 18, 16:00, 5 hours"
+                                            android:textColor="#ffffff"
+                                            android:textSize="15sp" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <!-- item 2-->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center_vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/colorLightBlueGray" />
+
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:paddingRight="20dp"
+                    android:text="PREVIOUS CLEANINGS"
+                    android:textColor="@color/colorLightBlueGray"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/fragTabJobs_vbtnSeePreviousCleaning"
+                    style="@style/FontOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:background="#ffffff"
+                    android:paddingLeft="20dp"
+                    android:text="SEE 4 MORE"
+                    android:textColor="@color/colorOkhomeLight"
+                    android:textSize="15sp" />
+
+            </FrameLayout>
+
+            <!-- item -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1.5dp"
+                        android:gravity="center_vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_leftline_bold_gray"
+                            android:orientation="vertical"
+                            android:paddingBottom="3dp"
+                            android:paddingLeft="25dp">
+
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="-2dp"
+                                android:text="General Cleaning"
+                                android:textColor="@color/colorBlueBlack"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginBottom="4dp"
+                                android:text="A3205, Puri casablanca, JL Casablanca"
+                                android:textColor="@color/colorBlueGray"
+                                android:textSize="15.5sp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:layout_width="16dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="3dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/ic_star_on" />
+
+                                <ImageView
+                                    android:layout_width="16dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="3dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/ic_star_on" />
+
+                                <ImageView
+                                    android:layout_width="16dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="3dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/ic_star_on" />
+
+                                <ImageView
+                                    android:layout_width="16dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="3dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/ic_star_on" />
+
+                                <ImageView
+                                    android:layout_width="16dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="3dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/ic_star_off" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="14dp"
+                                android:text="Cleaning on 16 Jan 2018, 10:00 AM"
+                                android:textColor="#66000000"
+                                android:textSize="14.5sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_leftline_bold_gray"
+                        android:orientation="vertical"
+                        android:paddingLeft="25dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="-2dp"
+                                android:text="General Cleaning"
+                                android:textColor="@color/colorBlueBlack"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginBottom="4dp"
+                                android:text="A3205, Puri casablanca, JL Casablanca"
+                                android:textColor="@color/colorBlueGray"
+                                android:textSize="14sp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="3dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/ic_star_on" />
+
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="3dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/ic_star_on" />
+
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="3dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/ic_star_on" />
+
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="3dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/ic_star_on" />
+
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="3dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/ic_star_off" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="14dp"
+                                android:text="Cleaning on 16 Jan 2018, 10:00 AM"
+                                android:textColor="#66000000"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

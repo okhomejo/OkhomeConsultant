@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:paddingLeft="22dp"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:id="@+id/actAccount_vbtnX"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:paddingLeft="17dp"
+            android:paddingRight="22dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_x" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_alignParentRight="true"
+            android:id="@+id/actCleaningInfo_vbtnMore"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="17dp"
+            android:paddingRight="22dp">
+
+            <ImageView
+                android:rotation="90"
+                android:layout_width="14dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_more_black" />
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/FontOpenSansLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="SETTING"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px" android:background="#44000000"/>
+    <LinearLayout
+        android:paddingTop="5dp" android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+         android:paddingLeft="22dp" android:paddingRight="22dp"
+        >
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <FrameLayout
+                android:id="@+id/dialogConsultantCleaningQueueSetting_vbtnSetOffday"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="SET OFF DAY"
+                        android:textColor="@color/colorBlueBlack"
+                        android:textSize="19sp" />
+
+                    <TextView
+                        android:id="@+id/fragTabSettingsForConsultant_tvAccountEmail"
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="October : A five-day Break"
+                        android:textColor="@color/colorLightBlueGray"
+                        android:textSize="13sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/colorOkhomeLight2"
+                    android:layout_width="31dp"
+                    android:layout_height="31dp">
+
+                    <ImageView
+                        android:src="@drawable/ic_right_simplearrow_left_white"
+                        android:adjustViewBounds="true"
+                        android:layout_width="13dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </FrameLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/dialogConsultantCleaningQueueSetting_vbtnPreferredArea"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <FrameLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="PREFERED AREA"
+                        android:textColor="@color/colorBlueBlack"
+                        android:textSize="19sp" />
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Jakarta pusat, Tebet"
+                        android:textColor="@color/colorLightBlueGray"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/colorOkhomeLight2"
+                    android:layout_width="31dp"
+                    android:layout_height="31dp">
+
+                    <ImageView
+                        android:src="@drawable/ic_right_simplearrow_left_white"
+                        android:adjustViewBounds="true"
+                        android:layout_width="13dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </FrameLayout>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

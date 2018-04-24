@@ -23,12 +23,10 @@ import org.joda.time.Years;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -87,9 +85,12 @@ public class HomeTabFragment extends Fragment implements TabFragmentStatusListen
 
     @Override
     public void onSelect() {
-        View v = null;
     }
 
+    @Override
+    public void onSelectWithData(Map<String, Object> param) {
+
+    }
     @Override
     public void onDeselect() {
         OkhomeUtil.Log(this.getClass().toString() + " onDeselect ");

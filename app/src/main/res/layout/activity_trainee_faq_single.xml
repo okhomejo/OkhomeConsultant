@@ -11,23 +11,22 @@
     <RelativeLayout
         android:id="@+id/actTraineeFaqSingle_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:background="#FFFFFF"
         android:paddingRight="20dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp">
+        android:paddingTop="20dp">
 
         <LinearLayout
             android:id="@+id/actTraineeFaqSingle_vbtnX"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:paddingLeft="17dp"
-            android:paddingRight="20dp"
-            android:paddingBottom="10dp">
+            android:paddingRight="20dp">
 
             <ImageView
-                android:layout_width="18dp"
+                android:layout_width="14dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@drawable/ic_leftarrow" />
@@ -35,33 +34,25 @@
         </LinearLayout>
 
         <TextView
+            android:paddingLeft="80dp" android:paddingRight="80dp"
+            android:layout_centerInParent="true"
             android:id="@+id/actTraineeFaqSingle_tvTitle"
-            android:layout_below="@id/actTraineeFaqSingle_vbtnX"
             style="@style/FontOpenSansLight"
-            android:paddingLeft="17dp"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text=""
+            android:text="dsfsafd"
             android:textColor="#000000"
-            android:textSize="20dp"
-            tools:layout_editor_absoluteX="6dp"
-            tools:layout_editor_absoluteY="0dp" />
-
+            android:textSize="20dp"/>
 
     </RelativeLayout>
 
-    <View
-        android:id="@+id/actTraineeFaqSingle_vgBorder"
-        android:layout_below="@id/actTraineeFaqSingle_vgTop"
-        android:layout_width="match_parent"
-        android:layout_height="2px" android:background="#000000"/>
-
     <!-- bottom-->
     <RelativeLayout
+        android:layout_below="@+id/actTraineeFaqSingle_vgTop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/actTraineeFaqSingle_vgBorder"
         android:layout_centerInParent="true"
         android:gravity="center|center_horizontal"
         android:background="#FFFFFF"
@@ -79,5 +70,17 @@
             android:layout_centerInParent="true" />
 
     </RelativeLayout>
-
+    <LinearLayout
+        android:layout_below="@+id/actTraineeFaqSingle_vgTop"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#36000000"/>
+        <View
+            android:alpha="0.1"
+            android:layout_width="match_parent"
+            android:layout_height="5dp" android:background="@drawable/bg_circle_shadow"/>
+    </LinearLayout>
 </RelativeLayout>

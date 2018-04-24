@@ -1,11 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:id="@+id/fragTabJobs_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_topbar_height">
+        <TextView
+            android:layout_marginLeft="20dp"
+            style="@style/FontOpenSansLight"
+            android:textColor="#000000"
+            android:id="@+id/actMain_tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="Welcome."
+            android:textSize="31dp"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
+        android:id="@+id/fragTabJobs_vgBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+
+            <LinearLayout
+                android:gravity="center"
+                android:background="@drawable/square_stroke_blueblack"
+                android:layout_weight="5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="CLEANING"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="16.5sp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/square_stroke_blueblack"
+                android:layout_weight="5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_centerInParent="true"
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="TRAINING"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="16.5sp" />
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp" android:background="@color/colorOkhomeLight"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
     <ScrollView
+        android:layout_below="@+id/fragTabJobs_vgTop"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -274,6 +347,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:layout_marginTop="18dp"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
@@ -379,4 +453,4 @@
 
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>

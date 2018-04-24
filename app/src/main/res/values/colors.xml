@@ -22,5 +22,15 @@
     <color name="colorGray">#56585c</color>
     <color name="colorDeepGray">#454849</color>
     <color name="colorBlueBlack">#29313a</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorPurpleBlack">#2d343c</color>
+
+    <!-- for calendar -->
+    <color name="colorCalendarRed">#f44259</color>
+    <color name="colorCalendarRedAlpha">#33f44259</color>
+    <color name="colorCalendarBlue">#41a9f4</color>
+    <color name="colorCalendarBlueAlpha">#3341a9f4</color>
+    <color name="colorCalendarBlack">@color/colorPurpleBlack</color>
+    <color name="colorCalendarBlackAlpha">#22000000</color>
 
 </resources>

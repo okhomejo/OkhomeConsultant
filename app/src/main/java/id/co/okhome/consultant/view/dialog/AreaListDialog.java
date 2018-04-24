@@ -19,7 +19,7 @@ import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.model.WorkingRegionModel;
 import id.co.okhome.consultant.view.activity.account.profile.UpdateConsultantAreaActivity;
 import id.co.okhome.consultant.view.viewholder.BlankVHolder;
-import id.co.okhome.consultant.view.viewholder.PreferredChildAreaVHolder;
+import id.co.okhome.consultant.view.viewholder.prefered_area.PreferredChildAreaVHolder;
 
 /**
  * Created by frizurd on 14/02/2018.

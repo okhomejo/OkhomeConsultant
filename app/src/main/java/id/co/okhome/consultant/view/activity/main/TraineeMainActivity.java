@@ -20,6 +20,7 @@ import id.co.okhome.consultant.lib.ViewHolderUtil;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.fragment_pager.FragmentTabAdapter;
+import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.view.fragment.trainee_tab.ChatTabFragment;
 import id.co.okhome.consultant.view.fragment.trainee_tab.HomeTabFragment;
 import id.co.okhome.consultant.view.fragment.trainee_tab.ManualTabFragment;
@@ -31,6 +32,7 @@ public class TraineeMainActivity extends OkHomeParentActivity {
     @BindView(R.id.actMain_tvTitle)     TextView tvTitle;
     @BindView(R.id.actMain_vgTop)       ViewGroup vgTop;
     @BindView(R.id.actMain_vp)          ViewPager vpMain;
+    @BindView(R.id.actMain_vbtnRequestSetting) View vbtnSetting;
 
     MainTabAdapter tabAdapter;
 
@@ -134,6 +136,26 @@ public class TraineeMainActivity extends OkHomeParentActivity {
             String title = listTitle.get(position);
             tvTitle.setText(title);
 
+
+            notifyCurrentItemChange(position);
+            //
+        }
+
+        private void notifyCurrentItemChange(int position){
+            vbtnSetting.setVisibility(View.GONE);
+            for(int i = 0; i < getSupportFragmentManager().getFragments().size(); i++){
+                Fragment f = getSupportFragmentManager().getFragments().get(i);
+                if(position == i){
+                    if(f instanceof TabFragmentStatusListener){
+                        ((TabFragmentStatusListener) f).onSelect();
+                        ((TabFragmentStatusListener) f).onSelectWithData(OkhomeUtil.makeMap("vSetting", vbtnSetting));
+                    }
+                }else{
+                    if(f instanceof TabFragmentStatusListener){
+                        ((TabFragmentStatusListener) f).onDeselect();
+                    }
+                }
+            }
         }
 
         @Override

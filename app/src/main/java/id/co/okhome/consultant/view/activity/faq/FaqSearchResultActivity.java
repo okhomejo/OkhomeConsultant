@@ -23,7 +23,7 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.FaqModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.viewholder.BlankVHolder;
-import id.co.okhome.consultant.view.viewholder.FaqVHolder;
+import id.co.okhome.consultant.view.viewholder.faq.FaqVHolder;
 
 /**
  * Created by frizurd on 22/03/2018.
@@ -72,7 +72,7 @@ public class FaqSearchResultActivity extends OkHomeParentActivity {
         if (getIntent().getExtras() != null) {
             getFaqById(getIntent().getStringExtra("FAQ_SEARCH_IDS"));
             if (getIntent().getStringExtra("FAQ_SEARCH_TITLE") == null) {
-                tvTitle.setText("Faq");
+                tvTitle.setText("FAQ");
             } else {
                 tvTitle.setText(String.format("FAQ : %s", getIntent().getStringExtra("FAQ_SEARCH_TITLE")));
             }

@@ -16,14 +16,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import org.joda.time.DateTime;
-import org.joda.time.Years;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -44,8 +42,8 @@ import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.rest_apicall.raw_restapi.ImageUploadCall;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
-import id.co.okhome.consultant.view.dialog.CommonListDialog;
 import id.co.okhome.consultant.view.activity.etc.photochooser.ImageChooserActivity;
+import id.co.okhome.consultant.view.dialog.CommonListDialog;
 import id.co.okhome.consultant.view.viewholder.StringHolder;
 
 public class UpdateUserDocumentActivity extends OkHomeParentActivity {
@@ -93,14 +91,21 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
             Glide.with(this)
                     .load(profile.photoUrl)
                     .thumbnail(0.5f)
+                    .placeholder(R.drawable.img_user_blank)
                     .dontAnimate()
                     .into(ivPhoto);
 
-            DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd");
-            DateTime birthDate = dtf.parseDateTime(profile.birthdate);
-            tvBirthDate.setText(String.format(Locale.ENGLISH, "%d-%d-%d",
-                    birthDate.getDayOfMonth(), birthDate.getMonthOfYear(), birthDate.getYear())
-            );
+
+
+            if (!TextUtils.isEmpty(profile.birthdate)) {
+                DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd");
+                DateTime birthDate = dtf.parseDateTime(profile.birthdate);
+
+                tvBirthDate.setText(String.format(Locale.ENGLISH, "%d-%d-%d",
+                        birthDate.getDayOfMonth(), birthDate.getMonthOfYear(), birthDate.getYear())
+                );
+
+            }
 
             if (!TextUtils.isEmpty(profile.gender)) {
                 String consultantGender = "";
@@ -198,21 +203,21 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
         final ProgressDialog p = ProgressDialog.show(this, "", "Loading");
         OkhomeRestApi.getValidationClient().updatePhoneNumber(accountId, profile.phone, phoneCode)
                 .enqueue(new RetrofitCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-            }
+                    @Override
+                    public void onSuccess(String result) {
+                    }
 
-            @Override
-            public void onJodevError(ErrorModel jodevErrorModel) {
-                super.onJodevError(jodevErrorModel);
-            }
+                    @Override
+                    public void onJodevError(ErrorModel jodevErrorModel) {
+                        super.onJodevError(jodevErrorModel);
+                    }
 
-            @Override
-            public void onFinish() {
-                super.onFinish();
-                p.dismiss();
-            }
-        });
+                    @Override
+                    public void onFinish() {
+                        super.onFinish();
+                        p.dismiss();
+                    }
+                });
     }
 
     //photo load

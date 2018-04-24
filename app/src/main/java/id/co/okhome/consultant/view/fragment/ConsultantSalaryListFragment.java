@@ -17,7 +17,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
-import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.MoneyHistoryModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
@@ -28,7 +27,7 @@ import id.co.okhome.consultant.view.viewholder.ConsultantSalaryVHolder;
  * Created by jo on 2018-04-07.
  */
 
-public class ConsultantSalaryListFragment extends Fragment implements TabFragmentStatusListener {
+public class ConsultantSalaryListFragment extends Fragment{
 
     @BindView(R.id.fragConsultantSalaryList_rcv)
     RecyclerView rcv;
@@ -42,7 +41,7 @@ public class ConsultantSalaryListFragment extends Fragment implements TabFragmen
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.frag_consultant_salarylist, null);
+        View v = inflater.inflate(R.layout.fragment_consultant_salarylist, null);
         ButterKnife.bind(this, v);
 
         String type = getArguments().getString("TYPE");
@@ -88,15 +87,6 @@ public class ConsultantSalaryListFragment extends Fragment implements TabFragmen
         super.onResume();
     }
 
-    @Override
-    public void onSelect() {
-
-    }
-
-    @Override
-    public void onDeselect() {
-
-    }
 
     //get first
     private void loadListFirst(){

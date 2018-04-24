@@ -12,248 +12,210 @@
         android:layout_marginTop="20dp"
         android:orientation="vertical">
 
-        <!-- map -->
-        <LinearLayout
-            android:layout_marginLeft="16dp" android:layout_marginRight="16dp"
-            android:orientation="vertical"
+        <FrameLayout
+            android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <!--<View-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1px" android:background="@color/colorLightBlueGray"/>-->
 
             <LinearLayout
-                android:orientation="vertical"
-                android:background="#55000000"
-                android:layout_width="match_parent"
-                android:layout_height="220dp">
-
-                <FrameLayout
-                    android:background="#ffffff"
-                    android:layout_margin="1px"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:layout_margin="3dp"
-                        android:scaleType="centerCrop"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" android:src="@drawable/sample_map"/>
-
-                    <LinearLayout
-                        android:layout_gravity="bottom"
-                        android:orientation="vertical"
-                        android:paddingBottom="9dp"
-                        android:paddingTop="9dp" android:paddingLeft="12dp" android:paddingRight="12dp"
-                        android:background="#99000000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:gravity="center_vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <ImageView
-                                android:layout_marginRight="10dp"
-                                android:src="@drawable/ic_pushlogo_white"
-                                android:adjustViewBounds="true"
-                                android:layout_width="13dp"
-                                android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:singleLine="true"
-                                style="@style/FontOpenSansLight"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:text="09 Jan 18, 16:00, 5 hours"
-                                android:textColor="#ffffff"
-                                android:textSize="15sp" />
-
-                        </LinearLayout>
-                    </LinearLayout>
-                </FrameLayout>
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- contents -->
-        <LinearLayout
-            android:layout_marginLeft="16dp" android:layout_marginRight="16dp"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <!-- 기타 -->
-            <FrameLayout
-                android:layout_marginTop="25dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
-
-                <View
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/ic_sharp"
+                    android:adjustViewBounds="true"
+                    android:layout_width="12dp"
+                    android:layout_height="wrap_content" />
                 <TextView
                     android:background="#ffffff"
                     style="@style/FontOpenSansLight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="20dp"
-                    android:text="SPECIFICATION"
-                    android:textColor="@color/colorLightBlueGray"
-                    android:textSize="15sp" />
-                <TextView
-                    android:id="@+id/fragTabPickingCleaning_vbtnSeeDetail"
-                    android:layout_gravity="right"
-                    android:paddingLeft="20dp"
-                    android:background="#ffffff"
-                    style="@style/FontOpenSansRegular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SEE DETAILS"
-                    android:textColor="@color/colorOkhomeLight"
-                    android:textSize="15sp" />
-
-            </FrameLayout>
+                    android:text="TUE 6 JUN 2018"
+                    android:textColor="@color/colorPurpleBlack"
+                    android:textSize="14.5sp" />
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="12dp"
-                android:paddingLeft="25dp"
-                android:background="@drawable/bg_leftline_bold_gray"
-                android:orientation="vertical"
+                android:layout_gravity="right|center_vertical"
+                android:gravity="right|center_vertical"
+                android:layout_above="@+id/fragTabPickingCleaning_vgBottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:paddingTop="3dp"
+                    android:id="@+id/fragTabPickingCleaning_vgDots"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="18dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/ic_tab_price2"
-                        android:layout_width="15dp"
-                        android:layout_height="wrap_content" />
+                    <View
+                        android:layout_marginRight="4dp"
+                        android:layout_width="4.5dp"
+                        android:layout_height="4.5dp" android:background="@drawable/circle_gray"/>
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            style="@style/FontOpenSansLight"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="JL Senopati, 185, Jakarta central, Jakarta DKI"
-                            android:textColor="@color/colorBlueBlack"
-                            android:textSize="15.5sp" />
-                    </LinearLayout>
+                    <View
+                        android:layout_marginRight="4dp"
+                        android:layout_width="4.5dp"
+                        android:layout_height="4.5dp" android:background="@drawable/circle_gray"/>
+
+                    <View
+                        android:layout_marginRight="4dp"
+                        android:layout_width="4.5dp"
+                        android:layout_height="4.5dp" android:background="@drawable/circle_gray"/>
+                    <View
+                        android:layout_marginRight="4dp"
+                        android:layout_width="4.5dp"
+                        android:layout_height="4.5dp" android:background="@drawable/circle_gray"/>
+
+                    <View
+                        android:layout_marginRight="4dp"
+                        android:layout_width="4.5dp"
+                        android:layout_height="4.5dp" android:background="@drawable/circle_gray"/>
+
+                    <View
+                        android:layout_marginRight="4dp"
+                        android:layout_width="4.5dp"
+                        android:layout_height="4.5dp" android:background="@drawable/circle_gray"/>
+
+                    <View
+                        android:layout_marginRight="4dp"
+                        android:layout_width="4.5dp"
+                        android:layout_height="4.5dp" android:background="@drawable/circle_gray"/>
+
+                    <View
+                        android:layout_width="4.5dp"
+                        android:layout_height="4.5dp" android:background="@drawable/circle_lightblue"/>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="18dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/ic_wallet"
-                        android:layout_width="15dp"
-                        android:layout_height="wrap_content" />
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            style="@style/FontOpenSansLight"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="Rp 28,000"
-                            android:textColor="@color/colorBlueBlack"
-                            android:textSize="15.5sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="18dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/ic_home1"
-                        android:layout_width="15dp"
-                        android:layout_height="wrap_content" />
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            style="@style/FontOpenSansLight"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="Apartment, 3 Rooms, 3 Restrooms, 150~200sq"
-                            android:textColor="@color/colorBlueBlack"
-                            android:textSize="15.5sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="18dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/ic_person2"
-                        android:layout_width="15dp"
-                        android:layout_height="wrap_content" />
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            style="@style/FontOpenSansLight"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="2 persons"
-                            android:textColor="@color/colorBlueBlack"
-                            android:textSize="15.5sp" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/fragTabPickingCleaning_tvPage"
+                    android:layout_gravity="right"
+                    android:paddingLeft="8dp"
+                    android:background="#ffffff"
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1/5"
+                    android:textColor="@color/colorPurpleBlack"
+                    android:textSize="14sp" />
             </LinearLayout>
-        </LinearLayout>
+        </FrameLayout>
+
+        <View
+            android:layout_marginLeft="21dp" android:layout_marginRight="21dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp" android:background="#12000000"/>
+        <View
+            android:layout_marginLeft="21dp" android:layout_marginRight="21dp"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="1dp"
+            android:layout_height="1px" android:background="#18000000"/>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_marginLeft="20dp" android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:visibility="gone"
+                android:padding="8dp"
+                android:paddingStart="12dp" android:paddingEnd="12dp"
+                android:background="#bd000000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:scaleX="0.98"
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(Tue) 6 Jun 2018"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/ic_calendar_x"
+                    android:adjustViewBounds="true"
+                    android:layout_width="14dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:scaleX="0.98"
+                    style="@style/FontOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(Tue) 6 Jun 2018"
+                    android:textColor="@color/colorBlueGrayDeep"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:paddingTop="2dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1/5"
+                    android:textColor="@color/colorBlueGrayDeep"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <!-- map -->
+        <android.support.v4.view.ViewPager
+            android:id="@+id/fragTabPickingCleaning_vpCleaningRequest"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        </android.support.v4.view.ViewPager>
     </LinearLayout>
 
+
+
     <LinearLayout
-        android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="14dp" android:layout_marginRight="14dp"
+        android:layout_marginBottom="14dp"
         android:layout_alignParentBottom="true"
         android:id="@+id/fragTabPickingCleaning_vgBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <LinearLayout
             android:weightSum="10"
             android:layout_width="match_parent"
-            android:layout_height="55dp">
+            android:layout_height="54dp">
 
             <LinearLayout
                 android:gravity="center"
                 android:background="@drawable/square_stroke_blueblack"
-                android:layout_weight="5"
+                android:layout_weight="4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
                 <TextView
@@ -262,35 +224,40 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="DECLINE"
-                    android:textColor="@color/colorBlueBlack"
+                    android:textColor="@color/colorPurpleBlack"
                     android:textSize="16.5sp" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_marginLeft="10dp"
+            <FrameLayout
+                android:layout_marginLeft="14dp"
                 android:gravity="center"
                 android:background="@color/colorOkhomeLight"
-                android:layout_weight="5"
+                android:layout_weight="6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
-                <ImageView
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/ic_tick_bold_white"
-                    android:adjustViewBounds="true"
-                    android:layout_width="16dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    style="@style/FontOpenSansLight"
+                <LinearLayout
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="ACCEPT"
-                    android:textColor="#ffffff"
-                    android:textSize="16.5sp" />
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/ic_tick_bold_white"
+                        android:adjustViewBounds="true"
+                        android:layout_width="16dp"
+                        android:layout_height="wrap_content" />
 
-            </LinearLayout>
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="ACCEPT"
+                        android:textColor="#ffffff"
+                        android:textSize="16.5sp" />
+                </LinearLayout>
+            </FrameLayout>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

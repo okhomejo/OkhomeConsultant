@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemDay_flDay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
+        android:text="1"
+        android:textSize="10sp"
+        android:id="@+id/itemDay_tvDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:visibility="invisible"
+        android:id="@+id/itemDay_vTag1"
+        android:layout_marginBottom="12dp"
+        android:background="#84d033"
+        android:layout_width="20dp"
+        android:layout_height="2.5dp" android:layout_gravity="bottom|center_horizontal"/>
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/itemDay_vTag2"
+        android:layout_margin="4dp"
+        android:background="#f7e332"
+        android:layout_width="match_parent"
+        android:layout_height="3dp" android:layout_gravity="bottom"/>
+</FrameLayout>

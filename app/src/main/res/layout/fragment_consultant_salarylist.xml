@@ -2,24 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!--&lt;!&ndash; contents&ndash;&gt;-->
-    <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
-
-        <!--<LinearLayout-->
-            <!--android:orientation="vertical"-->
-            <!--android:paddingLeft="15dp" android:paddingRight="15dp"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent">-->
-
-            <!--&lt;!&ndash; a item &ndash;&gt;-->
-            <!--<include layout="@layout/item_consultant_salary" />-->
-            <!--<include layout="@layout/item_consultant_salary" />-->
-            <!--<include layout="@layout/item_consultant_salary" />-->
-
-        <!--</LinearLayout>-->
-
 
     <!--</RelativeLayout>-->
     <android.support.v7.widget.RecyclerView

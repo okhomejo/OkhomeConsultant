@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
 
 import org.joda.time.DateTime;
@@ -17,10 +17,7 @@ import org.joda.time.Years;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,10 +27,10 @@ import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.view.activity.account.AccountSettingsActivity;
-import id.co.okhome.consultant.view.activity.faq.FaqActivity;
-import id.co.okhome.consultant.view.activity.news.NewsActivity;
 import id.co.okhome.consultant.view.activity.account.profile.FillupUserInfoActivity;
 import id.co.okhome.consultant.view.activity.etc.AboutOkhomeActivity;
+import id.co.okhome.consultant.view.activity.faq.FaqActivity;
+import id.co.okhome.consultant.view.activity.news.NewsActivity;
 
 /**
  * Created by jo on 2018-01-23.
@@ -86,6 +83,10 @@ public class SettingTabFragment extends Fragment implements TabFragmentStatusLis
 
     @Override
     public void onSelect() {
+    }
+
+    @Override
+    public void onSelectWithData(Map<String, Object> param) {
 
     }
 
@@ -117,7 +118,7 @@ public class SettingTabFragment extends Fragment implements TabFragmentStatusLis
 
     @OnClick(R.id.fragTabSettingsForTrainee_vbtnFaqs)
     public void onFaqClick(){
-        FaqActivity.startFaqActivity(getActivity(), "Faq", "FAQ_TRAINEE", 0);
+        FaqActivity.startFaqActivity(getActivity(), "FAQ", "FAQ_TRAINEE", 0);
 //        startActivity(new Intent(getActivity(), FaqActivity.class).putExtra("FAQ_CATEGORY", "FAQ_TRAINEE"));
     }
 

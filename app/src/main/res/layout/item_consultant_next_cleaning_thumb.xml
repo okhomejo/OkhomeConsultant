@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginTop="28dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:paddingTop="1dp" android:paddingBottom="1dp"
+                android:layout_marginLeft="1.5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:paddingLeft="24dp"
+                    android:background="@drawable/bg_leftline_bold_gray_3dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/itemConsultantCleaningNextThumb_tvTitle"
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="-2dp"
+                        android:text="General Cleaning"
+                        android:textColor="@color/colorBlueGrayDeep"
+                        android:textSize="18.5sp" />
+
+                    <TextView
+                        android:layout_marginTop="2dp"
+                        android:singleLine="true"
+                        android:id="@+id/itemConsultantCleaningNextThumb_tvAddress"
+                        android:layout_marginBottom="4dp"
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="A3205, Puri casablanca, JL Casablanca"
+                        android:textColor="@color/colorBlueGray"
+                        android:textSize="13.5sp" />
+
+
+                    <TextView
+                        android:id="@+id/itemConsultantCleaningNextThumb_tvDate"
+                        android:layout_marginTop="10dp"
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Cleaning on 16 Jan 2018, 10:00 AM"
+                        android:textColor="#66000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/itemConsultantCleaningNextThumb_tvPrice"
+            android:layout_alignParentRight="true"
+            style="@style/FontOpenSansLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp 520.000"
+            android:textColor="@color/colorGreen"
+            android:textSize="16sp" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Map;
+
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 
@@ -29,6 +31,10 @@ public class ChatTabFragment extends Fragment implements TabFragmentStatusListen
 
     @Override
     public void onSelect() {
+    }
+
+    @Override
+    public void onSelectWithData(Map<String, Object> param) {
 
     }
 

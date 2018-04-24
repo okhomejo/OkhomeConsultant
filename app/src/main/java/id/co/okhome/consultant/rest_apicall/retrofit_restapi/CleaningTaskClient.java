@@ -16,6 +16,7 @@ public interface CleaningTaskClient {
 
     @GET("cleaning/{consultantId}/next")
     Call<List<CleaningInfoModel>> getNextCleaningTasks(
-            @Path("consultantId") String consultantId);
+            @Path("consultantId") String consultantId,
+            @Query("pivotRownum") int rownum);
 
 }

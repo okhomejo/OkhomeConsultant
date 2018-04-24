@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:grid="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.GridLayout
+            android:id="@+id/pageMonth_gridMonth"
+            grid:alignmentMode="alignBounds"
+            grid:columnCount="7"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/><include layout="@layout/item_day" grid:layout_columnWeight="1"
+            grid:layout_rowWeight="1"
+            grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+            <include layout="@layout/item_day" grid:layout_columnWeight="1"
+                grid:layout_rowWeight="1"
+                grid:layout_gravity="fill"/>
+
+        </android.support.v7.widget.GridLayout>
+    </FrameLayout>
+</RelativeLayout>

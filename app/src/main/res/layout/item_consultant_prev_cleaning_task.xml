@@ -6,7 +6,7 @@
     <RelativeLayout
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="28dp"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content">
@@ -26,7 +26,7 @@
 
                 <LinearLayout
                     android:paddingLeft="25dp"
-                    android:background="@drawable/bg_leftline_bold_gray"
+                    android:background="@drawable/bg_leftline_bold_gray_3dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -43,6 +43,9 @@
                         android:textSize="18sp" />
 
                     <TextView
+                        android:layout_marginTop="2dp"
+                        android:layout_marginRight="10dp"
+                        android:singleLine="true"
                         android:id="@+id/itemCleaningTask_tvAddress"
                         android:layout_marginBottom="4dp"
                         style="@style/FontOpenSansLight"

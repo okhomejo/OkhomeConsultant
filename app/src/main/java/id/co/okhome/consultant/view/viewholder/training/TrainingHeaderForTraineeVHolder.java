@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.view.viewholder;
+package id.co.okhome.consultant.view.viewholder.training;
 
 import android.view.View;
 import com.mrjodev.jorecyclermanager.JoViewHolder;

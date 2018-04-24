@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.view.viewholder;
+package id.co.okhome.consultant.view.viewholder.news;
 
 import android.content.Intent;
 import android.view.View;

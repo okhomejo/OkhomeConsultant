@@ -17,7 +17,7 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.NewsModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.viewholder.BlankVHolder;
-import id.co.okhome.consultant.view.viewholder.NewsVHolder;
+import id.co.okhome.consultant.view.viewholder.news.NewsVHolder;
 
 /**
  * Created by frizurd on 15/03/2018.

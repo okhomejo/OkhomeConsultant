@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:background="#ffffff"
     android:layout_height="match_parent">
-
     <LinearLayout
         android:paddingLeft="1dp" android:paddingRight="1dp"
         android:layout_width="match_parent"
@@ -83,53 +83,53 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="14dp"
-            android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="14dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/fragTabSettingsForConsultant_vbtnAccount"
+            android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/fragTabSettingsForConsultant_vbtnAccount"
-                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_centerVertical="true"
-                    android:layout_width="match_parent"
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_centerVertical="true"
+                    android:text="Account"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="19sp" />
 
-                    <TextView
-                        style="@style/FontOpenSansLight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="Account"
-                        android:textColor="@color/colorBlueBlack"
-                        android:textSize="19sp" />
-
-                    <TextView
-                        android:id="@+id/fragTabSettingsForConsultant_tvAccountEmail"
-                        style="@style/FontOpenSansLight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="944899@gmail.com"
-                        android:textColor="@color/colorLightBlueGray"
-                        android:textSize="13sp" />
-                </LinearLayout>
-
+                <TextView
+                    android:id="@+id/fragTabSettingsForConsultant_tvAccountEmail"
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="944899@gmail.com"
+                    android:textColor="@color/colorLightBlueGray"
+                    android:textSize="13sp" />
             </LinearLayout>
 
-
-            <View
-                android:layout_marginTop="14dp"
-                android:layout_width="match_parent"
-                android:layout_height="1px" android:background="#22000000"/>
         </LinearLayout>
+
+
+        <View
+            android:layout_marginTop="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#22000000"/>
+    </LinearLayout>
 
         <LinearLayout
             android:paddingLeft="20dp"

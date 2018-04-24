@@ -1,49 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_marginRight="20dp"
         android:id="@+id/actCleaningReview_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="76dp">
+        android:layout_height="64dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <LinearLayout
             android:id="@+id/actCleaningReview_vbtnX"
-            android:paddingLeft="17dp"
-            android:paddingRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp">
+
             <ImageView
+                android:layout_width="14dp"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/ic_leftarrow"
-                android:layout_width="18dp"
-                android:layout_height="wrap_content" />
+                android:src="@drawable/ic_leftarrow" />
 
         </LinearLayout>
-        <TextView
-            android:layout_toRightOf="@+id/actCleaningReview_vbtnX"
-            style="@style/FontOpenSansLight"
-            android:textColor="#000000"
-            android:id="@+id/actCleaningReview_tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:text="Reviews"
-            android:textSize="33dp"
-            android:layout_centerVertical="true" />
 
-        <View
-            android:layout_marginRight="100dp"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="2px" android:background="#000000"/>
+        <LinearLayout
+            android:layout_alignParentRight="true"
+            android:id="@+id/actCleaningInfo_vbtnMore"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:rotation="90"
+                android:layout_width="14dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_more_black" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/actCleaningInfo_tvTitle"
+            style="@style/FontOpenSansLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="REVIEWS"
+            android:textColor="#000000"
+            android:textSize="19dp" />
+
     </RelativeLayout>
 
+
     <RelativeLayout
+        android:layout_below="@+id/actCleaningReview_vgTop"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -96,4 +116,20 @@
             android:visibility="gone"/>
 
     </RelativeLayout>
-</LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/actCleaningReview_vgTop"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#36000000"/>
+        <View
+            android:alpha="0.1"
+            android:layout_width="match_parent"
+            android:layout_height="5dp" android:background="@drawable/bg_circle_shadow"/>
+    </LinearLayout>
+</RelativeLayout>

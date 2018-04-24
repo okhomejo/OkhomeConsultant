@@ -20,7 +20,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import butterknife.BindView;
+import java.util.Map;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
@@ -54,6 +55,10 @@ public class JobHistoryTabFragment extends Fragment implements TabFragmentStatus
 
     @Override
     public void onSelect() {
+    }
+
+    @Override
+    public void onSelectWithData(Map<String, Object> param) {
 
     }
 

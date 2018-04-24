@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -17,23 +18,31 @@ import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.DelayedFinish;
 import id.co.okhome.consultant.lib.ViewHolderUtil;
+import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
+import id.co.okhome.consultant.lib.app.main.CleaningProgressIconManager;
 import id.co.okhome.consultant.lib.fragment_pager.FragmentTabAdapter;
-import id.co.okhome.consultant.view.fragment.consultant_tab.JobHistoryTabFragment;
+import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
+import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
+import id.co.okhome.consultant.model.page.ConsultantPageMainModel;
+import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
+import id.co.okhome.consultant.view.fragment.consultant_tab.JobHistoryCalendarTabFragment;
 import id.co.okhome.consultant.view.fragment.consultant_tab.PickingCleaningTabFragment;
 import id.co.okhome.consultant.view.fragment.consultant_tab.ProgressTabFragment;
 import id.co.okhome.consultant.view.fragment.consultant_tab.SettingForConsultantTabFragment;
 import id.co.okhome.consultant.view.fragment.trainee_tab.ChatTabFragment;
 
 
-public class ConsultantMainActivity extends OkHomeParentActivity {
+public class ConsultantMainActivity extends OkHomeParentActivity{
 
     @BindView(R.id.actMain_tvTitle)     TextView tvTitle;
     @BindView(R.id.actMain_vgTop)       ViewGroup vgTop;
     @BindView(R.id.actMain_vp)          ViewPager vpMain;
+    @BindView(R.id.actMain_vbtnRequestSetting) View vbtnSetting;
 
     ConsultantMainActivity.MainTabAdapter tabAdapter;
+    CleaningProgressIconManager cleaningProgressIconManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +56,13 @@ public class ConsultantMainActivity extends OkHomeParentActivity {
 //        String mPhoneNumber = tMgr.getLine1Number();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adaptMainPageInfoFromServer();
+
+    }
+
     private void init(){
         OkhomeUtil.setWhiteSystembar(this);
         OkhomeUtil.initTopPadding(tvTitle);
@@ -55,13 +71,31 @@ public class ConsultantMainActivity extends OkHomeParentActivity {
         vpMain.addOnPageChangeListener(tabAdapter);
 
         ButterKnife.findById(this, R.id.actMain_vgTabForTrainee).setVisibility(View.GONE);
+
+        cleaningProgressIconManager = new CleaningProgressIconManager(
+                (ImageView)ButterKnife.findById(this, R.id.actMain_ivCleaningIcon),
+                ButterKnife.findById(this, R.id.actMain_vCleaningIconDot),
+                ButterKnife.findById(this, R.id.actMain_vgTabIcons));
+
     }
+
+    private void adaptMainPageInfoFromServer(){
+        OkhomeRestApi.getConsultantClient().getConulstantMainPage(ConsultantLoggedIn.id()).enqueue(new RetrofitCallback<ConsultantPageMainModel>() {
+            @Override
+            public void onSuccess(ConsultantPageMainModel consultantPageMain) {
+                cleaningProgressIconManager.check(consultantPageMain.onCleaning);
+            }
+        });
+    }
+
+
 
     @Override
     public void onBackPressed() {
         DelayedFinish.delayedFinish(this, "App will close if pressed one more");
     }
 
+    //
     public class MainTabAdapter extends FragmentTabAdapter implements ViewPager.OnPageChangeListener{
 
         List<View> listTab = new ArrayList<>();
@@ -79,7 +113,7 @@ public class ConsultantMainActivity extends OkHomeParentActivity {
             listTab.add(ButterKnife.findById(activity, R.id.actMain_vgTabBtn5Trainer));
 
             listTitle.add("Request");
-            listTitle.add("Jobs");
+            listTitle.add("Schedule");
             listTitle.add("Progress");
             listTitle.add("Messages");
             listTitle.add("More");
@@ -97,7 +131,7 @@ public class ConsultantMainActivity extends OkHomeParentActivity {
                     f = new PickingCleaningTabFragment();
                     break;
                 case 1:
-                    f = new JobHistoryTabFragment();
+                    f = new JobHistoryCalendarTabFragment();
                     break;
                 case 2:
                     f = new ProgressTabFragment();
@@ -134,6 +168,26 @@ public class ConsultantMainActivity extends OkHomeParentActivity {
             String title = listTitle.get(position);
             tvTitle.setText(title);
 
+
+            notifyCurrentItemChange(position);
+        }
+
+        private void notifyCurrentItemChange(int position){
+
+            vbtnSetting.setVisibility(View.GONE);
+            for(int i = 0; i < getSupportFragmentManager().getFragments().size(); i++){
+                Fragment f = getSupportFragmentManager().getFragments().get(i);
+                if(position == i){
+                    if(f instanceof TabFragmentStatusListener){
+                        ((TabFragmentStatusListener) f).onSelect();
+                        ((TabFragmentStatusListener) f).onSelectWithData(OkhomeUtil.makeMap("vSetting", vbtnSetting));
+                    }
+                }else{
+                    if(f instanceof TabFragmentStatusListener){
+                        ((TabFragmentStatusListener) f).onDeselect();
+                    }
+                }
+            }
         }
 
         @Override
@@ -151,6 +205,5 @@ public class ConsultantMainActivity extends OkHomeParentActivity {
         }
 
     }
-
 
 }

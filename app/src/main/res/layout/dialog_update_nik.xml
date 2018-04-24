@@ -151,7 +151,7 @@
             android:focusable="true"
             android:layout_weight="5"
             android:gravity="center"
-            android:background="@color/colorOkhome"
+            android:background="@color/colorOkhomeLight2"
             android:layout_width="0dp"
             android:layout_height="match_parent">
 

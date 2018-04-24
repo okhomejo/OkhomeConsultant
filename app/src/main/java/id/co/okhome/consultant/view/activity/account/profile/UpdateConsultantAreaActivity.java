@@ -28,7 +28,7 @@ import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.dialog.AreaListDialog;
 import id.co.okhome.consultant.view.viewholder.BlankVHolder;
-import id.co.okhome.consultant.view.viewholder.PreferredAreaVHolder;
+import id.co.okhome.consultant.view.viewholder.prefered_area.PreferredAreaVHolder;
 
 /**
  * Created by frizurd on 07/02/2018.

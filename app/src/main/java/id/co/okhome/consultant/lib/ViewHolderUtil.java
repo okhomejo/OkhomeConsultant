@@ -3,6 +3,8 @@ package id.co.okhome.consultant.lib;
 import android.util.SparseArray;
 import android.view.View;
 
+import id.co.okhome.consultant.R;
+
 /**
  * Created by josongmin on 2016-09-28.
  */
@@ -10,11 +12,11 @@ import android.view.View;
 public class ViewHolderUtil {
     /**Keep parentView's tag empty */
     public static <T extends View> T getView(View parentView, int id) {
-        SparseArray<View> viewHolder = (SparseArray<View>) parentView.getTag();
+        SparseArray<View> viewHolder = (SparseArray<View>) parentView.getTag(R.id.SYM);
 
         if (viewHolder == null) {
             viewHolder = new SparseArray<View>();
-            parentView.setTag(viewHolder);
+            parentView.setTag(R.id.SYM, viewHolder);
         }
         View childView = viewHolder.get(id);
         if (childView == null) {
@@ -24,17 +26,17 @@ public class ViewHolderUtil {
         return (T) childView;
     }
 
-    public static boolean hasView(View parentView, int id) {
-        SparseArray<View> viewHolder = (SparseArray<View>) parentView.getTag();
-        if (viewHolder == null) {
-            viewHolder = new SparseArray<View>();
-            parentView.setTag(viewHolder);
-        }
-        View childView = viewHolder.get(id);
-        if (childView == null) {
-            return false;
-        }else{
-            return true;
-        }
-    }
+//    public static boolean hasView(View parentView, int id) {
+//        SparseArray<View> viewHolder = (SparseArray<View>) parentView.getTag();
+//        if (viewHolder == null) {
+//            viewHolder = new SparseArray<View>();
+//            parentView.setTag(viewHolder);
+//        }
+//        View childView = viewHolder.get(id);
+//        if (childView == null) {
+//            return false;
+//        }else{
+//            return true;
+//        }
+//    }
 }

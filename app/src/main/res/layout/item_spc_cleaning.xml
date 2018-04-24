@@ -21,7 +21,7 @@
                 <TextView
                     style="@style/FontOpenSansLight"
                     android:id="@+id/itemExtraCleaningItem_tvName"
-                    android:textSize="16.5sp"
+                    android:textSize="15sp"
                     android:textColor="@color/colorBlueBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:text="Bathroom"/>

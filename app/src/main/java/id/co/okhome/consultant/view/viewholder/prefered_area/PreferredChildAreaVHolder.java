@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.view.viewholder;
+package id.co.okhome.consultant.view.viewholder.prefered_area;
 
 import android.view.View;
 import android.widget.ImageView;

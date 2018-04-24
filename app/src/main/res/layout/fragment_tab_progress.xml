@@ -21,14 +21,14 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_marginLeft="20dp" android:layout_marginRight="20dp"
+                android:layout_marginLeft="22dp" android:layout_marginRight="22dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <!-- 수입 -->
                 <LinearLayout
-                    android:layout_marginTop="26dp"
+                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -61,9 +61,9 @@
                             android:gravity="center_vertical">
 
                             <LinearLayout
-                                android:paddingTop="2dp" android:paddingBottom="5dp"
+                                android:paddingTop="0dp" android:paddingBottom="5dp"
                                 android:paddingLeft="24dp"
-                                android:background="@drawable/bg_leftline_bold_gray"
+                                android:background="@drawable/bg_leftline_bold_gray_4dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
@@ -75,8 +75,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
                                     android:text="Rp 1.749.500"
-                                    android:textColor="@color/colorDeepGray"
-                                    android:textSize="30sp" />
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="24sp" />
 
                                 <TextView
                                     android:id="@+id/fragTabProgress_tvSalaryMonth"
@@ -96,7 +96,7 @@
                                     android:layout_centerVertical="true"
                                     android:layout_marginTop="2dp"
                                     android:text="Rp 749.000 is paid"
-                                    android:textColor="@color/colorOkhome"
+                                    android:textColor="@color/colorOkhomeLight2"
                                     android:textSize="14sp" />
 
                                 <TextView
@@ -105,7 +105,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
-                                    android:layout_marginTop="2dp"
+                                    android:layout_marginTop="1dp"
                                     android:text="Rp 59.000 is your current balance"
                                     android:textColor="@color/colorGreen"
                                     android:textSize="14sp" />
@@ -118,7 +118,7 @@
                             android:layout_marginTop="5dp"
                             android:gravity="center"
                             android:layout_alignParentRight="true"
-                            android:background="@color/colorOkhomeLight"
+                            android:background="@color/colorOkhomeLight2"
                             android:layout_width="33dp"
                             android:layout_height="33dp">
 
@@ -170,9 +170,9 @@
                             <LinearLayout
                                 android:id="@+id/fragTabProgress_vgbtnReview"
                                 android:orientation="vertical"
-                                android:paddingTop="2dp" android:paddingBottom="5dp"
+                                android:paddingTop="0dp" android:paddingBottom="5dp"
                                 android:paddingLeft="24dp"
-                                android:background="@drawable/bg_leftline_bold_gray"
+                                android:background="@drawable/bg_leftline_bold_gray_4dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <LinearLayout
@@ -191,8 +191,8 @@
                                             android:layout_height="wrap_content"
                                             android:layout_centerVertical="true"
                                             android:text="4.5"
-                                            android:textColor="@color/colorDeepGray"
-                                            android:textSize="30sp" />
+                                            android:textColor="@color/colorBlack"
+                                            android:textSize="24sp" />
 
                                         <TextView
                                             style="@style/FontOpenSansLight"
@@ -219,8 +219,8 @@
                                             android:layout_height="wrap_content"
                                             android:layout_centerVertical="true"
                                             android:text="4.5"
-                                            android:textColor="@color/colorDeepGray"
-                                            android:textSize="30sp" />
+                                            android:textColor="@color/colorBlack"
+                                            android:textSize="24sp" />
 
                                         <TextView
                                             style="@style/FontOpenSansLight"
@@ -237,7 +237,7 @@
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:layout_marginTop="2dp"
+                                    android:layout_marginTop="1dp"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
@@ -249,7 +249,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_centerVertical="true"
                                         android:text="On average, Other consultants get 4.5 score"
-                                        android:textColor="@color/colorOkhome"
+                                        android:textColor="@color/colorOkhomeLight2"
                                         android:textSize="14sp" />
 
                                 </LinearLayout>
@@ -262,7 +262,7 @@
                             android:layout_marginTop="5dp"
                             android:gravity="center"
                             android:layout_alignParentRight="true"
-                            android:background="@color/colorOkhomeLight"
+                            android:background="@color/colorOkhomeLight2"
                             android:layout_width="33dp"
                             android:layout_height="33dp">
 
@@ -315,9 +315,9 @@
 
                             <LinearLayout
                                 android:orientation="vertical"
-                                android:paddingTop="2dp" android:paddingBottom="5dp"
+                                android:paddingTop="0dp" android:paddingBottom="5dp"
                                 android:paddingLeft="24dp"
-                                android:background="@drawable/bg_leftline_bold_gray"
+                                android:background="@drawable/bg_leftline_bold_gray_4dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <LinearLayout
@@ -341,8 +341,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:layout_centerVertical="true"
                                                 android:text="51"
-                                                android:textColor="@color/colorDeepGray"
-                                                android:textSize="30sp" />
+                                                android:textColor="@color/colorBlack"
+                                                android:textSize="24sp" />
 
                                         </LinearLayout>
 
@@ -376,8 +376,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:layout_centerVertical="true"
                                                 android:text="50"
-                                                android:textColor="@color/colorDeepGray"
-                                                android:textSize="30sp" />
+                                                android:textColor="@color/colorBlack"
+                                                android:textSize="28sp" />
 
                                         </LinearLayout>
 
@@ -411,8 +411,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:layout_centerVertical="true"
                                                 android:text="5"
-                                                android:textColor="@color/colorDeepGray"
-                                                android:textSize="30sp" />
+                                                android:textColor="@color/colorBlack"
+                                                android:textSize="28sp" />
 
                                         </LinearLayout>
 
@@ -432,13 +432,13 @@
                                 </LinearLayout>
                                 <TextView
                                     android:id="@+id/fragTabProgress_tvWorkedAverage"
-                                    android:layout_marginTop="2dp"
+                                    android:layout_marginTop="1dp"
                                     style="@style/FontOpenSansLight"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
                                     android:text="On average, Other consultants work 20 times a month."
-                                    android:textColor="@color/colorOkhome"
+                                    android:textColor="@color/colorOkhomeLight2"
                                     android:textSize="14sp" />
                             </LinearLayout>
 

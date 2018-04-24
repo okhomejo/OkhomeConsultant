@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mrjodev.jorecyclermanager.JoViewHolder;
@@ -64,34 +63,29 @@ public class CleaningReviewVHolder extends JoViewHolder<CleaningReviewModel> {
     }
 
     private void printStarDrawable(int starCnt) {
+        ivStar2.setImageResource(R.drawable.ic_star_off);
+        ivStar3.setImageResource(R.drawable.ic_star_off);
+        ivStar4.setImageResource(R.drawable.ic_star_off);
+        ivStar5.setImageResource(R.drawable.ic_star_off);
+
         switch (starCnt) {
             case 1:
                 ivStar1.setImageResource(R.drawable.ic_star_on);
-                ivStar2.setImageResource(R.drawable.ic_star_off);
-                ivStar3.setImageResource(R.drawable.ic_star_off);
-                ivStar4.setImageResource(R.drawable.ic_star_off);
-                ivStar5.setImageResource(R.drawable.ic_star_off);
                 break;
             case 2:
                 ivStar1.setImageResource(R.drawable.ic_star_on);
                 ivStar2.setImageResource(R.drawable.ic_star_on);
-                ivStar3.setImageResource(R.drawable.ic_star_off);
-                ivStar4.setImageResource(R.drawable.ic_star_off);
-                ivStar5.setImageResource(R.drawable.ic_star_off);
                 break;
             case 3:
                 ivStar1.setImageResource(R.drawable.ic_star_on);
                 ivStar2.setImageResource(R.drawable.ic_star_on);
                 ivStar3.setImageResource(R.drawable.ic_star_on);
-                ivStar4.setImageResource(R.drawable.ic_star_off);
-                ivStar5.setImageResource(R.drawable.ic_star_off);
                 break;
             case 4:
                 ivStar1.setImageResource(R.drawable.ic_star_on);
                 ivStar2.setImageResource(R.drawable.ic_star_on);
                 ivStar3.setImageResource(R.drawable.ic_star_on);
                 ivStar4.setImageResource(R.drawable.ic_star_on);
-                ivStar5.setImageResource(R.drawable.ic_star_off);
                 break;
             case 5:
                 ivStar1.setImageResource(R.drawable.ic_star_on);

@@ -155,10 +155,10 @@ public class ConsultantMainActivity extends OkHomeParentActivity{
                 View vTarget = listTab.get(i);
                 ViewGroup vgIcon = ViewHolderUtil.getView(vTarget, R.id.actMain_vgTabIcon);
                 TextView tvTabText = ViewHolderUtil.getView(vTarget, R.id.actMain_tvTabText);
-                if(i == position){
+                if (i == position){
                     vgIcon.setAlpha(0.7f);
                     tvTabText.setAlpha(1f);
-                }else{
+                } else {
                     vgIcon.setAlpha(0.2f);
                     tvTabText.setAlpha(0.5f);
                 }
@@ -167,7 +167,6 @@ public class ConsultantMainActivity extends OkHomeParentActivity{
             //change title
             String title = listTitle.get(position);
             tvTitle.setText(title);
-
 
             notifyCurrentItemChange(position);
         }

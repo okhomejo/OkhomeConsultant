@@ -33,8 +33,7 @@ public class JobHistoryCalendarTabFragment extends Fragment implements TabFragme
 
     MonthAdapter monthAdapter = null;
 
-    @BindView(R.id.fragTabJobsCalendar_vg)
-    ViewPager vp;
+    @BindView(R.id.fragTabJobsCalendar_vg)          ViewPager vp;
     @BindView(R.id.fragTabJobsCalendar_vLoading)    View vLoading;
     @BindView(R.id.fragTabJobsCalendar_tvMonth)     TextView tvMonth;
     @BindView(R.id.fragTabJobsCalendar_tvYear)      TextView tvYear;
@@ -61,7 +60,6 @@ public class JobHistoryCalendarTabFragment extends Fragment implements TabFragme
 
         //listner
         monthAdapter.addCalendarCallback(new MonthAdapter.CalendarCallback() {
-
 
             @Override
             public void onMonthViewCreated(int year, int month, CachedPagerAdapter<Integer>.ViewHolder viewHolder, GridLayout gridMonth) {
@@ -113,7 +111,6 @@ public class JobHistoryCalendarTabFragment extends Fragment implements TabFragme
         vbtnSetting.setVisibility(View.VISIBLE);
         vbtnSetting.animate().translationX(20).alpha(0f).setDuration(0).start();
         vbtnSetting.animate().translationX(0).alpha(1f).setDuration(200).start();
-
     }
 
     @Override
@@ -124,8 +121,6 @@ public class JobHistoryCalendarTabFragment extends Fragment implements TabFragme
     @OnClick(R.id.fragTabJobsCalendar_vbtnList)
     public void onclickList(View v){
         startActivity(new Intent(getContext(), CleaningListTabActivity.class));
-
     }
-
 
 }

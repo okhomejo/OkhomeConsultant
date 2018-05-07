@@ -75,7 +75,9 @@
                 android:layout_gravity="bottom|center_horizontal"
                 android:id="@+id/actConsultantSalary_vTabLine1"
                 android:layout_width="94dp"
-                android:layout_height="1dp" android:background="@color/colorOkhomeLight2"/>
+                android:layout_height="1dp"
+                android:background="@color/colorOkhomeLight2"
+                android:visibility="invisible"/>
         </FrameLayout>
 
         <FrameLayout
@@ -97,7 +99,9 @@
                 android:layout_gravity="bottom|center_horizontal"
                 android:id="@+id/actConsultantSalary_vTabLine2"
                 android:layout_width="70dp"
-                android:layout_height="1dp" android:background="@color/colorOkhomeLight2"/>
+                android:layout_height="1dp"
+                android:background="@color/colorOkhomeLight2"
+                android:visibility="invisible"/>
         </FrameLayout>
 
     </LinearLayout>
@@ -139,6 +143,14 @@
         <View
             android:alpha="0.1"
             android:layout_width="match_parent"
-            android:layout_height="5dp" android:background="@drawable/bg_circle_shadow"/>
+            android:layout_height="5dp"
+            android:background="@drawable/bg_circle_shadow"/>
     </LinearLayout>
+
+    <ProgressBar
+        android:layout_width="30dp"
+        android:id="@+id/actTrainingInfo_vLoading"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"/>
+
 </RelativeLayout>

@@ -15,6 +15,8 @@ import com.google.gson.Gson;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -29,6 +31,7 @@ import id.co.okhome.consultant.lib.dokuwallet.DokuWallet;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.page.ConsultantPageProgressModel;
+import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.model.wallet.ActivitiesModel;
 import id.co.okhome.consultant.model.wallet.BalanceModel;
 import id.co.okhome.consultant.model.wallet.MutationModel;
@@ -127,8 +130,7 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
 
     private void adaptViews(ConsultantPageProgressModel progressModel) {
         // Adapt salary view group
-//        tvSalaryBalance.setText(String.format("Rp %s is paid", OkhomeUtil.getPriceFormatValue(progressModel.balance)));
-        tvSalaryMonth.setText(String.format("Total revenue in %s", DateTime.now().monthOfYear().getAsText()));
+        adaptSalaryView();
 
         // Adapt review view group
         tvReviewLatest.setText(String.valueOf(progressModel.reviewScore7days));
@@ -141,7 +143,6 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
             tvWorkedAverage.setText(String.format("On average, Other consultants work %s times a month.", progressModel.othersWorkCnt));
         }
     }
-
 
     private void adaptAmountWorkedView(Map<String, Integer> myWorkCnt) {
         int counter = 0;
@@ -173,67 +174,95 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
         vgWorked.setVisibility(View.VISIBLE);
     }
 
+    private void adaptSalaryView() {
+        tvSalaryMonth.setText(String.format("Total revenue in %s", DateTime.now().monthOfYear().getAsText()));
+
+        String token    = ConsultantLoggedIn.get().consultant.dokuToken;
+        String systrace = ConsultantLoggedIn.get().consultant.dokuSystrace;
+
+        getBalance(token, systrace);
+    }
+
+    private void getBalance(final String accessToken, final String systrace) {
+        DokuWallet.getBalance(accessToken, systrace, ConsultantLoggedIn.get().consultant.dokuId).enqueue(new RetrofitCallback<BalanceModel>() {
+            @Override
+            public void onSuccess(BalanceModel result) {
+                if (!tokenRetrieved(result.responseCode)) {
+                    refreshToken(OkhomeUtil.getRandomString());
+                } else {
+                    getMonthSalary(accessToken, systrace);
+                    tvSalaryBalance.setText(String.format("Rp %s is your current balance", OkhomeUtil.getPriceFormatValue(result.lastBalance)));
+                }
+            }
+        });
+    }
+
+    private void getMonthSalary(String accessToken, String systrace) {
+        DokuWallet.getActivities(accessToken, systrace, ConsultantLoggedIn.get().consultant.dokuId).enqueue(new RetrofitCallback<ActivitiesModel>() {
+            @Override
+            public void onSuccess(ActivitiesModel result) {
+                if (!tokenRetrieved(result.responseCode)) {
+                    refreshToken(OkhomeUtil.getRandomString());
+                } else if (tokenRetrieved(result.responseCode) && result.mutasi != null) {
+
+                    double totalPaidAmount = 0, totalRevenueAmount = 0;
+                    DateTime now = DateTime.now(DateTimeZone.forID("Asia/Jakarta"));
+                    DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+
+                    for (MutationModel mutation : result.mutasi) {
+
+                        DateTime dateTime = formatter.parseDateTime(mutation.date);
+                        if((dateTime.getMonthOfYear() == now.getMonthOfYear()) && (dateTime.getYear() == now.getYear())) {
+                            if (mutation.type.equals("C")) {
+                                totalRevenueAmount  += mutation.amount;
+                            } else if (mutation.type.equals("D")) {
+                                totalPaidAmount     += mutation.amount;
+                            }
+                        } else {
+                            break;
+                        }
+                    }
+                    tvSalaryRevenue.setText(String.format("Rp %s", OkhomeUtil.getPriceFormatValue(totalRevenueAmount)));
+                    tvSalaryPaid.setText(String.format("Rp %s is paid", OkhomeUtil.getPriceFormatValue(totalPaidAmount)));
+                }
+            }
+        });
+    }
+
     private void refreshToken(final String systrace) {
         DokuWallet.signOn(systrace).enqueue(new RetrofitCallback<TokenModel>() {
             @Override
             public void onSuccess(TokenModel result) {
-                System.out.println("DOKU APP --------------------- SUCCESSSSS");
-                System.out.println(result.responseMessage);
-                System.out.println(result.responseCode);
-                System.out.println("ACCESSTOKEN: "+result.accessToken);
-
-                if (result.responseCode.equals("3011") || result.responseCode.equals("3010")) {
+                if (!tokenRetrieved(result.responseCode)) {
                     refreshToken(OkhomeUtil.getRandomString());
                 } else {
-//                    loadMutations(result.accessToken, systrace, "1753896060");
-//                    saveTokenAndSystrace(result.accessToken, systrace);
+                    saveTokenAndSystrace(result.accessToken, systrace);
                 }
             }
         });
     }
 
     private void saveTokenAndSystrace(String token, String systrace) {
-        String jsonParam = new Gson().toJson(OkhomeUtil.makeMap("consultant", OkhomeUtil.makeMap("dokuToken", "test")));
-        OkhomeRestApi.getAccountClient().update(ConsultantLoggedIn.get().id, jsonParam)
+        String jsonParam = new Gson().toJson(OkhomeUtil.makeMap("dokuToken", token, "dokuSystrace", systrace));
+        OkhomeRestApi.getConsultantClient().update(ConsultantLoggedIn.get().id, jsonParam)
                 .enqueue(new RetrofitCallback<String>() {
                     @Override
                     public void onSuccess(String account) {
-                        System.out.println("------> DOKU SUCCESS");
+                        ConsultantLoggedIn.reload(new RetrofitCallback<AccountModel>() {
+                            @Override
+                            public void onSuccess(AccountModel result) {
+                                getBalance(
+                                        result.consultant.dokuToken,
+                                        result.consultant.dokuSystrace
+                                );
+                            }
+                        });
                     }
                 });
     }
 
-    private void getBalance(String accessToken, String systrace, String accountId) {
-        DokuWallet.getBalance(accessToken, systrace, accountId).enqueue(new RetrofitCallback<BalanceModel>() {
-            @Override
-            public void onSuccess(BalanceModel result) {
-                tvSalaryPaid.setText(String.format("Rp %s is your current balance", OkhomeUtil.getPriceFormatValue(result.lastBalance)));
-            }
-        });
-    }
-
-    private void getMonthSalary(String accessToken, String systrace, String accountId) {
-        DokuWallet.getActivities(accessToken, systrace, ConsultantLoggedIn.get().consultant.dokuId).enqueue(new RetrofitCallback<ActivitiesModel>() {
-            @Override
-            public void onSuccess(ActivitiesModel result) {
-
-                double totalAmount = 0;
-                DateTimeZone zone = DateTimeZone.forID("Asia/Jakarta");
-                DateTime now = DateTime.now( zone );
-
-                for (MutationModel mutation : result.mutasi) {
-                    DateTime dateTime = new DateTime(mutation.date, zone);
-                    if((dateTime.getMonthOfYear() == now.getMonthOfYear()) && (dateTime.getYear() == now.getYear())) {
-                        if (mutation.type.equals("C")) {
-                            totalAmount+=mutation.amount;
-                        }
-                    } else {
-                        break;
-                    }
-                }
-                tvSalaryRevenue.setText(String.format("Rp %s", OkhomeUtil.getPriceFormatValue(totalAmount)));
-            }
-        });
+    private boolean tokenRetrieved(String code) {
+        return !code.equals("3011") && !code.equals("3010") && !code.equals("3009");
     }
 
     @OnClick(R.id.fragTabProgress_vgbtnSalary)
@@ -245,5 +274,4 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
     public void onReviewClick(){
         startActivity(new Intent(getContext(), CleaningReviewListActivity.class));
     }
-
 }

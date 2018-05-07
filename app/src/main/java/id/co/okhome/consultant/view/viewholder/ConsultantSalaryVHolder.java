@@ -14,7 +14,6 @@ import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.OkhomeDateTimeFormatUtil;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
-import id.co.okhome.consultant.model.MoneyHistoryModel;
 import id.co.okhome.consultant.model.wallet.MutationModel;
 
 /**
@@ -28,7 +27,7 @@ public class ConsultantSalaryVHolder extends JoViewHolder<MutationModel> {
 //    @BindView(R.id.itemConsultantSalary_vgPaymentComplete)          ViewGroup vgPaymentCompl;
 
     @BindView(R.id.itemTrainingForTrainee_tvMoney)          TextView tvMoney;
-    @BindView(R.id.itemConsultantSalary_tvTargetDateTime)   TextView tvTargetDateTime;
+    @BindView(R.id.itemConsultantSalary_tvTargetDateTime)   TextView tvDescription;
     @BindView(R.id.itemConsultantSalary_vgCheckBox)         ViewGroup vgCheckBox;
     @BindView(R.id.itemConsultantSalary_tvComment)          TextView tvComment;
 
@@ -58,8 +57,9 @@ public class ConsultantSalaryVHolder extends JoViewHolder<MutationModel> {
             tvMoney.setTextColor(Color.parseColor("#44000000"));
             tvComment.setText(String.format("Withdrawn on %s", OkhomeDateTimeFormatUtil.printFullDate(m.date)));
         }
+        tvDescription.setText(m.title.get("id"));
 
-        tvTargetDateTime.setText(String.format("Cleaning on %s", OkhomeDateTimeFormatUtil.printFullDateTimeWithoutDayName(m.date)));
+//        tvDescription.setText(String.format("Cleaning on %s", OkhomeDateTimeFormatUtil.printFullDateTimeWithoutDayName(m.date)));
 
 //        //paid
 //        if(m.finishYN.equals("Y")){
@@ -99,12 +99,12 @@ public class ConsultantSalaryVHolder extends JoViewHolder<MutationModel> {
 //
 //        //cleaning
 //        if(m.tag.equals("C")) {
-//            tvTargetDateTime.setText("Cleaning on " + OkhomeDateTimeFormatUtil.printFullDateTimeWithoutDayName((String)m.cleaning.get("cleaningWhen")));
+//            tvDescription.setText("Cleaning on " + OkhomeDateTimeFormatUtil.printFullDateTimeWithoutDayName((String)m.cleaning.get("cleaningWhen")));
 //        }
 //
 //        //penalty
 //        else if(m.tag.equals("P")){
-//            tvTargetDateTime.setText("A late penalty of cleanining on " + OkhomeDateTimeFormatUtil.printFullDateTimeWithoutDayName((String)m.penalty.get("cleaningWhen")));
+//            tvDescription.setText("A late penalty of cleanining on " + OkhomeDateTimeFormatUtil.printFullDateTimeWithoutDayName((String)m.penalty.get("cleaningWhen")));
 //        }
     }
 

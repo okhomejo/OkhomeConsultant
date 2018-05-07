@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import org.joda.time.DateTime;
@@ -81,7 +82,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatVHolder>{
     @Override
     public void onBindViewHolder(ChatVHolder holder, int position) {
         //데이터 컴인.
-        ImageView ivChatPhoto;
+        final ImageView ivChatPhoto;
         TextView tvChat, tvTime;
         ViewGroup vgContents, vgPhotoContents;
         ViewGroup vgTextContent;
@@ -196,7 +197,18 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatVHolder>{
 
             Drawable d = new BitmapDrawable(mContext.getResources(), returnedBitmap);
 
-            Picasso.with(mContext).load(chatItem.msg).placeholder(d).into(ivChatPhoto);
+            Picasso.with(mContext).load(chatItem.msg).placeholder(d).into(ivChatPhoto, new Callback() {
+                @Override
+                public void onSuccess() {
+                    ivChatPhoto.setAlpha(0f);
+                    ivChatPhoto.animate().setDuration(300).alpha(1f).start();
+                }
+
+                @Override
+                public void onError() {
+
+                }
+            });
 //            Glide.with(mContext).load(chatItem.msg).thumbnail(0.5f).into(ivChatPhoto);
 
         }

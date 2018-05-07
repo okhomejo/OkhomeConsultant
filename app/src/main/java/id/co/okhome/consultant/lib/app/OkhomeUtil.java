@@ -47,6 +47,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -62,10 +63,21 @@ public class OkhomeUtil {
 
     private static Locale locale = new Locale("id");
 
-    public static String getPriceFormatValue(int price) {
+    public static String getPriceFormatValue(double price) {
         return NumberFormat.getNumberInstance(locale).format(price);
     }
 
+    public static String getRandomString() {
+        String allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder randomBuilder = new StringBuilder();
+        Random rnd = new Random();
+        while (randomBuilder.length() < 10) {
+            int index = (int) (rnd.nextFloat() * allowedChars.length());
+            randomBuilder.append(allowedChars.charAt(index));
+        }
+        String randomStr = randomBuilder.toString();
+        return randomStr;
+    }
 
     public final static Bundle makeBundle(Object ... params){
         Bundle b = new Bundle();

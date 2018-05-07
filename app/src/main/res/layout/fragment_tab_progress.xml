@@ -74,7 +74,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
-                                    android:text="Rp 1.749.500"
+                                    android:text="Rp 0"
                                     android:textColor="@color/colorBlack"
                                     android:textSize="24sp" />
 
@@ -95,7 +95,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
                                     android:layout_marginTop="2dp"
-                                    android:text="Rp 749.000 is paid"
+                                    android:text="Rp 0 is paid"
                                     android:textColor="@color/colorOkhomeLight2"
                                     android:textSize="14sp" />
 
@@ -106,7 +106,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
                                     android:layout_marginTop="1dp"
-                                    android:text="Rp 59.000 is your current balance"
+                                    android:text="Rp 0 is your current balance"
                                     android:textColor="@color/colorGreen"
                                     android:textSize="14sp" />
 

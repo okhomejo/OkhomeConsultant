@@ -5,7 +5,9 @@ import id.co.okhome.consultant.model.page.ConsultantPageMainModel;
 import id.co.okhome.consultant.model.page.ConsultantPageProgressModel;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ConsultantClient {
 
@@ -18,4 +20,6 @@ public interface ConsultantClient {
     @GET("consultant/page/main/{consultantId}")
     Call<ConsultantPageMainModel> getConulstantMainPage(@Path("consultantId") String consultantId);
 
+    @PATCH("consultant/update")
+    Call<String> update(@Query("accountId") String accountId, @Query("jsonReqStr") String jsonReqStr);
 }

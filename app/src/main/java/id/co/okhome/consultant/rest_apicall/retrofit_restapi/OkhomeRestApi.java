@@ -14,6 +14,7 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitFactory;
 public class OkhomeRestApi {
 
     private static Map<String, Object> mapClient = new HashMap<>();
+    private static Map<String, Object> mapDokuClient = new HashMap<>();
 
     public final static <T> T getInstance(final Class<T> service){
         final String key = service.toString();
@@ -21,6 +22,16 @@ public class OkhomeRestApi {
         if(client == null){
             client = RetrofitFactory.getRestClient(service);
             mapClient.put(key, client);
+        }
+        return client;
+    }
+
+    public final static <T> T getDokuInstance(final Class<T> service){
+        final String key = service.toString();
+        T client = (T)mapDokuClient.get(key);
+        if(client == null){
+            client = RetrofitFactory.getDokuRestClient(service);
+            mapDokuClient.put(key, client);
         }
         return client;
     }
@@ -65,5 +76,9 @@ public class OkhomeRestApi {
 
     public final static CleaningReviewClient getCleaningReviewClient(){
         return OkhomeRestApi.getInstance(CleaningReviewClient.class);
+    }
+
+    public final static WalletClient getWalletClient(){
+        return OkhomeRestApi.getDokuInstance(WalletClient.class);
     }
 }

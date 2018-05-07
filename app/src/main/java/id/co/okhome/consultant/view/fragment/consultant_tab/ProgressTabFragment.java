@@ -11,7 +11,10 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -22,9 +25,14 @@ import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
+import id.co.okhome.consultant.lib.dokuwallet.DokuWallet;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.page.ConsultantPageProgressModel;
+import id.co.okhome.consultant.model.wallet.ActivitiesModel;
+import id.co.okhome.consultant.model.wallet.BalanceModel;
+import id.co.okhome.consultant.model.wallet.MutationModel;
+import id.co.okhome.consultant.model.wallet.TokenModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 import id.co.okhome.consultant.view.activity.cleaning_review.CleaningReviewListActivity;
 import id.co.okhome.consultant.view.activity.salary.ConsultantSalaryListActivity;
@@ -76,8 +84,10 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
     @Override
     public void onResume() {
         super.onResume();
+        checkAccessTokenActive();
         getConsultantProgressInfo();
     }
+
 
     @Override
     public void onSelect() {
@@ -90,6 +100,12 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
     @Override
     public void onDeselect() {
 
+    }
+
+    private void checkAccessTokenActive() {
+        OkhomeUtil.showToast(getContext(), "request");
+
+//        refreshToken();
     }
 
     private void getConsultantProgressInfo() {
@@ -111,9 +127,7 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
 
     private void adaptViews(ConsultantPageProgressModel progressModel) {
         // Adapt salary view group
-        tvSalaryRevenue.setText(String.format("Rp %s", OkhomeUtil.getPriceFormatValue(progressModel.salaryThisMonthTotal)));
-        tvSalaryBalance.setText(String.format("Rp %s is paid", OkhomeUtil.getPriceFormatValue(progressModel.balance)));
-        tvSalaryPaid.setText(String.format("Rp %s is your current balance", OkhomeUtil.getPriceFormatValue(progressModel.salaryThisMonthPaid)));
+//        tvSalaryBalance.setText(String.format("Rp %s is paid", OkhomeUtil.getPriceFormatValue(progressModel.balance)));
         tvSalaryMonth.setText(String.format("Total revenue in %s", DateTime.now().monthOfYear().getAsText()));
 
         // Adapt review view group
@@ -157,6 +171,69 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
             counter++;
         }
         vgWorked.setVisibility(View.VISIBLE);
+    }
+
+    private void refreshToken(final String systrace) {
+        DokuWallet.signOn(systrace).enqueue(new RetrofitCallback<TokenModel>() {
+            @Override
+            public void onSuccess(TokenModel result) {
+                System.out.println("DOKU APP --------------------- SUCCESSSSS");
+                System.out.println(result.responseMessage);
+                System.out.println(result.responseCode);
+                System.out.println("ACCESSTOKEN: "+result.accessToken);
+
+                if (result.responseCode.equals("3011") || result.responseCode.equals("3010")) {
+                    refreshToken(OkhomeUtil.getRandomString());
+                } else {
+//                    loadMutations(result.accessToken, systrace, "1753896060");
+//                    saveTokenAndSystrace(result.accessToken, systrace);
+                }
+            }
+        });
+    }
+
+    private void saveTokenAndSystrace(String token, String systrace) {
+        String jsonParam = new Gson().toJson(OkhomeUtil.makeMap("consultant", OkhomeUtil.makeMap("dokuToken", "test")));
+        OkhomeRestApi.getAccountClient().update(ConsultantLoggedIn.get().id, jsonParam)
+                .enqueue(new RetrofitCallback<String>() {
+                    @Override
+                    public void onSuccess(String account) {
+                        System.out.println("------> DOKU SUCCESS");
+                    }
+                });
+    }
+
+    private void getBalance(String accessToken, String systrace, String accountId) {
+        DokuWallet.getBalance(accessToken, systrace, accountId).enqueue(new RetrofitCallback<BalanceModel>() {
+            @Override
+            public void onSuccess(BalanceModel result) {
+                tvSalaryPaid.setText(String.format("Rp %s is your current balance", OkhomeUtil.getPriceFormatValue(result.lastBalance)));
+            }
+        });
+    }
+
+    private void getMonthSalary(String accessToken, String systrace, String accountId) {
+        DokuWallet.getActivities(accessToken, systrace, ConsultantLoggedIn.get().consultant.dokuId).enqueue(new RetrofitCallback<ActivitiesModel>() {
+            @Override
+            public void onSuccess(ActivitiesModel result) {
+
+                double totalAmount = 0;
+                DateTimeZone zone = DateTimeZone.forID("Asia/Jakarta");
+                DateTime now = DateTime.now( zone );
+
+                for (MutationModel mutation : result.mutasi) {
+                    DateTime dateTime = new DateTime(mutation.date, zone);
+                    if((dateTime.getMonthOfYear() == now.getMonthOfYear()) && (dateTime.getYear() == now.getYear())) {
+                        if (mutation.type.equals("C")) {
+                            totalAmount+=mutation.amount;
+                        }
+                    } else {
+                        break;
+                    }
+                }
+                tvSalaryRevenue.setText(String.format("Rp %s", OkhomeUtil.getPriceFormatValue(totalAmount)));
+            }
+        });
     }
 
     @OnClick(R.id.fragTabProgress_vgbtnSalary)

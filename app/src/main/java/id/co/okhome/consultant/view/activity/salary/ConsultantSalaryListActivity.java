@@ -61,7 +61,7 @@ public class ConsultantSalaryListActivity extends OkHomeParentActivity {
         @Override
         public Fragment getItem(int position) {
             Fragment f = null;
-            switch(position){
+            switch (position) {
                 case 0:
                     f = new ConsultantSalaryListFragment();
                     f.setArguments(OkhomeUtil.makeBundle("TYPE", "COMPLETE"));

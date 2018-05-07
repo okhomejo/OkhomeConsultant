@@ -25,6 +25,7 @@ import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.view.activity.account.AccountSettingsActivity;
 import id.co.okhome.consultant.view.activity.account.profile.FillupUserInfoActivity;
 import id.co.okhome.consultant.view.activity.etc.AboutOkhomeActivity;
+import id.co.okhome.consultant.view.activity.etc.WalletActivity;
 import id.co.okhome.consultant.view.activity.faq.FaqActivity;
 import id.co.okhome.consultant.view.activity.news.NewsActivity;
 
@@ -89,6 +90,11 @@ public class SettingForConsultantTabFragment extends Fragment implements TabFrag
     public void onResume() {
         super.onResume();
         init();
+    }
+
+    @OnClick(R.id.fragTabSettingsForConsultant_vbtnWallet)
+    public void onClickWallet(){
+        startActivity(new Intent(getActivity(), WalletActivity.class));
     }
 
     @OnClick(R.id.fragTabSettingsForConsultant_vbtnManual)

@@ -79,6 +79,7 @@
         <activity android:name=".view.activity.account.profile.UpdateConsultantAreaActivity" />
         <activity android:name=".view.activity.account.profile.UpdateJobExperienceActivity" />
         <activity android:name=".view.activity.etc.AboutOkhomeActivity" />
+        <activity android:name=".view.activity.etc.WalletActivity" />
         <activity android:name=".view.activity.account.profile.AccountActivity" />
         <activity android:name=".view.activity.traininginfo.TraineeTrainingActivity" />
         <activity android:name=".view.activity.traininginfo.TraineeTrainingItemInfoActivity" />

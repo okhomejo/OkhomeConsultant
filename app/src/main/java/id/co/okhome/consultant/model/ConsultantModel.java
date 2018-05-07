@@ -27,5 +27,7 @@ public class ConsultantModel {
 
     public AccountStatusModel accountStatus;
 
+    public String dokuId, dokuToken;
+
     public String blocked;
 }

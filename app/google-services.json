@@ -1,35 +1,43 @@
 {
   "project_info": {
-    "project_number": "372988050973",
-    "firebase_url": "https://android-practice-190510.firebaseio.com",
-    "project_id": "android-practice-190510",
-    "storage_bucket": "android-practice-190510.appspot.com"
+    "project_number": "547082832554",
+    "firebase_url": "https://okhome-ffd63.firebaseio.com",
+    "project_id": "okhome-ffd63",
+    "storage_bucket": "okhome-ffd63.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:372988050973:android:c1b8419b5665af82",
+        "mobilesdk_app_id": "1:547082832554:android:07dcb7d9ab7a0433",
         "android_client_info": {
-          "package_name": "id.co.okhome.consultant"
+          "package_name": "com.okhome.okhomeadmin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "372988050973-l9j064bn874mqoqnpl6er44ji9sr5m7v.apps.googleusercontent.com",
+          "client_id": "547082832554-t71838dkqqc0g1d528q7kmhrj1hotb9l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "id.co.okhome.consultant",
-            "certificate_hash": "5938e5f26ef2cbdd962cda1e266e36f0e021dad4"
+            "package_name": "com.okhome.okhomeadmin",
+            "certificate_hash": "a5badd6a5693d026b1e6259225e2df5e7370ff59"
           }
         },
         {
-          "client_id": "372988050973-nio5hvac5ucfjuv1bkgfjja5cajhap79.apps.googleusercontent.com",
+          "client_id": "547082832554-kkr7df9hiqam9tikc8mc2in2hirgfp1p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.okhome.okhomeadmin",
+            "certificate_hash": "1ab33531dc8c3b46efb8f6ecbee1d676a0532866"
+          }
+        },
+        {
+          "client_id": "547082832554-ifm6tbisjp9297007ofkr9mrlp9hhir2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA6Eh7j4BGtkqN9IWYPGnUmeasoiD4DgD0"
+          "current_key": "AIzaSyBUXgP7NBaMsSIELfYR_aDU1BeGpWO_1_g"
         }
       ],
       "services": {
@@ -40,7 +48,111 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "372988050973-nio5hvac5ucfjuv1bkgfjja5cajhap79.apps.googleusercontent.com",
+              "client_id": "547082832554-ifm6tbisjp9297007ofkr9mrlp9hhir2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547082832554:android:c1b8419b5665af82",
+        "android_client_info": {
+          "package_name": "id.co.okhome.consultant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547082832554-8okiob69mpldlt7gkib81oankblqekl0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.co.okhome.consultant",
+            "certificate_hash": "1ab33531dc8c3b46efb8f6ecbee1d676a0532866"
+          }
+        },
+        {
+          "client_id": "547082832554-pmf62ucre9ccromvnkrms8j53jvtq190.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.co.okhome.consultant",
+            "certificate_hash": "a5badd6a5693d026b1e6259225e2df5e7370ff59"
+          }
+        },
+        {
+          "client_id": "547082832554-ifm6tbisjp9297007ofkr9mrlp9hhir2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUXgP7NBaMsSIELfYR_aDU1BeGpWO_1_g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547082832554-ifm6tbisjp9297007ofkr9mrlp9hhir2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547082832554:android:81c5754b279c50a9",
+        "android_client_info": {
+          "package_name": "id.co.okhome.okhomeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547082832554-r4pb3am6gmcs1qee3dann0frd16cq6av.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.co.okhome.okhomeapp",
+            "certificate_hash": "1ab33531dc8c3b46efb8f6ecbee1d676a0532866"
+          }
+        },
+        {
+          "client_id": "547082832554-loajt8same6scpt3bf1re24cd6qs8ut9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.co.okhome.okhomeapp",
+            "certificate_hash": "a5badd6a5693d026b1e6259225e2df5e7370ff59"
+          }
+        },
+        {
+          "client_id": "547082832554-ifm6tbisjp9297007ofkr9mrlp9hhir2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUXgP7NBaMsSIELfYR_aDU1BeGpWO_1_g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547082832554-ifm6tbisjp9297007ofkr9mrlp9hhir2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

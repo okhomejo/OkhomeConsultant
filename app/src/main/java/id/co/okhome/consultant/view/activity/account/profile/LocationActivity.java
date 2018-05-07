@@ -62,7 +62,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.adapter.PlaceAutocompleteAdapter;
+import id.co.okhome.consultant.view.adapter.PlaceAutocompleteAdapter;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 

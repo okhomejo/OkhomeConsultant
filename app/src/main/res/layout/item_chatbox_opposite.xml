@@ -3,41 +3,25 @@
     android:layout_width="match_parent"
     android:background="#ffffff"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent">
-    <View android:id="@+id/itemChat_vTopPadding" android:layout_width="10dp" android:layout_height="8dp" />
+    android:layout_height="wrap_content">
+    <View android:id="@+id/itemChatOpposite_vTopPadding" android:layout_width="10dp" android:layout_height="4dp" />
+
 
     <TextView
-        android:visibility="gone"
-        android:id="@+id/itemChat_tvTime"
+        style="@style/FontOpenSansLight"
+        android:id="@+id/itemChatOpposite_tvTime"
         android:textColor="#55000000"
         android:layout_marginLeft="7dp"
-        android:layout_alignBottom="@+id/itemChat_vgContents"
-        android:layout_toRightOf="@+id/itemChat_vgContents"
+        android:layout_alignBottom="@+id/itemChatOpposite_vgContents"
+        android:layout_toRightOf="@+id/itemChatOpposite_vgContents"
         android:textSize="10sp"
         android:text="오전 10:00"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-
-    <FrameLayout
-        android:layout_alignBottom="@+id/itemChat_vgContents"
-        android:id="@+id/itemChat_vgUserPhoto"
-        android:layout_width="40dp"
-        android:layout_height="40dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/fragmentIntro1_ivUserPhoto"
-            android:src="@drawable/img_model5"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-    </FrameLayout>
-
     <LinearLayout
-        android:layout_toRightOf="@+id/itemChat_vgUserPhoto"
-        android:layout_below="@+id/itemChat_vTopPadding"
-        android:id="@+id/itemChat_vgContents"
+        android:layout_below="@+id/itemChatOpposite_vTopPadding"
+        android:id="@+id/itemChatOpposite_vgContents"
         android:orientation="vertical"
         android:layout_marginLeft="7dp"
         android:background="@drawable/bg_chatbox_friend"
@@ -46,41 +30,42 @@
 
         <!--텍스트 박스 -->
         <LinearLayout
-            android:id="@+id/itemChat_vgTextContent"
+            android:id="@+id/itemChatOpposite_vgTextContent"
             android:paddingLeft="14dp" android:paddingRight="14dp" android:paddingTop="12dp" android:paddingBottom="12dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
                 style="@style/FontOpenSansLight"
-                android:maxWidth="200dp"
+                android:maxWidth="250dp"
                 android:textSize="14sp"
                 android:textColor="#3c3e45"
                 android:text="Hi there! Nice to meet you!"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/itemChat_tvChat"/>
+                android:layout_height="wrap_content" android:id="@+id/itemChatOpposite_tvChat"/>
 
         </LinearLayout>
 
         <!-- 사진 -->
-        <!--<LinearLayout-->
-            <!--android:visibility="gone"-->
-            <!--android:id="@+id/itemChat_vgPhotoContent"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content">-->
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/itemChatOpposite_vgPhotoContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <!--<com.joooonho.SelectableRoundedImageView-->
-                <!--android:maxWidth="250dp"-->
-                <!--android:minWidth="100dp"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:adjustViewBounds="true"-->
-                <!--android:id="@+id/itemChat_ivPhoto"-->
-                <!--android:scaleType="centerCrop"-->
-                <!--app:sriv_left_bottom_corner_radius="10dp"-->
-                <!--app:sriv_right_bottom_corner_radius="10dp"-->
-                <!--app:sriv_left_top_corner_radius="0dp"-->
-                <!--app:sriv_right_top_corner_radius="10dp"  />-->
-        <!--</LinearLayout>-->
+            <com.joooonho.SelectableRoundedImageView
+                android:maxWidth="250dp"
+                android:minWidth="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:id="@+id/itemChatOpposite_ivPhoto"
+                android:scaleType="centerCrop"
+                app:sriv_left_bottom_corner_radius="20dp"
+                app:sriv_right_bottom_corner_radius="20dp"
+                app:sriv_left_top_corner_radius="0dp"
+                app:sriv_right_top_corner_radius="20dp"  />
+
+        </LinearLayout>
     </LinearLayout>
 
 

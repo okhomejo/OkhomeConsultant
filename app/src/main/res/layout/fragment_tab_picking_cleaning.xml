@@ -104,7 +104,7 @@
                     style="@style/FontOpenSansLight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1/5"
+                    android:text="1/4"
                     android:textColor="@color/colorPurpleBlack"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -225,11 +225,12 @@
                     android:layout_centerVertical="true"
                     android:text="DECLINE"
                     android:textColor="@color/colorPurpleBlack"
-                    android:textSize="16.5sp" />
+                    android:textSize="17sp" />
 
             </LinearLayout>
 
             <FrameLayout
+                android:id="@+id/fragmentTabPickingCleaning"
                 android:layout_marginLeft="14dp"
                 android:gravity="center"
                 android:background="@color/colorOkhomeLight"
@@ -255,7 +256,7 @@
                         android:layout_centerVertical="true"
                         android:text="ACCEPT"
                         android:textColor="#ffffff"
-                        android:textSize="16.5sp" />
+                        android:textSize="17sp" />
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>

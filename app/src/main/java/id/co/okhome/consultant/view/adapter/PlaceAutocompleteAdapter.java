@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.adapter;
+package id.co.okhome.consultant.view.adapter;
 
 /**
  * Created by frizurd on 19/01/2018.

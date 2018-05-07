@@ -161,6 +161,7 @@ public class OkhomeUtil {
         DateTime dt2 = dt.toDateTime(DateTimeZone.forID("Asia/Jakarta"));
 
         String currentDateTime = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss").print(dt2);
+
         long mills = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss").parseDateTime(currentDateTime).getMillis();
         return mills;
     }

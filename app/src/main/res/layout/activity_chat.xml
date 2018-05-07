@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+
+    <RelativeLayout
+        android:id="@+id/actChat_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="58dp">
+
+        <LinearLayout
+            android:id="@+id/actChat_vbtnX"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_leftarrow" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_alignParentRight="true"
+            android:id="@+id/actCleaningInfo_vbtnMore"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:rotation="90"
+                android:layout_width="14dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_more_black" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/actChat_tvTitle"
+            style="@style/FontOpenSansLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="CHAT"
+            android:textColor="#000000"
+            android:textSize="17dp" />
+
+    </RelativeLayout>
+
+
+    <!-- bottom-->
+    <RelativeLayout
+        android:layout_above="@+id/actChat_vgBottom"
+        android:layout_below="@+id/actChat_vgTop"
+        android:layout_centerInParent="true"
+        android:gravity="center|center_horizontal"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/actChat_rcv"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+        <ProgressBar
+            android:layout_centerInParent="true"
+            android:layout_width="24dp"
+            android:layout_height="24dp" android:id="@+id/actChat_vLoading"/>
+
+    </RelativeLayout>
+    <LinearLayout
+
+        android:layout_below="@+id/actChat_vgTop"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#36000000"/>
+        <View
+            android:alpha="0.1"
+            android:layout_width="match_parent"
+            android:layout_height="5dp" android:background="@drawable/bg_circle_shadow"/>
+    </LinearLayout>
+
+
+    <View
+        android:layout_above="@+id/actChat_vgBottom"
+        android:layout_width="match_parent"
+        android:layout_height="1px" android:background="#44000000"/>
+    <!-- bottom -->
+    <LinearLayout
+        android:gravity="bottom"
+        android:weightSum="10"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        android:id="@+id/actChat_vgBottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/actChat_btnAttachment"
+            android:paddingBottom="14dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/ic_clip"
+                android:adjustViewBounds="true"
+                android:layout_width="23dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <EditText
+            style="@style/FontOpenSansLight"
+            android:textCursorDrawable="@drawable/edittext_cursor_appcolor"
+            android:layout_weight="7.5"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:maxLines="5"
+            android:textSize="15sp"
+            android:background="@null"
+            android:id="@+id/actChat_etText"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/actChat_vgActions"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:paddingBottom="16dp"
+            android:layout_weight="1.5"
+            android:layout_centerVertical="true"
+            android:id="@+id/actChat_vbtnSend"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                style="@style/FontOpenSansLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:scaleX="0.95"
+                android:text="SEND"
+                android:textColor="@color/colorOkhomeLight"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

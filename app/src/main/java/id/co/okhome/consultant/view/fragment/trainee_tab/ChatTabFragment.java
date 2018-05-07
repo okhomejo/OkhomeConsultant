@@ -1,5 +1,6 @@
 package id.co.okhome.consultant.view.fragment.trainee_tab;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import java.util.Map;
 
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
+import id.co.okhome.consultant.view.activity.chatting.ChatActivity;
 
 /**
  * Created by jo on 2018-01-23.
@@ -27,6 +29,12 @@ public class ChatTabFragment extends Fragment implements TabFragmentStatusListen
     @Override
     public void onStart() {
         super.onStart();
+        getView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), ChatActivity.class));
+            }
+        });
     }
 
     @Override

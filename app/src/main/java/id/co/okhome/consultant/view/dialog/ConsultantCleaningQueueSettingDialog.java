@@ -36,8 +36,11 @@ public class ConsultantCleaningQueueSettingDialog extends DialogParent{
 
     @OnClick(R.id.dialogConsultantCleaningQueueSetting_vbtnSetOffday)
     public void onSetOffDayClick(View v){
+
+        new CommonAlertDialog(getContext()).setTitle("Set-Off day").setSubTitle("Contact our service center.\n010-9314-9449\n944899@gmail.com").show();
+
 //        getContext().startActivity(new Intent(getContext(), UpdateConsultantAreaActivity.class));
-        new SetOffDayCleaningDialog(getContext()).show();
+//        new SetOffDayCleaningDialog(getContext()).show();
     }
 
     @OnClick(R.id.dialogConsultantCleaningQueueSetting_vbtnPreferredArea)

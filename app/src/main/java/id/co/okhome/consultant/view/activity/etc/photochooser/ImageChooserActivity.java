@@ -1,5 +1,6 @@
 package id.co.okhome.consultant.view.activity.etc.photochooser;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -33,6 +34,9 @@ public class ImageChooserActivity extends OkHomeParentActivity {
 	private static final int REQ_CROP_IMAGE = 10100;
 
 
+	public final static void start(Activity activity){
+		activity.startActivityForResult(new Intent(activity, ImageChooserActivity.class), ImageChooserActivity.REQ_GET_IMAGE);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

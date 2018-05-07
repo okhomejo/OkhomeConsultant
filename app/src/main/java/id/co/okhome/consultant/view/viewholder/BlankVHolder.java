@@ -15,7 +15,6 @@ import id.co.okhome.consultant.R;
 @LayoutMatcher(layoutId = R.layout.item_padding)
 public class BlankVHolder extends JoViewHolder<String> {
 
-
     public BlankVHolder(View itemView) {
         super(itemView);
     }
@@ -27,6 +26,7 @@ public class BlankVHolder extends JoViewHolder<String> {
 
     @Override
     public void onBind(String m, int pos, int absPos) {
+
         super.onBind(m, pos, absPos);
     }
 

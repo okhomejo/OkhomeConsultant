@@ -21,7 +21,7 @@ import okhttp3.RequestBody;
  */
 
 public class ImageUploadCall extends CommonApiCall {
-    final String url = OkhomeConstant.OKHOME_URL_IMAGE + "file";
+    final String url = OkhomeConstant.OKHOME_URL + "file/photo";
     String filePath;
 
     public ImageUploadCall(String filePath) {
@@ -37,7 +37,7 @@ public class ImageUploadCall extends CommonApiCall {
 
         MultipartBody body = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("file1", fileName, RequestBody.create(MediaType.parse("multipart/form-data"), new File(filePath)))
+                .addFormDataPart("photo", fileName, RequestBody.create(MediaType.parse("multipart/form-data"), new File(filePath)))
                 .build();
 
         ApiResult uploadResult = ApiQuickCaller.post(

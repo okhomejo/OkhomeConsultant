@@ -59,13 +59,7 @@ public class ConsultantSalaryListActivity extends OkHomeParentActivity {
                 ConsultantLoggedIn.get().consultant.dokuSystrace,
                 ConsultantLoggedIn.get().consultant.dokuId
         );
-//        setTab();
     }
-
-//    private void setTab(){
-//        salaryTabAdapter = new SalaryTabAdapter(getSupportFragmentManager());
-//        salaryTabAdapter.init(vp);
-//    }
 
     private void loadMutations(String token, String systrace, String accountId) {
         DokuWallet.getActivities(token, systrace, accountId).enqueue(new RetrofitCallback<ActivitiesModel>() {
@@ -90,7 +84,7 @@ public class ConsultantSalaryListActivity extends OkHomeParentActivity {
         DokuWallet.signOn(systrace).enqueue(new RetrofitCallback<TokenModel>() {
             @Override
             public void onSuccess(TokenModel result) {
-                if (result.responseCode.equals("3011") || result.responseCode.equals("3010")) {
+                if (!tokenRetrieved(result.responseCode)) {
                     refreshToken(OkhomeUtil.getRandomString());
                 } else {
                     saveTokenAndSystrace(result.accessToken, systrace);
@@ -128,6 +122,16 @@ public class ConsultantSalaryListActivity extends OkHomeParentActivity {
         finish();
     }
 
+    @OnClick(R.id.actConsultantSalary_vbTab1)
+    public void onCompletedSalary() {
+        vp.setCurrentItem(0, true);
+    }
+
+    @OnClick(R.id.actConsultantSalary_vbTab2)
+    public void onDepositSalary() {
+        vp.setCurrentItem(1, true);
+    }
+
     //tab adapter
     public class SalaryTabAdapter extends FragmentTabAdapter implements ViewPager.OnPageChangeListener{
 
@@ -162,6 +166,8 @@ public class ConsultantSalaryListActivity extends OkHomeParentActivity {
             return f;
         }
 
+
+
         @Override
         public int getCount() {
             return 2;
@@ -180,12 +186,10 @@ public class ConsultantSalaryListActivity extends OkHomeParentActivity {
                 case 0:
                     tvTab1.setAlpha(1f);
                     vTabLine1.setVisibility(View.VISIBLE);
-
                     break;
                 case 1:
                     tvTab2.setAlpha(1f);
                     vTabLine2.setVisibility(View.VISIBLE);
-
                     break;
             }
         }

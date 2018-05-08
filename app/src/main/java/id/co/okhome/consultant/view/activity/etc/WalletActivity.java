@@ -8,6 +8,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.config.OkhomeConstant;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 
@@ -21,27 +22,22 @@ public class WalletActivity extends OkHomeParentActivity {
         setContentView(R.layout.activity_wallet);
         OkhomeUtil.setWhiteSystembar(this);
         ButterKnife.bind(this);
-        init();
+        initWebView();
     }
 
-    private void init() {
-        WebSettings webSettings =  webView.getSettings();
-        webSettings.setUseWideViewPort(true);
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setUseWideViewPort(true);
+    private void initWebView() {
+        webView.loadUrl(OkhomeConstant.DOKU_WEB_VIEW);
+        WebSettings settings = webView.getSettings();
+        settings.setUseWideViewPort(true);
+        settings.setJavaScriptEnabled(true);
+        settings.setDomStorageEnabled(true);
 
         webView.setWebViewClient(new WebViewClient(){
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 OkhomeUtil.showToast(getBaseContext(), description);
             }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-            }
         });
-        webView.loadUrl("https://staging.doku.com/webapps/signin");
     }
 
     @Override

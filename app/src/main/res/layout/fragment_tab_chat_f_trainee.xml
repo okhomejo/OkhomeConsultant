@@ -3,18 +3,29 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:paddingRight="16dp"
-        android:paddingLeft="16dp"
+
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/item_chat_room_temp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        <include
-            android:layout_marginTop="3dp"
-            layout="@layout/item_chat_room" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/fragTabChatRoom_rcv"
+            android:layout_height="match_parent">
 
-    </LinearLayout>
+        </android.support.v7.widget.RecyclerView>
+
+        <ProgressBar
+            android:id="@+id/fragTabChatRoom_vLoading"
+            android:layout_width="25dp"
+            android:layout_height="25dp" android:layout_centerInParent="true"/>
+
+        <!--<include layout="@layout/item_chat_room_temp" android:layout_width="match_parent" android:layout_height="wrap_content"/>-->
+        <!--<include-->
+            <!--android:layout_marginTop="3dp"-->
+            <!--layout="@layout/item_chat_room" android:layout_width="match_parent" android:layout_height="wrap_content"/>-->
+
+    </RelativeLayout>
 </LinearLayout>
 

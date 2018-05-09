@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.lib.chat;
+package id.co.okhome.consultant.lib.firestore_manager.chat.model;
 
 import com.google.firebase.firestore.ServerTimestamp;
 

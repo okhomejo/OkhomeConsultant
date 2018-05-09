@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.lib.chat;
+package id.co.okhome.consultant.lib.firestore_manager.chat.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -27,6 +27,8 @@ import java.util.Locale;
 import java.util.Map;
 
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.firestore_manager.chat.vholder.ChatVHolder;
+import id.co.okhome.consultant.lib.firestore_manager.chat.model.ChatItem;
 
 /**
  * Created by jo on 2018-05-06.
@@ -37,7 +39,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatVHolder>{
     Context mContext;
     List<ChatItem> mChatItemList;
     Map<String, ChatItem> mChatItemMap;
-    Map<String, ChatItem> mLocalChatItemMap = new HashMap<>();
     String mMyId;
     int mPageSize;
 
@@ -47,7 +48,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatVHolder>{
         this.mContext = context;
         this.mMyId = myId;
         this.mPageSize = pageSize;
-
     }
 
     public List<ChatItem> getChatItemList() {
@@ -197,7 +197,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatVHolder>{
 
             Drawable d = new BitmapDrawable(mContext.getResources(), returnedBitmap);
 
-            Picasso.with(mContext).load(chatItem.msg).placeholder(d).into(ivChatPhoto, new Callback() {
+            Picasso.with(mContext).load(chatItem.msg)
+                    .placeholder(d).into(ivChatPhoto, new Callback() {
                 @Override
                 public void onSuccess() {
                     ivChatPhoto.setAlpha(0f);

@@ -47,7 +47,7 @@
 
         <!-- 사진 -->
         <LinearLayout
-            android:layout_marginRight="-1dp"
+            android:layout_marginRight="-0.5dp"
             android:orientation="vertical"
             android:id="@+id/itemChatMine_vgPhotoContent"
             android:layout_width="wrap_content"

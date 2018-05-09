@@ -37,12 +37,11 @@
             <include android:id="@+id/itemChat_vgChatMine" layout="@layout/item_chatbox_mine" android:layout_width="match_parent" android:layout_height="wrap_content"/>
             <include android:id="@+id/itemChat_vgChatOpposite" layout="@layout/item_chatbox_opposite" android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
-
         </LinearLayout>
         <View
             android:id="@+id/itemChat_vBottomPadding"
             android:layout_width="match_parent"
-            android:layout_height="12dp" />
+            android:layout_height="6dp" />
 
     </LinearLayout>
 </RelativeLayout>

@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" android:orientation="vertical">
     <LinearLayout
+        android:id="@+id/itemChatRoom_vContent"
+        android:layout_marginLeft="15dp" android:layout_marginRight="15dp"
         android:orientation="vertical"
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
@@ -17,6 +19,7 @@
                 android:layout_width="62dp"
                 android:layout_height="62dp">
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/itemChatRoom_ivPhoto"
                     android:src="@drawable/img_model3"
                     android:layout_margin="2dp"
                     android:layout_gravity="center"
@@ -41,6 +44,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/itemChatRoom_tvName"
                         style="@style/FontOpenSansLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -49,7 +53,9 @@
                         android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/itemChatRoom_tvMessage"
                         android:layout_marginTop="1dp"
+                        android:singleLine="true"
                         style="@style/FontOpenSansLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -68,6 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <TextView
+                            android:id="@+id/itemChatRoom_tvDateTime"
                             style="@style/FontOpenSansLight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

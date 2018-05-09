@@ -7,62 +7,112 @@
     android:orientation="vertical"
     android:background="#ffffff">
 
-
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/actChat_vgTop"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="58dp">
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
+
+            <LinearLayout
+                android:id="@+id/actChat_vbtnX"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:paddingLeft="17dp"
+                android:paddingRight="20dp">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_leftarrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_alignParentRight="true"
+                android:id="@+id/actCleaningInfo_vbtnMore"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:paddingLeft="17dp"
+                android:paddingRight="20dp">
+
+                <ImageView
+                    android:rotation="90"
+                    android:layout_width="14dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_more_black" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_centerInParent="true"
+                android:id="@+id/actChat_tvTitle"
+                style="@style/FontOpenSansLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="CHAT"
+                android:textColor="#000000"
+                android:textSize="17dp" />
+
+        </RelativeLayout>
 
         <LinearLayout
-            android:id="@+id/actChat_vbtnX"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:paddingLeft="17dp"
-            android:paddingRight="20dp">
-
-            <ImageView
-                android:layout_width="14dp"
+            android:id="@+id/actChat_vgCleaningInfo"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="20dp"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:src="@drawable/ic_leftarrow" />
+                android:paddingLeft="14dp" android:paddingRight="14dp"
+                android:layout_width="match_parent">
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/ic_alarm7"
+                        android:adjustViewBounds="true"
+                        android:layout_width="16dp"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_centerVertical="true"
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jun 5/8 Cleaning Ready"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_alignParentRight="true"
+                    style="@style/FontOpenSansSemibold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SEE DETAILS"
+                    android:textColor="@color/colorOkhomeLight"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+
 
         </LinearLayout>
-
-        <LinearLayout
-            android:visibility="gone"
-            android:layout_alignParentRight="true"
-            android:id="@+id/actCleaningInfo_vbtnMore"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:paddingLeft="17dp"
-            android:paddingRight="20dp">
-
-            <ImageView
-                android:rotation="90"
-                android:layout_width="14dp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:src="@drawable/ic_more_black" />
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_centerInParent="true"
-            android:id="@+id/actChat_tvTitle"
-            style="@style/FontOpenSansLight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="CHAT"
-            android:textColor="#000000"
-            android:textSize="17dp" />
-
-    </RelativeLayout>
-
+    </LinearLayout>
 
     <!-- bottom-->
     <RelativeLayout
@@ -86,8 +136,8 @@
             android:layout_height="24dp" android:id="@+id/actChat_vLoading"/>
 
     </RelativeLayout>
+    <!-- 선 -->
     <LinearLayout
-
         android:layout_below="@+id/actChat_vgTop"
         android:orientation="vertical"
         android:layout_width="match_parent"

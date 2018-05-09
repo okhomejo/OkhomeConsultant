@@ -54,6 +54,8 @@ public class ConsultantMainActivity extends OkHomeParentActivity{
         init();
 //        TelephonyManager tMgr = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
 //        String mPhoneNumber = tMgr.getLine1Number();
+
+
     }
 
     @Override

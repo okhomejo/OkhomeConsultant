@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.lib.chat;
+package id.co.okhome.consultant.lib.firestore_manager.chat;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -26,7 +26,12 @@ import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryListenOptions;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
+import java.util.Map;
+
+import id.co.okhome.consultant.lib.firestore_manager.chat.adapter.ChatAdapter;
+import id.co.okhome.consultant.lib.firestore_manager.chat.model.ChatItem;
 import id.co.okhome.consultant.lib.jobrowser.callback.ApiResultCallback;
 import id.co.okhome.consultant.lib.jobrowser.model.ApiResult;
 import id.co.okhome.consultant.rest_apicall.raw_restapi.ImageUploadCall;
@@ -46,6 +51,8 @@ public class OkhomeChatManager {
     private String mRoomNumber, mMyId;
 
     private CollectionReference mChatsRef;
+    private DocumentReference mChatroomRef;
+
     private ChatAdapter mChatAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private Context mContext;
@@ -55,16 +62,17 @@ public class OkhomeChatManager {
     private int lastLoadSize = 0;
     private ListenerRegistration mListenerRegistration;
 
+    private View.OnLayoutChangeListener mOnLayoutChangeListener;
+
     public OkhomeChatManager(RecyclerView recyclerView, View vLoading, String roomNumber, String myId) {
         this.mRecyclerView = recyclerView;
         this.mRoomNumber = roomNumber;
         this.mContext = recyclerView.getContext();
         this.mViewLoading = vLoading;
-        this.mMyId = myId;
+        this.mMyId = "CT_" + myId;
 
         init();
     }
-
 
     //init
     private void init(){
@@ -87,6 +95,29 @@ public class OkhomeChatManager {
         mRecyclerView.setAdapter(mChatAdapter);
 
         mChatsRef = FirebaseFirestore.getInstance().collection("chatrooms").document(mRoomNumber).collection("chats");
+        mChatroomRef = FirebaseFirestore.getInstance().collection("chatrooms").document(mRoomNumber);
+
+    }
+
+    private void setLayoutChangeListener(){
+        if(mOnLayoutChangeListener == null){
+            mOnLayoutChangeListener = new View.OnLayoutChangeListener() {
+                @Override
+                public void onLayoutChange(View view, int left, int top, int right, int bottom,
+                                           int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                    if (bottom < oldBottom) {
+                        mRecyclerView.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mRecyclerView.smoothScrollToPosition(mRecyclerView.getAdapter().getItemCount()-1);
+                            }
+                        }, 100);
+                    }
+                }
+            };
+
+            mRecyclerView.addOnLayoutChangeListener(mOnLayoutChangeListener);
+        }
 
     }
 
@@ -96,6 +127,7 @@ public class OkhomeChatManager {
 
         setChatItemObserver();
         setLoadPrevListener();
+        setLayoutChangeListener();
 //        loadPrevious();
     }
 
@@ -273,13 +305,15 @@ public class OkhomeChatManager {
             return;
         }
 
-        final ChatItem chatItem = new ChatItem(mMyId, "U", messageType, message);
+        final Map<String, Object> chat = ChatParamBuilder.makeChatMessage("U", mMyId, messageType, message);
+        final Map<String, Object> chatRoomLastMessage = ChatParamBuilder.makeLastMessageInChatRoom("U", mMyId, messageType, message);
 
-        mChatsRef.add(chatItem)
+        mChatsRef.add(chat)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(LOGTAG, "success");
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -288,10 +322,23 @@ public class OkhomeChatManager {
                         Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
+
+        mChatroomRef.set(chatRoomLastMessage, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                ;
+                if(!task.isSuccessful()){
+                    Toast.makeText(mContext, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        });
+
     }
 
     /**박살*/
     public void finish(){
         mListenerRegistration.remove();
+        mRecyclerView.removeOnLayoutChangeListener(mOnLayoutChangeListener);
     }
 }

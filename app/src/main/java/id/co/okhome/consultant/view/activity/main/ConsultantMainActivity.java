@@ -22,6 +22,7 @@ import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.app.main.CleaningProgressIconManager;
+import id.co.okhome.consultant.lib.app.main.CommonBackgroundWorker;
 import id.co.okhome.consultant.lib.fragment_pager.FragmentTabAdapter;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
@@ -36,10 +37,10 @@ import id.co.okhome.consultant.view.fragment.trainee_tab.ChatTabFragment;
 
 public class ConsultantMainActivity extends OkHomeParentActivity{
 
-    @BindView(R.id.actMain_tvTitle)     TextView tvTitle;
-    @BindView(R.id.actMain_vgTop)       ViewGroup vgTop;
-    @BindView(R.id.actMain_vp)          ViewPager vpMain;
-    @BindView(R.id.actMain_vbtnRequestSetting) View vbtnSetting;
+    @BindView(R.id.actMain_tvTitle)             TextView tvTitle;
+    @BindView(R.id.actMain_vgTop)               ViewGroup vgTop;
+    @BindView(R.id.actMain_vp)                  ViewPager vpMain;
+    @BindView(R.id.actMain_vbtnRequestSetting)  View vbtnSetting;
 
     ConsultantMainActivity.MainTabAdapter tabAdapter;
     CleaningProgressIconManager cleaningProgressIconManager;
@@ -63,6 +64,7 @@ public class ConsultantMainActivity extends OkHomeParentActivity{
         super.onResume();
         adaptMainPageInfoFromServer();
 
+        CommonBackgroundWorker.onResume();
     }
 
     private void init(){
@@ -78,7 +80,6 @@ public class ConsultantMainActivity extends OkHomeParentActivity{
                 (ImageView)ButterKnife.findById(this, R.id.actMain_ivCleaningIcon),
                 ButterKnife.findById(this, R.id.actMain_vCleaningIconDot),
                 ButterKnife.findById(this, R.id.actMain_vgTabIcons));
-
     }
 
     private void adaptMainPageInfoFromServer(){

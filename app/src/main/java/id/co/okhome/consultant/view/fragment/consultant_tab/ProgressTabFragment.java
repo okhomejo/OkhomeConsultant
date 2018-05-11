@@ -87,7 +87,6 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
     @Override
     public void onResume() {
         super.onResume();
-        checkAccessTokenActive();
         getConsultantProgressInfo();
     }
 
@@ -103,12 +102,6 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
     @Override
     public void onDeselect() {
 
-    }
-
-    private void checkAccessTokenActive() {
-        OkhomeUtil.showToast(getContext(), "request");
-
-//        refreshToken();
     }
 
     private void getConsultantProgressInfo() {

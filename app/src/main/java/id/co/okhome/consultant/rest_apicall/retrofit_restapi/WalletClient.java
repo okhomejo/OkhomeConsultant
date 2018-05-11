@@ -8,6 +8,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface WalletClient {
+
     @POST("signon")
     Call<TokenModel> signOn(@Query("clientId") String clientId,
                             @Query("clientSecret") String clientSecret,

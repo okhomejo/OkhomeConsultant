@@ -23,15 +23,15 @@ public class OkhomeDateTimeFormatUtil {
         return printOkhomeType(yyyyMMddHHmmss, "E d MMM yy");
     }
 
-
     public final static String printOkhomeType(String yyyyMMddHHmmss, String targetFormat){
         return printOkhomeType(yyyyMMddHHmmss, "yyyy-MM-dd HH:mm:ss", targetFormat);
     }
 
     public final static String printOkhomeType(String fromDateTime, String fromFormat, String targetFormat){
-
         DateTime dateTime = DateTimeFormat.forPattern(fromFormat).parseDateTime(fromDateTime);
         Locale locale = new Locale("id");
         return DateTimeFormat.forPattern(targetFormat).withLocale(locale).print(dateTime);
     }
+
+
 }

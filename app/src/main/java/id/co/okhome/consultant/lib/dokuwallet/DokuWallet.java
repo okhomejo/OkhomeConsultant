@@ -23,7 +23,7 @@ public class DokuWallet {
                 OkhomeConstant.CLIENT_ID,
                 accessToken,
                 accountId,
-                EncryptionUtils.hmacSha1(OkhomeConstant.CLIENT_ID+systrace+OkhomeConstant.SHARED_KEY+accountId)
+                EncryptionUtils.hmacSha1(OkhomeConstant.CLIENT_ID + systrace+OkhomeConstant.SHARED_KEY+accountId)
         );
     }
 
@@ -32,7 +32,7 @@ public class DokuWallet {
                 OkhomeConstant.CLIENT_ID,
                 accessToken,
                 accountId,
-                EncryptionUtils.hmacSha1(OkhomeConstant.CLIENT_ID+systrace+OkhomeConstant.SHARED_KEY+accountId)
+                EncryptionUtils.hmacSha1(OkhomeConstant.CLIENT_ID + systrace+OkhomeConstant.SHARED_KEY+accountId)
         );
     }
 }

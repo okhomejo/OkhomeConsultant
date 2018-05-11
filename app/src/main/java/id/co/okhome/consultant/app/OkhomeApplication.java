@@ -19,6 +19,7 @@ public class OkhomeApplication extends Application{
     public void onCreate() {
         super.onCreate();
         RetrofitCallback.setApplicationContext(this);
+
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
 //                .setDefaultFontPath("fonts/Raleway-Medium.ttf")
                         .setFontAttrId(R.attr.fontPath)

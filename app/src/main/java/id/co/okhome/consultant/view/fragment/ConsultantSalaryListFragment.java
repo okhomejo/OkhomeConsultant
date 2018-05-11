@@ -1,19 +1,17 @@
 package id.co.okhome.consultant.view.fragment;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.google.gson.Gson;
 import com.mrjodev.jorecyclermanager.JoRecyclerAdapter;
 
-import java.sql.Array;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -40,6 +38,7 @@ import id.co.okhome.consultant.view.viewholder.ConsultantSalaryVHolder;
 public class ConsultantSalaryListFragment extends Fragment{
 
     @BindView(R.id.fragConsultantSalaryList_rcv)        RecyclerView rcv;
+    @BindView(R.id.fragConsultantSalaryList_vLoading)   ProgressBar progressBar;
 
     private JoRecyclerAdapter<MutationModel> adapter;
 
@@ -66,7 +65,7 @@ public class ConsultantSalaryListFragment extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
-        adaptDataAndViews();
+        init();
     }
 
     @Override
@@ -74,13 +73,35 @@ public class ConsultantSalaryListFragment extends Fragment{
         super.onResume();
     }
 
-    private void adaptDataAndViews() {
+    private void init(){
+        loadMutations(
+                ConsultantLoggedIn.get().consultant.dokuToken,
+                ConsultantLoggedIn.get().consultant.dokuSystrace,
+                ConsultantLoggedIn.get().consultant.dokuId
+        );
+    }
 
-        List<MutationModel> mutationList = getArguments().getParcelableArrayList("MUTATION_LIST");
+    private void loadMutations(String token, String systrace, String accountId) {
+        DokuWallet.getActivities(token, systrace, accountId).enqueue(new RetrofitCallback<ActivitiesModel>() {
+            @Override
+            public void onSuccess(ActivitiesModel result) {
+                if (!tokenRetrieved(result.responseCode)) {
+                    refreshToken(OkhomeUtil.getRandomString());
+                } else if (result.mutasi != null) {
+                    adaptViewsAndData(result.mutasi);
+                    progressBar.setVisibility(View.INVISIBLE);
+                } else {
+                    System.out.println("Error " + result.responseCode + ": " + result.responseMessage);
+                }
+                System.out.println("Result: " + result.responseCode + " / " + result.responseMessage);
+            }
+        });
+    }
 
-        if (mutationList != null) {
+    private void adaptViewsAndData(List<MutationModel> mutations) {
+        if (mutations != null) {
             List<MutationModel> specificMutations = new ArrayList<>();
-            for (MutationModel mutation : mutationList) {
+            for (MutationModel mutation : mutations) {
                 if (Objects.equals(getArguments().getString("TYPE"), "COMPLETE")) {
                     if (mutation.type.equals("D")) {
                         specificMutations.add(mutation);
@@ -94,5 +115,42 @@ public class ConsultantSalaryListFragment extends Fragment{
             adapter.setListItems(specificMutations);
             adapter.notifyDataSetChanged();
         }
+    }
+
+    private void refreshToken(final String systrace) {
+        DokuWallet.signOn(systrace).enqueue(new RetrofitCallback<TokenModel>() {
+            @Override
+            public void onSuccess(TokenModel result) {
+                if (!tokenRetrieved(result.responseCode)) {
+                    refreshToken(OkhomeUtil.getRandomString());
+                } else {
+                    saveTokenAndSystrace(result.accessToken, systrace);
+                }
+            }
+        });
+    }
+
+    private void saveTokenAndSystrace(final String token, final String systrace) {
+        String jsonParam = new Gson().toJson(OkhomeUtil.makeMap("dokuToken", token, "dokuSystrace", systrace));
+        OkhomeRestApi.getConsultantClient().update(ConsultantLoggedIn.get().id, jsonParam)
+                .enqueue(new RetrofitCallback<String>() {
+                    @Override
+                    public void onSuccess(String account) {
+                        ConsultantLoggedIn.reload(new RetrofitCallback<AccountModel>() {
+                            @Override
+                            public void onSuccess(AccountModel result) {
+                                loadMutations(
+                                        result.consultant.dokuToken,
+                                        result.consultant.dokuSystrace,
+                                        result.consultant.dokuId
+                                );
+                            }
+                        });
+                    }
+                });
+    }
+
+    private boolean tokenRetrieved(String code) {
+        return !code.equals("3011") && !code.equals("3010") && !code.equals("3009");
     }
 }

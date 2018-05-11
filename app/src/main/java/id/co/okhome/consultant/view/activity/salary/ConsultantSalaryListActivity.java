@@ -34,7 +34,6 @@ import id.co.okhome.consultant.view.fragment.ConsultantSalaryListFragment;
 
 public class ConsultantSalaryListActivity extends OkHomeParentActivity {
 
-    @BindView(R.id.actTrainingInfo_vLoading)        ProgressBar progressBar;
     @BindView(R.id.actConsultantSalary_vp)          ViewPager vp;
     @BindView(R.id.actConsultantSalary_tvTab1)      TextView tvTab1;
     @BindView(R.id.actConsultantSalary_tvTab2)      TextView tvTab2;
@@ -53,69 +52,74 @@ public class ConsultantSalaryListActivity extends OkHomeParentActivity {
         init();
     }
 
-    private void init(){
-        loadMutations(
-                ConsultantLoggedIn.get().consultant.dokuToken,
-                ConsultantLoggedIn.get().consultant.dokuSystrace,
-                ConsultantLoggedIn.get().consultant.dokuId
-        );
+    private void init() {
+        salaryTabAdapter = new SalaryTabAdapter(getSupportFragmentManager());
+        salaryTabAdapter.init(vp);
     }
-
-    private void loadMutations(String token, String systrace, String accountId) {
-        DokuWallet.getActivities(token, systrace, accountId).enqueue(new RetrofitCallback<ActivitiesModel>() {
-            @Override
-            public void onSuccess(ActivitiesModel result) {
-                if (!tokenRetrieved(result.responseCode)) {
-                    refreshToken(OkhomeUtil.getRandomString());
-                } else if (result.mutasi != null) {
-                    salaryTabAdapter = new SalaryTabAdapter(getSupportFragmentManager(), result.mutasi);
-                    salaryTabAdapter.init(vp);
-
-                    progressBar.setVisibility(View.INVISIBLE);
-                } else {
-                    System.out.println("Error " + result.responseCode + ": " + result.responseMessage);
-                }
-                System.out.println("Result: " + result.responseCode + " / " + result.responseMessage);
-            }
-        });
-    }
-
-    private void refreshToken(final String systrace) {
-        DokuWallet.signOn(systrace).enqueue(new RetrofitCallback<TokenModel>() {
-            @Override
-            public void onSuccess(TokenModel result) {
-                if (!tokenRetrieved(result.responseCode)) {
-                    refreshToken(OkhomeUtil.getRandomString());
-                } else {
-                    saveTokenAndSystrace(result.accessToken, systrace);
-                }
-            }
-        });
-    }
-
-    private void saveTokenAndSystrace(final String token, final String systrace) {
-        String jsonParam = new Gson().toJson(OkhomeUtil.makeMap("dokuToken", token, "dokuSystrace", systrace));
-        OkhomeRestApi.getConsultantClient().update(ConsultantLoggedIn.get().id, jsonParam)
-                .enqueue(new RetrofitCallback<String>() {
-                    @Override
-                    public void onSuccess(String account) {
-                        ConsultantLoggedIn.reload(new RetrofitCallback<AccountModel>() {
-                            @Override
-                            public void onSuccess(AccountModel result) {
-                                loadMutations(
-                                        result.consultant.dokuToken,
-                                        result.consultant.dokuSystrace,
-                                        result.consultant.dokuId
-                                );
-                            }
-                        });
-                    }
-                });
-    }
-
-    private boolean tokenRetrieved(String code) {
-        return !code.equals("3011") && !code.equals("3010") && !code.equals("3009");
-    }
+//
+//    private void init(){
+//        loadMutations(
+//                ConsultantLoggedIn.get().consultant.dokuToken,
+//                ConsultantLoggedIn.get().consultant.dokuSystrace,
+//                ConsultantLoggedIn.get().consultant.dokuId
+//        );
+//    }
+//
+//    private void loadMutations(String token, String systrace, String accountId) {
+//        DokuWallet.getActivities(token, systrace, accountId).enqueue(new RetrofitCallback<ActivitiesModel>() {
+//            @Override
+//            public void onSuccess(ActivitiesModel result) {
+//                if (!tokenRetrieved(result.responseCode)) {
+//                    refreshToken(OkhomeUtil.getRandomString());
+//                } else if (result.mutasi != null) {
+//                    salaryTabAdapter = new SalaryTabAdapter(getSupportFragmentManager(), result.mutasi);
+//                    salaryTabAdapter.init(vp);
+//
+//                    progressBar.setVisibility(View.INVISIBLE);
+//                } else {
+//                    System.out.println("Error " + result.responseCode + ": " + result.responseMessage);
+//                }
+//                System.out.println("Result: " + result.responseCode + " / " + result.responseMessage);
+//            }
+//        });
+//    }
+//
+//    private void refreshToken(final String systrace) {
+//        DokuWallet.signOn(systrace).enqueue(new RetrofitCallback<TokenModel>() {
+//            @Override
+//            public void onSuccess(TokenModel result) {
+//                if (!tokenRetrieved(result.responseCode)) {
+//                    refreshToken(OkhomeUtil.getRandomString());
+//                } else {
+//                    saveTokenAndSystrace(result.accessToken, systrace);
+//                }
+//            }
+//        });
+//    }
+//
+//    private void saveTokenAndSystrace(final String token, final String systrace) {
+//        String jsonParam = new Gson().toJson(OkhomeUtil.makeMap("dokuToken", token, "dokuSystrace", systrace));
+//        OkhomeRestApi.getConsultantClient().update(ConsultantLoggedIn.get().id, jsonParam)
+//                .enqueue(new RetrofitCallback<String>() {
+//                    @Override
+//                    public void onSuccess(String account) {
+//                        ConsultantLoggedIn.reload(new RetrofitCallback<AccountModel>() {
+//                            @Override
+//                            public void onSuccess(AccountModel result) {
+//                                loadMutations(
+//                                        result.consultant.dokuToken,
+//                                        result.consultant.dokuSystrace,
+//                                        result.consultant.dokuId
+//                                );
+//                            }
+//                        });
+//                    }
+//                });
+//    }
+//
+//    private boolean tokenRetrieved(String code) {
+//        return !code.equals("3011") && !code.equals("3010") && !code.equals("3009");
+//    }
 
     @OnClick(R.id.actTrainingInfo_vbtnX)
     public void onButtonGoBack() {
@@ -135,11 +139,9 @@ public class ConsultantSalaryListActivity extends OkHomeParentActivity {
     //tab adapter
     public class SalaryTabAdapter extends FragmentTabAdapter implements ViewPager.OnPageChangeListener{
 
-        private List<MutationModel> mutationList;
 
-        public SalaryTabAdapter(FragmentManager fm, List<MutationModel> mutationList) {
+        public SalaryTabAdapter(FragmentManager fm) {
             super(fm);
-            this.mutationList = mutationList;
         }
 
         @Override
@@ -150,14 +152,14 @@ public class ConsultantSalaryListActivity extends OkHomeParentActivity {
             switch (position) {
                 case 0:
                     b = OkhomeUtil.makeBundle("TYPE", "COMPLETE");
-                    b.putParcelableArrayList("MUTATION_LIST", (ArrayList<MutationModel>) mutationList);
+//                    b.putParcelableArrayList("MUTATION_LIST", (ArrayList<MutationModel>) mutationList);
 
                     f = new ConsultantSalaryListFragment();
                     f.setArguments(b);
                     break;
                 case 1:
                     b = OkhomeUtil.makeBundle("TYPE", "WAITING");
-                    b.putParcelableArrayList("MUTATION_LIST", (ArrayList<MutationModel>) mutationList);
+//                    b.putParcelableArrayList("MUTATION_LIST", (ArrayList<MutationModel>) mutationList);
 
                     f = new ConsultantSalaryListFragment();
                     f.setArguments(b);

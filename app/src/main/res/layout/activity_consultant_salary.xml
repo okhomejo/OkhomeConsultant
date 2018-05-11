@@ -149,10 +149,5 @@
             android:background="@drawable/bg_circle_shadow"/>
     </LinearLayout>
 
-    <ProgressBar
-        android:layout_width="30dp"
-        android:id="@+id/actTrainingInfo_vLoading"
-        android:layout_height="30dp"
-        android:layout_centerInParent="true"/>
 
 </RelativeLayout>

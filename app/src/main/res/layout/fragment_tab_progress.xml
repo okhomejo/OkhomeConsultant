@@ -13,12 +13,13 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerInParent="true"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
         <ScrollView
             android:id="@+id/fragTabProgress_svItem"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="invisible">
 
             <LinearLayout
                 android:layout_marginLeft="22dp" android:layout_marginRight="22dp"

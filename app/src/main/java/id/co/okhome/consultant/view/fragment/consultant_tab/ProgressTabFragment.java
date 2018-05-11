@@ -111,13 +111,6 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
             public void onSuccess(ConsultantPageProgressModel progressModel) {
                 adaptViews(progressModel);
             }
-
-            @Override
-            public void onFinish() {
-                super.onFinish();
-                progressBar.setVisibility(View.GONE);
-                svItem.setVisibility(View.VISIBLE);
-            }
         });
     }
 
@@ -173,7 +166,15 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
         String token    = ConsultantLoggedIn.get().consultant.dokuToken;
         String systrace = ConsultantLoggedIn.get().consultant.dokuSystrace;
 
-        getBalance(token, systrace);
+//        getBalance(token, systrace);
+
+        // For testing purpose, save dokuID 1753896060 in account
+        // If no longer testing, just call --> getBalance(token, systrace);
+        if (!ConsultantLoggedIn.get().consultant.dokuId.equals("1753896060")) {
+            saveDokuId();
+        } else {
+            getBalance(token, systrace);
+        }
     }
 
     private void getBalance(final String accessToken, final String systrace) {
@@ -219,6 +220,13 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
                     tvSalaryPaid.setText(String.format("Rp %s is paid", OkhomeUtil.getPriceFormatValue(totalPaidAmount)));
                 }
             }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                progressBar.setVisibility(View.GONE);
+                svItem.setVisibility(View.VISIBLE);
+            }
         });
     }
 
@@ -237,6 +245,27 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
 
     private void saveTokenAndSystrace(String token, String systrace) {
         String jsonParam = new Gson().toJson(OkhomeUtil.makeMap("dokuToken", token, "dokuSystrace", systrace));
+        OkhomeRestApi.getConsultantClient().update(ConsultantLoggedIn.get().id, jsonParam)
+                .enqueue(new RetrofitCallback<String>() {
+                    @Override
+                    public void onSuccess(String account) {
+                        ConsultantLoggedIn.reload(new RetrofitCallback<AccountModel>() {
+                            @Override
+                            public void onSuccess(AccountModel result) {
+                                getBalance(
+                                        result.consultant.dokuToken,
+                                        result.consultant.dokuSystrace
+                                );
+                            }
+                        });
+                    }
+                });
+    }
+
+
+    // For testing purpose
+    private void saveDokuId() {
+        String jsonParam = new Gson().toJson(OkhomeUtil.makeMap("dokuId", "1753896060"));
         OkhomeRestApi.getConsultantClient().update(ConsultantLoggedIn.get().id, jsonParam)
                 .enqueue(new RetrofitCallback<String>() {
                     @Override

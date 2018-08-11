@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/actTraineeFAQ_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="64dp">
+        android:layout_height="@dimen/common_topbar_height">
 
         <LinearLayout
             android:id="@+id/actTraineeFAQ_vbtnX"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:text="FAQ"
             android:textColor="#000000"
-            android:textSize="19dp" />
+            android:textSize="@dimen/common_topbar_title_size" />
 
 
         <id.co.okhome.consultant.lib.customview.common_views.FixedAutoCompleteTextView

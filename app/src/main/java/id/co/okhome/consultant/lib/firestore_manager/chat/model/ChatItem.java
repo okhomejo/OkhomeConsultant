@@ -4,6 +4,7 @@ import com.google.firebase.firestore.ServerTimestamp;
 
 import org.joda.time.DateTime;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -33,7 +34,12 @@ public class ChatItem {
     }
 
     public Date getTimestamp() {
-        return timestamp;
+        if(timestamp == null){
+            return new Timestamp(System.currentTimeMillis());
+        }else{
+            return timestamp;
+        }
+
     }
 
     public void setId(String id) {

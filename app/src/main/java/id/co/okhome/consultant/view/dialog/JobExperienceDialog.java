@@ -1,17 +1,16 @@
 package id.co.okhome.consultant.view.dialog;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -24,6 +23,7 @@ import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.model.JobExperienceModel;
+import id.co.okhome.consultant.view.viewholder.StringHolder;
 
 import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListener.ACTIONCODE_OK;
 
@@ -40,6 +40,8 @@ public class JobExperienceDialog extends DialogParent {
     public final static String RESULT_POSITION    = "JOB EXPERIENCE";
     private Activity activity;
     private JobExperienceModel newJobExp;
+
+    String endYearMonth, beginYearMonth;
 
     public JobExperienceDialog(Activity activity, CommonDialogListener commonDialogListener) {
         super(activity);
@@ -69,8 +71,8 @@ public class JobExperienceDialog extends DialogParent {
 
     private void checkInputFields(){
         final String position   = etPosition.getText().toString();
-        final String fromDate   = tvFromDate.getText().toString();
-        final String toDate     = tvToDate.getText().toString();
+        final String fromDate   = beginYearMonth;
+        final String toDate     = endYearMonth;
 
         try {
             OkhomeException.chkException(OkhomeUtil.isEmpty(position), "Please fill in your position");
@@ -80,14 +82,9 @@ public class JobExperienceDialog extends DialogParent {
             ToastUtil.showToast(e.getMessage());
             return;
         }
-        DateTimeFormatter dtf1 = DateTimeFormat.forPattern("MMMM yyyy");
-        DateTimeFormatter dtf2 = DateTimeFormat.forPattern("yyyy-MM");
-
-        DateTime start  = dtf1.parseDateTime(fromDate);
-        DateTime end    = dtf1.parseDateTime(toDate);
 
         newJobExp = new JobExperienceModel(
-                (start.toString(dtf2) + "," + end.toString(dtf2)), position
+                (fromDate + "," + toDate), position
         );
         onJobExperienceDone(newJobExp);
     }
@@ -123,11 +120,74 @@ public class JobExperienceDialog extends DialogParent {
 
     @OnClick(R.id.dialogWorkExp_tvFromDate)
     public void onEditStartDate() {
-        callYearMonthPicker(tvFromDate, "From");
+        showYearMonthPicker("When begin this job?", new YearMonthChooseListener() {
+            @Override
+            public void onChoosed(String year, String month) {
+                beginYearMonth = year +"-" + month;
+                String parsedString = DateTimeFormat.forPattern("MMM yy").withLocale(new Locale("id")).print(DateTimeFormat.forPattern("yyyy-MM").parseDateTime(beginYearMonth));
+                tvFromDate.setText(parsedString);
+            }
+        });
     }
 
     @OnClick(R.id.dialogWorkExp_tvToDate)
     public void onEditEndDate() {
-        callYearMonthPicker(tvToDate, "To");
+        showYearMonthPicker("When finish this job?", new YearMonthChooseListener() {
+            @Override
+            public void onChoosed(String year, String month) {
+                endYearMonth = year +"-" + month;
+                String parsedString = DateTimeFormat.forPattern("MMM yy").withLocale(new Locale("id")).print(DateTimeFormat.forPattern("yyyy-MM").parseDateTime(endYearMonth));
+                tvToDate.setText(parsedString);
+            }
+        });
+    }
+
+
+    private void showYearMonthPicker(final String titleHeader, final YearMonthChooseListener yearMonthChooseListener){
+        final List<String> years = new ArrayList<>();
+        for(int i = 1950; i < 2018; i++){
+            years.add(i+"");
+        }
+
+        final List<String> months = new ArrayList<>();
+        for(int i = 1; i <= 12; i++){
+            months.add(i+"");
+        }
+
+
+        new CommonListDialog(getContext())
+                .setTitle(titleHeader + "(year)")
+                .setArrItems(years.toArray(new String[years.size()]))
+                .setColumnCount(3)
+                .setItemClickListener(new StringHolder.ItemClickListener() {
+                    @Override
+                    public void onItemClick(Dialog dialog, int pos, String value, String tag) {
+                        dialog.dismiss();
+
+                        final String year = value;
+
+                        new CommonListDialog(getContext())
+                                .setTitle(titleHeader + "(month)")
+                                .setArrItems(months.toArray(new String[months.size()]))
+                                .setColumnCount(3)
+                                .setItemClickListener(new StringHolder.ItemClickListener() {
+                                    @Override
+                                    public void onItemClick(Dialog dialog, int pos, String value, String tag) {
+                                        dialog.dismiss();
+                                        final String month = OkhomeUtil.fillupWith2Zero(value);
+
+                                        yearMonthChooseListener.onChoosed(year, month);
+
+                                    }
+                                })
+                                .show();
+
+                    }
+                })
+                .show();
+    }
+
+    interface YearMonthChooseListener{
+        public void onChoosed(String year, String month);
     }
 }

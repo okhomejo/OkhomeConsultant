@@ -17,7 +17,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.DelayedFinish;
-import id.co.okhome.consultant.lib.ViewHolderUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
@@ -32,7 +31,7 @@ import id.co.okhome.consultant.view.fragment.consultant_tab.JobHistoryCalendarTa
 import id.co.okhome.consultant.view.fragment.consultant_tab.PickingCleaningTabFragment;
 import id.co.okhome.consultant.view.fragment.consultant_tab.ProgressTabFragment;
 import id.co.okhome.consultant.view.fragment.consultant_tab.SettingForConsultantTabFragment;
-import id.co.okhome.consultant.view.fragment.trainee_tab.ChatTabFragment;
+import id.co.okhome.consultant.view.fragment.consultant_tab.ChatTabFragment;
 
 
 public class ConsultantMainActivity extends OkHomeParentActivity{
@@ -156,8 +155,10 @@ public class ConsultantMainActivity extends OkHomeParentActivity{
             //change tab image for indicating page change
             for(int i = 0; i < listTab.size(); i++){
                 View vTarget = listTab.get(i);
-                ViewGroup vgIcon = ViewHolderUtil.getView(vTarget, R.id.actMain_vgTabIcon);
-                TextView tvTabText = ViewHolderUtil.getView(vTarget, R.id.actMain_tvTabText);
+
+                ViewGroup vgIcon = (ViewGroup)((ViewGroup)vTarget).getChildAt(0);
+                TextView tvTabText = (TextView)((ViewGroup)vTarget).getChildAt(1);
+//                ViewHolderUtil.getView(vTarget, R.id.actMain_tvTabText);
                 if (i == position){
                     vgIcon.setAlpha(0.7f);
                     tvTabText.setAlpha(1f);
@@ -181,12 +182,7 @@ public class ConsultantMainActivity extends OkHomeParentActivity{
                 Fragment f = getSupportFragmentManager().getFragments().get(i);
                 if(position == i){
                     if(f instanceof TabFragmentStatusListener){
-                        ((TabFragmentStatusListener) f).onSelect();
                         ((TabFragmentStatusListener) f).onSelectWithData(OkhomeUtil.makeMap("vSetting", vbtnSetting));
-                    }
-                }else{
-                    if(f instanceof TabFragmentStatusListener){
-                        ((TabFragmentStatusListener) f).onDeselect();
                     }
                 }
             }

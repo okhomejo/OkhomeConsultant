@@ -3,13 +3,10 @@ package id.co.okhome.consultant.model.page;
 
 import java.util.List;
 
-import id.co.okhome.consultant.model.cleaning.CleaningInfoModel;
+import id.co.okhome.consultant.model.cleaning.CleaningDetailWithOrderInfoModel;
+import id.co.okhome.consultant.model.cleaning.order.CleaningDayItemModel;
 
 public class ConsultantPageJobsModel {
-    public List<CleaningInfoModel> nextCleanings = null;
-    public List<CleaningInfoModel> prevCleanings = null;
-
-    public int nextCleaningCnt, prevCleaningCnt;
-
-
+    public CleaningDetailWithOrderInfoModel nextJob = null;
+    public List<CleaningDayItemModel> cleaningItems;
 }

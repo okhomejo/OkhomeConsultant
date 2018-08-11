@@ -3,7 +3,6 @@ package id.co.okhome.consultant.view.activity.account.profile;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,10 +42,7 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity implem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_user_extra_document);
         ButterKnife.bind(this);
-        OkhomeUtil.setSystemBarColor(this,
-
-//                Color.parseColor("#29313a"));
-                ContextCompat.getColor(this, R.color.colorOkhome));
+        OkhomeUtil.setWhiteSystembar(this);
 
         init();
     }
@@ -274,7 +270,7 @@ public class UpdateExtraUserDocumentActivity extends OkHomeParentActivity implem
         updateProfile();
     }
 
-    @OnClick(R.id.actLocation_vbtnX)
+    @OnClick(R.id.common_vbtnClose)
     public void onCloseActivity() {
         finish();
     }

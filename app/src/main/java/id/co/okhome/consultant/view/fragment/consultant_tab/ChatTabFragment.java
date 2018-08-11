@@ -1,4 +1,4 @@
-package id.co.okhome.consultant.view.fragment.trainee_tab;
+package id.co.okhome.consultant.view.fragment.consultant_tab;
 
 import android.content.Intent;
 import android.os.Bundle;

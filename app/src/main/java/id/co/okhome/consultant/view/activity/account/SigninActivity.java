@@ -1,5 +1,6 @@
 package id.co.okhome.consultant.view.activity.account;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.config.OkhomeRegistryKey;
 import id.co.okhome.consultant.exception.OkhomeException;
 import id.co.okhome.consultant.lib.JoSharedPreference;
+import id.co.okhome.consultant.lib.PhoneNumberGetter;
 import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
@@ -19,6 +21,8 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import id.co.okhome.consultant.model.v2.AccountModel;
+import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
+import id.co.okhome.consultant.view.dialog.ShowEmailAndOptChangePasswordDialog;
 
 public class SigninActivity extends OkHomeParentActivity {
 
@@ -31,6 +35,7 @@ public class SigninActivity extends OkHomeParentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
+        OkhomeUtil.setWhiteSystembar(this);
         ButterKnife.bind(this);
 
         init();
@@ -83,7 +88,7 @@ public class SigninActivity extends OkHomeParentActivity {
 
             @Override
             public void onJodevError(ErrorModel jodevErrorModel) {
-                super.onJodevError(jodevErrorModel);
+//                super.onJodevError(jodevErrorModel);
                 ToastUtil.showToast(jodevErrorModel.message);
             }
         });
@@ -101,6 +106,36 @@ public class SigninActivity extends OkHomeParentActivity {
         }
     }
 
+    //팝업 보여주자
+    private void showEmailDialog(AccountModel account){
+        new ShowEmailAndOptChangePasswordDialog(this, account).show();
+    }
+
+    //폰번호로 사용자 정보 조회
+    private void getInfoByPhone(String phone, String code){
+        final ProgressDialog p = OkhomeUtil.showLoadingDialog(this);
+        OkhomeRestApi.getAccountClient().getInfoByPhone(phone, code).enqueue(new RetrofitCallback<AccountModel>() {
+            @Override
+            public void onSuccess(AccountModel account) {
+                showEmailDialog(account);
+            }
+
+            @Override
+            public void onJodevError(ErrorModel jodevErrorModel) {
+                super.onJodevError(jodevErrorModel);
+            }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                p.dismiss();
+
+            }
+        });
+
+    }
+
+
     @OnClick(R.id.actSignIn_vbtnClose)
     public void onCloseWindow() {
         finish();
@@ -114,7 +149,18 @@ public class SigninActivity extends OkHomeParentActivity {
     @OnClick(R.id.actSignIn_vbtnForgotInfo)
     public void onForgotInfoClick() {
 
-        startActivity(new Intent(this, ForgotLoginActivity.class));
+        PhoneNumberGetter.with(this).destroy();
+        PhoneNumberGetter.with(this)
+                .setPhoneVerificationCallback(new PhoneNumberGetter.PhoneVerificationCallback() {
+                    @Override
+                    public void onVerificationSuccess(String phone, String code) {
+                        //
+                        getInfoByPhone(phone, code);
+                    }
+                })
+                .show();
+
+//        startActivity(new Intent(this, ForgotLoginActivity.class));
 
 //        BottomOptionDialog dialog = new BottomOptionDialog(this)
 //                .setArrItems("Find Email by phone", "Reset password by phone")
@@ -135,5 +181,11 @@ public class SigninActivity extends OkHomeParentActivity {
 //        window.setAttributes(wlp);
 //
 //        dialog.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        PhoneNumberGetter.with(this).onActivityResult(requestCode, resultCode, data);
     }
 }

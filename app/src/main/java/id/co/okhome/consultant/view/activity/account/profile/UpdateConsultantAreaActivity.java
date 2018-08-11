@@ -3,7 +3,6 @@ package id.co.okhome.consultant.view.activity.account.profile;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 
 import com.mrjodev.jorecyclermanager.JoRecyclerAdapter;
@@ -48,9 +47,7 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_prefered_area);
-        OkhomeUtil.setSystemBarColor(this,
-                ContextCompat.getColor(this, R.color.colorOkhome)
-        );
+        OkhomeUtil.setWhiteSystembar(this);
         ButterKnife.bind(this);
         init();
     }
@@ -194,7 +191,7 @@ public class UpdateConsultantAreaActivity extends OkHomeParentActivity {
         );
     }
 
-    @OnClick(R.id.actArea_vbtnX)
+    @OnClick(R.id.common_vbtnClose)
     public void onGoBackClick() {
         finish();
     }

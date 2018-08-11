@@ -19,8 +19,8 @@ import java.util.Map;
 public class JoViewPagerController<T> implements ViewPager.OnPageChangeListener{
 
     //빌더
-    public static final JoViewPagerController with(Context context, ViewPager vp){
-        return new JoViewPagerController(context, vp);
+    public static final <T> JoViewPagerController<T> with(Context context, ViewPager vp){
+        return new <T>JoViewPagerController(context, vp);
     }
 
     ViewPager vp;

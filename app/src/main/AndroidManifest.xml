@@ -27,18 +27,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <service android:name=".service.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service
-            android:name=".service.MyFirebaseInstanceIDService">
+        <service android:name=".service.MyFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/logo" />
@@ -47,8 +46,7 @@
             android:resource="@color/colorAccent" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="@string/default_notification_channel_id"/>
-
+            android:value="@string/default_notification_channel_id" />
 
         <activity android:name=".view.activity.main.TraineeMainActivity" />
         <activity android:name=".view.activity.main.ConsultantMainActivity" />
@@ -89,42 +87,28 @@
             android:name=".view.activity.etc.TestActivity"
             android:label="@string/title_activity_test"
             android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".view.activity.account.profile.UpdateExtraUserDocumentActivity" />
         <activity android:name=".view.activity.account.profile.TraineeScreeningMornitorActivity" />
         <activity android:name=".view.activity.account.profile.UpdateConsultantEducationActivity" />
         <activity android:name=".view.activity.account.profile.UpdateConsultantAreaActivity" />
-        <activity android:name=".view.activity.account.profile.UpdateJobExperienceActivity" />
+        <activity android:name=".view.activity.account.profile.JobExperienceActivity" />
         <activity android:name=".view.activity.etc.AboutOkhomeActivity" />
         <activity android:name=".view.activity.etc.WalletActivity" />
         <activity android:name=".view.activity.account.profile.AccountActivity" />
         <activity android:name=".view.activity.traininginfo.TraineeTrainingActivity" />
         <activity android:name=".view.activity.traininginfo.TraineeTrainingItemInfoActivity" />
-        <activity android:name=".view.activity.cleaning.CleaningDetailActivity" />
+        <activity android:name=".view.activity.cleaning_order.CleaningOrderDetailActivity" />
         <activity android:name=".view.activity.salary.ConsultantSalaryListActivity" />
         <activity android:name=".view.activity.cleaning_review.CleaningReviewListActivity" />
-        <activity android:name=".view.activity.cleaning.NextCleaningsActivity" />
-        <activity android:name=".view.activity.cleaning.PreviousCleaningsActivity" />
+        <activity android:name=".view.activity.cleaning.CleaningDetailActivity" />
         <activity android:name=".view.activity.cleaning.CleaningListTabActivity" />
         <activity android:name=".view.activity.chatting.ChattingTestActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".view.activity.chatting.ChatActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity android:name=".view.activity.agreements.TermAndPrivacyActivity" />
+        <activity android:name=".view.activity.account.BeforeConsultantActivity"></activity>
     </application>
 
 </manifest>

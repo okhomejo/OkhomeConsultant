@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+
+        <FrameLayout
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:gravity="center"
+                        android:background="@drawable/circle_lightblue"
+                        android:layout_marginRight="8dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp">
+                        <TextView
+                            android:id="@+id/itemCleaningSpecification_tvNumber"
+                            android:textSize="9dp"
+                            android:textColor="#ffffff"
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:text="1"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:id="@+id/itemCleaningSpecification_tvSubject"
+                        android:textSize="14.5sp"
+                        android:textColor="@color/colorBlueBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="General cleaning"/>
+
+                </LinearLayout>
+            </FrameLayout>
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical|right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/itemCleaningSpecification_tvDuration"
+                    style="@style/FontOpenSansLight"
+                    android:textSize="14.5sp"
+                    android:textColor="@color/colorBlueGrayDeep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="5 hours"/>
+            </LinearLayout>
+        </FrameLayout>
+
+
+        <View
+            android:id="@+id/itemCleaningSpecification_vPaddingBottom"
+            android:layout_width="match_parent"
+            android:layout_height="10dp" android:background="#ffffff"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

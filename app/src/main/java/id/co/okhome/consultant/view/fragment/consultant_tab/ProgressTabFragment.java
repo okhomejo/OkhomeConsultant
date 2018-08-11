@@ -170,11 +170,12 @@ public class ProgressTabFragment extends Fragment implements TabFragmentStatusLi
 
         // For testing purpose, save dokuID 1753896060 in account
         // If no longer testing, just call --> getBalance(token, systrace);
-        if (!ConsultantLoggedIn.get().consultant.dokuId.equals("1753896060")) {
-            saveDokuId();
-        } else {
-            getBalance(token, systrace);
-        }
+        getBalance(token, systrace);
+//        if (!ConsultantLoggedIn.get().consultant.dokuId.equals("1753896060")) {
+//            saveDokuId();
+//        } else {
+//            getBalance(token, systrace);
+//        }
     }
 
     private void getBalance(final String accessToken, final String systrace) {

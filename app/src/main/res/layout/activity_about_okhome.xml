@@ -55,7 +55,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="@dimen/common_topbar_height"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true">
 
@@ -105,7 +105,7 @@
             android:layout_centerVertical="true"
             android:text="ABOUT OKHOME"
             android:textColor="#000000"
-            android:textSize="19dp" />
+            android:textSize="@dimen/common_topbar_title_size" />
 
     </RelativeLayout>
     <LinearLayout
@@ -127,6 +127,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/actAboutOkhome_vbtnAgreements"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:paddingTop="21dp"
@@ -152,7 +153,7 @@
                         android:layout_centerVertical="true"
                         android:text="Agreements"
                         android:textColor="@color/colorBlueBlack"
-                        android:textSize="17sp" />
+                        android:textSize="16.5sp" />
 
                     <LinearLayout
                         android:gravity="right"
@@ -171,6 +172,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/actAboutOkhome_vbtnTermsAndConditions"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:paddingTop="21dp"
@@ -196,7 +198,7 @@
                         android:layout_centerVertical="true"
                         android:text="Terms and conditions"
                         android:textColor="@color/colorBlueBlack"
-                        android:textSize="17sp" />
+                        android:textSize="16.5sp" />
 
                     <LinearLayout
                         android:gravity="right"
@@ -214,6 +216,7 @@
                 android:layout_height="1px" android:background="#22000000"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/actAboutOkhome_vbtnSoftwareLicense"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:paddingTop="21dp"
@@ -239,7 +242,7 @@
                         android:layout_centerVertical="true"
                         android:text="Software License"
                         android:textColor="@color/colorBlueBlack"
-                        android:textSize="17sp" />
+                        android:textSize="16.5sp" />
 
                     <LinearLayout
                         android:gravity="right"
@@ -258,6 +261,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/actAboutOkhome_vbtnVersion"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:paddingTop="21dp"
@@ -281,7 +285,7 @@
                         android:layout_height="wrap_content"
                         android:text="Version"
                         android:textColor="@color/colorBlueBlack"
-                        android:textSize="17sp" />
+                        android:textSize="16.5sp" />
 
                     <LinearLayout
                         android:gravity="right|center_vertical"

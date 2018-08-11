@@ -19,7 +19,6 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
-import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
 
 /**
@@ -33,11 +32,17 @@ public class UpdatePasswordDialog extends DialogParent {
 
     private Context context;
     private String oldPassword;
+    private int accountId;
 
     public UpdatePasswordDialog(Context context, String oldPassword) {
         super(context);
         this.context = context;
         this.oldPassword = oldPassword;
+    }
+
+    public UpdatePasswordDialog(Context context, int accountId) {
+        super(context);
+        this.accountId = accountId;
     }
 
     @Override
@@ -54,6 +59,30 @@ public class UpdatePasswordDialog extends DialogParent {
     public void onShow() {
     }
 
+    public void updatePassword(int accountId, final String newPassword) {
+        OkhomeRestApi.getAccountClient().updatePasswordType2(accountId, newPassword)
+                .enqueue(new RetrofitCallback<String>() {
+                    @Override
+                    public void onSuccess(String account) {
+                        OkhomeUtil.showToast(getContext(), "Password has been changed!");
+//                        JoSharedPreference.with().push(OkhomeRegistryKey.PASSWORD_LAST_LOGIN, newPassword);
+
+                        dismiss();
+                    }
+
+                    @Override
+                    public void onJodevError(ErrorModel jodevErrorModel) {
+                        super.onJodevError(jodevErrorModel);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        super.onFinish();
+
+                    }
+                });
+    }
+
     public void updatePassword(String oldPassword, final String newPassword) {
         final ProgressDialog p = ProgressDialog.show(context, null, "Updating password...");
         int consultantID = Integer.parseInt(ConsultantLoggedIn.get().id);
@@ -62,12 +91,7 @@ public class UpdatePasswordDialog extends DialogParent {
                     @Override
                     public void onSuccess(String account) {
                         OkhomeUtil.showToast(context, "Password has been changed!");
-                        ConsultantLoggedIn.reload(new RetrofitCallback<AccountModel>() {
-                            @Override
-                            public void onSuccess(AccountModel result) {
-                                JoSharedPreference.with().push(OkhomeRegistryKey.PASSWORD_LAST_LOGIN, newPassword);
-                            }
-                        });
+                        JoSharedPreference.with().push(OkhomeRegistryKey.PASSWORD_LAST_LOGIN, newPassword);
                         dismiss();
                     }
 
@@ -98,7 +122,13 @@ public class UpdatePasswordDialog extends DialogParent {
             ToastUtil.showToast(e.getMessage());
             return;
         }
-        updatePassword(oldPassword, newPass1);
+
+        if(oldPassword != null){
+            updatePassword(oldPassword, newPass1);
+        }else{
+            updatePassword(accountId, newPass1);
+        }
+
     }
 
     @OnClick(R.id.dialogUpdatePassword_vbtnX)

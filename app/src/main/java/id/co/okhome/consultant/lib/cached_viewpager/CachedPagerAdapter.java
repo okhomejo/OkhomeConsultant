@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import id.co.okhome.consultant.lib.calendar_manager.model.YearMonthDay;
+
 /**
  * Created by jo on 2018-04-17.
  */
@@ -160,6 +162,7 @@ public abstract class CachedPagerAdapter<T> extends PagerAdapter {
         public View view;
         SparseArray<View> viewHolders = null;
         Object tag = null;
+        public List<YearMonthDay> days = null;
 
         public ViewHolder(View view) {
             this.view = view;
@@ -200,6 +203,14 @@ public abstract class CachedPagerAdapter<T> extends PagerAdapter {
 
         public Object getTag() {
             return tag;
+        }
+
+        public void setDays(List<YearMonthDay> days) {
+            this.days = days;
+        }
+
+        public List<YearMonthDay> getDays() {
+            return days;
         }
     }
 

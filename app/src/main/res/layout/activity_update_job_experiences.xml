@@ -6,66 +6,101 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="id.co.okhome.consultant.view.activity.account.profile.UpdateJobExperienceActivity">
+    tools:context="id.co.okhome.consultant.view.activity.account.profile.JobExperienceActivity">
 
-    <LinearLayout
-        android:gravity="center_vertical"
-        android:background="@color/colorOkhome"
-        android:id="@+id/actJobExp_vgTop"
+    <RelativeLayout
+        android:id="@+id/common_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="66dp">
+        android:layout_height="@dimen/common_topbar_height"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <LinearLayout
-            android:layout_marginRight="6dp"
-            android:id="@+id/actJobExp_vbtnX"
+            android:id="@+id/common_vbtnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
             android:gravity="center"
-            android:layout_width="50dp"
-            android:layout_height="match_parent">
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp">
 
             <ImageView
-                android:layout_width="20dp"
+                android:layout_width="14dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:alpha="0.9"
-                android:src="@drawable/ic_action_back_white" />
+                android:src="@drawable/ic_leftarrow" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_alignParentRight="true"
+            android:id="@+id/actCleaningInfo_vbtnMore"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:rotation="90"
+                android:layout_width="14dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_more_black" />
 
         </LinearLayout>
 
         <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/actFillUpUserInfo_tvTitle"
             style="@style/FontOpenSansLight"
-            android:textColor="#ffffff"
-            android:id="@+id/actJobExp_tvTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:text="Update Job Experience"
-            android:textSize="21dp"
-            android:layout_centerVertical="true" />
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="JOB EXPERIENCE"
+            android:textColor="#000000"
+            android:textSize="@dimen/common_topbar_title_size" />
 
-    </LinearLayout>
 
-    <LinearLayout
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_above="@+id/common_vgBottom"
         android:orientation="vertical"
-        android:layout_below="@+id/actJobExp_vgTop"
+        android:layout_below="@+id/common_vgTop"
         android:layout_width="match_parent"
         android:gravity="center_horizontal"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/actJobExp_placeholderWorkExp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:textSize="20sp"
-            android:paddingTop="20dp"
-            android:paddingBottom="50dp"
-            android:gravity="center_horizontal"
-            android:text="Add your work experience."/>
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:id="@+id/actJobExp_vEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <!--<ListView-->
-            <!--android:id="@+id/actJobExp_list"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:divider="#00000000" />-->
+            <ImageView
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_loading"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textColor="#4e5766"
+                style="@style/FontOpenSansLight"
+                android:text="Add your work experience"
+                android:lines="1"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
 
         <android.support.v7.widget.RecyclerView
             android:scrollbars="vertical"
@@ -76,7 +111,7 @@
             android:cacheColorHint="@android:color/transparent"
             android:divider="#00000000"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:visibility="gone"
@@ -116,41 +151,84 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/actLocation_llActions"
+
+        android:layout_below="@+id/common_vgTop"
         android:orientation="vertical"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#36000000"/>
+        <View
+            android:alpha="0.1"
+            android:layout_width="match_parent"
+            android:layout_height="5dp" android:background="@drawable/bg_circle_shadow"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="12dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
+        android:id="@+id/common_vgBottom"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_marginBottom="8dp"
-            android:id="@+id/actJobExp_vbtnAdd"
-            android:gravity="center"
-            android:background="@drawable/circle_white_shadow"
-            android:layout_width="58dp"
-            android:layout_height="58dp">
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_add"/>
-        </LinearLayout>
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="64dp">
 
-        <LinearLayout
-            android:id="@+id/actJobExp_vbtnOk"
-            android:gravity="center"
-            android:background="@drawable/circle_appcolor_shadow"
-            android:layout_width="58dp"
-            android:layout_height="58dp">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_check_white"/>
-        </LinearLayout>
+            <LinearLayout
+                android:paddingBottom="4dp"
+                android:id="@+id/actJobExp_vbtnAdd"
+                android:gravity="center"
+                android:layout_weight="5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
 
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="ADD EXPERIENCE"
+                    android:textColor="@color/colorBlueBlack"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/actJobExp_vbtnOk"
+                android:background="@drawable/btn_round_lightblue_shadow"
+                android:layout_weight="5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:paddingBottom="4dp"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_marginRight="20dp"
+                        android:layout_width="16dp"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_check_white" />
+                    <TextView
+                        android:layout_centerInParent="true"
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="CONFIRM"
+                        android:textColor="#ffffff"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
-
 </RelativeLayout>

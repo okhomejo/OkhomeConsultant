@@ -13,7 +13,7 @@
     <!-- White Top color -->
     <item android:bottom="1.5dp" android:right="1.5dp" >
         <shape android:shape="oval" >
-            <solid android:color="@color/colorOkhome" />
+            <solid android:color="@color/colorOkhomeLight2" />
             <stroke android:color="#11000000" android:width="1px"/>
         </shape>
 

@@ -18,13 +18,6 @@
         android:layout_marginBottom="12dp"
         android:background="#84d033"
         android:layout_width="20dp"
-        android:layout_height="2.5dp" android:layout_gravity="bottom|center_horizontal"/>
+        android:layout_height="4.5dp" android:layout_gravity="bottom|center_horizontal"/>
 
-    <ImageView
-        android:visibility="gone"
-        android:id="@+id/itemDay_vTag2"
-        android:layout_margin="4dp"
-        android:background="#f7e332"
-        android:layout_width="match_parent"
-        android:layout_height="3dp" android:layout_gravity="bottom"/>
 </FrameLayout>

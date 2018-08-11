@@ -14,10 +14,8 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
-import id.co.okhome.consultant.view.activity.account.BlockedActivity;
+import id.co.okhome.consultant.view.activity.account.BeforeConsultantActivity;
 import id.co.okhome.consultant.view.activity.main.ConsultantMainActivity;
-import id.co.okhome.consultant.view.activity.main.TraineeMainActivity;
-import id.co.okhome.consultant.view.activity.account.profile.FillupUserInfoActivity;
 
 /**
  * Created by jo on 2018-01-28.
@@ -175,7 +173,8 @@ public class ConsultantLoggedIn {
 
         @Override
         public void onBlocked() {
-            activity.startActivity(new Intent(activity, BlockedActivity.class));
+//            activity.startActivity(new Intent(activity, BlockedActivity.class));
+            activity.startActivity(new Intent(activity, BeforeConsultantActivity.class));
         }
 
         @Override
@@ -185,12 +184,14 @@ public class ConsultantLoggedIn {
 
         @Override
         public void onTraineeNotApproved() {
-            activity.startActivity(new Intent(activity, FillupUserInfoActivity.class));
+            activity.startActivity(new Intent(activity, BeforeConsultantActivity.class));
+//            activity.startActivity(new Intent(activity, FillupUserInfoActivity.class));
         }
 
         @Override
         public void onTrainee() {
-            activity.startActivity(new Intent(activity, TraineeMainActivity.class));
+            activity.startActivity(new Intent(activity, BeforeConsultantActivity.class));
+//            activity.startActivity(new Intent(activity, TraineeMainActivity.class));
         }
 
         @Override

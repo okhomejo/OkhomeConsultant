@@ -5,80 +5,95 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:padding="40dp"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="34dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="40dp">
 
 
         <TextView
-            android:layout_marginTop="-10dp"
             android:id="@+id/dialogShowPhoto_tvTitle"
-            style="@style/FontOpenSansLight"  android:textColor="@color/colorGray"
-            android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PHOTO"
-            android:textSize="36sp" android:layout_centerVertical="true" />
+            style="@style/FontOpenSansLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="-10dp"
+            android:text="PHOTO"
+            android:textColor="@color/colorGray"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/dialogShowPhoto_tvSubTitle"
-            android:layout_marginTop="2dp"
             style="@style/FontOpenSansLight"
-            android:textColor="@color/colorBlueGray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="2dp"
             android:text="To change photo, Touch below"
-            android:textSize="15sp" android:layout_centerVertical="true" />
+            android:textColor="@color/colorBlueGray"
+            android:textSize="15sp" />
 
         <!-- photo -->
         <FrameLayout
-            android:background="@drawable/bg_square_line_black"
             android:id="@+id/actUpdateEducation_vgPhotoSD"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="280dp">
+            android:layout_height="250dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_square_line_black">
 
             <FrameLayout
-                android:background="@drawable/bg_square_line_black"
-                android:layout_margin="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_square_line_black">
 
                 <LinearLayout
-                    android:gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center">
 
                     <ProgressBar
                         android:layout_width="30dp"
                         android:layout_height="30dp" />
                 </LinearLayout>
+
                 <ImageView
                     android:id="@+id/dialogShowPhoto_ivPhoto"
-                    android:scaleType="centerCrop"
-                    android:adjustViewBounds="true"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop" />
             </FrameLayout>
 
 
         </FrameLayout>
+
         <TextView
-            android:paddingRight="10dp" android:paddingTop="10dp"
             android:id="@+id/dialogShowPhoto_vbtnChangePhoto"
-            style="@style/FontOpenSansLight"  android:textColor="@color/colorOkhome"
-            android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CHANGE A PHOTO"
-            android:textSize="14sp" android:layout_centerVertical="true" />
+            style="@style/FontOpenSansLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingRight="10dp"
+            android:paddingTop="12dp"
+            android:text="CHANGE A PHOTO"
+            android:textColor="@color/colorOkhome"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
         android:weightSum="10"
         android:layout_width="match_parent"
-        android:layout_height="55dp">
+        android:layout_height="60dp">
 
         <LinearLayout
             android:id="@+id/dialogShowPhoto_vbtnX"
             android:layout_weight="5"
             android:gravity="center"
-            android:background="@color/colorLightBlueGray"
+            android:background="@color/colorOkhomeLight2"
             android:layout_width="0dp"
             android:layout_height="match_parent">
 

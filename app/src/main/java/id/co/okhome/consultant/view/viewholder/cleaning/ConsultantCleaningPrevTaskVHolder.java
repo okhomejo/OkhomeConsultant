@@ -1,6 +1,5 @@
 package id.co.okhome.consultant.view.viewholder.cleaning;
 
-import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -13,7 +12,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.app.OkhomeDateTimeFormatUtil;
-import id.co.okhome.consultant.model.cleaning.CleaningInfoModel;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
+import id.co.okhome.consultant.model.cleaning.order.CleaningDayItemModel;
 import id.co.okhome.consultant.view.activity.cleaning.CleaningDetailActivity;
 
 /**
@@ -21,19 +21,13 @@ import id.co.okhome.consultant.view.activity.cleaning.CleaningDetailActivity;
  */
 
 @LayoutMatcher(layoutId = R.layout.item_consultant_prev_cleaning_task)
-public class ConsultantCleaningPrevTaskVHolder extends JoViewHolder<CleaningInfoModel> implements View.OnClickListener {
+public class ConsultantCleaningPrevTaskVHolder extends JoViewHolder<CleaningDayItemModel> implements View.OnClickListener {
 
-    @BindView(R.id.itemCleaningTask_tvTitle)        TextView tvTitle;
-    @BindView(R.id.itemCleaningTask_tvAddress)      TextView tvAddress;
-    @BindView(R.id.itemCleaningTask_tvDate)         TextView tvDate;
-
-    @BindView(R.id.itemCleaningTask_ivStar1)        ImageView ivStar1;
-    @BindView(R.id.itemCleaningTask_ivStar2)        ImageView ivStar2;
-    @BindView(R.id.itemCleaningTask_ivStar3)        ImageView ivStar3;
-    @BindView(R.id.itemCleaningTask_ivStar4)        ImageView ivStar4;
-    @BindView(R.id.itemCleaningTask_ivStar5)        ImageView ivStar5;
-
-    @BindView(R.id.itemCleaningTask_vgRating)       ViewGroup vgRating;
+    @BindView(R.id.itemConsultantPrevCleaningTask_tvPrice)        TextView tvPrice;
+    @BindView(R.id.itemConsultantPrevCleaningTask_tvAddress)      TextView tvAddress;
+    @BindView(R.id.itemConsultantPrevCleaningTask_tvReviewScore)  TextView tvReviewScore;
+    @BindView(R.id.itemConsultantPrevCleaningTask_tvDate)         TextView tvDate;
+    @BindView(R.id.itemConsultantPrevCleaningTask_vgStarItems)    ViewGroup vgRating;
 
     public ConsultantCleaningPrevTaskVHolder(View itemView) {
         super(itemView);
@@ -45,18 +39,21 @@ public class ConsultantCleaningPrevTaskVHolder extends JoViewHolder<CleaningInfo
     }
 
     @Override
-    public void onBind(CleaningInfoModel m, int pos, int absPos) {
+    public void onBind(CleaningDayItemModel m, int pos, int absPos) {
 
         super.onBind(m, pos, absPos);
-        tvTitle.setText(m.title);
-        tvAddress.setText(m.address);
-        tvDate.setText(String.format("Cleaning on %s", OkhomeDateTimeFormatUtil.printFullDateTime(m.when)));
-        printStarDrawable(Math.round(m.score));
+        String money = OkhomeUtil.getPriceFormatValue(m.priceConsultant) + " Rupiah";
+
+        tvPrice.setText(money);
+        tvAddress.setText(m.homeAddress);
+        tvDate.setText(String.format("Cleaning on %s", OkhomeDateTimeFormatUtil.printFullDateTime(m.whenDateTime)));
+        tvReviewScore.setText(m.grade+"");
+        printStarDrawable(m.grade);
 
         getView().setOnClickListener(this);
     }
 
-    private void printStarDrawable(int starCnt) {
+    private void printStarDrawable(float starCnt) {
         for(int i = 0; i < 5; i++){
             ImageView ivStar = (ImageView)vgRating.getChildAt(i);
             if(i < starCnt){
@@ -65,49 +62,10 @@ public class ConsultantCleaningPrevTaskVHolder extends JoViewHolder<CleaningInfo
                 ivStar.setImageResource(R.drawable.ic_star_off);
             }
         }
-//        switch (starCnt) {
-//            case 1:
-//                ivStar1.setImageResource(R.drawable.ic_star_on);
-//                ivStar2.setImageResource(R.drawable.ic_star_off);
-//                ivStar3.setImageResource(R.drawable.ic_star_off);
-//                ivStar4.setImageResource(R.drawable.ic_star_off);
-//                ivStar5.setImageResource(R.drawable.ic_star_off);
-//                break;
-//            case 2:
-//                ivStar1.setImageResource(R.drawable.ic_star_on);
-//                ivStar2.setImageResource(R.drawable.ic_star_on);
-//                ivStar3.setImageResource(R.drawable.ic_star_off);
-//                ivStar4.setImageResource(R.drawable.ic_star_off);
-//                ivStar5.setImageResource(R.drawable.ic_star_off);
-//                break;
-//            case 3:
-//                ivStar1.setImageResource(R.drawable.ic_star_on);
-//                ivStar2.setImageResource(R.drawable.ic_star_on);
-//                ivStar3.setImageResource(R.drawable.ic_star_on);
-//                ivStar4.setImageResource(R.drawable.ic_star_off);
-//                ivStar5.setImageResource(R.drawable.ic_star_off);
-//                break;
-//            case 4:
-//                ivStar1.setImageResource(R.drawable.ic_star_on);
-//                ivStar2.setImageResource(R.drawable.ic_star_on);
-//                ivStar3.setImageResource(R.drawable.ic_star_on);
-//                ivStar4.setImageResource(R.drawable.ic_star_on);
-//                ivStar5.setImageResource(R.drawable.ic_star_off);
-//                break;
-//            case 5:
-//                ivStar1.setImageResource(R.drawable.ic_star_on);
-//                ivStar2.setImageResource(R.drawable.ic_star_on);
-//                ivStar3.setImageResource(R.drawable.ic_star_on);
-//                ivStar4.setImageResource(R.drawable.ic_star_on);
-//                ivStar5.setImageResource(R.drawable.ic_star_on);
-//                break;
-//        }
     }
     
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(getContext(), CleaningDetailActivity.class);
-        intent.putExtra("TASK_ACCEPTED", true);
-        getContext().startActivity(intent);
+        CleaningDetailActivity.start(getContext(), getModel().cleaningId);
     }
 }

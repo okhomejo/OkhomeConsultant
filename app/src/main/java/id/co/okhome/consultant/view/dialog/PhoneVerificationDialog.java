@@ -1,6 +1,7 @@
 package id.co.okhome.consultant.view.dialog;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.dialog.DialogParent;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.rest_apicall.retrofit_restapi.OkhomeRestApi;
+import id.co.okhome.consultant.view.viewholder.StringHolder;
 
 import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListener.ACTIONCODE_CANCEL;
 import static id.co.okhome.consultant.lib.dialog.DialogParent.CommonDialogListener.ACTIONCODE_OK;
@@ -37,6 +39,7 @@ public class PhoneVerificationDialog extends DialogParent implements SmsReceiver
     @BindView(R.id.dialogPhoneVerificatoin_etCode)                      EditText etCode;
     @BindView(R.id.dialogCommonInput_etInput)                           EditText etInput;
     @BindView(R.id.dialogPhoneVerificatoin_vCodeLoading)                View vCodeLoading;
+    @BindView(R.id.dialogPhoneVerificatoin_tvNationalCode)              TextView tvNationalCode;
 
     SmsReceiver smsReceiver;
     Activity activity;
@@ -83,8 +86,14 @@ public class PhoneVerificationDialog extends DialogParent implements SmsReceiver
     //send verification code
     private void sendCode(){
         String phone = etInput.getText().toString();
+        String nationalCode = tvNationalCode.getText().toString();
+
         try {
             OkhomeException.chkException(OkhomeUtil.isEmpty(phone), "Input phone number");
+
+            if(!chkIsValidPhone(nationalCode, phone)){
+                throw new OkhomeException(-100, "Check phone number");
+            }
         } catch (OkhomeException e){
             ToastUtil.showToast(e.getMessage());
             return;
@@ -95,7 +104,11 @@ public class PhoneVerificationDialog extends DialogParent implements SmsReceiver
         tvSendVerificationCode.setVisibility(View.GONE);
         sendCode = true;
 
-        OkhomeRestApi.getValidationClient().issuePhoneValidationCode(phone).enqueue(new RetrofitCallback<String>() {
+        String realPhone = optimizePhoneByNationalCode(nationalCode, phone);
+
+        OkhomeUtil.Log("real phone : " + realPhone);
+
+        OkhomeRestApi.getValidationClient().issuePhoneValidationCode(realPhone).enqueue(new RetrofitCallback<String>() {
             @Override
             public void onSuccess(String result) {
             }
@@ -111,7 +124,9 @@ public class PhoneVerificationDialog extends DialogParent implements SmsReceiver
     //check code
     private void checkCode(){
         final String code = etCode.getText().toString();
+        final String nationalCode = tvNationalCode.getText().toString();
         final String phone = etInput.getText().toString();
+        final String realPhone = optimizePhoneByNationalCode(nationalCode, phone);
 
         try{
             OkhomeException.chkException(OkhomeUtil.isEmpty(phone), "Input phone number");
@@ -122,11 +137,11 @@ public class PhoneVerificationDialog extends DialogParent implements SmsReceiver
         }
 
         final ProgressDialog p = ProgressDialog.show(getContext(), null, "Loading...");
-        OkhomeRestApi.getValidationClient().checkPhoneValidationCode(phone, code).enqueue(new RetrofitCallback<Boolean>() {
+        OkhomeRestApi.getValidationClient().checkPhoneValidationCode(realPhone, code).enqueue(new RetrofitCallback<Boolean>() {
             @Override
             public void onSuccess(Boolean result) {
                 if(result){
-                    onVerificationSuccess(phone, code);
+                    onVerificationSuccess(realPhone, code);
                 }else{
                     ToastUtil.showToast("Check your verfication code.");
                 }
@@ -174,6 +189,100 @@ public class PhoneVerificationDialog extends DialogParent implements SmsReceiver
             sendCode();
             etCode.requestFocus();
         }
+    }
+
+
+    @OnClick(R.id.dialogPhoneVerificatoin_vgNationalCode)
+    public void onNationalCodeClick(View v){
+        final String[] codes = new String[]{"+62", "+82"};
+        final String[] captions = new String[]{"Indonesia(+62)", "Korea(+82)"};
+
+
+        new CommonListDialog(getContext())
+                .setTitle("Choose your national code")
+                .setArrItems(captions)
+                .setColumnCount(1)
+                .setItemClickListener(new StringHolder.ItemClickListener() {
+                    @Override
+                    public void onItemClick(Dialog dialog, int pos, String value, String tag) {
+                        dialog.dismiss();
+                        tvNationalCode.setText(codes[pos]);
+                    }
+                })
+                .show();
+    }
+
+    //올바른 폰번호인지 리턴
+    private boolean chkIsValidPhone(String nationalCode, String phone){
+        String realPhone = optimizePhoneByNationalCode(nationalCode, phone);
+        //+821093149449 //12개 13개
+        if(nationalCode.equals("+82")){
+            if(realPhone.length() == 12 || realPhone.length() == 13){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        //+62812922312313
+        if(nationalCode.equals("+62")){
+            if(realPhone.length() > 10){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        return false;
+    }
+
+    //폰코드 최적화
+    private String optimizePhoneByNationalCode(String nationalCode, String phone){
+        switch(nationalCode){
+            case "+62":
+            {
+                String head3 = phone.substring(0, 3);
+                String head2 = phone.substring(0, 2);
+                String head1 = phone.substring(0, 1);
+
+                if(head1.equals("0")){
+                    phone = phone.substring(1);
+                }
+
+                if(head2.equals("62")){
+                    phone = phone.substring(2);
+                }
+
+                if(head3.equals("+62")){
+                    phone = phone.substring(3);
+                }
+
+                return nationalCode + phone;
+            }
+
+            case "+82":
+            {
+                //+821093149449 - >109314
+                //82109314 -> 109314
+                //0109314
+                String head3 = phone.substring(0, 3);
+                String head2 = phone.substring(0, 2);
+                String head1 = phone.substring(0, 1);
+
+                if(head2.equals("01")){
+                    phone = phone.substring(1);
+                }
+
+                if(head2.equals("82")){
+                    phone = phone.substring(2);
+                }
+
+                if(head3.equals("+82")){
+                    phone = phone.substring(3);
+                }
+                return nationalCode + phone;
+            }
+        } return null;
     }
 
 }

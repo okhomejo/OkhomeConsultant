@@ -74,6 +74,14 @@ public class OkhomeRestApi {
         return OkhomeRestApi.getInstance(CleaningTaskClient.class);
     }
 
+    public final static CleaningOrderClient getCleaningOrderClient(){
+        return OkhomeRestApi.getInstance(CleaningOrderClient.class);
+    }
+
+    public final static CleaningOrderQueueClient getCleaningOrderQueueClient(){
+        return OkhomeRestApi.getInstance(CleaningOrderQueueClient.class);
+    }
+
     public final static CleaningReviewClient getCleaningReviewClient(){
         return OkhomeRestApi.getInstance(CleaningReviewClient.class);
     }

@@ -3,10 +3,8 @@ package id.co.okhome.consultant.view.activity.account.profile;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -39,10 +37,10 @@ import id.co.okhome.consultant.view.viewholder.JobExperienceVHolder;
  * Created by frizurd on 12/02/2018.
  */
 
-public class UpdateJobExperienceActivity extends OkHomeParentActivity implements DialogParent.CommonDialogListener {
+public class JobExperienceActivity extends OkHomeParentActivity implements DialogParent.CommonDialogListener {
 
     @BindView(R.id.actJobExp_rcv)                 RecyclerView rcv;
-    @BindView(R.id.actJobExp_placeholderWorkExp)  TextView placeHolderText;
+    @BindView(R.id.actJobExp_vEmpty)  View vEmpty;
 
     private JoRecyclerAdapter adapter;
     private List<JobExperienceModel> jobExperiences;
@@ -52,10 +50,8 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_job_experiences);
-        OkhomeUtil.setSystemBarColor(this,
-                ContextCompat.getColor(this, R.color.colorOkhome)
-        );
 
+        OkhomeUtil.setWhiteSystembar(this);
         ButterKnife.bind(this);
         init();
     }
@@ -89,9 +85,9 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
 
     public void checkIfListEmpty() {
         if (!jobExperiences.isEmpty()) {
-            placeHolderText.setVisibility(View.GONE);
+            vEmpty.setVisibility(View.GONE);
         } else {
-            placeHolderText.setVisibility(View.VISIBLE);
+            vEmpty.setVisibility(View.VISIBLE);
         }
     }
 
@@ -132,7 +128,7 @@ public class UpdateJobExperienceActivity extends OkHomeParentActivity implements
         expDialog.show();
     }
 
-    @OnClick(R.id.actJobExp_vbtnX)
+    @OnClick(R.id.common_vbtnClose)
     public void onGoBackClick() {
         finish();
     }

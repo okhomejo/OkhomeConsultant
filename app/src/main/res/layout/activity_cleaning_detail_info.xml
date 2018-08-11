@@ -1,0 +1,914 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <RelativeLayout
+        android:id="@+id/actCleaningDetail_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_topbar_height"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:id="@+id/actCleaningDetail_vbtnX"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_leftarrow" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_alignParentRight="true"
+            android:id="@+id/actCleaningDetail_vbtnChat"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp">
+
+            <ImageView
+                android:alpha="0.65"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_chat1" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/actCleaningDetail_tvTitle"
+            style="@style/FontOpenSansLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="CLEANING INFO"
+            android:textColor="#000000"
+            android:textSize="@dimen/common_topbar_title_size" />
+
+    </RelativeLayout>
+
+    <!-- bottom-->
+    <RelativeLayout
+        android:layout_below="@+id/actCleaningDetail_vgTop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:id="@+id/actCleaningDetail_svItem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:paddingTop="66dp"
+                android:layout_above="@+id/fragTabPickingCleaning_vgBottom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_marginBottom="34dp"
+                    android:id="@+id/actCleaningDetail_vgMap"
+                    android:layout_marginLeft="17dp" android:layout_marginRight="17dp"
+                    android:orientation="vertical"
+                    android:background="#55000000"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp">
+
+                    <FrameLayout
+                        android:background="#ffffff"
+                        android:layout_margin="1px"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <fragment
+                        android:name="com.google.android.gms.maps.MapFragment"
+                        android:id="@+id/actCleaningDetail_fragMap"
+                        android:layout_margin="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                        <LinearLayout
+                            android:layout_gravity="bottom"
+                            android:orientation="vertical"
+                            android:paddingBottom="9dp"
+                            android:paddingTop="9dp" android:paddingLeft="12dp" android:paddingRight="12dp"
+                            android:background="#dd000000"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_marginRight="10dp"
+                                    android:src="@drawable/ic_pushlogo_white"
+                                    android:adjustViewBounds="true"
+                                    android:layout_width="13dp"
+                                    android:layout_height="wrap_content" />
+
+                                <TextView
+                                    android:id="@+id/actCleaningDetail_tvPrice"
+                                    android:singleLine="true"
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="50,000 Rupiah"
+                                    android:textColor="#ffffff"
+                                    android:textSize="14.5sp" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" android:id="@+id/actCleaningDetail_vPaddingBelowMap"/>
+
+                <!-- contents -->
+                <LinearLayout
+                    android:layout_marginLeft="17dp" android:layout_marginRight="17dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- 리뷰 -->
+                    <LinearLayout
+                        android:id="@+id/actCleaningDetail_vgReviewItem"
+                        android:layout_marginBottom="34dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!-- 기타 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="40dp"
+                                android:text="REVIEW FROM CUSTOMER"
+                                android:textColor="@color/colorLightBlueGray"
+                                android:textSize="14.5sp" />
+                            <View
+                                android:visibility="gone"
+                                android:layout_width="match_parent"
+                                android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_marginTop="12dp"
+                            android:paddingLeft="25dp"
+                            android:background="@drawable/bg_leftline_bold_gray"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <!-- 리뷰내용-->
+                            <TextView
+                                android:id="@+id/actCleaningDetail_tvReview"
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="It is the review..."
+                                android:textColor="@color/colorBlueBlack"
+                                android:textSize="14.5sp" />
+                            <!-- 별점 -->
+                            <LinearLayout
+                                android:layout_marginTop="3dp"
+                                android:id="@+id/actCleaningDetail_vgStars"
+                                android:gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <LinearLayout
+                                    android:gravity="center"
+                                    android:id="@+id/actCleaningDetail_vgStarItems"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                    <ImageView
+                                        android:id="@+id/actCleaningDetail_ivStar1"
+                                        android:layout_marginRight="3dp"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/ic_star_off"
+                                        android:layout_width="14dp"
+                                        android:layout_height="wrap_content" />
+
+                                    <ImageView
+                                        android:id="@+id/actCleaningDetail_ivStar2"
+                                        android:layout_marginRight="3dp"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/ic_star_off"
+                                        android:layout_width="14dp"
+                                        android:layout_height="wrap_content" />
+
+                                    <ImageView
+                                        android:id="@+id/actCleaningDetail_ivStar3"
+                                        android:layout_marginRight="3dp"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/ic_star_off"
+                                        android:layout_width="14dp"
+                                        android:layout_height="wrap_content" />
+
+                                    <ImageView
+                                        android:id="@+id/actCleaningDetail_ivStar4"
+                                        android:layout_marginRight="3dp"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/ic_star_off"
+                                        android:layout_width="14dp"
+                                        android:layout_height="wrap_content" />
+
+                                    <ImageView
+                                        android:id="@+id/actCleaningDetail_ivStar5"
+                                        android:layout_marginRight="3dp"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/ic_star_off"
+                                        android:layout_width="14dp"
+                                        android:layout_height="wrap_content" />
+
+                                    <ImageView
+                                        android:layout_marginLeft="5dp" android:layout_marginRight="5dp"
+                                        android:layout_width="3dp"
+                                        android:layout_height="3dp" android:background="@drawable/circle_gray"/>
+                                </LinearLayout>
+
+                                <TextView
+                                    android:id="@+id/actCleaningDetail_tvReviewScore"
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="4.5"
+                                    android:textColor="@color/colorBlueGray"
+                                    android:textSize="13sp" />
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <!-- 기타 -->
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:text="SPECIFICATION"
+                            android:textColor="@color/colorLightBlueGray"
+                            android:textSize="14.5sp" />
+                        <View
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+                    </LinearLayout>
+
+                    <!-- item -->
+                    <LinearLayout
+                        android:layout_marginTop="12dp"
+                        android:paddingLeft="25dp"
+                        android:background="@drawable/bg_leftline_bold_gray"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/actCleaningDetail_vgPrice2"
+                            android:layout_marginBottom="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_marginTop="4dp"
+                                android:layout_marginRight="16dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_tab_price2"
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:singleLine="true"
+                                    android:id="@+id/actCleaningDetail_tvPrice2"
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="50.000 Rupiah"
+                                    android:textColor="@color/colorPurpleBlack"
+                                    android:textSize="14.5sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_marginTop="4dp"
+                                android:layout_marginRight="16dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_tab_price2"
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:singleLine="true"
+                                    android:id="@+id/actCleaningDetail_tvId"
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="OKC_1212121"
+                                    android:textColor="@color/colorPurpleBlack"
+                                    android:textSize="14.5sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_marginTop="4dp"
+                                android:layout_marginRight="16dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_tab_price2"
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:singleLine="true"
+                                    android:id="@+id/actCleaningDetail_tvAddress"
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="JL Senopati, 185, Jakarta central, Jakarta DKI"
+                                    android:textColor="@color/colorPurpleBlack"
+                                    android:textSize="14.5sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_marginTop="2dp"
+                                android:layout_marginRight="16dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_person2"
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:id="@+id/actCleaningDetail_tvWhen"
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="(Sel) 14 Agt 18, 10:00 - 12:00"
+                                    android:textColor="@color/colorPurpleBlack"
+                                    android:textSize="14.5sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_marginTop="2dp"
+                                android:layout_marginRight="16dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_person2"
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:id="@+id/actCleaningDetail_tvPerson"
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="2 persons"
+                                    android:textColor="@color/colorPurpleBlack"
+                                    android:textSize="14.5sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_marginTop="2dp"
+                                android:layout_marginRight="16dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_tab_price2"
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:id="@+id/actCleaningDetail_tvCleanigType"
+                                    style="@style/FontOpenSansLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="No Tool cleaning"
+                                    android:textColor="@color/colorPurpleBlack"
+                                    android:textSize="14.5sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- tags-->
+                        <LinearLayout
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/actCleaningDetail_tvTags"
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="6dp"
+                                android:text="tags"
+                                android:textColor="#bb7f8a9e"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- 기타 -->
+                    <LinearLayout
+                        android:layout_marginTop="34dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                style="@style/FontOpenSansLight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="40dp"
+                                android:text="ORDER SPECIFICATION"
+                                android:textColor="@color/colorLightBlueGray"
+                                android:textSize="14.5sp" />
+
+                            <TextView
+                                android:layout_gravity="right"
+                                android:id="@+id/actCleaningDetail_tvTotalDuration"
+                                style="@style/FontOpenSansLight"
+                                android:textSize="14.5sp"
+                                android:textColor="@color/colorBlueGrayDeep"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:text="5 hours"/>
+                        </FrameLayout>
+
+
+                    </LinearLayout>
+                    <!-- 청소 디테일 리스트 -->
+
+                    <LinearLayout
+                        android:layout_marginTop="12dp"
+                        android:paddingLeft="25dp"
+                        android:background="@drawable/bg_leftline_bold_gray"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/actCleaningDetail_vgCleaningSpecification"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <include layout="@layout/item_cleaning_specification" />
+                            <include layout="@layout/item_cleaning_specification" />
+                            <include layout="@layout/item_cleaning_specification" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="34dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:text="COMMENT FROM CUSTOMER"
+                            android:textColor="@color/colorLightBlueGray"
+                            android:textSize="14.5sp" />
+                        <View
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="12dp"
+                        android:paddingLeft="25dp"
+                        android:background="@drawable/bg_leftline_bold_gray"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/actCleaningDetail_tvCommentFromCustomer"
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="-"
+                            android:textColor="@color/colorBlueBlack"
+                            android:textSize="14.5sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="34dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+                        <TextView
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:text="COMMENT FROM OKHOME"
+                            android:textColor="@color/colorLightBlueGray"
+                            android:textSize="14.5sp" />
+                        <View
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="1px" android:background="@color/colorLightBlueGray"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="12dp"
+                        android:paddingLeft="25dp"
+                        android:background="@drawable/bg_leftline_bold_gray"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/actCleaningDetail_tvCommentFromOkhome"
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="-"
+                            android:textColor="@color/colorBlueBlack"
+                            android:textSize="14.5sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="34dp"
+                        android:paddingLeft="25dp"
+                        android:background="@drawable/bg_leftline_bold_appcolor"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:text="Please check the above information exactly before approving it."
+                            android:textColor="@color/colorOkhome"
+                            android:textSize="14.5sp" />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="80dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <ProgressBar
+
+            android:layout_centerInParent="true"
+            android:layout_width="34dp"
+            android:layout_height="34dp" android:id="@+id/actCleaningDetail_vLoading"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/actCleaningDetail_vgTop"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#36000000"/>
+        <View
+            android:alpha="0.1"
+            android:layout_width="match_parent"
+            android:layout_height="5dp" android:background="@drawable/bg_circle_shadow"/>
+    </LinearLayout>
+    <!---->
+    <!--<View-->
+    <!--android:layout_below="@+id/actCleaningDetail_vgTop"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1px"-->
+    <!--android:background="#aa000000" />-->
+
+    <LinearLayout
+        android:layout_below="@+id/actCleaningDetail_vgTop"
+        android:orientation="vertical"
+        android:id="@+id/actCleaningDetail_vgTimer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/actCleaningDetail_vgMornitor"
+            android:background="@color/colorPurpleBlack"
+            android:gravity="center"
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <!--<ImageView-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:adjustViewBounds="true"-->
+            <!--android:layout_width="20dp"-->
+            <!--android:src="@drawable/iron_white"-->
+            <!--android:layout_height="wrap_content" />-->
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/actCleaningDetail_tvMornitorHour"
+                    android:text="--"
+                    android:textColor="#ffffff"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginLeft="6dp" android:layout_marginRight="6dp"
+                    android:text=":"
+                    android:textColor="#ffffff"
+                    android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/actCleaningDetail_tvMornitorMin"
+                    android:text="--"
+                    android:textColor="#ffffff"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginLeft="6dp" android:layout_marginRight="6dp"
+                    android:text=":"
+                    android:textColor="#ffffff"
+                    android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/actCleaningDetail_tvMornitorSec"
+                    android:text="--"
+                    android:textColor="#ffffff"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/actCleaningDetail_tvMornitorTail"
+                android:layout_marginLeft="14dp"
+                android:gravity="center"
+                android:singleLine="true"
+                style="@style/FontOpenSansLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="left before beginning"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_above="@+id/actMain_vgBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px" android:background="#36000000"/>
+            <View
+                android:alpha="0.6"
+                android:layout_width="match_parent"
+                android:layout_height="5dp" android:background="@drawable/bg_circle_shadow"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <!-- 채팅 -->
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_marginRight="14dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="14dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/actCleaningDetailInfo_vbtnChat"
+        android:gravity="center"
+        android:background="@drawable/circle_lightblue_shadow"
+        android:layout_width="58dp"
+        android:layout_height="58dp">
+        <ImageView
+            android:adjustViewBounds="true"
+            android:layout_width="22dp"
+            android:layout_height="wrap_content" android:src="@drawable/ic_chat_white"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/actCleaningDetail_vgFinishCleaning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_above="@+id/actMain_vgBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:alpha="0.1"
+                android:layout_width="match_parent"
+                android:layout_height="5dp" android:background="@drawable/bg_circle_shadow_flip2"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px" android:background="#36000000"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingBottom="8dp"
+            android:background="#ffffff"
+            android:paddingTop="8dp"
+            android:paddingLeft="8dp" android:paddingRight="8dp"
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="center"
+                android:background="@color/colorCalendarBlue"
+                android:layout_weight="10"
+                android:layout_width="0dp"
+                android:layout_height="54dp">
+                <ImageView
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/ic_tick_bold_white"
+                    android:adjustViewBounds="true"
+                    android:layout_width="16dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="FINISH CLEANING"
+                    android:textColor="#ffffff"
+                    android:textSize="16.5sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/actCleaningDetail_vgBeginCleaning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_above="@+id/actMain_vgBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:alpha="0.1"
+                android:layout_width="match_parent"
+                android:layout_height="5dp" android:background="@drawable/bg_circle_shadow_flip2"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px" android:background="#36000000"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingBottom="8dp"
+            android:background="#ffffff"
+            android:paddingTop="8dp"
+            android:paddingLeft="8dp" android:paddingRight="8dp"
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="center"
+                android:background="@color/colorOkhomeLight"
+                android:layout_weight="10"
+                android:layout_width="0dp"
+                android:layout_height="54dp">
+                <ImageView
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/ic_tick_bold_white"
+                    android:adjustViewBounds="true"
+                    android:layout_width="16dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="BEGIN CLEANING"
+                    android:textColor="#ffffff"
+                    android:textSize="16.5sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

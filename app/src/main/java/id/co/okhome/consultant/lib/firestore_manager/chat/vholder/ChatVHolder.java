@@ -40,6 +40,14 @@ public class ChatVHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.itemChatOpposite_vTopPadding)        public View vOppositeTopPadding;
     @BindView(R.id.itemChatOpposite_vgTextContent)      public ViewGroup vgOppositeTextContent;
 
+    //이름택
+    @BindView(R.id.itemChatOpposite_vgNameTag)          public ViewGroup vgOppositeNameTag;
+    @BindView(R.id.itemChatOpposite_tvName)             public TextView tvOppositeName;
+
+    @BindView(R.id.itemChat_vgSystemMessage)            public ViewGroup vgSystemMessage;
+    @BindView(R.id.itemChat_tvSystemMessage)            public TextView tvSystemMessage;
+    @BindView(R.id.itemChat_tvSystemMessageDate)        public TextView tvSystemMessageDate;
+
 
     public ChatVHolder(View itemView) {
         super(itemView);

@@ -47,6 +47,9 @@ public class SmsReceiver {
                         msg = msg.replace("[국제발신] ", "");
                         msg = msg.replace("[국제발신]", "");
                     }
+                    msg = msg.replace(" ", "");
+                    msg = msg.replace("\n", "");
+                    msg = msg.trim();
 
                     onSmsReceivedListener.onSmsReceive(ab.toString());
                     onSmsReceivedListener.onOkhomeVerificationSmsReceive(msg.substring(0, 4));

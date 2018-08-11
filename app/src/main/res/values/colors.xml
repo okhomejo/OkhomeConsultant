@@ -28,9 +28,12 @@
     <!-- for calendar -->
     <color name="colorCalendarRed">#f44259</color>
     <color name="colorCalendarRedAlpha">#33f44259</color>
+    <color name="colorCalendarRedAlpha2">#66f44259</color>
     <color name="colorCalendarBlue">#41a9f4</color>
     <color name="colorCalendarBlueAlpha">#3341a9f4</color>
+    <color name="colorCalendarBlueAlpha2">#6641a9f4</color>
     <color name="colorCalendarBlack">@color/colorPurpleBlack</color>
     <color name="colorCalendarBlackAlpha">#22000000</color>
+    <color name="colorCalendarBlackAlpha2">#55000000</color>
 
 </resources>

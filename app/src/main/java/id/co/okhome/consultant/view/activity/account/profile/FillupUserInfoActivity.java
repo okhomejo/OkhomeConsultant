@@ -28,6 +28,7 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.v2.AccountModel;
 import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.rest_apicall.raw_restapi.ImageUploadCall;
+import id.co.okhome.consultant.view.activity.agreements.TermAndPrivacyActivity;
 import id.co.okhome.consultant.view.dialog.PhotoDialog;
 
 public class FillupUserInfoActivity extends OkHomeParentActivity {
@@ -177,7 +178,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
             OkhomeException.chkException(profile.gender == null, "");
             OkhomeException.chkException(profile.address == null, "");
 
-            ivBarBasicInfo.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
+            ivBarBasicInfo.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhomeLight));
         }catch(OkhomeException e){
             ivBarBasicInfo.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
         }
@@ -190,7 +191,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
             OkhomeException.chkException(profile.bikeYN == null, "");
             OkhomeException.chkException(profile.likeDogYN == null, "");
 
-            ivBarAdditionalInfo.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
+            ivBarAdditionalInfo.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhomeLight));
         }catch(OkhomeException e){
             ivBarAdditionalInfo.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
         }
@@ -199,7 +200,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
         try{
             OkhomeException.chkException(profile.ktpPhotoUrl == null, "");
 
-            ivBarKTP.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
+            ivBarKTP.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhomeLight));
         }catch(OkhomeException e){
             ivBarKTP.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
         }
@@ -208,7 +209,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
         try{
             OkhomeException.chkException(profile.skckPhotoUrl == null, "");
 
-            ivBarSKCK.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
+            ivBarSKCK.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhomeLight));
         }catch(OkhomeException e){
             ivBarSKCK.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
         }
@@ -217,7 +218,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
         try{
             OkhomeException.chkException(profile.workingRegions == null, "");
 
-            ivBarPreferenceArea.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
+            ivBarPreferenceArea.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhomeLight));
         }catch(OkhomeException e){
             ivBarPreferenceArea.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
         }
@@ -229,7 +230,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
                     && OkhomeUtil.isEmpty(profile.smpPhotoUrl)
                     && OkhomeUtil.isEmpty(profile.univPhotoUrl), "");
 
-            ivBarEdu.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
+            ivBarEdu.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhomeLight));
         }catch(OkhomeException e){
             ivBarEdu.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
         }
@@ -237,7 +238,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
         //step 7. Job experience
         try{
             OkhomeException.chkException(OkhomeUtil.isEmpty(profile.pastCareers), "");
-            ivBarJob.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhome));
+            ivBarJob.setBackgroundColor(ContextCompat.getColor(this, R.color.colorOkhomeLight));
         }catch(OkhomeException e){
             ivBarJob.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightBlueGray2));
         }
@@ -338,7 +339,6 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
     //--------on click
     @OnClick({R.id.actFillUpUserInfo_vbtnKTP, R.id.actFillUpUserInfo_tvKTP})
     public void onClickKTP(View v){
-        if(ktpPhotoDialog == null){
             ktpPhotoDialog = new PhotoDialog(FillupUserInfoActivity.this,
                     "Change KTP photo",
                     ConsultantLoggedIn.get().profile.ktpPhotoUrl,
@@ -352,7 +352,6 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
                             }
                         }
                     });
-        }
         ktpPhotoDialog.show();
 
 //        if(TextUtils.isEmpty(ConsultantLoggedIn.get().profile.ktpPhotoUrl)){
@@ -382,7 +381,6 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
     @OnClick({R.id.actFillUpUserInfo_vbtnSKCK})
     public void onClickSKCK(View v){
-        if(skckPhotoDialog == null){
             skckPhotoDialog = new PhotoDialog(FillupUserInfoActivity.this,
                     "Change SKCK photo",
                     ConsultantLoggedIn.get().profile.skckPhotoUrl,
@@ -396,7 +394,6 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
                             }
                         }
                     });
-        }
         skckPhotoDialog.show();
     }
 
@@ -422,7 +419,7 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
 
     @OnClick(R.id.actFillUpUserInfo_vbtnJobExperience)
     public void onJobExperienceClick(){
-        startActivity(new Intent(this, UpdateJobExperienceActivity.class));
+        startActivity(new Intent(this, JobExperienceActivity.class));
     }
 
     @OnClick(R.id.actFillUpUserInfo_vgConfirm)
@@ -432,6 +429,11 @@ public class FillupUserInfoActivity extends OkHomeParentActivity {
         } else {
             confirm();
         }
+    }
+
+    @OnClick(R.id.actFillupUserInfo_vgbtnTermAndPolicy)
+    public void onTermAndPolicy(View v){
+        startActivity(new Intent(this, TermAndPrivacyActivity.class));
     }
 
     @OnClick(R.id.actFillUpUserInfo_vbtnX)

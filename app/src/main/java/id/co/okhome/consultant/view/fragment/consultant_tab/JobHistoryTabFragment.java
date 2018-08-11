@@ -1,6 +1,5 @@
 package id.co.okhome.consultant.view.fragment.consultant_tab;
 
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,8 +25,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.co.okhome.consultant.R;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
-import id.co.okhome.consultant.view.activity.cleaning.NextCleaningsActivity;
-import id.co.okhome.consultant.view.activity.cleaning.PreviousCleaningsActivity;
 
 /**
  * Created by jo on 2018-04-07.
@@ -102,11 +99,11 @@ public class JobHistoryTabFragment extends Fragment implements TabFragmentStatus
 
     @OnClick(R.id.fragTabJobs_vbtnSeeNextCleaning)
     public void onClickSeeNext() {
-        startActivity(new Intent(getContext(), NextCleaningsActivity.class));
+//        startActivity(new Intent(getContext(), NextCleaningsActivity.class));
     }
 
     @OnClick(R.id.fragTabJobs_vbtnSeePreviousCleaning)
     public void onClickPreviousNext() {
-        startActivity(new Intent(getContext(), PreviousCleaningsActivity.class));
+//        startActivity(new Intent(getContext(), PreviousCleaningsActivity.class));
     }
 }

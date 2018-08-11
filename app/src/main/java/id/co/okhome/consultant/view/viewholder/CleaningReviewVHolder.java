@@ -132,4 +132,19 @@ public class CleaningReviewVHolder extends JoViewHolder<CleaningReviewModel> {
         }
         tvTags.setText(ss);
     }
+
+    private BitmapDrawable getBitmapDrawableFromView(View v){
+        v.setDrawingCacheEnabled(true);
+        v.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+
+        v.layout(0, 0, tagLayout.getMeasuredWidth(), tagLayout.getMeasuredHeight());
+        v.buildDrawingCache(true);
+        Bitmap b = Bitmap.createBitmap(v.getDrawingCache());
+        v.setDrawingCacheEnabled(false);
+
+        BitmapDrawable d = new BitmapDrawable(getContext().getResources(), b);
+        d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
+        return d;
+    }
 }

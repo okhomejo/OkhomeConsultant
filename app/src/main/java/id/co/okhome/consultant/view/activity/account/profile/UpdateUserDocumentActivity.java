@@ -1,14 +1,11 @@
 package id.co.okhome.consultant.view.activity.account.profile;
 
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,11 +16,8 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +28,7 @@ import id.co.okhome.consultant.lib.PhoneNumberGetter;
 import id.co.okhome.consultant.lib.ToastUtil;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
+import id.co.okhome.consultant.lib.app.OkhomeDateTimeFormatUtil;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.jobrowser.callback.ApiResultCallback;
 import id.co.okhome.consultant.lib.jobrowser.model.ApiResult;
@@ -58,21 +53,19 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
 
     private String address;
     private String photoFilePath = null;
-    private Bundle previousBundle = null;
+
     private ProfileModel profile;
     private String accountId;
     private String phoneCode;
+
+    private Bundle previousBundle = null;
     private boolean isActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_user_document);
-        OkhomeUtil.setSystemBarColor(this,
-
-//                Color.parseColor("#29313a"));
-                ContextCompat.getColor(this, R.color.colorOkhome));
-
+        OkhomeUtil.setWhiteSystembar(this);
         ButterKnife.bind(this);
         init();
     }
@@ -80,42 +73,38 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
     private void init(){
 
         // Load saved consultant data
-        if (ConsultantLoggedIn.hasSavedData()) {
-            profile = ConsultantLoggedIn.get().profile;
-            accountId = ConsultantLoggedIn.get().id;
+        profile = ConsultantLoggedIn.get().profile;
+        accountId = ConsultantLoggedIn.get().id;
 
-            tvName.setText(profile.name);
-            tvPhone.setText(profile.phone);
-            tvAddress.setText(profile.address);
+        tvName.setText(profile.name);
+        tvPhone.setText(profile.phone);
+        tvAddress.setText(profile.address);
 
-            Glide.with(this)
-                    .load(profile.photoUrl)
-                    .thumbnail(0.5f)
-                    .placeholder(R.drawable.img_user_blank)
-                    .dontAnimate()
-                    .into(ivPhoto);
-
+        Glide.with(this)
+                .load(profile.photoUrl)
+                .thumbnail(0.5f)
+                .placeholder(R.drawable.img_user_blank)
+                .dontAnimate()
+                .into(ivPhoto);
 
 
-            if (!TextUtils.isEmpty(profile.birthdate)) {
-                DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd");
-                DateTime birthDate = dtf.parseDateTime(profile.birthdate);
 
-                tvBirthDate.setText(String.format(Locale.ENGLISH, "%d-%d-%d",
-                        birthDate.getDayOfMonth(), birthDate.getMonthOfYear(), birthDate.getYear())
-                );
+        if (!TextUtils.isEmpty(profile.birthdate)) {
+            DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd");
+            DateTime birthDate = dtf.parseDateTime(profile.birthdate);
 
+            tvBirthDate.setText(OkhomeDateTimeFormatUtil.printOkhomeType(profile.birthdate, "yyyy-MM-dd", "d MMM yyyy"));
+
+        }
+
+        if (!TextUtils.isEmpty(profile.gender)) {
+            String consultantGender = "";
+            if (profile.gender.equals("M")) {
+                consultantGender = "Male";
+            } else if (profile.gender.equals("F")) {
+                consultantGender = "Female";
             }
-
-            if (!TextUtils.isEmpty(profile.gender)) {
-                String consultantGender = "";
-                if (profile.gender.equals("M")) {
-                    consultantGender = "Male";
-                } else if (profile.gender.equals("F")) {
-                    consultantGender = "Female";
-                }
-                tvGender.setText(consultantGender);
-            }
+            tvGender.setText(consultantGender);
         }
     }
 
@@ -230,19 +219,6 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
         photoFilePath = imgPath;
     }
 
-    private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
-            selectedMonth += 1;
-            tvBirthDate.setText(String.format("%s-%s-%s", selectedDay, selectedMonth, selectedYear));
-
-            DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd");
-            DateTime birthday = DateTime.parse(
-                    String.format(Locale.ENGLISH, "%d-%d-%d", selectedYear, selectedMonth, selectedDay)
-            );
-            profile.birthdate = birthday.toString(dtf);
-        }
-    };
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -313,23 +289,89 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
 
     @OnClick(R.id.actUpdateUserDocument_vgbtnBirthDate)
     public void onClickBirthDay() {
-        Calendar cal = Calendar.getInstance(TimeZone.getDefault());
-        if (profile.birthdate != null) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-            try {
-                cal.setTime(sdf.parse(profile.birthdate));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+//        Calendar cal = Calendar.getInstance(TimeZone.getDefault());
+//        if (profile.birthdate != null) {
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+//            try {
+//                cal.setTime(sdf.parse(profile.birthdate));
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        DatePickerDialog datePicker = new DatePickerDialog(this,
+//                datePickerListener,
+//                cal.get(Calendar.YEAR),
+//                cal.get(Calendar.MONTH),
+//                cal.get(Calendar.DAY_OF_MONTH));
+//        datePicker.setCancelable(true);
+//        datePicker.setTitle("Select your birthday");
+//        datePicker.show();
+
+        //year, month, day
+
+//        profile.birthdate = birthday.toString(dtf);
+        final List<String> years = new ArrayList<>();
+        for(int i = 1950; i < 2000; i++){
+            years.add(i+"");
         }
-        DatePickerDialog datePicker = new DatePickerDialog(this,
-                datePickerListener,
-                cal.get(Calendar.YEAR),
-                cal.get(Calendar.MONTH),
-                cal.get(Calendar.DAY_OF_MONTH));
-        datePicker.setCancelable(true);
-        datePicker.setTitle("Select your birthday");
-        datePicker.show();
+
+        final List<String> months = new ArrayList<>();
+        for(int i = 1; i <= 12; i++){
+            months.add(i+"");
+        }
+
+        final List<String> days = new ArrayList<>();
+        for(int i = 1; i <= 31; i++){
+            days.add(i+"");
+        }
+
+
+        new CommonListDialog(this)
+                .setTitle("Choose year of Birthday")
+                .setArrItems(years.toArray(new String[years.size()]))
+                .setColumnCount(3)
+                .setItemClickListener(new StringHolder.ItemClickListener() {
+                    @Override
+                    public void onItemClick(Dialog dialog, int pos, String value, String tag) {
+                        dialog.dismiss();
+
+                        final String year = value;
+
+                        new CommonListDialog(UpdateUserDocumentActivity.this)
+                                .setTitle("Choose month of Birthday")
+                                .setArrItems(months.toArray(new String[months.size()]))
+                                .setColumnCount(3)
+                                .setItemClickListener(new StringHolder.ItemClickListener() {
+                                    @Override
+                                    public void onItemClick(Dialog dialog, int pos, String value, String tag) {
+                                        dialog.dismiss();
+
+                                        final String month = value;
+                                        new CommonListDialog(UpdateUserDocumentActivity.this)
+                                                .setTitle("Choose day of Birthday")
+                                                .setArrItems(days.toArray(new String[days.size()]))
+                                                .setColumnCount(4)
+                                                .setItemClickListener(new StringHolder.ItemClickListener() {
+                                                    @Override
+                                                    public void onItemClick(Dialog dialog, int pos, String value, String tag) {
+                                                        dialog.dismiss();
+                                                        final String day = value;
+
+                                                        //선택됨
+                                                        profile.birthdate = year + "-" + OkhomeUtil.getFull2Decimal(Integer.parseInt(month)) + "-" + OkhomeUtil.getFull2Decimal(Integer.parseInt(day));
+                                                        tvBirthDate.setText(OkhomeDateTimeFormatUtil.printOkhomeType(profile.birthdate, "yyyy-MM-dd", "d MMM yyyy"));
+                                                    }
+                                                })
+                                                .show();
+                                    }
+                                })
+                                .show();
+
+                    }
+                })
+                .show();
+
+
     }
 
     @OnClick(R.id.actUpdateUserDocument_vgbtnGender)
@@ -355,7 +397,7 @@ public class UpdateUserDocumentActivity extends OkHomeParentActivity {
         updateProfile();
     }
 
-    @OnClick({R.id.actLocation_vbtnX})
+    @OnClick({R.id.common_vbtnClose})
     public void onCloseActivity() {
         finish();
     }

@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/actTraineeFaqSingle_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="@dimen/common_topbar_height"
         android:background="#FFFFFF"
         android:paddingRight="20dp"
         android:paddingTop="20dp">
@@ -44,7 +44,7 @@
             android:layout_centerVertical="true"
             android:text="dsfsafd"
             android:textColor="#000000"
-            android:textSize="20dp"/>
+            android:textSize="@dimen/common_topbar_title_size"/>
 
     </RelativeLayout>
 

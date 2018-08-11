@@ -1,4 +1,10 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="main_topbar_height">72dp</dimen>
+    <dimen name="main_topbar_height">70dp</dimen>
+
+    <dimen name="common_topbar_height">61dp</dimen>
+    <dimen name="common_topbar_title_size">18dp</dimen>
+
+    <dimen name="common_bluetopbar_height">60dp</dimen>
+    <dimen name="common_bluetopbar_title_size">20dp</dimen>
 </resources>

@@ -108,7 +108,7 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
                 .findFragmentById(R.id.actLocation_fmMap);
         mapFragment.getMapAsync(this);
 
-        OkhomeUtil.setSystemBarColor(this, ContextCompat.getColor(this, R.color.colorOkhome));
+        OkhomeUtil.setWhiteSystembar(this);
 //                ContextCompat.getColor(this, R.color.colorOkhome));
 
         etLocation.setOnItemClickListener(mAutocompleteClickListener);
@@ -304,12 +304,14 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
             List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
             if (!addresses.isEmpty()) {
                 String address = addresses.get(0).getAddressLine(0);
-                if (address.contains(",")) {
-                    address = address.split(",")[0];
-                    return address;
-                } else {
-                    return address;
-                }
+//                if (address.contains(",")) {
+//                    address = address.split(",")[0];
+//                    return address;
+//                } else {
+//                    return address;
+//                }
+//
+                return address;
             } else {
                 return "Error, please check the location.";
             }
@@ -482,7 +484,7 @@ public class LocationActivity extends OkHomeParentActivity implements OnMapReady
     }
 
     // OnClick listeners
-    @OnClick(R.id.actLocation_vbtnX)
+    @OnClick(R.id.common_vbtnClose)
     public void onX(View v){
         finish();
     }

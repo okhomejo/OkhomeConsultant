@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,220 +14,176 @@
         android:layout_height="55dp">
 
         <LinearLayout
-            android:layout_marginRight="6dp"
             android:id="@+id/actForgotLogin_vbtnX"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
             android:gravity="center"
-            android:layout_width="50dp"
-            android:layout_height="match_parent">
-
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp">
 
             <ImageView
-                android:layout_width="18dp"
+                android:layout_width="14dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@drawable/ic_leftarrow" />
+
         </LinearLayout>
 
+
         <TextView
-            style="@style/FontOpenSansRegular"
-            android:textColor="@color/colorGray"
-            android:layout_centerInParent="true"
             android:id="@+id/actForgotLogin_tvTitle"
+            style="@style/FontOpenSansLight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Forgot password or Email"
-            android:textSize="17sp"
-            android:layout_centerVertical="true" />
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="FIND ACCOUNT"
+            android:textColor="#000000"
+            android:textSize="18dp" />
 
-        <View
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="#33000000"/>
     </RelativeLayout>
 
+
     <LinearLayout
+        android:padding="20dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:layout_below="@+id/actForgotLogin_vgTop"
-        android:layout_above="@+id/actForgotLogin_vgBottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <View
-            android:layout_width="1px"
-            android:layout_height="30dp"
-            android:background="#55000000"
-            android:layout_marginTop="10dp"/>
 
-        <ImageView
-            android:layout_marginTop="20dp"
-            android:layout_width="140dp"
-            android:src="@drawable/logo_text"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"/>
-        <View
-            android:layout_width="1px"
-            android:layout_height="30dp"
-            android:background="#55000000"
-            android:layout_marginTop="20dp" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/actForgotLogin_vgBottom"
-        android:paddingBottom="34dp"
-        android:gravity="top|center_horizontal"
-        android:orientation="vertical"
-        android:paddingTop="4dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="260dp">
-
-        <RelativeLayout
-            android:id="@+id/actForgotLogin_vbtnPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true">
-
-            <LinearLayout
-                android:background="@drawable/bg_common_edittext"
-                android:layout_width="match_parent"
-                android:layout_height="57dp">
-
-                <TextView
-                    android:gravity="center_vertical"
-                    style="@style/FontOpenSansLight"
-                    android:textColor="@color/colorLightBlueGray"
-                    android:textSize="14sp"
-                    android:text="PHONE"
-                    android:layout_width="90dp"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true" />
-
-                <TextView
-                    android:textColor="@color/colorBlueBlack"
-                    android:id="@+id/actForgotLogin_tvPhone"
-                    android:gravity="center_vertical"
-                    style="@style/FontOpenSansLight"
-                    android:textSize="15sp"
-                    android:hint="Input your phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColorHint="@color/colorLightBlueGray3" />
-            </LinearLayout>
-
-            <ImageView
-                android:adjustViewBounds="true"
-                android:src="@drawable/ic_right_simplearrow_black"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_width="17dp"
-                android:layout_height="wrap_content" />
-        </RelativeLayout>
-
+        <!-- phone -->
         <LinearLayout
-            android:id="@+id/actForgotLogin_llHidden"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:id="@+id/actForgotLogin_vbtnPhone"
+            android:orientation="vertical"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/actForgotLogin_tvPhone"
+                style="@style/FontOpenSansLight"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/bg_common_edittext"
+                android:lines="1"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:hint="PHONE NUMBER"
+                android:layout_width="match_parent"
+                android:layout_height="51dp" />
+
+        </LinearLayout>
+
+        <!-- hidden -->
+        <LinearLayout
+            android:gravity="center"
+            android:id="@+id/actForgotLogin_llHidden"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <!-- email -->
             <LinearLayout
                 android:id="@+id/actForgotLogin_llEmail"
-                android:layout_width="match_parent"
-                android:layout_height="57dp">
+                android:orientation="vertical"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:background="@drawable/bg_common_edittext"
-                    android:gravity="center_vertical"
-                    style="@style/FontOpenSansLight"
-                    android:textColor="@color/colorLightBlueGray"
-                    android:textSize="14sp"
-                    android:text="EMAIL"
-                    android:layout_width="90dp"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true" />
-
-                <TextView
-                    android:textColor="@color/colorBlueBlack"
-                    android:background="@drawable/bg_edittext_inactive"
                     android:id="@+id/actForgotLogin_tvEmail"
-                    android:gravity="center_vertical"
                     style="@style/FontOpenSansLight"
-                    android:singleLine="true"
+                    android:inputType="textEmailAddress"
+                    android:background="@drawable/bg_common_edittext"
+                    android:lines="1"
                     android:textSize="15sp"
-                    android:hint="youremail@mail.com"
+                    android:gravity="center"
+                    android:hint="EMAIL"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColorHint="@color/colorLightBlueGray3"/>
+                    android:layout_height="51dp" />
 
             </LinearLayout>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:layout_marginBottom="6dp"
-                android:textSize="15dp"
-                android:textStyle="bold"
                 style="@style/FontOpenSansLight"
+                android:textColor="@color/colorGray"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:textSize="13sp"
                 android:text="Do you want to change your password?"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="57dp"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
+                android:orientation="vertical"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content">
                 <EditText
                     android:id="@+id/actForgotLogin_etPassword1"
-                    android:textColor="@color/colorBlueBlack"
-                    android:background="@drawable/bg_edittext_inactive"
-                    android:gravity="center_vertical"
                     style="@style/FontOpenSansLight"
-                    android:textSize="15sp"
                     android:inputType="textPassword"
+                    android:background="@drawable/bg_common_edittext"
                     android:lines="1"
-                    android:hint="New password"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="10dp"
-                    android:textColorHint="@color/colorLightBlueGray3"/>
-
-
-                <EditText
-                    android:id="@+id/actForgotLogin_etPassword2"
-                    android:textColor="@color/colorBlueBlack"
-                    android:background="@drawable/bg_edittext_inactive"
-                    android:gravity="center_vertical"
-                    style="@style/FontOpenSansLight"
                     android:textSize="15sp"
-                    android:inputType="textPassword"
-                    android:lines="1"
-                    android:hint="Confirm new password"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:textColorHint="@color/colorLightBlueGray3"/>
+                    android:gravity="center"
+                    android:hint="PASSWORD"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp" />
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/actForgotLogin_btnChange"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/colorOkhome"
-                android:textColor="@android:color/white"
-                style="?android:attr/borderlessButtonStyle"
-                android:text="Change password"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/actForgotLogin_etPassword2"
+                    style="@style/FontOpenSansLight"
+                    android:inputType="textPassword"
+                    android:background="@drawable/bg_common_edittext"
+                    android:lines="1"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:hint="PASSWORD ONE MORE"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp" />
 
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:id="@+id/actForgotLogin_vbtnChange"
+                android:gravity="center"
+                android:background="@color/colorOkhomeLight2"
+                android:paddingTop="10dp" android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="56dp">
+
+                <LinearLayout
+                    android:layout_marginRight="15dp"
+                    android:gravity="center"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:adjustViewBounds="true"
+                        android:layout_height="wrap_content" android:src="@drawable/ic_downarrow_white"/>
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text="CHANGE"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
         </LinearLayout>
+
+
+
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

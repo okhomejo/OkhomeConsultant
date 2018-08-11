@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.content.ContextCompat;
 import android.webkit.URLUtil;
 import android.widget.ImageView;
 
@@ -31,6 +30,7 @@ import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.model.v2.ProfileModel;
 import id.co.okhome.consultant.rest_apicall.raw_restapi.ImageUploadCall;
 import id.co.okhome.consultant.view.activity.etc.photochooser.ImageChooserActivity;
+import id.co.okhome.consultant.view.dialog.PhotoShowDialog;
 
 public class UpdateConsultantEducationActivity extends OkHomeParentActivity {
 
@@ -51,11 +51,7 @@ public class UpdateConsultantEducationActivity extends OkHomeParentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_education);
-        OkhomeUtil.setSystemBarColor(this,
-
-//                Color.parseColor("#29313a"));
-                ContextCompat.getColor(this, R.color.colorOkhome));
-
+        OkhomeUtil.setWhiteSystembar(this);
         ButterKnife.bind(this);
         init();
     }
@@ -279,6 +275,7 @@ public class UpdateConsultantEducationActivity extends OkHomeParentActivity {
 
     @OnClick(R.id.actUpdateEducation_vgSeeSample)
     public void onClickSeeSample(){
+        new PhotoShowDialog(this, R.drawable.img_face_okhome).show();
 //        new ShowPhotoDialog_old(this, R.drawable.).show();
     }
 
@@ -287,7 +284,7 @@ public class UpdateConsultantEducationActivity extends OkHomeParentActivity {
         postFiles();
     }
 
-    @OnClick(R.id.actLocation_vbtnX)
+    @OnClick(R.id.common_vbtnClose)
     public void onGoBackClick() {
         finish();
     }

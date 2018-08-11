@@ -88,13 +88,14 @@
                         android:layout_width="16dp"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:id="@+id/actChat_tvCleaningDate"
                         android:layout_centerVertical="true"
                         style="@style/FontOpenSansLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jun 5/8 Cleaning Ready"
+                        android:text="-"
                         android:textColor="#000000"
-                        android:textSize="15sp" />
+                        android:textSize="13.5sp" />
 
                 </LinearLayout>
 
@@ -105,9 +106,8 @@
                     android:layout_height="wrap_content"
                     android:text="SEE DETAILS"
                     android:textColor="@color/colorOkhomeLight"
-                    android:textSize="15sp" />
+                    android:textSize="14sp" />
             </RelativeLayout>
-
 
 
         </LinearLayout>
@@ -156,55 +156,87 @@
         android:layout_width="match_parent"
         android:layout_height="1px" android:background="#44000000"/>
     <!-- bottom -->
-    <LinearLayout
-        android:gravity="bottom"
+    <RelativeLayout
         android:weightSum="10"
-        android:paddingLeft="14dp"
-        android:paddingRight="14dp"
         android:id="@+id/actChat_vgBottom"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/actChat_btnAttachment"
-            android:paddingBottom="14dp"
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:id="@+id/actChat_vgChatBox"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
+            android:gravity="bottom"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <ImageView
-                android:src="@drawable/ic_clip"
-                android:adjustViewBounds="true"
-                android:layout_width="23dp"
+            <LinearLayout
+                android:id="@+id/actChat_btnAttachment"
+                android:paddingBottom="14dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@drawable/ic_clip"
+                    android:adjustViewBounds="true"
+                    android:layout_width="23dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <EditText
+                style="@style/FontOpenSansLight"
+                android:textCursorDrawable="@drawable/edittext_cursor_appcolor"
+                android:layout_weight="7.5"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:maxLines="5"
+                android:textSize="15sp"
+                android:background="@null"
+                android:id="@+id/actChat_etText"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/actChat_vgActions"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:paddingBottom="16dp"
+                android:layout_weight="1.5"
+                android:layout_centerVertical="true"
+                android:id="@+id/actChat_vbtnSend"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    style="@style/FontOpenSansLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:scaleX="0.95"
+                    android:text="SEND"
+                    android:textColor="@color/colorOkhomeLight"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
 
         </LinearLayout>
 
-        <EditText
-            style="@style/FontOpenSansLight"
-            android:textCursorDrawable="@drawable/edittext_cursor_appcolor"
-            android:layout_weight="7.5"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:maxLines="5"
-            android:textSize="15sp"
-            android:background="@null"
-            android:id="@+id/actChat_etText"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/actChat_vgActions"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-
         <LinearLayout
-            android:paddingBottom="16dp"
-            android:layout_weight="1.5"
-            android:layout_centerVertical="true"
-            android:id="@+id/actChat_vbtnSend"
-            android:layout_alignParentRight="true"
-            android:gravity="right"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content">
-
+            android:id="@+id/actChat_vgNotReadyToJoinChat"
+            android:gravity="center"
+            android:background="@color/colorBlueGray"
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+            
+            <ImageView
+                android:layout_marginRight="5dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_close_bold_white"
+                android:layout_width="12dp"
+                android:layout_height="wrap_content" />
             <TextView
                 android:layout_gravity="center_vertical"
                 style="@style/FontOpenSansLight"
@@ -212,10 +244,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:scaleX="0.95"
-                android:text="SEND"
-                android:textColor="@color/colorOkhomeLight"
-                android:textSize="16sp" />
+                android:text="You are not ready to join chat"
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
+
+
 </RelativeLayout>

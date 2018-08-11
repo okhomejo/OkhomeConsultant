@@ -29,9 +29,12 @@ public class SimplePagerDotManager {
     }
 
     public void build(){
+        maxSize = vp.getAdapter().getCount();
         addChangeListener();
         init();
         setPosition(0);
+
+
     }
 
 
@@ -61,9 +64,18 @@ public class SimplePagerDotManager {
         }
     }
 
+    public void refresh(){
+        maxSize = vp.getAdapter().getCount();
+        init();
+    }
+
     public void setPosition(int pos){
         init();
         vg.getChildAt(pos).setBackgroundResource(resOnId);
+
+        if(onPageChangeListener != null){
+            onPageChangeListener.onPageChanged(0, maxSize);
+        }
     }
 
     public interface OnPageChangeListener{

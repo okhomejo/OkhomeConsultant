@@ -88,6 +88,11 @@ public class SetOffDayCleaningDialog extends DialogParent{
 //
 //                listWillGone.add(v);
             }
+
+            @Override
+            public void onDayClick(int year, int month, int day) {
+
+            }
         });
     }
 

@@ -64,13 +64,13 @@
     <LinearLayout
         android:weightSum="10"
         android:layout_width="match_parent"
-        android:layout_height="55dp">
+        android:layout_height="60dp">
 
         <LinearLayout
             android:id="@+id/dialogCommonInput_vbtnX"
             android:layout_weight="5"
             android:gravity="center"
-            android:background="@color/colorLightBlueGray"
+            android:background="@color/colorOkhomeLight2"
             android:layout_width="0dp"
             android:layout_height="match_parent">
 

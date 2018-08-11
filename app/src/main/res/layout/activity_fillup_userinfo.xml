@@ -56,7 +56,7 @@
     <RelativeLayout
         android:id="@+id/actFillUpUserInfo_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="@dimen/common_topbar_height"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true">
 
@@ -106,7 +106,10 @@
             android:layout_centerVertical="true"
             android:text="REGISTER INFORMATION"
             android:textColor="#000000"
-            android:textSize="19dp" />
+            android:textSize="@dimen/common_topbar_title_size" />
+
+
+
 
     </RelativeLayout>
 
@@ -121,7 +124,7 @@
 
 
         <LinearLayout
-            android:paddingLeft="24dp"
+            android:paddingLeft="20dp"
             android:layout_marginTop="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -145,7 +148,7 @@
 
                         <ImageView
                             android:id="@+id/actFillupUserInfo_ivBarBasicInfo"
-                            android:background="@color/colorOkhome"
+                            android:background="@color/colorLightBlueGray2"
                             android:layout_width="5dp"
                             android:layout_height="match_parent" />
 
@@ -350,6 +353,7 @@
 
         <!--term -->
         <LinearLayout
+            android:id="@+id/actFillupUserInfo_vgbtnTermAndPolicy"
             android:paddingLeft="20dp"
             android:layout_marginTop="20dp"
             android:orientation="vertical"
@@ -361,7 +365,7 @@
                 android:id="@+id/actFillUpUserInfo_tvExtraInfo"
                 android:textColor="@color/colorGray"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:textSize="14sp"
+                android:layout_height="wrap_content" android:textSize="13.5sp"
                 android:text="Click on the menus above to complete all of the information."/>
 
             <TextView
@@ -370,35 +374,36 @@
                 android:textColor="@color/colorOkhome"
                 android:gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:textSize="14sp"
+                android:layout_height="wrap_content" android:textSize="13.5sp"
                 android:text="View terms of privacy"/>
-            <LinearLayout
-                android:layout_marginTop="7dp"
-                android:paddingLeft="10dp" android:paddingRight="10dp"
-                android:id="@+id/actFillupUserInfo_vgProfileNotUpdatedYet"
-                android:gravity="center_vertical"
-                android:background="#ff3333"
-                android:layout_width="wrap_content"
-                android:layout_height="34dp">
 
-                <ImageView
-                    android:layout_marginRight="8dp"
-                    android:adjustViewBounds="true"
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content" android:src="@drawable/ic_check_type2" />
-                <TextView
-                    android:textColor="#ffffff"
-                    style="@style/FontOpenSansLight"
-                    android:text="Your profile will be updated after admin's approval"
-                    android:lines="1"
-                    android:textSize="14sp"
-                    android:gravity="center_vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
         </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="12dp" android:paddingRight="12dp"
+            android:id="@+id/actFillupUserInfo_vgProfileNotUpdatedYet"
+            android:gravity="center_vertical"
+            android:background="#ff3333"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp">
 
+            <ImageView
+                android:layout_marginRight="8dp"
+                android:adjustViewBounds="true"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content" android:src="@drawable/ic_check_type2" />
+            <TextView
+                android:textColor="#ffffff"
+                style="@style/FontOpenSansLight"
+                android:text="Your profile will be updated after admin's approval"
+                android:lines="1"
+                android:textSize="14sp"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -453,7 +458,7 @@
 
         <LinearLayout
             android:gravity="center"
-            android:background="@drawable/circle_appcolor_shadow"
+            android:background="@drawable/circle_lightblue_shadow"
             android:layout_width="60dp"
             android:layout_height="60dp">
             <ImageView
@@ -469,6 +474,7 @@
         android:layout_height="30dp" android:layout_centerInParent="true"/>
 
     <LinearLayout
+
         android:layout_below="@+id/actFillUpUserInfo_vgTop"
         android:orientation="vertical"
         android:layout_width="match_parent"

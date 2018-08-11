@@ -1,5 +1,6 @@
 package id.co.okhome.consultant.view.viewholder.prefered_area;
 
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -82,6 +83,7 @@ public class PreferredChildAreaVHolder extends JoViewHolder<WorkingRegionModel> 
                     childRegionCount++;
                 }
             }
+            subTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.colorOkhomeLight));
             if (childRegionCount == chosenChildCount) {
                 checkImage.setImageResource(R.drawable.ic_checked_sq);
                 checkImage.setImageAlpha(255);
@@ -93,6 +95,7 @@ public class PreferredChildAreaVHolder extends JoViewHolder<WorkingRegionModel> 
             } else {
                 checkImage.setImageResource(R.drawable.ic_check_not_deep);
                 checkImage.setImageAlpha(255);
+                subTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.colorLightBlueGray));
                 subTitle.setText("Not selected");
             }
         } else {

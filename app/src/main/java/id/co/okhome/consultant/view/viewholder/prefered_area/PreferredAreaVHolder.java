@@ -55,11 +55,11 @@ public class PreferredAreaVHolder extends JoViewHolder<WorkingRegionModel> imple
             }
         }
         if (selectedAreasNum == 0) {
-            tvSelection.setText("No areas selected");
+            tvSelection.setText("0");
         } else if (selectedAreasNum == 1) {
-            tvSelection.setText("1 area selected");
+            tvSelection.setText("1");
         } else if (selectedAreasNum > 1) {
-            tvSelection.setText(selectedAreasNum + " areas selected");
+            tvSelection.setText(selectedAreasNum + "");
         }
 
         getView().setOnClickListener(this);

@@ -46,7 +46,6 @@ public class ManualParentVHolder extends JoViewHolder<FaqModel> implements View.
         FaqModel faq = getModel();
         if(faq.childCount > 0){
             FaqActivity.startFaqActivity(getContext(), faq.subject, faq.category, faq.id);
-
         }else{
             getContext().startActivity(new Intent(getContext(), FaqSingleActivity.class)
                     .putExtra("FAQ_ID", faq.id));

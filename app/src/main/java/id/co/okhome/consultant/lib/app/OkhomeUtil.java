@@ -3,6 +3,7 @@ package id.co.okhome.consultant.lib.app;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.ProgressDialog;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.ComponentName;
@@ -11,7 +12,9 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -41,7 +44,6 @@ import java.lang.reflect.Constructor;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -62,12 +64,33 @@ import id.co.okhome.consultant.exception.OkhomeException;
 
 public class OkhomeUtil {
 
+    public final static ProgressDialog showLoadingDialog(Context context){
+        return ProgressDialog.show(context, "", "Loading");
+    }
+
     private static Locale locale = new Locale("id");
+
+    /**뷰에서 비트맵 가져오기*/
+    public static BitmapDrawable getBitmapDrawableFromView(View v){
+        v.setDrawingCacheEnabled(true);
+        v.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+
+        v.layout(0, 0, v.getMeasuredWidth(), v.getMeasuredHeight());
+        v.buildDrawingCache(true);
+        Bitmap b = Bitmap.createBitmap(v.getDrawingCache());
+        v.setDrawingCacheEnabled(false);
+
+        BitmapDrawable d = new BitmapDrawable(v.getContext().getResources(), b);
+        d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
+        return d;
+    }
 
     public static String getPriceFormatValue(double price) {
         return NumberFormat.getNumberInstance(locale).format(price);
     }
 
+    //it used for making systrace
     public static String getRandomString() {
         String allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder randomBuilder = new StringBuilder();

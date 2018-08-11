@@ -24,14 +24,25 @@ public class CommonAlertDialog extends DialogParent{
 
     String title, subTitle;
     CommonDialogListener commonDialogListener;
+    boolean center = false;
 
     public CommonAlertDialog(Context context) {
         super(context);
     }
 
+    public CommonAlertDialog(Context context, boolean center) {
+        super(context);
+        this.center = center;
+    }
+
     @Override
     public int onInit() {
-        return R.layout.dialog_common_alert;
+        if(center){
+            return R.layout.dialog_common_centeralert;
+        }else{
+            return R.layout.dialog_common_alert;
+        }
+
     }
 
     @Override
@@ -87,6 +98,7 @@ public class CommonAlertDialog extends DialogParent{
     public void onSubmit() {
         if(commonDialogListener != null){
             commonDialogListener.onCommonDialogWorkDone(this, ACTIONCODE_OK, null);
+            dismiss();
         }else{
             dismiss();
         }

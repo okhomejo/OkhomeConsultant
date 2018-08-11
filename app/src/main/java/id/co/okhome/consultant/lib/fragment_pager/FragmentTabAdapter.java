@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 
 public abstract class FragmentTabAdapter extends FragmentPagerAdapter implements ViewPager.OnPageChangeListener{
 
+    int lastPos = -1;
     FragmentManager fm;
     ViewPager viewPager;
     TabFragmentStatusListener lastFragment = null;
@@ -22,6 +23,10 @@ public abstract class FragmentTabAdapter extends FragmentPagerAdapter implements
     /**연결*/
 
     private void notifyCurrentItemChange(int position){
+
+        if(lastPos == position){
+            return;
+        }
 
         for(int i = 0; i < fm.getFragments().size(); i++){
             Fragment f = fm.getFragments().get(i);
@@ -40,7 +45,7 @@ public abstract class FragmentTabAdapter extends FragmentPagerAdapter implements
             }
         }
 
-
+        lastPos = position;
     }
 
 

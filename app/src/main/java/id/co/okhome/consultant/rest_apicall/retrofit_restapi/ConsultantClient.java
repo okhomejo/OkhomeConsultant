@@ -14,8 +14,9 @@ public interface ConsultantClient {
     @GET("consultant/page/progress/{consultantId}")
     Call<ConsultantPageProgressModel> getConsultantProgress(@Path("consultantId") String consultantId);
 
-    @GET("consultant/page/job/{consultantId}")
-    Call<ConsultantPageJobsModel> getConsultantJobs(@Path("consultantId") String consultantId);
+//    http://localhost:2111/consultant/page/jobs/1?fromYYYYMMDD=20180602&endYYYYMMDD=20180701
+    @GET("consultant/page/jobs/{consultantId}")
+    Call<ConsultantPageJobsModel> getConsultantJobsPage(@Path("consultantId") String consultantId, @Query("fromYYYYMMDD") String fromYYYYMMDD, @Query("endYYYYMMDD") String endYYYYMMDD);
 
     @GET("consultant/page/main/{consultantId}")
     Call<ConsultantPageMainModel> getConulstantMainPage(@Path("consultantId") String consultantId);

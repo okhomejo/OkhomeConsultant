@@ -1,21 +1,17 @@
 package id.co.okhome.consultant.view.viewholder.news;
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.mrjodev.jorecyclermanager.JoViewHolder;
 import com.mrjodev.jorecyclermanager.annotations.LayoutMatcher;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.co.okhome.consultant.R;
+import id.co.okhome.consultant.lib.app.OkhomeDateTimeFormatUtil;
 import id.co.okhome.consultant.model.NewsModel;
-import id.co.okhome.consultant.view.activity.news.NewsActivity;
+import id.co.okhome.consultant.view.activity.news.NewsSingleActivity;
 
 /**
  * Created by frizurd on 27/03/2018.
@@ -42,9 +38,8 @@ public class NewsVHolder extends JoViewHolder<NewsModel> implements View.OnClick
 
         tvTitle.setText(m.subject);
 
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss.S");
-        DateTime dt = formatter.parseDateTime(m.insertDateTime);
-        tvDate.setText(dt.toString(DateTimeFormat.mediumDate()));
+        String datetime = OkhomeDateTimeFormatUtil.printOkhomeType(m.insertDateTime, "yyyy-MM-dd HH:mm:ss.S", "(E) d MMM yy");
+        tvDate.setText(datetime);
 
         getView().setOnClickListener(this);
     }
@@ -52,9 +47,6 @@ public class NewsVHolder extends JoViewHolder<NewsModel> implements View.OnClick
     @Override
     public void onClick(View v) {
         NewsModel news = getModel();
-        getContext().startActivity(new Intent(getContext(), NewsActivity.class)
-                .putExtra("NEWS_TITLE", news.subject)
-                .putExtra("NEWS_CONTENTS", news.contents)
-        );
+        NewsSingleActivity.start(getContext(), Integer.parseInt(news.id));
     }
 }

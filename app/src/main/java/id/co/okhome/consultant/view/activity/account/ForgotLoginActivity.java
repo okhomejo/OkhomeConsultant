@@ -2,6 +2,7 @@ package id.co.okhome.consultant.view.activity.account;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -40,14 +41,14 @@ public class ForgotLoginActivity extends OkHomeParentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_login);
+        OkhomeUtil.setWhiteSystembar(this);
 
         ButterKnife.bind(this);
         init();
     }
 
     private void init() {
-        hiddenContent.setAlpha(0.0f);
-        hiddenContent.animate().translationY(hiddenContent.getHeight());
+        hiddenContent.setVisibility(View.GONE);
     }
 
     public void getEmailAddress(String phone, String code) {
@@ -56,6 +57,7 @@ public class ForgotLoginActivity extends OkHomeParentActivity {
             public void onSuccess(AccountModel account) {
                 accountID = Integer.parseInt(account.id);
 
+                hiddenContent.setVisibility(View.VISIBLE);
                 tvEmail.setText(account.email);
                 tvPhone.setText(account.profile.phone);
             }
@@ -68,10 +70,7 @@ public class ForgotLoginActivity extends OkHomeParentActivity {
             @Override
             public void onFinish() {
                 super.onFinish();
-                hiddenContent.animate()
-                        .translationY(0)
-                        .alpha(1.0f)
-                        .setDuration(1000);
+
             }
         });
     }
@@ -135,7 +134,7 @@ public class ForgotLoginActivity extends OkHomeParentActivity {
     }
 
     @OnClick(R.id.actForgotLogin_vbtnPhone)
-    public void onClickPhone(){
+    public void onClickPhone(View v){
         PhoneNumberGetter.with(this)
                 .setPhoneVerificationCallback(new PhoneNumberGetter.PhoneVerificationCallback() {
                     @Override
@@ -146,7 +145,7 @@ public class ForgotLoginActivity extends OkHomeParentActivity {
                 .show();
     }
 
-    @OnClick(R.id.actForgotLogin_btnChange)
+    @OnClick(R.id.actForgotLogin_vbtnChange)
     public void onClickChangePassword() {
         checkBeforeChangingPassword();
     }

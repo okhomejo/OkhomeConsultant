@@ -8,14 +8,35 @@ import java.util.Map;
 
 public class ChatRoomItem {
     public String id;
-    public String lastWriterName;
-    public String lastWriterPhotoUrl;
-    public String lastWriterId;
 
-    public ChatItem lastMessage;
+    public String roomId;
+    public String roomType;
+    public String roomTitle;
+    public String roomImgUrl;
+
+    public Map<String, ChatItem> lastMessages; //아이디 + chatitem
     public Map<String, String> members;
     public Map<String, String> extra;
+    public CleaningInfoInChatModel cleaningInfo;
 
     public ChatRoomItem() {
+    }
+
+    /**젤빠른 쳇 썸네일 불러옴*/
+    public ChatItem latestChatThumbItem(String myId){
+        ChatItem chatItemAll = lastMessages.get("ALL");
+        ChatItem chatItemForMine = lastMessages.get(myId);
+
+        if(chatItemForMine == null){
+            return chatItemAll;
+        }else{
+            if(chatItemAll.getTimestamp().getTime() > chatItemForMine.getTimestamp().getTime()){
+                return chatItemAll;
+            }else{
+                return chatItemForMine;
+            }
+        }
+
+
     }
 }

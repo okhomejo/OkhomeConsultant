@@ -7,19 +7,17 @@
     android:layout_height="match_parent">
 
         <ImageView
-            android:visibility="gone"
+            android:layout_centerInParent="true"
             android:adjustViewBounds="true"
-            android:layout_width="34dp"
-            android:layout_height="wrap_content" android:src="@drawable/ic_x"/>
+            android:layout_width="140dp"
+            android:layout_height="wrap_content" android:src="@drawable/img_loading"/>
 
         <TextView
+            android:gravity="center"
+            android:layout_marginTop="8dp"
             style="@style/FontOpenSansLight"
-            android:layout_marginTop="6dp"
-            android:id="@+id/itemString_tvText"
-            android:text="Nothing!"
-            android:textColor="@color/colorBlueBlack"
             android:textSize="15sp"
+            android:text="Nothing is there"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
 </LinearLayout>

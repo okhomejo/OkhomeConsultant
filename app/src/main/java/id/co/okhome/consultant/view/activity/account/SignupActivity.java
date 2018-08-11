@@ -48,6 +48,7 @@ public class SignupActivity extends OkHomeParentActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        OkhomeUtil.setWhiteSystembar(this);
         buildGoogleApiClient();
         ButterKnife.bind(this);
         init();

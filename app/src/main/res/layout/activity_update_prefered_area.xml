@@ -8,43 +8,45 @@
     android:background="#ffffff"
     tools:context="id.co.okhome.consultant.view.activity.account.profile.UpdateConsultantAreaActivity">
 
-    <LinearLayout
-        android:gravity="center_vertical"
-        android:background="@color/colorOkhome"
-        android:id="@+id/actArea_vgTop"
+    <RelativeLayout
+        android:id="@+id/common_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="66dp">
+        android:layout_height="@dimen/common_topbar_height">
 
         <LinearLayout
-            android:layout_marginRight="6dp"
-            android:id="@+id/actArea_vbtnX"
+            android:id="@+id/common_vbtnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
             android:gravity="center"
-            android:layout_width="50dp"
-            android:layout_height="match_parent">
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp">
 
             <ImageView
-                android:layout_width="20dp"
+                android:layout_width="14dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:alpha="0.9"
-                android:src="@drawable/ic_action_back_white" />
+                android:src="@drawable/ic_leftarrow" />
 
         </LinearLayout>
 
+
         <TextView
             style="@style/FontOpenSansLight"
-            android:textColor="#ffffff"
-            android:id="@+id/actArea_tvTitle"
+            android:textColor="#000000"
+            android:layout_centerInParent="true"
+            android:id="@+id/actPoint_tvTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:text="Update Prefered Area"
-            android:textSize="21dp"
+            android:layout_height="wrap_content" android:text="PREFERED AREA"
+            android:textSize="@dimen/common_topbar_title_size"
             android:layout_centerVertical="true" />
 
-    </LinearLayout>
+    </RelativeLayout>
+
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_below="@+id/actArea_vgTop"
+        android:layout_below="@+id/common_vgTop"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -52,7 +54,6 @@
             android:id="@+id/actArea_lvRegions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:listSelector="@android:color/transparent"
             android:cacheColorHint="@android:color/transparent"
             android:divider="#00000000" />
@@ -116,7 +117,7 @@
 
         <LinearLayout
             android:gravity="center"
-            android:background="@drawable/circle_appcolor_shadow"
+            android:background="@drawable/circle_lightblue_shadow"
             android:layout_width="60dp"
             android:layout_height="60dp">
             <ImageView
@@ -124,5 +125,19 @@
                 android:layout_height="wrap_content" android:src="@drawable/ic_check_white"/>
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/common_vgTop"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px" android:background="#36000000"/>
+        <View
+            android:alpha="0.1"
+            android:layout_width="match_parent"
+            android:layout_height="5dp" android:background="@drawable/bg_circle_shadow"/>
     </LinearLayout>
 </RelativeLayout>

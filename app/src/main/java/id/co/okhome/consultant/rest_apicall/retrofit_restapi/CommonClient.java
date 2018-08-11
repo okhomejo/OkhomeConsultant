@@ -32,6 +32,9 @@ public interface CommonClient {
     @GET("news")
     Call<List<NewsModel>> getAllNews();
 
+    @GET("news/{newsId}")
+    Call<NewsModel> getNewsDetail(@Path("newsId") int newsId);
+
     @GET("faq/{faqId}")
     Call<FaqModel> getFaq(@Path("faqId") int faqId);
 

@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -69,8 +71,10 @@ public class MonthAdapter extends CachedPagerAdapter<Integer> implements ViewPag
 
         //init views
         GridLayout gridMonth = viewHolder.findViewById(R.id.pageMonth_gridMonth);
-
         List<YearMonthDay> listDay = getMonthCalendar(position);
+        viewHolder.setDays(listDay);
+
+        DateTime now = new DateTime();
 
         long start = System.currentTimeMillis();
         for(int i = 0; i < listDay.size(); i++){
@@ -78,7 +82,8 @@ public class MonthAdapter extends CachedPagerAdapter<Integer> implements ViewPag
             View v = gridMonth.getChildAt(i);
             TextView tvDay = ViewHolderUtil.getView(v, R.id.itemDay_tvDay);
             tvDay.setText(day.day +"");
-            v.setTag(day.year + "" + day.month + "" + day.day);
+            v.setTag(day.year + "" + OkhomeUtil.getFull2Decimal(day.month) + "" + OkhomeUtil.getFull2Decimal(day.day));
+            v.setOnClickListener(new OnDayClickListener(day.year, day.month, day.day));
 
             //init color
             int dayColor = 0;
@@ -97,16 +102,37 @@ public class MonthAdapter extends CachedPagerAdapter<Integer> implements ViewPag
                     }
                     break;
                 default:
-                    switch(day.dayName){
-                        case Calendar.SUNDAY:
-                            dayColor = ContextCompat.getColor(getContext(), R.color.colorCalendarRed);
-                            break;
-                        case Calendar.SATURDAY:
-                            dayColor = ContextCompat.getColor(getContext(), R.color.colorCalendarBlue);
-                            break;
-                        default:
-                            dayColor = ContextCompat.getColor(getContext(), R.color.colorCalendarBlack);
+
+                    if(day.year < now.getYear()
+                            || (day.year <= now.getYear() && day.month < now.getMonthOfYear())
+                            || (day.year <= now.getYear() && day.month <= now.getMonthOfYear() && day.day < now.getDayOfMonth() - 1)){
+
+                        //지난날
+                        switch(day.dayName){
+                            case Calendar.SUNDAY:
+                                dayColor = ContextCompat.getColor(getContext(), R.color.colorCalendarRedAlpha2);
+                                break;
+                            case Calendar.SATURDAY:
+                                dayColor = ContextCompat.getColor(getContext(), R.color.colorCalendarBlueAlpha2);
+                                break;
+                            default:
+                                dayColor = ContextCompat.getColor(getContext(), R.color.colorCalendarBlackAlpha2);
+                        }
+                    }else{
+                        switch(day.dayName){
+                            case Calendar.SUNDAY:
+                                dayColor = ContextCompat.getColor(getContext(), R.color.colorCalendarRed);
+                                break;
+                            case Calendar.SATURDAY:
+                                dayColor = ContextCompat.getColor(getContext(), R.color.colorCalendarBlue);
+                                break;
+                            default:
+                                dayColor = ContextCompat.getColor(getContext(), R.color.colorCalendarBlack);
+                        }
                     }
+
+
+
             }
 
             tvDay.setTextColor(dayColor);
@@ -307,9 +333,25 @@ public class MonthAdapter extends CachedPagerAdapter<Integer> implements ViewPag
         return listYearMonthDay;
     }
 
+    class OnDayClickListener implements View.OnClickListener{
+        int year, month, day;
+        public OnDayClickListener(int year, int month, int day) {
+            this.year = year;
+            this.month = month;
+            this.day = day;
+        }
+
+        @Override
+        public void onClick(View view) {
+            for(CalendarCallback cb : listCalendarCallback){
+                cb.onDayClick(year, month, day);
+            }
+        }
+    }
 
     public interface CalendarCallback{
         void onMonthViewCreated(int year, int month, ViewHolder viewHolder, GridLayout gridMonth);
         void onMonthViewSelected(int year, int month, ViewHolder viewHolder, GridLayout gridMonth);
+        void onDayClick(int year, int month, int day);
     }
 }

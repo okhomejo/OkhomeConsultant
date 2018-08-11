@@ -48,7 +48,7 @@
     <RelativeLayout
         android:id="@+id/actTraineeNewsSingle_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="64dp">
+        android:layout_height="@dimen/common_topbar_height">
 
         <LinearLayout
             android:id="@+id/actTraineeNewsSingle_vbtnX"
@@ -96,7 +96,7 @@
             android:layout_centerVertical="true"
             android:text="NEWS"
             android:textColor="#000000"
-            android:textSize="19dp" />
+            android:textSize="@dimen/common_topbar_title_size" />
 
     </RelativeLayout>
 

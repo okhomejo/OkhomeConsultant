@@ -13,6 +13,7 @@ import id.co.okhome.consultant.lib.DelayedWorkRepeator;
 import id.co.okhome.consultant.lib.JoSharedPreference;
 import id.co.okhome.consultant.lib.app.ConsultantLoggedIn;
 import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
+import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.retrofit.RetrofitCallback;
 import id.co.okhome.consultant.lib.retrofit.restmodel.ErrorModel;
 import id.co.okhome.consultant.model.v2.AccountModel;
@@ -26,8 +27,9 @@ public class SplashActivity extends OkHomeParentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
+        OkhomeUtil.setWhiteSystembar(this);
         ButterKnife.bind(this);
+
         beginLogoAnimation();
 
         chkAutoLogin();

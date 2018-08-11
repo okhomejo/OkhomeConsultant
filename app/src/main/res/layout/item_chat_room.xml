@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent" android:orientation="vertical">
+
     <LinearLayout
         android:id="@+id/itemChatRoom_vContent"
         android:layout_marginLeft="15dp" android:layout_marginRight="15dp"
@@ -16,22 +17,50 @@
             android:layout_height="wrap_content">
             <FrameLayout
                 android:layout_marginRight="14dp"
-                android:layout_width="62dp"
-                android:layout_height="62dp">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/itemChatRoom_ivPhoto"
-                    android:src="@drawable/img_model3"
-                    android:layout_margin="2dp"
-                    android:layout_gravity="center"
+                android:layout_width="56dp"
+                android:layout_height="56dp">
+                <FrameLayout
+                    android:id="@+id/itemChatRoom_vgThumbPhoto"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    />
-                <ImageView
-                    android:layout_gravity="center"
+                    android:layout_height="match_parent">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/itemChatRoom_ivPhoto"
+                        android:layout_margin="2dp"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:src="@drawable/circle_stroke" />
+
+                </FrameLayout>
+                <FrameLayout
+                    android:id="@+id/itemChatRoom_vgThumb"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:src="@drawable/circle_stroke" />
+                    android:layout_height="match_parent">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:src="@color/colorOkhomeLight"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+                    <TextView
+                        android:id="@+id/itemChatRoom_tvThumbChar"
+                        android:textSize="22sp"
+                        android:textColor="#ffffff"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="JO"/>
 
-
+                </FrameLayout>
+                <View
+                    android:id="@+id/itemChatRoom_vRedDot"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="5dp"
+                    android:layout_height="5dp" android:background="@drawable/circle_lightred"/>
             </FrameLayout>
 
             <RelativeLayout
@@ -50,18 +79,27 @@
                         android:layout_height="wrap_content"
                         android:text="Selly"
                         android:textColor="@color/colorOkhome"
-                        android:textSize="18sp" />
+                        android:textSize="16.5sp" />
 
                     <TextView
                         android:id="@+id/itemChatRoom_tvMessage"
-                        android:layout_marginTop="1dp"
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="Hey... You are supposed to be at work."
+                        android:textColor="#5b5e6a"
+                        android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/itemChatRoom_tvCleaningDate"
                         android:singleLine="true"
                         style="@style/FontOpenSansLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hey... You are supposed to be at work."
-                        android:textColor="#5b5e6a"
-                        android:textSize="15sp" />
+                        android:text="Jun 08 16, 10:00 ~ 12:00"
+                        android:textColor="@color/colorGreen"
+                        android:textSize="12.5sp" />
+
 
                 </LinearLayout>
                 <LinearLayout
@@ -85,6 +123,7 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
 
             </RelativeLayout>
 

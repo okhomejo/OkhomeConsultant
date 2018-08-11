@@ -12,45 +12,46 @@
     <RelativeLayout
         android:id="@+id/actSignup_vgTop"
         android:layout_width="match_parent"
-        android:layout_height="55dp">
-
-        <ImageView
+        android:layout_height="@dimen/common_topbar_height">
+        <LinearLayout
             android:id="@+id/actSignup_vbtnClose"
-            android:alpha="0.6"
-            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:adjustViewBounds="true"
-            android:layout_width="14dp"
-            android:layout_height="wrap_content" android:src="@drawable/ic_x" />
+            android:gravity="center"
+            android:paddingLeft="17dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_leftarrow" />
+
+        </LinearLayout>
 
         <TextView
-            style="@style/FontOpenSansRegular"
-            android:textColor="@color/colorGray"
+            style="@style/FontOpenSansLight"
+            android:textColor="#000000"
             android:layout_centerInParent="true"
             android:id="@+id/actPoint_tvTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:text="Sign up"
-            android:textSize="17sp"
+            android:layout_height="wrap_content" android:text="SIGN UP"
+            android:textSize="@dimen/common_topbar_title_size"
             android:layout_centerVertical="true" />
 
-        <View
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="1px" android:background="#33000000"/>
     </RelativeLayout>
 
 
     <!-- bottom-->
     <LinearLayout
+        android:layout_above="@+id/actSignUp_vgBottom"
         android:layout_below="@+id/actSignup_vgTop"
         android:layout_centerInParent="true"
         android:gravity="center|center_horizontal"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <View android:layout_width="1px"
-            android:layout_height="10dp" android:background="#55000000"
-            android:layout_centerHorizontal="true"/>
 
         <LinearLayout
             android:layout_marginTop="15dp"
@@ -58,16 +59,17 @@
             android:layout_width="230dp"
             android:layout_height="wrap_content">
             <EditText
+                android:textColor="@color/colorBlueGrayDeep"
                 android:id="@+id/actSignup_etEmail"
                 style="@style/FontOpenSansLight"
                 android:inputType="textEmailAddress"
                 android:background="@drawable/bg_common_edittext"
                 android:lines="1"
-                android:textSize="16sp"
+                android:textSize="15.5sp"
                 android:gravity="center"
-                android:hint="Email"
+                android:hint="EMAIL"
                 android:layout_width="match_parent"
-                android:layout_height="48dp" />
+                android:layout_height="55dp" />
 
         </LinearLayout>
         <LinearLayout
@@ -75,16 +77,17 @@
             android:layout_width="230dp"
             android:layout_height="wrap_content">
             <EditText
+                android:textColor="@color/colorBlueGrayDeep"
                 android:id="@+id/actSignup_etPassword"
                 style="@style/FontOpenSansLight"
                 android:inputType="textPassword"
                 android:background="@drawable/bg_common_edittext"
                 android:lines="1"
-                android:textSize="16sp"
+                android:textSize="15.5sp"
                 android:gravity="center"
-                android:hint="Password"
+                android:hint="PASSWORD"
                 android:layout_width="match_parent"
-                android:layout_height="48dp" />
+                android:layout_height="55dp" />
 
         </LinearLayout>
         <LinearLayout
@@ -92,16 +95,17 @@
             android:layout_width="230dp"
             android:layout_height="wrap_content">
             <EditText
+                android:textColor="@color/colorBlueGrayDeep"
                 android:id="@+id/actSignup_etPasswordOneMore"
                 style="@style/FontOpenSansLight"
                 android:inputType="textPassword"
                 android:background="@drawable/bg_common_edittext"
                 android:lines="1"
-                android:textSize="16sp"
+                android:textSize="15.5sp"
                 android:gravity="center"
-                android:hint="Password one more"
+                android:hint="PASSWORD ONE MORE"
                 android:layout_width="match_parent"
-                android:layout_height="48dp" />
+                android:layout_height="55dp" />
 
         </LinearLayout>
         <LinearLayout
@@ -109,16 +113,17 @@
             android:layout_width="230dp"
             android:layout_height="wrap_content">
             <TextView
+                android:textColor="@color/colorBlueGrayDeep"
                 android:id="@+id/actSignup_tvPhone"
                 style="@style/FontOpenSansLight"
                 android:inputType="phone"
                 android:background="@drawable/bg_common_edittext"
                 android:lines="1"
-                android:textSize="16sp"
+                android:textSize="15.5sp"
                 android:gravity="center"
-                android:hint="Phone number"
+                android:hint="PHONE NUMBER"
                 android:layout_width="match_parent"
-                android:layout_height="48dp" />
+                android:layout_height="55dp" />
 
         </LinearLayout>
         <!--term -->
@@ -139,54 +144,56 @@
                 android:text="By signing up, you agree with our terms of use"/>
             <TextView
                 style="@style/FontOpenSansLight"
-                android:textColor="@color/colorOkhome"
+                android:textColor="@color/colorOkhomeLight"
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:textSize="13sp"
                 android:text="View terms &amp; conditions"/>
-            <View android:layout_width="1px" android:layout_height="10dp" android:background="#55000000"
-                android:layout_marginTop="25dp"
-                android:layout_centerHorizontal="true"/>
 
         </LinearLayout>
 
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingBottom="24dp"
+        android:orientation="vertical"
+        android:id="@+id/actSignUp_vgBottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/actSignup_vbtnSignup"
-                android:layout_width="180dp"
-                android:layout_height="50dp"
+                android:layout_width="200dp"
+                android:layout_height="62dp"
                 android:layout_centerInParent="true"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:background="@color/colorOkhome"
+                android:background="@drawable/btn_round_lightblue_shadow"
                 android:gravity="center"
-                android:paddingBottom="10dp"
+                android:paddingBottom="14dp"
                 android:paddingTop="10dp">
 
                 <LinearLayout
+                    android:gravity="center"
                     android:layout_width="20dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:gravity="center">
-
+                    android:layout_height="wrap_content">
                     <ImageView
                         android:layout_width="16dp"
-                        android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/ic_downarrow_white" />
+                        android:layout_height="wrap_content" android:src="@drawable/ic_check_white"/>
 
                 </LinearLayout>
-
                 <TextView
                     style="@style/FontOpenSansLight"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Sign up"
+                    android:text="SIGN UP"
                     android:textColor="#ffffff"
                     android:textSize="16sp" />
 
@@ -208,17 +215,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <View
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/actMain_tvSubTitle"
-                android:layout_width="match_parent"
-                android:layout_height="1px" android:background="#44000000"/>
-
-            <View
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/actMain_tvSubTitle"
-                android:layout_width="match_parent"
-                android:layout_height="1px" android:background="#44000000"/>
 
             <TextView
                 style="@style/FontOpenSansLight"
@@ -256,16 +252,12 @@
                     android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:textSize="13sp"
-                    android:text="Connect with Google email"/>
+                    android:text="Connect with Google"/>
             </LinearLayout>
 
         </LinearLayout>
 
-
-
-
     </LinearLayout>
-
 
 
 </RelativeLayout>

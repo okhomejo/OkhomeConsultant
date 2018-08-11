@@ -22,79 +22,97 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <FrameLayout
+            <!-- next cleaning -->
+            <LinearLayout
+                android:id="@+id/fragTabJobsCalendar_vgNextJobContents"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
-
-
-                <TextView
-                    style="@style/FontOpenSansLight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#ffffff"
-                    android:paddingRight="20dp"
-                    android:text="NEXT CLEANINGS"
-                    android:textColor="@color/colorLightBlueGray"
-                    android:textSize="15sp" />
-
-
-            </FrameLayout>
-
-            <!-- item -->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="11dp"
-                android:orientation="vertical">
-
-                <LinearLayout
+                android:layout_height="wrap_content">
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+
+                    <TextView
+                        style="@style/FontOpenSansLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:paddingRight="20dp"
+                        android:text="NEXT CLEANINGS"
+                        android:textColor="@color/colorLightBlueGray"
+                        android:textSize="15sp" />
+
+
+                </FrameLayout>
+
+                <!-- item -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="1.5dp"
-                        android:gravity="center_vertical">
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/bg_leftline_bold_gray_4dp"
-                            android:orientation="vertical"
-                            android:paddingBottom="2dp"
-                            android:paddingLeft="22dp">
+                            android:layout_marginLeft="1.5dp"
+                            android:gravity="center_vertical">
 
-
-                            <TextView
-                                android:layout_marginTop="-2dp"
-                                style="@style/FontOpenSansLight"
-                                android:layout_width="wrap_content"
+                            <FrameLayout
+                                android:id="@+id/fragTabJobsCalendar_vgNextCleaning"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:text="A3205, Puri casablanca, JL Casablanca"
-                                android:textColor="#000000"
-                                android:textSize="15.5sp" />
+                                android:background="@drawable/bg_leftline_bold_gray_4dp"
+                                android:orientation="vertical"
+                                android:paddingBottom="2dp"
+                                android:paddingLeft="22dp">
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:singleLine="true"
+                                        android:id="@+id/fragTabJobsCalendar_tvNextJobAddress"
+                                        android:layout_marginTop="-2dp"
+                                        style="@style/FontOpenSansLight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:text="Loading..."
+                                        android:textColor="#000000"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/fragTabJobsCalendar_tvNextJobWhen"
+                                        android:layout_marginTop="1dp"
+                                        style="@style/FontOpenSansLight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:text="Loading..."
+                                        android:textColor="#66000000"
+                                        android:textSize="13.5sp" />
+                                </LinearLayout>
 
 
-                            <TextView
-                                android:layout_marginTop="2dp"
-                                style="@style/FontOpenSansLight"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:text="Cleaning on 16 Jan 2018, 10:00 AM"
-                                android:textColor="#66000000"
-                                android:textSize="14sp" />
+
+                            </FrameLayout>
+
                         </LinearLayout>
 
                     </LinearLayout>
 
-                </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
 
-            </RelativeLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"

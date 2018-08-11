@@ -16,6 +16,7 @@ public class CleaningInfoModel implements Serializable {
     public float totalCleaningDuration;
     public float displayingCleaningDuration;
 
+
     public List<CleaningItemModel> cleanings = null;
 
     public float score;

@@ -4,4 +4,6 @@
     <string name="location_permission_dialog">This app needs the Location permission, please accept to use location functionality</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="default_notification_channel_id">1</string>
+
+
 </resources>

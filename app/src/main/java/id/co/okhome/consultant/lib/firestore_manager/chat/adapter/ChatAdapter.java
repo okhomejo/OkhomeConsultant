@@ -25,10 +25,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import id.co.okhome.consultant.R;
-import id.co.okhome.consultant.lib.firestore_manager.chat.vholder.ChatVHolder;
+import id.co.okhome.consultant.lib.firestore_manager.chat.OkhomeChatRoomManager;
 import id.co.okhome.consultant.lib.firestore_manager.chat.model.ChatItem;
+import id.co.okhome.consultant.lib.firestore_manager.chat.vholder.ChatVHolder;
 
 /**
  * Created by jo on 2018-05-06.
@@ -42,6 +44,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatVHolder>{
     String mMyId;
     int mPageSize;
 
+    ConcurrentHashMap<String, Map<String, String>> mapUser = null;
+
     public ChatAdapter(Context context, String myId, int pageSize) {
         this.mChatItemList = new ArrayList<>();
         this.mChatItemMap = new HashMap<>();
@@ -52,6 +56,17 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatVHolder>{
 
     public List<ChatItem> getChatItemList() {
         return mChatItemList;
+    }
+
+    public void setMapUser(Map<String, Map<String, String>> mapUser) {
+        if(this.mapUser == null){
+            this.mapUser = new ConcurrentHashMap<>();
+        }
+        this.mapUser.clear();
+
+        for(Map.Entry<String, Map<String, String>> entry : mapUser.entrySet()){
+            this.mapUser.put(entry.getKey(), entry.getValue());
+        }
     }
 
     //add item
@@ -82,6 +97,34 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatVHolder>{
     @Override
     public void onBindViewHolder(ChatVHolder holder, int position) {
         //데이터 컴인.
+        ChatItem chatItem = mChatItemList.get(position);
+        if(chatItem.msgType.equals("SYSTEM")){
+            //시스템일경우.
+            onBindSystemMessage(holder, position);
+        }else{
+            onBindUserMessage(holder, position);
+        }
+
+    }
+
+    //ㅅ;스템 메세지 바인딩
+    private void onBindSystemMessage(ChatVHolder holder, int position){
+        ChatItem chatItem = mChatItemList.get(position);
+
+        holder.vgChatMine.setVisibility(View.GONE);
+        holder.vgChatOpposite.setVisibility(View.GONE);
+        holder.vgHeaderDate.setVisibility(View.GONE);
+
+        holder.vgSystemMessage.setVisibility(View.VISIBLE);
+        holder.tvSystemMessage.setText("Notification : " + chatItem.msg);
+
+        DateTime writeTime = new DateTime(chatItem.getTimestamp());
+        String dateTime = DateTimeFormat.forPattern("(E) d MMM yy, hh:mm a").withLocale(new Locale("id")).withZone(DateTimeZone.forID("Asia/Jakarta")).print(writeTime);
+        holder.tvSystemMessageDate.setText(dateTime);
+    }
+
+
+    private void onBindUserMessage(ChatVHolder holder, int position){
         final ImageView ivChatPhoto;
         TextView tvChat, tvTime;
         ViewGroup vgContents, vgPhotoContents;
@@ -93,7 +136,14 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatVHolder>{
         String myId = mMyId;
 
         vBottomPadding = holder.vBottomPadding;
+
+        holder.vgSystemMessage.setVisibility(View.GONE);
+
+        boolean isMyChat = false;
+
         if(chatItem.writerId.equals(myId)){
+            isMyChat = true;
+
             holder.vgChatMine.setVisibility(View.VISIBLE);
             holder.vgChatOpposite.setVisibility(View.GONE);
 
@@ -104,7 +154,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatVHolder>{
             vgPhotoContents = holder.vgMyPhotoContent;
             vTopPadding = holder.vMyTopPadding;
             vgTextContent = holder.vgMyTextContent;
+
         }else{
+            isMyChat = false;
+
             holder.vgChatMine.setVisibility(View.GONE);
             holder.vgChatOpposite.setVisibility(View.VISIBLE);
 
@@ -121,61 +174,132 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatVHolder>{
         boolean showDateHeader = false;
         if(position == 0){
             showDateHeader = true;
-        }else{
+        }
+        else{
 
             ChatItem chatPrevItem = mChatItemList.get(position-1);
             DateTime dtNow = chatItem.dateTime();
             DateTime dtPrev = chatPrevItem.dateTime();
 
-            if(dtNow.getDayOfYear() == dtPrev.getDayOfYear()){
+            if(chatPrevItem.msgType.equals("SYSTEM")){
+                showDateHeader = true;
+
+            }else if(dtNow.getDayOfYear() == dtPrev.getDayOfYear()){
                 showDateHeader = false;
+
             }else{
                 showDateHeader = true;
             }
         }
+
         if(showDateHeader){
             holder.vgHeaderDate.setVisibility(View.VISIBLE);
-            String date = DateTimeFormat.forPattern("E d MMM yy").withZone(DateTimeZone.forID("Asia/Jakarta")).withLocale(new Locale("id")).print(new DateTime(chatItem.getTimestamp()));
+            String date = DateTimeFormat.forPattern("(E) d MMM yy").withZone(DateTimeZone.forID("Asia/Jakarta")).withLocale(new Locale("id")).print(new DateTime(chatItem.getTimestamp()));
             holder.tvHeaderDate.setText(date);
         }else{
             holder.vgHeaderDate.setVisibility(View.GONE);
         }
 
 
-        //-----------------채팅 풍선 앞 날짜 중첩되는지 확인하고 날짜는 중복된 아이템의 마지막에만표시
-        boolean showDateTime = true;
-        //나, 앞, 뒤체크
-        if(position == getItemCount()-1){
-            //마지막일경우
-            showDateTime = true;
-        }else{
-            //나머지
+        //-------------------------------------------------------------------------------------
+        //-----------------이름표시
 
-            ChatItem chatNext = mChatItemList.get(position+1);
+        {
+            boolean showOppositeName = false;
+            ChatItem chatNext = null;
+            ChatItem chatPrevItem = null;
 
-            DateTime dtNow = chatItem.dateTime();
-            DateTime dtNext = chatNext.dateTime();
+            try{    chatNext = mChatItemList.get(position+1);   }catch(Exception e){ ; }
+            try{    chatPrevItem = mChatItemList.get(position-1);   }catch(Exception e){ ; }
 
-            //지금이랑 다음꺼랑 같으면 일단 지금꺼는 시가없앰
-            if(dtNow.getHourOfDay() == dtNext.getHourOfDay() && dtNow.getMinuteOfHour() == dtNext.getMinuteOfHour()){
-                showDateTime = false;
-            }else{
-                showDateTime = true;
+
+            //
+            if(!isMyChat) {
+                //시스템이면 안보임
+                if(chatItem.msgType.equals(OkhomeChatRoomManager.MESSAGE_SYSTEM)){
+                    showOppositeName = false;
+                }
+                //첫 아이템은 보임.
+                else if(chatPrevItem == null){
+                    showOppositeName = true;
+                }
+                //전놈이랑 다르면 보임
+                else if(!chatItem.writerId.equals(chatPrevItem.writerId)){
+                    showOppositeName = true;
+                }
+                //전놈이랑 같을 경우
+                else if(chatItem.writerId.equals(chatPrevItem.writerId)){
+                    DateTime dtNow = chatItem.dateTime();
+                    DateTime dtPrev = chatPrevItem.dateTime();
+
+                    if(dtNow.getHourOfDay() == dtPrev.getHourOfDay() && dtNow.getMinuteOfHour() == dtPrev.getMinuteOfHour()){
+                        showOppositeName = false;
+                    }else{
+                        //분차이 나야 보임
+                        showOppositeName = true;
+                    }
+                }
+                //전놈이랑 다르면 보임
+
             }
+
+            //설정
+            if(showOppositeName){
+                holder.vgOppositeNameTag.setVisibility(View.VISIBLE);
+                setName(chatItem.writerId, holder.tvOppositeName);
+                setOppositeWriterColor(chatItem.writerId, holder.tvOppositeName);
+            }else{
+                holder.vgOppositeNameTag.setVisibility(View.GONE);
+            }
+
         }
-        if(showDateTime){
-            vBottomPadding.setVisibility(View.VISIBLE);
-            tvTime.setVisibility(View.VISIBLE);
-        }else{
-            vBottomPadding.setVisibility(View.GONE);
-            tvTime.setVisibility(View.GONE);
+
+        //-------------------------------------------------------------------------------------
+        //-----------------채팅 풍선 앞 날짜 중첩되는지 확인하고 날짜는 중복된 아이템의 마지막에만표시
+        {
+            boolean showDateTime = true;
+            //나, 앞, 뒤체크
+            if(position == getItemCount()-1){
+                //마지막일경우
+                showDateTime = true;
+            }else{
+                //나머지
+
+                ChatItem chatNext = mChatItemList.get(position+1);
+
+                DateTime dtNow = chatItem.dateTime();
+                DateTime dtNext = chatNext.dateTime();
+
+                //지금이랑 다음꺼랑 같으면 일단 지금꺼는 시가없앰
+                if(chatNext.msgType.equals("SYSTEM")){
+                    showDateTime = true;
+                }
+                else if(!chatItem.writerId.equals(chatNext.writerId)){
+                    showDateTime = true;
+                }
+                else if(dtNow.getHourOfDay() == dtNext.getHourOfDay() && dtNow.getMinuteOfHour() == dtNext.getMinuteOfHour()){
+                    showDateTime = false;
+                }else{
+                    showDateTime = true;
+                }
+            }
+
+            if(showDateTime){
+                vBottomPadding.setVisibility(View.VISIBLE);
+                tvTime.setVisibility(View.VISIBLE);
+            }else{
+                vBottomPadding.setVisibility(View.GONE);
+                tvTime.setVisibility(View.GONE);
+            }
+
         }
+
 
 
         //------------------기타 내용 넣기
 
         DateTime writeTime = new DateTime(chatItem.getTimestamp());
-        String dateTime = DateTimeFormat.forPattern("aa h:mm").withZone(DateTimeZone.forID("Asia/Jakarta")).print(writeTime);
+        String dateTime = DateTimeFormat.forPattern("aa h:mm").withZone(DateTimeZone.getDefault()).print(writeTime);
         tvTime.setText(dateTime);
 
 
@@ -213,19 +337,37 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatVHolder>{
 //            Glide.with(mContext).load(chatItem.msg).thumbnail(0.5f).into(ivChatPhoto);
 
         }
-        //-------------------테긋트 처리
+        //-------------------테긋트 처리 / PLAIN
         else{
             vgTextContent.setVisibility(View.VISIBLE);
             tvChat.setText(chatItem.msg);
             vgPhotoContents.setVisibility(View.GONE);
         }
-
     }
-
 
     @Override
     public int getItemCount() {
         return mChatItemList.size();
+    }
+
+    public void setName(String userId, TextView tvName){
+//        String userName = mapUserInfo.get("name");
+//        String userPhotoUrl = mapUserInfo.get("photoUrl");
+        String name = mapUser.get(userId).get("name");
+        tvName.setText(name);
+    }
+
+    public void setPhoto(String userId, ImageView ivPhoto){
+//        String userName = mapUserInfo.get("name");
+//        String userPhotoUrl = mapUserInfo.get("photoUrl");
+        String photoUrl = mapUser.get(userId).get("photoUrl");
+
+    }
+
+    public void setOppositeWriterColor(String userId, TextView tvName){
+        String color = mapUser.get(userId).get("nameColor");
+        tvName.setTextColor(Integer.parseInt(color));
+
     }
 
 

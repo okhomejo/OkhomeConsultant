@@ -291,7 +291,6 @@
 
                             <de.hdodenhof.circleimageview.CircleImageView
                                 android:id="@+id/fragmentIntro1_ivUserPhoto"
-                                android:src="@drawable/img_model5"
                                 android:layout_gravity="center"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -300,7 +299,6 @@
 
                         <LinearLayout
                             android:layout_toRightOf="@+id/itemChat_vgUserPhoto"
-                            android:layout_below="@+id/itemChat_vTopPadding"
                             android:id="@+id/itemChat_vgContents"
                             android:orientation="vertical"
                             android:layout_marginLeft="12dp"

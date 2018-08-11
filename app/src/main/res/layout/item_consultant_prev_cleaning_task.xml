@@ -6,7 +6,7 @@
     <RelativeLayout
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="23dp"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content">
@@ -32,21 +32,21 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/itemCleaningTask_tvTitle"
+                        android:id="@+id/itemConsultantPrevCleaningTask_tvPrice"
+                        android:layout_alignParentRight="true"
                         style="@style/FontOpenSansLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="-2dp"
-                        android:text="General Cleaning"
-                        android:textColor="@color/colorBlueBlack"
-                        android:textSize="18sp" />
+                        android:text="Rp 520.000"
+                        android:textColor="@color/colorOkhomeLight2"
+                        android:textSize="17sp" />
+
 
                     <TextView
                         android:layout_marginTop="2dp"
                         android:layout_marginRight="10dp"
                         android:singleLine="true"
-                        android:id="@+id/itemCleaningTask_tvAddress"
+                        android:id="@+id/itemConsultantPrevCleaningTask_tvAddress"
                         android:layout_marginBottom="4dp"
                         style="@style/FontOpenSansLight"
                         android:layout_width="wrap_content"
@@ -56,55 +56,73 @@
                         android:textColor="@color/colorBlueGray"
                         android:textSize="14sp" />
 
+
                     <LinearLayout
-                        android:id="@+id/itemCleaningTask_vgRating"
+                        android:layout_marginTop="0dp"
+                        android:id="@+id/itemConsultantPrevCleaningTask_vgRating"
+                        android:gravity="center_vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <ImageView
-                            android:id="@+id/itemCleaningTask_ivStar1"
-                            android:layout_marginRight="3dp"
-                            android:adjustViewBounds="true"
-                            android:src="@drawable/ic_star_off"
-                            android:layout_width="14dp"
-                            android:layout_height="wrap_content" />
+                        <LinearLayout
+                            android:gravity="center"
+                            android:id="@+id/itemConsultantPrevCleaningTask_vgStarItems"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_marginRight="3dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_star_off"
+                                android:layout_width="12dp"
+                                android:layout_height="wrap_content" />
 
-                        <ImageView
-                            android:id="@+id/itemCleaningTask_ivStar2"
-                            android:layout_marginRight="3dp"
-                            android:adjustViewBounds="true"
-                            android:src="@drawable/ic_star_off"
-                            android:layout_width="14dp"
-                            android:layout_height="wrap_content" />
+                            <ImageView
+                                android:layout_marginRight="3dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_star_off"
+                                android:layout_width="12dp"
+                                android:layout_height="wrap_content" />
 
-                        <ImageView
-                            android:id="@+id/itemCleaningTask_ivStar3"
-                            android:layout_marginRight="3dp"
-                            android:adjustViewBounds="true"
-                            android:src="@drawable/ic_star_off"
-                            android:layout_width="14dp"
-                            android:layout_height="wrap_content" />
+                            <ImageView
+                                android:layout_marginRight="3dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_star_off"
+                                android:layout_width="12dp"
+                                android:layout_height="wrap_content" />
 
-                        <ImageView
-                            android:id="@+id/itemCleaningTask_ivStar4"
-                            android:layout_marginRight="3dp"
-                            android:adjustViewBounds="true"
-                            android:src="@drawable/ic_star_off"
-                            android:layout_width="14dp"
-                            android:layout_height="wrap_content" />
+                            <ImageView
+                                android:layout_marginRight="3dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_star_off"
+                                android:layout_width="12dp"
+                                android:layout_height="wrap_content" />
 
-                        <ImageView
-                            android:id="@+id/itemCleaningTask_ivStar5"
-                            android:layout_marginRight="3dp"
-                            android:adjustViewBounds="true"
-                            android:src="@drawable/ic_star_off"
-                            android:layout_width="14dp"
-                            android:layout_height="wrap_content" />
+                            <ImageView
+                                android:layout_marginRight="3dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_star_off"
+                                android:layout_width="12dp"
+                                android:layout_height="wrap_content" />
 
+                            <ImageView
+                                android:layout_marginLeft="5dp" android:layout_marginRight="5dp"
+                                android:layout_width="3dp"
+                                android:layout_height="3dp" android:background="@drawable/circle_gray"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/itemConsultantPrevCleaningTask_tvReviewScore"
+                            style="@style/FontOpenSansLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="4.5"
+                            android:textColor="@color/colorBlueGray"
+                            android:textSize="13sp" />
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/itemCleaningTask_tvDate"
+                        android:id="@+id/itemConsultantPrevCleaningTask_tvDate"
                         android:layout_marginTop="14dp"
                         style="@style/FontOpenSansLight"
                         android:layout_width="wrap_content"

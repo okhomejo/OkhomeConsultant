@@ -17,12 +17,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="WORK EXPERIENCE"
-            android:textSize="24sp"
+            android:textSize="28dp"
             android:layout_centerVertical="true"
             android:layout_marginBottom="7dp"/>
 
         <TextView
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="12dp"
             style="@style/FontOpenSansLight"
             android:textColor="@color/colorBlueGray"
             android:layout_width="wrap_content"
@@ -150,13 +150,13 @@
     <LinearLayout
         android:weightSum="10"
         android:layout_width="match_parent"
-        android:layout_height="55dp">
+        android:layout_height="60dp">
 
         <LinearLayout
             android:id="@+id/dialogWorkExp_vBtnCancel"
             android:layout_weight="5"
             android:gravity="center"
-            android:background="@color/colorLightBlueGray"
+            android:background="@color/colorOkhomeLight2"
             android:layout_width="0dp"
             android:layout_height="match_parent">
 

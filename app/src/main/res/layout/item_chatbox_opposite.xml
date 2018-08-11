@@ -20,53 +20,82 @@
         android:layout_height="wrap_content" />
 
     <LinearLayout
+        android:layout_marginLeft="7dp"
         android:layout_below="@+id/itemChatOpposite_vTopPadding"
         android:id="@+id/itemChatOpposite_vgContents"
         android:orientation="vertical"
-        android:layout_marginLeft="7dp"
-        android:background="@drawable/bg_chatbox_friend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <!--텍스트 박스 -->
         <LinearLayout
-            android:id="@+id/itemChatOpposite_vgTextContent"
-            android:paddingLeft="14dp" android:paddingRight="14dp" android:paddingTop="12dp" android:paddingBottom="12dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/itemChatOpposite_vgNameTag"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
+
             <TextView
-                style="@style/FontOpenSansLight"
+                android:layout_marginLeft="10dp"
+                style="@style/FontOpenSansRegular"
                 android:maxWidth="250dp"
-                android:textSize="14sp"
-                android:textColor="#3c3e45"
-                android:text="Hi there! Nice to meet you!"
+                android:textSize="13sp"
+                android:textColor="@color/colorBlueBlack"
+                android:text="Apshala"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/itemChatOpposite_tvChat"/>
+                android:layout_height="wrap_content" android:id="@+id/itemChatOpposite_tvName"/>
 
         </LinearLayout>
 
-        <!-- 사진 -->
         <LinearLayout
             android:orientation="vertical"
-            android:id="@+id/itemChatOpposite_vgPhotoContent"
+            android:background="@drawable/bg_chatbox_friend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <com.joooonho.SelectableRoundedImageView
-                android:maxWidth="250dp"
-                android:minWidth="100dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:id="@+id/itemChatOpposite_ivPhoto"
-                android:scaleType="centerCrop"
-                app:sriv_left_bottom_corner_radius="20dp"
-                app:sriv_right_bottom_corner_radius="20dp"
-                app:sriv_left_top_corner_radius="0dp"
-                app:sriv_right_top_corner_radius="20dp"  />
+            <!--텍스트 박스 -->
+            <LinearLayout
+                android:id="@+id/itemChatOpposite_vgTextContent"
+                android:paddingLeft="14dp" android:paddingRight="14dp" android:paddingTop="12dp" android:paddingBottom="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/FontOpenSansLight"
+                    android:maxWidth="250dp"
+                    android:textSize="14sp"
+                    android:textColor="#3c3e45"
+                    android:text="Hi there! Nice to meet you!"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/itemChatOpposite_tvChat"/>
 
+            </LinearLayout>
+
+            <!-- 사진 -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/itemChatOpposite_vgPhotoContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.joooonho.SelectableRoundedImageView
+                    android:maxWidth="250dp"
+                    android:minWidth="100dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:id="@+id/itemChatOpposite_ivPhoto"
+                    android:scaleType="centerCrop"
+                    app:sriv_left_bottom_corner_radius="20dp"
+                    app:sriv_right_bottom_corner_radius="20dp"
+                    app:sriv_left_top_corner_radius="0dp"
+                    app:sriv_right_top_corner_radius="20dp"  />
+
+            </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
+
 
 
 

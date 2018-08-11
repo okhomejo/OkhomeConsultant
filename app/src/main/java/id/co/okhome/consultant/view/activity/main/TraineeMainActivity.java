@@ -21,7 +21,7 @@ import id.co.okhome.consultant.lib.app.OkHomeParentActivity;
 import id.co.okhome.consultant.lib.app.OkhomeUtil;
 import id.co.okhome.consultant.lib.fragment_pager.FragmentTabAdapter;
 import id.co.okhome.consultant.lib.fragment_pager.TabFragmentStatusListener;
-import id.co.okhome.consultant.view.fragment.trainee_tab.ChatTabFragment;
+import id.co.okhome.consultant.view.fragment.consultant_tab.ChatTabFragment;
 import id.co.okhome.consultant.view.fragment.trainee_tab.HomeTabFragment;
 import id.co.okhome.consultant.view.fragment.trainee_tab.ManualTabFragment;
 import id.co.okhome.consultant.view.fragment.trainee_tab.SettingTabFragment;

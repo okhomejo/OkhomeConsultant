@@ -72,7 +72,7 @@ public abstract class RetrofitCallback<T> implements Callback<T>{
     @Override
     public void onFailure(Call<T> call, Throwable t) {
         onFinish();
-        onJodevError(new ErrorModel(-1111+"", t.getMessage(), null));
+        onJodevError(new ErrorModel(-1111+"", t.toString(), null));
 
     }
 

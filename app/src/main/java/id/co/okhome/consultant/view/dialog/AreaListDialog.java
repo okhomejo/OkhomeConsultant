@@ -3,7 +3,6 @@ package id.co.okhome.consultant.view.dialog;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.mrjodev.jorecyclermanager.JoRecyclerAdapter;
@@ -27,7 +26,6 @@ import id.co.okhome.consultant.view.viewholder.prefered_area.PreferredChildAreaV
 
 public class AreaListDialog extends DialogParent {
 
-    @BindView(R.id.dialogAreaList_btnConfirm)    Button btnConfirm;
     @BindView(R.id.dialogAreaList_tvTitle)       TextView tvTitle;
     @BindView(R.id.dialogAreaList_rcv)           RecyclerView rcv;
 
@@ -93,7 +91,7 @@ public class AreaListDialog extends DialogParent {
         dismiss();
     }
 
-    @OnClick(R.id.dialogAreaList_btnConfirm)
+    @OnClick(R.id.dialogCommonAlert_vbtnOk)
     public void confirmSelection(){
         UpdateConsultantAreaActivity areaActivity = (UpdateConsultantAreaActivity) context;
         areaActivity.saveAndCloseDialog();
